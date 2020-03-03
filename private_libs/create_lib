@@ -1,0 +1,25 @@
+PROG=foo
+
+all: build-static build-shared clean-object-file
+
+build-static: $(PROG).o
+	ar -rcs lib$(PROG).a $(PROG).o
+	mv lib$(PROG).a static/
+
+build-shared: $(PROG).o
+	gcc -shared -o lib$(PROG).so $(PROG).o
+	mv lib$(PROG).so shared/
+
+$(PROG).o: $(PROG).c
+	gcc -c -Wall -Werror -fPIC $(PROG).c -o $(PROG).o
+
+clean: clean-object-file clean-shared clean-static
+
+clean-shared:
+	rm -f shared/lib$(PROG).so
+
+clean-static:
+	rm -f static/lib$(PROG).a
+
+clean-object-file:
+	rm -f $(PROG).o
