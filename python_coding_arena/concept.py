@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 
 # author: greyshell
+# description: proof of concept code
 
 
 def main():
-    a = 1
-    b = None
-    c = True
-
-    if b:
-        print(1)
-    if c:
-        print(2)
+    for i in range(0, 10):
+        print(f"{i}")
+        if i == 4:
+            break
+    else:
+        print(f"hello")
     # end of main
 
 
