@@ -9,7 +9,7 @@
 
 void swap(int *, int *);
 
-void display_arr(int [], size_t);
+void display_array(int *arr, size_t len);
 
 void bubble_sort(int [], size_t);
 

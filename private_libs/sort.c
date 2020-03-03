@@ -210,7 +210,7 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void display_arr(int arr[], size_t len) {
+void display_array(int *arr, size_t len) {
     /*
      * time complexity: O(n)
      * space complexity: O(1)

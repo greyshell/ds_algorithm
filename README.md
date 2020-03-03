@@ -66,9 +66,6 @@ git show --summary
 `sync` the local repo with remote.
 ```
 git pull --rebase
-
-# Sometimes we need to force pull to overwrite local files:
-git fetch --all && git reset --hard origin/master && git pull origin master
 ```
 
 - Update the local repo and push the code into remote branch.

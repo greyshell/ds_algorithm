@@ -17,29 +17,29 @@ void array_copy(int *dest, int *src, size_t len) {
 void test_counting_sort(int arr[], int *temp_array, size_t len) {
     array_copy(arr, temp_array, len);
     printf("\nbefore counting sort: ");
-    display_arr(arr, len);
+    display_array(arr, len);
     int *result_array = (int *) calloc(len, sizeof(int));
     counting_sort(arr, result_array, len);
     printf("\nafter counting sort:  ");
-    display_arr(result_array, len);
+    display_array(result_array, len);
 }
 
 void test_bubble_sort(int *arr, int *temp_array, size_t len) {
     array_copy(arr, temp_array, len);
     printf("\nentered array: ");
-    display_arr(arr, len);
+    display_array(arr, len);
     printf("\nafter bubble sort:  ");
     bubble_sort(arr, len);
-    display_arr(arr, len);
+    display_array(arr, len);
 }
 
 void test_cocktail_sort(int *arr, int *temp_array, size_t len) {
     array_copy(arr, temp_array, len);
     printf("\nentered array: ");
-    display_arr(arr, len);
+    display_array(arr, len);
     printf("\nafter cocktail sort:  ");
     cocktail_sort(arr, len);
-    display_arr(arr, len);
+    display_array(arr, len);
 }
 
 
@@ -93,7 +93,7 @@ int main(void) {
                 break;
             case 2:
                 printf("\nentered array: ");
-                display_arr(temp_arr, len);
+                display_array(temp_arr, len);
                 break;
             case 3:
                 test_bubble_sort(arr, temp_arr, len);
