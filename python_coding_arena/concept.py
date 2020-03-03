@@ -5,7 +5,7 @@
 
 
 def main():
-    for i in range(0, 10):
+    for i in range(0, 10, 2):
         print(f"{i}")
         if i == 4:
             break
