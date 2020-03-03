@@ -20,6 +20,12 @@ run-shared: ../cmake-build-debug/$(PROG)_shared-libs
 run-static: ../cmake-build-debug/$(PROG)_static-libs
 	../cmake-build-debug/$(PROG)_static-libs
 
+run-shared-linux: ../cmake-build-debug/$(PROG)_shared-libs
+	LD_LIBRARY_PATH=../private_libs/shared ../cmake-build-debug/$(PROG)_shared-libs
+
+run-static-linux: ../cmake-build-debug/$(PROG)_static-libs
+	LD_LIBRARY_PATH=../private_libs/static ../cmake-build-debug/$(PROG)_static-libs
+
 clean: clean-shared clean-static
 
 clean-shared:

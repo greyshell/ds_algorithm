@@ -54,6 +54,12 @@ make -f create_mac_binary_from_custom_lib PROG=test LIB=sort build-static
 # run the source file using the static library 
 make -f create_mac_binary_from_custom_lib PROG=test LIB=sort run-static
 
+# for linux add the following line into ~/.zshrc to load the shared lib.
+export LD_LIBRARY_PATH=/root/Dropbox/pentest/code_dev/kali_coding/ds_algorithm/private_libs/shared
+
+# run the linux binary
+make -f create_mac_binary_from_custom_lib PROG=test LIB=sort run-shared-linux
+
 # clean / remove the binary from cmake-build-debug folder
 make -f create_mac_binary_from_custom_lib PROG=test LIB=sort clean
 ```
