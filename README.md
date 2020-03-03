@@ -2,11 +2,11 @@
 
 Learning Data Structure and Algorithm in `C` and `python`.
 
-### Learning Tracker
+#### Learning Tracker
 
 - https://www.notion.so/greyshell/
 
-### `C` Reference Materials
+## `C` Reference Materials
 
 1. Chekuri Srikanth Varma
     - https://interviewprep.appliedcourse.com/course/2/Interview-Preparation-Course
@@ -41,16 +41,18 @@ Learning Data Structure and Algorithm in `C` and `python`.
 12. `Book`: C, the complete reference by Herbert Schildt
 13. `Book`: The C Programming Language by Brian Kernighan and Dennis Ritchie
 
-### `python` Reference Materials
+## `python` Reference Materials
 
-1. Grokking Algorithms by Aditya Y Bhargava
-2. Problem Solving with Algorithms and Data Structures Using Python by By Brad Miller and David
- Ranum => downloaded
-3. Python Data Structures and Algorithms by Benjamin Baka (Author) => safari book
-4. Data Structures and Algorithms in Python by magnus => downloaded
-5. Data Structures and Algorithms Using Python by Rance D => downloaded
-6. http://interactivepython.org/runestone/static/pythonds/index.html by Brad Miller => online
-7. https://www.tutorialspoint.com/python/python_algorithm_design.htm => online, downloaded
+1. `Book`: Grokking Algorithms by Aditya Y Bhargava
+2. Python 3: Project-based Python, Algorithms, Data Structures
+    - https://subscription.packtpub.com/playlists/196d6fdd-26ca-4603-a786-59777b7b5687
+3. Advanced Data Structures and Algorithms in Python
+    - https://subscription.packtpub.com/video/Programming/9781838643157
+4. Hands-On Data Structures and Algorithms with Python - Second Edition
+    - https://subscription.packtpub.com/book/application_development/9781788995573
+5. `Book`: Python Data Structures and Algorithms by Benjamin Baka (Author)
+6. `Book`: Data Structures and Algorithms Using Python by Rance D 
+7. `Book` by Brad Miller: http://interactivepython.org/runestone/static/pythonds/index.html 
 8. http://nptel.ac.in/courses/106106145/
 
 ## Git Workflow
@@ -60,8 +62,8 @@ Learning Data Structure and Algorithm in `C` and `python`.
 git show --summary
 ```
 
-- If the last commit was made from different system then we need to
-sync the local repo with remote.
+- If the last commit was made from `different` system then we need to
+`sync` the local repo with remote.
 ```
 git pull --rebase
 
