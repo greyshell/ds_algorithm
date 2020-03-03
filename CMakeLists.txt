@@ -47,7 +47,7 @@ add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCS
 # recursion
 # =========
 
-# c_codingarena
+# c_coding_arena
 # ==========
 add_executable(quine c_coding_arena/quine.c ${MyCSources})
 
@@ -58,8 +58,6 @@ add_executable(quine c_coding_arena/quine.c ${MyCSources})
 # sorting
 # =======
 add_executable(test_sort sorting/test_sort.c ${MyCSources})
-add_executable(find_kth_smallest sorting/find_kth_smallest.c ${MyCSources})
-add_executable(quick_sort sorting/quick_sort.c ${MyCSources})
 
 # stack
 # ======
