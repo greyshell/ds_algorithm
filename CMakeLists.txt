@@ -50,6 +50,7 @@ add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCS
 # c_coding_arena
 # ==========
 add_executable(quine c_coding_arena/quine.c ${MyCSources})
+add_executable(test_foo c_coding_arena/test_foo.c ${MyCSources})
 
 # searching
 # =========

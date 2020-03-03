@@ -1,25 +1,25 @@
-PROG=foo
+LIB=foo
 
 all: build-static build-shared clean-object-file
 
-build-static: $(PROG).o
-	ar -rcs lib$(PROG).a $(PROG).o
-	mv lib$(PROG).a static/
+build-static: $(LIB).o
+	ar -rcs lib$(LIB).a $(LIB).o
+	mv lib$(LIB).a static/
 
-build-shared: $(PROG).o
-	gcc -shared -o lib$(PROG).so $(PROG).o
-	mv lib$(PROG).so shared/
+build-shared: $(LIB).o
+	gcc -shared -o lib$(LIB).so $(LIB).o
+	mv lib$(LIB).so shared/
 
-$(PROG).o: $(PROG).c
-	gcc -c -Wall -Werror -fPIC $(PROG).c -o $(PROG).o
+$(LIB).o: $(LIB).c
+	gcc -c -Wall -Werror -fPIC $(LIB).c -o $(LIB).o
 
 clean: clean-object-file clean-shared clean-static
 
 clean-shared:
-	rm -f shared/lib$(PROG).so
+	rm -f shared/lib$(LIB).so
 
 clean-static:
-	rm -f static/lib$(PROG).a
+	rm -f static/lib$(LIB).a
 
 clean-object-file:
-	rm -f $(PROG).o
+	rm -f $(LIB).o
