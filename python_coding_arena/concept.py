@@ -5,12 +5,13 @@
 
 
 def main():
-    for i in range(0, 10, 2):
+    for i in range(0, 10, 1):
         print(f"{i}")
-        if i == 4:
+        if i == 2:
             break
     else:
         print(f"hello")
+    print(f"asinha")
     # end of main
 
 
