@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "stdbool.h"
 #include "singly_linkedlist.h"
 
 
@@ -13,16 +14,18 @@ void display(singly_linkedlist *head) {
      * time complexity: O(n)
      * space complexity: O(1) -> temporary pointer variables
      */
-    singly_linkedlist *ptr;
+    singly_linkedlist *curr_ptr;
+
+    // when the list has 0 element
     if (head == NULL) {
         printf("\nempty list !!");
         return;
     }
-    ptr = head;
+    curr_ptr = head;
 
-    while (ptr != NULL) {
-        printf("%d ", ptr->data);
-        ptr = ptr->next;
+    while (curr_ptr != NULL) {
+        printf("%d ", curr_ptr->data);
+        curr_ptr = curr_ptr->next;
     }
 }
 
@@ -44,54 +47,33 @@ size_t count(singly_linkedlist *head) {
      * time complexity: O(n)
      * space complexity: O(1) -> temporary pointer variables
      */
-    singly_linkedlist *ptr;
+    singly_linkedlist *curr_ptr;
     size_t count = 0;
-    ptr = head;
-    while (ptr != NULL) {
-        ptr = ptr->next;
-        count++;
+    curr_ptr = head;
+
+    while (curr_ptr != NULL) {
+        ++count;
+        curr_ptr = curr_ptr->next;
     }
     return count;
 }
 
-size_t search(singly_linkedlist *head, int data) {
-    /*
-     * if found then return the index else return -1
-     * time complexity: O(n), find the position
-     * space complexity: O(1), for temporary pointer variable
-     */
-    singly_linkedlist *ptr;
-    size_t index = 0;
-
-    ptr = head;
-    while (ptr != NULL) {
-        if (ptr->data == data) {
-            return index;
-        }
-        ptr = ptr->next;
-        index++;
-    }
-    return -1;
-}
-
 singly_linkedlist *get_node(singly_linkedlist *head, int data) {
     /*
-     * if found then return the pointer else return NULL
+     * if found then return the node_pointer else return NULL
      * time complexity: O(n), find the position
      * space complexity: O(1), for temporary pointer variable
      */
-    singly_linkedlist *ptr = NULL;
-    size_t index = 0;
+    singly_linkedlist *curr_ptr;
 
-    ptr = head;
-    while (ptr != NULL) {
-        if (ptr->data == data) {
-            return ptr;
+    curr_ptr = head;
+    while (curr_ptr != NULL) {
+        if (curr_ptr->data == data) {
+            return curr_ptr;
         }
-        ptr = ptr->next;
-        index++;
+        curr_ptr = curr_ptr->next;
     }
-    return NULL;
+    return NULL;  // covers the scenario when head is NULL / data is not found
 }
 
 singly_linkedlist *get_middle_node(singly_linkedlist *head) {
@@ -101,45 +83,59 @@ singly_linkedlist *get_middle_node(singly_linkedlist *head) {
      */
     singly_linkedlist *fast_ptr, *slow_ptr;
     if (head == NULL) {
-        printf("\nlist is empty");
+        printf("\nempty list !!");
         return NULL;
     }
 
     fast_ptr = slow_ptr = head;
+    // when the list count >= 2
     while (fast_ptr != NULL && fast_ptr->next != NULL) {
-        fast_ptr = fast_ptr->next->next;
         slow_ptr = slow_ptr->next;
+        fast_ptr = fast_ptr->next->next;
     }
-    return slow_ptr;
+    return slow_ptr;  // when the list count is 1 returns NULL
 }
 
-singly_linkedlist *get_kth_node_from_end(singly_linkedlist *head, int k){
+singly_linkedlist *get_kth_node_from_end(singly_linkedlist *head, size_t k) {
     /*
-     * pass the list only 1 time
+     * 1 time pass the singly linked list
      * time complexity: O(n)
      * space complexity: O(1)
      */
     singly_linkedlist *first_ptr, *second_ptr;
-    size_t count = 0;
+    size_t count;
+    first_ptr = second_ptr = head;
 
-    if (head == NULL) {
-        printf("\nlist is empty");
+    // k = 1 means last node
+    if (k < 1) {
+        printf("\nk < 1");
         return NULL;
     }
 
-    first_ptr = second_ptr = head;
-    // move the fast ptr by k so that the gap between  and second is k nodes apart
-
-    while (first_ptr != NULL) {
-        count++;
-        if(k){
-
-        }
-        first_ptr = first_ptr->next;
-
+    if (head == NULL) {
+        printf("\nempty list !!");
+        return NULL;
     }
 
-    return NULL;
+    // move the first_ptr by k nodes so that the gap between first_ptr and second_prt is k
+    count = 1;
+    while (count <= k && first_ptr != NULL) {
+        first_ptr = first_ptr->next;
+        count++;
+    }
+
+    // when k is more than that list length
+    if (--count < k) {
+        printf("\nk > list length !!");
+        return NULL;
+    }
+
+    while (first_ptr != NULL) {
+        first_ptr = first_ptr->next;
+        second_ptr = second_ptr->next;
+    }
+
+    return second_ptr;
 }
 
 singly_linkedlist *insert_at_head(singly_linkedlist *head, int data) {
@@ -189,6 +185,7 @@ singly_linkedlist *insert_at_tail(singly_linkedlist *head, int data) {
 
 singly_linkedlist *insert_at_index(singly_linkedlist *head, int data, size_t position) {
     /*
+     * node: through this function you can't insert element after the last node
      * time complexity: O(n) -> for finding the position
      * space complexity: O(1) -> for temporary pointer variable
      */
@@ -257,7 +254,7 @@ singly_linkedlist *delete_at_head(singly_linkedlist *head) {
     return head;
 }
 
-singly_linkedlist *delete_at_tail(singly_linkedlist *head){
+singly_linkedlist *delete_at_tail(singly_linkedlist *head) {
     /*
      * use get_nth_node_from_end where k = 0
      */
