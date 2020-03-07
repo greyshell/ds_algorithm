@@ -98,7 +98,7 @@ singly_linkedlist *get_middle_node(singly_linkedlist *head) {
 
 singly_linkedlist *get_kth_node_from_end(singly_linkedlist *head, size_t k) {
     /*
-     * 1 time pass the singly linked list
+     * 1 traversal / pass
      * time complexity: O(n)
      * space complexity: O(1)
      */
@@ -256,8 +256,15 @@ singly_linkedlist *delete_at_head(singly_linkedlist *head) {
 
 singly_linkedlist *delete_at_tail(singly_linkedlist *head) {
     /*
-     * use get_nth_node_from_end where k = 0
+     * use get_kth_node_from_end() where k = 2, to get the second last node
      */
+    singly_linkedlist *temp_node, *second_last_node;
+    size_t k = 2;
+    second_last_node = get_kth_node_from_end(head, k);
+    temp_node = second_last_node->next;
+    free(temp_node);
+    second_last_node->next = NULL;
+
     return NULL;
 }
 
