@@ -7,46 +7,64 @@
 
 #include "stdbool.h"
 
-typedef struct node {
+
+typedef struct my_node {
     int data;
-    struct node *next;
-} singly_linkedlist;
+    struct my_node *next;
+} node;
 
-void display(singly_linkedlist *);
 
-void reverse_display(singly_linkedlist *);
+typedef struct my_singly_linked_list {
+    node *head;
+} singly_linked_list;
 
-size_t count(singly_linkedlist *);
 
-singly_linkedlist *get_node(singly_linkedlist *, int);
+void initialize_singly_linked_list(singly_linked_list *list);
 
-singly_linkedlist *get_middle_node(singly_linkedlist *);
+node *get_node(singly_linked_list *, int);
 
-singly_linkedlist *get_kth_node_from_end(singly_linkedlist *, size_t);
+node *get_kth_node(singly_linked_list *, size_t);
 
-singly_linkedlist *insert_at_head(singly_linkedlist *, int);
+node *get_kth_node_from_end(singly_linked_list *, size_t);
 
-singly_linkedlist *insert_at_tail(singly_linkedlist *, int);
+node *get_middle_node(singly_linked_list *);
 
-singly_linkedlist *insert_at_index(singly_linkedlist *, int, size_t);
+bool is_empty(singly_linked_list *);
 
-singly_linkedlist *delete_at_index(singly_linkedlist *, int, int);
+size_t count(singly_linked_list *);
 
-singly_linkedlist *delete_at_head(singly_linkedlist *);
+void display_singly_linked_list(singly_linked_list *);
 
-singly_linkedlist *delete_at_tail(singly_linkedlist *);
+void reverse_display(node *);
 
-singly_linkedlist *delete_element(singly_linkedlist *, int);
+void reverse_display_singly_linked_list(singly_linked_list *);
 
-singly_linkedlist *delete_list(singly_linkedlist *);
+void insert_at_head(singly_linked_list *, int);
 
-singly_linkedlist *reverse_list(singly_linkedlist *);
+void insert_at_tail(singly_linked_list *, int);
 
-bool is_palindrome(singly_linkedlist *);
+void insert_at_index(singly_linked_list *, int, size_t);
 
-singly_linkedlist *merge_two_sorted_list(singly_linkedlist *, singly_linkedlist *);
+int delete_at_head(singly_linked_list *);
 
-singly_linkedlist *merge_k_sorted_list(singly_linkedlist *, int);
+int delete_at_tail(singly_linked_list *);
 
+int delete_at_index(singly_linked_list *, size_t);
+
+int delete_kth_node_from_end(singly_linked_list *, size_t);
+
+void delete_element(singly_linked_list *, int);
+
+void delete_all(singly_linked_list *);
+
+/*
+void *reverse_list(singly_linked_list *);
+
+bool is_palindrome(singly_linked_list *);
+
+void insertion_sort_single_linked_list(singly_linked_list *);
+
+void *merge_two_sorted_list(singly_linked_list *, singly_linked_list *, singly_linked_list *);
+*/
 
 #endif // SINGLY_LINKEDLIST_H__

@@ -15,10 +15,10 @@ Learning Data Structure and Algorithm in `C` and `python`.
     - https://ravindrababuravula.com/interviewpreperation.php
 3. Abdul Bari
     - https://www.udemy.com/course/datastructurescncpp/learn/lecture/13319372
-    - https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O
+    - https://www.youtube.com/watch?v=0IAPZzGSbME&singly_linked_list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O
     - Reference `Book`: Data Structures and Algorithms made easy by Narasimha Karumanchi
 4. Dr. Naveen Garg - IITD
-    - https://www.youtube.com/watch?v=zWg7U0OEAoE&list=PLBF3763AF2E1C572F
+    - https://www.youtube.com/watch?v=zWg7U0OEAoE&singly_linked_list=PLBF3763AF2E1C572F
     - Reference `Book`: Coreman
 5. Clément Mihailescu / AlgoExpert
     - https://www.algoexpert.io/questions

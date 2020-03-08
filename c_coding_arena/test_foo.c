@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: Quine Programming:
- * A C program that display its own source code
+ * A C program that display_singly_linked_list its own source code
  *
  * # create linux binary in cmake-build-debug directory
  * make -f create_binary_from_custom_lib PROG=test_foo LIB=foo build-linux

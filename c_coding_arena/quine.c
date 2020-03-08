@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: Quine Programming
- * a C program that display its own source code
+ * a C program that display_singly_linked_list its own source code
  * */
 
 #include <stdio.h>

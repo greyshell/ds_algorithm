@@ -1,127 +1,148 @@
 /*
  * author: greyshell
- * description: test the singly linked list implementation
+ * description: test the singly linked singly_linked_list implementation
  * */
 
 #include <stdio.h>
-#include "stdbool.h"
 #include "../private_libs/singly_linkedlist.h"
 
 int main(void) {
-    singly_linkedlist *list_head = NULL, *temp_node;
-    int choice, data;
-    size_t index, list_count;
+    int data;
+    size_t index, choice;
+    node *temp_node;
+    singly_linked_list my_list;
+    printf("\ninitializing the singly linked list: ");
+    initialize_singly_linked_list(&my_list);
 
     while (1) {
         printf("\n\n===================");
         printf("\nmenu driven program:");
         printf("\n====================");
-        printf("\n1. display the list");
-        printf("\n2. reverse display the list");
-        printf("\n3. display the total count");
-        printf("\n4. get the node pointer if found the element");
-        printf("\n5. get the node pointer of the middle(ceil) of the list");
-        printf("\n6. get the kth node pointer from the end of the list");
+        printf("\n0. get the node pointer if found the element");
+        printf("\n1. get the node pointer of given a kth node");
+        printf("\n2. get the node pointer of a given kth node from the end");
+        printf("\n3. get the middle node");
 
-        printf("\n7. create a new empty list");
+        printf("\n4. check if the singly linked list is empty");
+        printf("\n5. get the total count of singly linked list elements");
+        printf("\n6. display the singly linked list");
+        printf("\n7. reverse display the singly_linked_list");
+
         printf("\n8. insert an element at head");
         printf("\n9. insert an element at tail");
         printf("\n10. insert an element at index");
 
-        printf("\n11. delete an element at index");
-        printf("\n12. delete an element at head");
-        printf("\n13. delete an element at tail");
-        printf("\n14. delete an element if found");
-        printf("\n15. delete the entire the list");
+        printf("\n11. delete an element at head");
+        printf("\n12. delete an element at tail");
+        printf("\n13. delete an element at index");
+        printf("\n14. delete kth node from the end");
+        printf("\n15. delete an element if found");
+        printf("\n16. delete all elements");
 
-        printf("\n513. reverse the list");
-        printf("\n514. check if the list is palindrome");
+        printf("\n17. quit");
 
-        printf("\n10. quit\n");
+        printf("\n\ndisplay list:");
+        printf("\n=============\n");
+        display_singly_linked_list(&my_list);
 
-        printf("\nenter your choice: ");
-        scanf("%d", &choice);
+        printf("\n\nenter your choice: ");
+        scanf("%zu", &choice);
 
         switch (choice) {
-            case 1:
-                display(list_head);
-                break;
-
-            case 2:
-                reverse_display(list_head);
-                break;
-
-            case 3:
-                list_count = count(list_head);
-                printf("\ntotal count = %lu", list_count);
-                break;
-
-            case 4:
+            case 0:
                 printf("\nenter the element to be searched: ");
                 scanf("%d", &data);
-                temp_node = get_node(list_head, data);
-                if (temp_node != NULL)
-                    printf("\nnode: %p has the value: %d ", temp_node, temp_node->data);
-                else
-                    printf("\nvalue not found !!");
+                temp_node = get_node(&my_list, data);
+                if (temp_node != NULL){
+                    printf("\nelement = %d found at %p",data, temp_node);
+                }
                 break;
-
+            case 1:
+                printf("\nenter k: ");
+                scanf("%zu", &index);
+                temp_node = get_kth_node(&my_list, index);
+                if (temp_node != NULL){
+                    printf("\nelement = %d found at %zu",temp_node->data, index);
+                }
+                break;
+            case 2:
+                printf("\nenter k:");
+                scanf("%zu", &index);
+                temp_node = get_kth_node_from_end(&my_list, index);
+                if (temp_node != NULL){
+                    printf("\nelement = %d found at %zu index from the last",temp_node->data, index);
+                }
+                break;
+            case 3:
+                temp_node = get_middle_node(&my_list);
+                if (temp_node != NULL){
+                    printf("\nelement = %d found at middle",temp_node->data);
+                }
+                break;
+            case 4:
+                printf("\nlist is_empty = %d", is_empty(&my_list));
+                break;
             case 5:
-                temp_node = get_middle_node(list_head);
-                if (temp_node != NULL)
-                    printf("\nmiddle node: %p has the value: %d ", temp_node, temp_node->data);
-                else
-                    printf("\nlist items are less than 2");
+                printf("\nlist count = %zu", count(&my_list));
                 break;
 
             case 6:
-                printf("\nenter k: ");
-                scanf("%zu", &index);
-                temp_node = get_kth_node_from_end(list_head, index);
-                if (temp_node != NULL)
-                    printf("\nk= %zu node: %p has the value: %d ", index, temp_node, temp_node->data);
-                else
-                    printf("\nk is not valid");
+                display_singly_linked_list(&my_list);
                 break;
-
             case 7:
-                // call the function to delete the old list
-                list_head = NULL;  // resetting HEAD
+               reverse_display_singly_linked_list(&my_list);
                 break;
 
             case 8:
-                printf("\nenter the element to be inserted at head: ");
+                printf("\nenter the element to be inserted: ");
                 scanf("%d", &data);
-                list_head = insert_at_head(list_head, data);
+                insert_at_head(&my_list, data);
                 break;
-
             case 9:
-                printf("\nenter the element to be inserted at tail: ");
+                printf("\nenter the element to be inserted: ");
                 scanf("%d", &data);
-                list_head = insert_at_tail(list_head, data);
+                insert_at_tail(&my_list, data);
                 break;
-
             case 10:
-                printf("\n[*] note: index range: 0 <= index <= 18446744073709551615");
-                /*
-                 * 1844674407370955166 and onwards => 18446744073709551615
-                 *  -1 => 18446744073709551615
-                 *  -2 => 18446744073709551614
-                 *  -18446744073709551614 => 2
-                 *  -18446744073709551615 => 1
-                 *  -18446744073709551616 and onwards => 18446744073709551615
-                 */
-                printf("\nenter the index at where to insert: ");
-                scanf("%zu", &index);
-                printf("\nenter the element to be inserted at index = %zu ", index);
+                printf("\nenter the element to be inserted: ");
                 scanf("%d", &data);
-                list_head = insert_at_index(list_head, data, index);
+                printf("\nenter the index / k: ");
+                scanf("%zu", &index);
+                insert_at_index(&my_list, data, index);
                 break;
 
+            case 11:
+                data = delete_at_head(&my_list);
+                printf("\nelement = %d is deleted", data);
+                break;
+            case 12:
+                data = delete_at_tail(&my_list);
+                printf("\nelement = %d is deleted", data);
+                break;
+            case 13:
+                printf("\nenter the index / k: ");
+                scanf("%zu", &index);
+                data = delete_at_index(&my_list, index);
+                printf("\nelement = %d is deleted", data);
+                break;
+            case 14:
+                printf("\nenter the index / k: ");
+                scanf("%zu", &index);
+                data = delete_kth_node_from_end(&my_list, index);
+                printf("\nelement = %d is deleted", data);
+                break;
+            case 15:
+                printf("\nenter the data to be deleted: ");
+                scanf("%d", &data);
+                delete_element(&my_list, data);
+                break;
 
-            case 100:
+            case 16:
+                delete_all(&my_list);
+                break;
+
+            case 17:
                 return 0;
-
             default:
                 printf("\nwrong choice");
         }

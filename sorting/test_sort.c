@@ -53,7 +53,7 @@ int main(void) {
         printf("\nmenu driven program:");
         printf("\n====================");
         printf("\n1. enter the array elements");
-        printf("\n2. display the array elements");
+        printf("\n2. display_singly_linked_list the array elements");
         printf("\n3. bubble sort");
         printf("\n4. cocktail sort");
         printf("\n5. counting sort");

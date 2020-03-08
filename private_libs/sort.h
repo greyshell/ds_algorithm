@@ -19,7 +19,7 @@ void selection_sort(int [], size_t);
 
 void insertion_sort(int [], size_t);
 
-// singly_linkedlist *insertion_sort_singly_linkedlist(singly_linkedlist *, singly_linkedlist *);
+// node *insertion_sort_singly_linkedlist(node *, node *);
 
 void shell_sort(int [], int);
 

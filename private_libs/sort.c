@@ -143,7 +143,7 @@ void bubble_sort(int arr[], size_t len) {
      * where all elements are
      * placed in their actual positions.
      * - in order to find kth smallest element, we need kth pass of the outer loop -> O(k*n)
-     * - effective on array data structure not linked list
+     * - effective on array data structure not linked singly_linked_list
      * - used for internal sorting: uses the main memory exclusively
      * - stable: preserves the relative order of the duplicate items / keys,
      *      - interchange only occurs when the right_element < left_element

@@ -35,6 +35,7 @@ add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
 # linkedList
 # ===========
 add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCSources})
+add_executable(fuzz_singly_linkedlist linkedList/fuzz_singly_linkedlist.c ${MyCSources})
 
 # private_libs
 # ============
