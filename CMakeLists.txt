@@ -35,7 +35,7 @@ add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
 # linkedList
 # ===========
 add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCSources})
-add_executable(fuzz_singly_linkedlist linkedList/fuzz_singly_linkedlist.c ${MyCSources})
+# add_executable(fuzz_singly_linkedlist linkedList/fuzz_singly_linkedlist.c ${MyCSources})
 
 # private_libs
 # ============
@@ -48,11 +48,11 @@ add_executable(fuzz_singly_linkedlist linkedList/fuzz_singly_linkedlist.c ${MyCS
 # recursion
 # =========
 
-# c_coding_arena
+# build_concept
 # ==========
-add_executable(quine c_coding_arena/quine.c ${MyCSources})
-add_executable(test_foo c_coding_arena/test_foo.c ${MyCSources})
-add_executable(concept c_coding_arena/concept.c ${MyCSources})
+add_executable(quine build_concept/quine.c ${MyCSources})
+add_executable(test_foo build_concept/test_foo.c ${MyCSources})
+add_executable(concept build_concept/concept.c ${MyCSources})
 
 # searching
 # =========

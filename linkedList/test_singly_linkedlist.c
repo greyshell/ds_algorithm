@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: test the singly linked singly_linked_list implementation
+ * description: test my singly linked list implementation
  * */
 
 #include <stdio.h>

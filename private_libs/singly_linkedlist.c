@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <zconf.h>
+#include <limits.h>
 #include "singly_linkedlist.h"
 
 void initialize_singly_linked_list(singly_linked_list *list) {
@@ -44,11 +44,6 @@ node *get_kth_node(singly_linked_list *list, size_t k) {
      */
     node *curr_ptr = list->head;
     size_t count;
-
-    if (k < 0) {
-        printf("\nk < , invalid k");
-        return NULL;
-    }
 
     if (list->head == NULL) {
         printf("\nsingly_linked_list is empty ");
@@ -247,12 +242,8 @@ void insert_at_index(singly_linked_list *list, int data, size_t index) {
     node *temp_node, *curr_ptr;
     size_t pos = 0;
 
-    // case: when the given index is negative
-    if (index < 0) {
-        printf("\nindex can't be negative, unable to insert");
-    }
-        // special case: when the given index is 0, singly_linked_list can be empty
-    else if (index == 0) {
+    // special case: when the given index is 0, singly_linked_list can be empty
+    if (index == 0) {
         return insert_at_head(list, data);
     }
         // case: when the given index is greater than 1
@@ -337,11 +328,6 @@ int delete_at_index(singly_linked_list *list, size_t index) {
      */
     node *temp_node, *prev_node;
     int data;
-
-    if (index < 0) {
-        printf("\ninvalid index, returning INT_MIN");
-        return INT_MIN;
-    }
 
     if (index == 0) {
         data = delete_at_head(list);

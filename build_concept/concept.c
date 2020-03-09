@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include <zconf.h>
+#include <limits.h>
 
 struct student {
     int i;

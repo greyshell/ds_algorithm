@@ -44,7 +44,7 @@ size_t fib(size_t n) {
     return dp[n];
 }
 
-int main() {
+int main(void) {
     // sample test case
     size_t number = 7;
     // function call
