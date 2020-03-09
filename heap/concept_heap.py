@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: learning min heap
+# description: learning heap
 
 import heapq
 
@@ -31,11 +31,15 @@ def heap_sort(nums):
 
 def main():
     nums = [12, 7, 11, 15, 35, 17]
+    test_nums = nums.copy()
     print(f"list: {nums}")
 
-    # build the heap
+    # build the min heap
     heapq.heapify(nums)  # in-place, in linear time, O(n), Heap elements can be tuples.
-    print(f"after heapify process: {nums}")
+    print(f"after min heapify process: {nums}")
+    # build the max heap
+    heapq._heapify_max(test_nums)
+    print(f"after max heapify process: {test_nums}")
 
     # push the value item onto the heap, maintaining the heap invariant
     data = 5

@@ -9,6 +9,9 @@
 #include "sort.h"
 
 int find_max(int arr[], int len) {
+    /*
+     * time complexity: O(1) | space complexity: O(1)
+     */
     int max = arr[0];
     for (int i = 1; i < len; i++) {
         if (arr[i] > max) {
@@ -19,6 +22,9 @@ int find_max(int arr[], int len) {
 }
 
 int find_min(int arr[], int len) {
+    /*
+     * time complexity: O(1) | space complexity: O(1)
+     */
     int min = arr[0];
     for (int i = 1; i < len; i++) {
         if (arr[i] < min) {
@@ -204,6 +210,9 @@ void bubble_sort(int arr[], size_t len) {
 }
 
 void swap(int *a, int *b) {
+    /*
+     * time complexity: O(1) | space complexity: O(1)
+     */
     int temp;
     temp = *a;
     *a = *b;
@@ -212,8 +221,7 @@ void swap(int *a, int *b) {
 
 void display_array(int *arr, size_t len) {
     /*
-     * time complexity: O(n)
-     * space complexity: O(1)
+     * time complexity: O(n) | space complexity: O(1)
      */
     for (int i = 0; i < len; i++) {
         printf("%d ", arr[i]);
