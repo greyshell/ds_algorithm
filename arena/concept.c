@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: implementation of sorting algorithms
+ * description: quick proof of concept
  * */
 
 #include <stdio.h>

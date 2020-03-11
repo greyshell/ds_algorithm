@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: learning heap
+# description: learning heap methods
 
 import heapq
 
@@ -29,6 +29,12 @@ def heap_sort(nums):
     return output
 
 
+def heap_sort_compact(h):
+    heapq.heapify(h)
+    return [heapq.heappop(h) for _ in range(len(h))]
+
+
+# noinspection PyProtectedMember
 def main():
     nums = [12, 7, 11, 15, 35, 17]
     test_nums = nums.copy()
@@ -46,7 +52,7 @@ def main():
     heapq.heappush(nums, data)  # O(log(n))
     print(f"after pushing {data} element to the heap: {nums}")
 
-    # access the smallest item without popping it
+    # access the smallest item without popping it | peek() method
     data = nums[0]  # O(1)
     print(f"access the smallest item without popping it: {data}")
 
@@ -72,9 +78,16 @@ def main():
     r = heap_sort(nums)
     print(f"after heap sort: {r}")
 
+    # heap sort compact form
+    duplicate_nums = nums.copy()
+    print(f"before heap sort: {duplicate_nums}")
+    result = heap_sort_compact(duplicate_nums)  # due to pop operation, it will be empty
+    print(f"after compact heap sort: {result}")
+    print(f"duplicate_nums: {duplicate_nums}")
+
     # return a list with the n largest elements from the dataset defined by iterable.
-    large = heapq.nlargest(5, nums)
-    small = heapq.nsmallest(5, nums)
+    large = heapq.nlargest(3, nums)
+    small = heapq.nsmallest(3, nums)
     print(f"largest values: {large}, smallest values: {small}")
     # find kth largest value
     # best for smaller values of k,

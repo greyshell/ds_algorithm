@@ -8,14 +8,14 @@
 #include <stdlib.h>
 #include "sort.h"
 
-int find_max(int arr[], int len) {
+int find_max(int *arr, int len) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
-    int max = arr[0];
+    int max = *(arr + 0);  // pointer notation 
     for (int i = 1; i < len; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
+        if (*(arr + i) > max) {
+            max = *(arr + i);
         }
     }
     return max;
@@ -25,7 +25,7 @@ int find_min(int arr[], int len) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
-    int min = arr[0];
+    int min = arr[0];  // array notation
     for (int i = 1; i < len; i++) {
         if (arr[i] < min) {
             min = arr[i];
@@ -35,7 +35,7 @@ int find_min(int arr[], int len) {
 }
 
 
-void counting_sort(int arr[], int result_array[], size_t len) {
+void counting_sort(int *arr, int *result_array, size_t len) {
     /*
      * property:
      * =========
@@ -89,7 +89,7 @@ void counting_sort(int arr[], int result_array[], size_t len) {
 
 }
 
-void cocktail_sort(int arr[], size_t len) {
+void cocktail_sort(int *arr, size_t len) {
     /*
      * property:
      * =========
@@ -137,7 +137,7 @@ void cocktail_sort(int arr[], size_t len) {
     }
 }
 
-void bubble_sort(int arr[], size_t len) {
+void bubble_sort(int *arr, size_t len) {
     /*
      * property:
      * =========

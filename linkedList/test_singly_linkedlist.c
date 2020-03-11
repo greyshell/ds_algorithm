@@ -53,30 +53,31 @@ int main(void) {
                 printf("\nenter the element to be searched: ");
                 scanf("%d", &data);
                 temp_node = get_node(&my_list, data);
-                if (temp_node != NULL){
-                    printf("\nelement = %d found at %p",data, temp_node);
+                if (temp_node != NULL) {
+                    // takeaway: 11.8: for printing cast the pointer to void * and use format %p````
+                    printf("\nelement = %d found at %p", data, (void *) temp_node);
                 }
                 break;
             case 1:
                 printf("\nenter k: ");
                 scanf("%zu", &index);
                 temp_node = get_kth_node(&my_list, index);
-                if (temp_node != NULL){
-                    printf("\nelement = %d found at %zu",temp_node->data, index);
+                if (temp_node != NULL) {
+                    printf("\nelement = %d found at %zu", temp_node->data, index);
                 }
                 break;
             case 2:
                 printf("\nenter k:");
                 scanf("%zu", &index);
                 temp_node = get_kth_node_from_end(&my_list, index);
-                if (temp_node != NULL){
-                    printf("\nelement = %d found at %zu index from the last",temp_node->data, index);
+                if (temp_node != NULL) {
+                    printf("\nelement = %d found at %zu index from the last", temp_node->data, index);
                 }
                 break;
             case 3:
                 temp_node = get_middle_node(&my_list);
-                if (temp_node != NULL){
-                    printf("\nelement = %d found at middle",temp_node->data);
+                if (temp_node != NULL) {
+                    printf("\nelement = %d found at middle", temp_node->data);
                 }
                 break;
             case 4:
@@ -90,7 +91,7 @@ int main(void) {
                 display_singly_linked_list(&my_list);
                 break;
             case 7:
-               reverse_display_singly_linked_list(&my_list);
+                reverse_display_singly_linked_list(&my_list);
                 break;
 
             case 8:
