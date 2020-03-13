@@ -40,7 +40,9 @@ class MedianFinder:
         time complexity: O(log(n)), assuming len() method takes O(1) time
         space complexity: O(1)
         """
-        # put the first number into the lower half OR the number is less than the lower_max_heap.peek()
+        # case 1: when the lower list is empty then insert into the lower_max_heap
+        # case 2: when num is less than the MAX element
+        # if the number is less than the lower_max_heap.peek() then insert into the lower_max_heap
         if len(self.lower_max_heap) == 0 or num < self.lower_max_heap[0]:
             # create an max heap for the left / lower half of the list
             self.lower_max_heap.append(num)
