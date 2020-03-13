@@ -63,7 +63,7 @@ def main():
     print(f"after {data} is popped from the heap : {nums}")
 
     # when we need to make the heap size constant, we can use heappushpop() and heapreplace()
-    # time complexity: O(log(n)), better than  2*O(log(n)) -> push + pop
+    # time complexity: O(log(n)), improving the performance
     dummy_nums = nums[:]  # copy all elements to another list
     data = -1
     popped_value = heapq.heappushpop(nums, data)  # 1st push then pop

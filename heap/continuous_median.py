@@ -27,9 +27,8 @@ import heapq
 class MedianFinder:
     def __init__(self):
         """
-        split the list in two halves
-        - lower half of the list -> build a MAX heap
-        - upper half of the list -> build a MIN heap
+        to store lower nums of the list use one list -> convert that into a MAX heap
+        to store upper nums of the list use another list -> convert that into a MIN heap
         """
         self.lower_max_heap = list()
         self.upper_min_heap = list()
@@ -37,7 +36,7 @@ class MedianFinder:
 
     def add_num(self, num: int) -> None:
         """
-        time complexity: O(log(n)), assuming len() method takes O(1) time
+        time complexity: O(log(n)) -> assuming len() method takes O(1) time for list
         space complexity: O(1)
         """
         # case 1: when the lower list is empty then insert into the lower_max_heap
@@ -68,7 +67,7 @@ class MedianFinder:
             heapq._heapify_max(self.lower_max_heap)
 
         # update the median:
-        # case 0: when the two heaps have same lengths then take the average of two
+        # case 0: when the two heap lengths are same then take the average of two nums
         if len(self.lower_max_heap) == len(self.upper_min_heap):
             self.median = (self.lower_max_heap[0] + self.upper_min_heap[0]) / 2
         # case 1: when the lower has 1 extra element
