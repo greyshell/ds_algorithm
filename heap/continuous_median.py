@@ -4,9 +4,19 @@
 # description: continuous median
 
 """
-write a class that can support the following two functions
-1. continuous insertion of numbers
-2. the instant O(1) time retrieval of the median of the numbers that have been inserted so far.
+295. Find Median from Data Stream
+Median is the middle value in an ordered integer list.
+If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
+
+For example,
+[2,3,4], the median is 3
+
+[2,3], the median is (2 + 3) / 2 = 2.5
+
+Design a data structure that supports the following two operations:
+
+void addNum(int num) - Add a integer number from the data stream to the data structure.
+double findMedian() - Return the median of all elements so far.
 
 reference: https://leetcode.com/problems/find-median-from-data-stream/
 """
@@ -17,20 +27,12 @@ import heapq
 class MedianFinder:
     def __init__(self):
         """
-        initialize your data structure here.
+        split the list in two halves
+        - lower half of the list -> build a MAX heap
+        - upper half of the list -> build a MIN heap
         """
-        # create an empty max heap for the left / lower half of the list
-        # pop() gives the max element of the left half in O(1) time
         self.lower_max_heap = list()
-        heapq._heapify_max(self.lower_max_heap)
-
-        # create an empty min heap for the right half of the list
-        # pop() gives the min element of the right half in O(1) time
         self.upper_min_heap = list()
-        heapq.heapify(self.upper_min_heap)
-        # means in O(1 + 1) time, we can get the two middle elements of a sorted array
-        # median means the middle element of a sorted array.
-        # if the array length is even, then median is the average of the two middle elements
         self.median = None
 
     def add_num(self, num: int) -> None:
@@ -38,34 +40,39 @@ class MedianFinder:
         time complexity: O(log(n)), assuming len() method takes O(1) time
         space complexity: O(1)
         """
-        # start insertion by putting the first number into the lower half
-        # means if there is no number in the lower half OR if the number is less than the lower_max_heap.peek()
+        # put the first number into the lower half OR the number is less than the lower_max_heap.peek()
         if len(self.lower_max_heap) == 0 or num < self.lower_max_heap[0]:
-            heapq.heappush(self.lower_max_heap, num)
+            # create an max heap for the left / lower half of the list
+            self.lower_max_heap.append(num)
+            heapq._heapify_max(self.lower_max_heap)
         else:
-            heapq.heappush(self.upper_min_heap, num)
+            # create an min heap for the right/ upper half of the list
+            self.upper_min_heap.append(num)
+            heapq.heapify(self.upper_min_heap)
 
-        # heap rebalancing:
-        # our main goal is to distribute the elements into two heaps equally
+        # rebalance both heaps to distribute the elements equally between two
         # means the whenever length difference of two heaps reaches to 2 we need to rebalance
-        # we no need to do anything when both upper and lower has equal elements
-        # if the lower half has 2 more extra element then pop 1 element out and push into upper half
+
+        # case 0: if len(self.lower_max_heap) == len(self.upper_min_heap) -> balanced state, do nothing
+        # case 1: if the lower has 2 extra elements then pop out the MAX element from lower and push that to the upper
         if len(self.lower_max_heap) - len(self.upper_min_heap) == 2:
-            n = heapq.heappop(self.lower_max_heap)
-            heapq.heappush(self.upper_min_heap, n)
-        # if the upper half has 2 more extra element then pop 1 element out and push into lower half
+            n = heapq._heappop_max(self.lower_max_heap)
+            self.upper_min_heap.append(n)
+            heapq.heapify(self.upper_min_heap)
+        # case 2: if the upper has 2 extra elements then pop out the MIN element from lower and push that to the lower
         elif len(self.upper_min_heap) - len(self.lower_max_heap) == 2:
             n = heapq.heappop(self.upper_min_heap)
-            heapq.heappush(self.lower_max_heap, n)
+            self.lower_max_heap.append(n)
+            heapq._heapify_max(self.lower_max_heap)
 
         # update the median:
-        # if the two heaps have the same length then we need to find the average
+        # case 0: when the two heaps have same lengths then take the average of two
         if len(self.lower_max_heap) == len(self.upper_min_heap):
             self.median = (self.lower_max_heap[0] + self.upper_min_heap[0]) / 2
-        # when the lower half has an extra element
+        # case 1: when the lower has 1 extra element
         elif len(self.lower_max_heap) > len(self.upper_min_heap):
             self.median = self.lower_max_heap[0]
-        # when the upper half has an extra element
+        # case 2: when the upper has 1 extra element
         else:
             self.median = self.upper_min_heap[0]
 
@@ -81,17 +88,17 @@ def main():
     # create the object
     obj = MedianFinder()
     # add 1 and get the median
-    obj.add_num(1)
+    obj.add_num(-1)
     median = obj.get_median()
     print(f"median: {median}")
 
     # add 2 and get the median
-    obj.add_num(2)
+    obj.add_num(-2)
     median = obj.get_median()
     print(f"median: {median}")
 
     # add 3 and get the median
-    obj.add_num(3)
+    obj.add_num(-3)
     median = obj.get_median()
     print(f"median: {median}")
 
