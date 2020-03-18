@@ -13,11 +13,11 @@ typedef struct node {
     int data;
     struct node *left;
     struct node *right;
-} tree_node;
+} bst_node;
 
 
 typedef struct my_binary_search_tree {
-    tree_node *root;
+    bst_node *root;
 } binary_search_tree;
 
 
@@ -25,7 +25,7 @@ void initialize_bst(binary_search_tree *);
 
 void insert_bst(binary_search_tree *, int);
 
-void in_order_traversal_bst_recursive(tree_node *);
+void in_order_traversal_bst_recursive(bst_node *);
 
 void wrapper_in_order_traversal_bst(binary_search_tree *);
 

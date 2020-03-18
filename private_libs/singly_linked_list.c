@@ -17,13 +17,13 @@ void initialize_singly_linked_list(singly_linked_list *list) {
     list->head = NULL;
 }
 
-tree_node *get_node(singly_linked_list *list, int data) {
+bst_node *get_node(singly_linked_list *list, int data) {
     /*
      * if found then return the node_pointer else return NULL
      * time complexity: O(n), find the position
      * space complexity: O(1), for temporary pointer variable
      */
-    tree_node *curr_ptr;
+    bst_node *curr_ptr;
 
     curr_ptr = list->head;
     while (curr_ptr != NULL) {
@@ -35,14 +35,14 @@ tree_node *get_node(singly_linked_list *list, int data) {
     return NULL;  // covers the scenario when head is NULL / data is not found
 }
 
-tree_node *get_kth_node(singly_linked_list *list, size_t k) {
+bst_node *get_kth_node(singly_linked_list *list, size_t k) {
     /*
      * 1 traversal / pass
      * assuming list index starts from 0
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    tree_node *curr_ptr = list->head;
+    bst_node *curr_ptr = list->head;
     size_t count;
 
     if (list->head == NULL) {
@@ -60,13 +60,13 @@ tree_node *get_kth_node(singly_linked_list *list, size_t k) {
     return curr_ptr;
 }
 
-tree_node *get_kth_node_from_end(singly_linked_list *list, size_t k) {
+bst_node *get_kth_node_from_end(singly_linked_list *list, size_t k) {
     /*
      * 1 traversal / pass
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    tree_node *first_ptr, *second_ptr;
+    bst_node *first_ptr, *second_ptr;
     size_t count;
     first_ptr = second_ptr = list->head;
 
@@ -102,12 +102,12 @@ tree_node *get_kth_node_from_end(singly_linked_list *list, size_t k) {
     return second_ptr;
 }
 
-tree_node *get_middle_node(singly_linked_list *list) {
+bst_node *get_middle_node(singly_linked_list *list) {
     /*
      * time complexity: O(n), scan the linked singly_linked_list only 1 time.
      * space complexity: O(1), temporary pointer variable
      */
-    tree_node *fast_ptr, *slow_ptr;
+    bst_node *fast_ptr, *slow_ptr;
 
     if (list->head == NULL) {
         printf("\nsingly_linked_list is empty");
@@ -135,7 +135,7 @@ size_t count_singly_linked_list(singly_linked_list *list) {
      * time complexity: O(n)
      * space complexity: O(1) -> temporary pointer variables
      */
-    tree_node *curr_ptr;
+    bst_node *curr_ptr;
     size_t count = 0;
     curr_ptr = list->head;
 
@@ -151,7 +151,7 @@ void display_singly_linked_list(singly_linked_list *list) {
      * time complexity: O(n)
      * space complexity: O(1) -> temporary pointer variables
      */
-    tree_node *curr_ptr;
+    bst_node *curr_ptr;
 
     if (list->head == NULL) {
         printf("\nsingly_linked_list is empty !!");
@@ -165,7 +165,7 @@ void display_singly_linked_list(singly_linked_list *list) {
     }
 }
 
-void reverse_display(tree_node *head) {
+void reverse_display(bst_node *head) {
     /*
      * time complexity: O(n)
      * space complexity: O(n) -> maximum depth of the call stack
@@ -193,10 +193,10 @@ void insert_at_head(singly_linked_list *list, int data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    tree_node *temp_node;
+    bst_node *temp_node;
 
     // create a new node
-    temp_node = (tree_node *) malloc(sizeof(tree_node));
+    temp_node = (bst_node *) malloc(sizeof(bst_node));
     temp_node->data = data;
 
     // link the node where head points to
@@ -211,10 +211,10 @@ void insert_at_tail(singly_linked_list *list, int data) {
      * time complexity: O(n), find the last element and insert at the end
      * space complexity: O(1), for creating the temporary pointer variable
      */
-    tree_node *curr_ptr, *temp_node;
+    bst_node *curr_ptr, *temp_node;
 
     // create a new node
-    temp_node = (tree_node *) malloc(sizeof(tree_node));
+    temp_node = (bst_node *) malloc(sizeof(bst_node));
     temp_node->data = data;
     temp_node->next = NULL;
 
@@ -239,7 +239,7 @@ void insert_at_index(singly_linked_list *list, int data, size_t index) {
      * time complexity: O(n), find the last element and insert at the end
      * space complexity: O(1), for creating the temporary pointer variable
      */
-    tree_node *temp_node, *curr_ptr;
+    bst_node *temp_node, *curr_ptr;
     size_t pos = 0;
 
     // special case: when the given index is 0, singly_linked_list can be empty
@@ -259,7 +259,7 @@ void insert_at_index(singly_linked_list *list, int data, size_t index) {
         while (curr_ptr != NULL) {
             if (pos == index && curr_ptr->next != NULL) {
                 // create the my_node
-                temp_node = (tree_node *) malloc(sizeof(tree_node));
+                temp_node = (bst_node *) malloc(sizeof(bst_node));
                 temp_node->data = data;
                 // curr_ptr points to the previous node and we need to insert the temp node after this
                 // my_node link the new my_node with the next my_node address where the curr_ptr points
@@ -280,7 +280,7 @@ int delete_at_head(singly_linked_list *list) {
      * time complexity: O(1)
      * space complexity: O(1), for temporary pointer variable
      */
-    tree_node *temp_node;
+    bst_node *temp_node;
     int data;
 
     if (list->head == NULL) {
@@ -304,7 +304,7 @@ int delete_at_tail(singly_linked_list *list) {
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    tree_node *temp_node, *second_last_node;
+    bst_node *temp_node, *second_last_node;
     int data;
     const size_t k = 2;
 
@@ -326,7 +326,7 @@ int delete_at_index(singly_linked_list *list, size_t index) {
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    tree_node *temp_node, *prev_node;
+    bst_node *temp_node, *prev_node;
     int data;
 
     if (index == 0) {
@@ -352,7 +352,7 @@ int delete_kth_node_from_end(singly_linked_list *list, size_t k){
      * time complexity:
      * space complexity:
      */
-    tree_node *prev_node, *temp_node;
+    bst_node *prev_node, *temp_node;
     int data;
     prev_node = get_kth_node_from_end(list, k + 1);
     if (prev_node == NULL){
@@ -375,7 +375,7 @@ int delete_kth_node_from_end(singly_linked_list *list, size_t k){
 }
 
 void delete_element(singly_linked_list *list, int data) {
-    tree_node *temp_node, *curr_ptr, *prev_ptr;
+    bst_node *temp_node, *curr_ptr, *prev_ptr;
 
     if (list->head == NULL) {
         printf("\nsingly_linked_list is empty, returning INT_MIN as index");
@@ -409,7 +409,7 @@ void delete_all(singly_linked_list *list) {
      * time complexity: O(n)
      * space complexity: O(1), temporary pointer variable
      */
-    tree_node *temp_node, *curr_ptr;
+    bst_node *temp_node, *curr_ptr;
 
     if (list->head == NULL) {
         printf("singly_linked_list is empty");

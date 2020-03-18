@@ -9,7 +9,7 @@
 int main(void) {
     int data;
     size_t index, choice;
-    tree_node *temp_node;
+    bst_node *temp_node;
     binary_search_tree my_bst;
     printf("\ninitializing the BST: ");
     initialize_bst(&my_bst);

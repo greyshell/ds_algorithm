@@ -12,9 +12,9 @@ void initialize_bst(binary_search_tree *bst) {
     bst->root = NULL;
 }
 
-tree_node *create_bst_node(int data) {
-    tree_node *temp_node;
-    temp_node = (tree_node *) malloc(sizeof(tree_node));
+bst_node *create_bst_node(int data) {
+    bst_node *temp_node;
+    temp_node = (bst_node *) malloc(sizeof(bst_node));
 
     temp_node->data = data;
     temp_node->left = NULL;
@@ -22,39 +22,39 @@ tree_node *create_bst_node(int data) {
     return temp_node;
 }
 
-void insert_bst(binary_search_tree *bst, int data) {
-    tree_node *curr_node, *temp_node;
+void insert_bst(binary_search_tree *t, int data) {
+    bst_node *curr_ptr, *temp_node;
 
-    if (bst->root == NULL) {
+    if (t->root == NULL) {
         temp_node = create_bst_node(data);
-        bst->root = temp_node;
+        t->root = temp_node;
         return;
     }
 
-    curr_node = bst->root;
-    while (curr_node != NULL) {
+    curr_ptr = t->root;
+    while (curr_ptr != NULL) {
         // insert into the right sub tree
-        if (data > curr_node->data) {
-            if (curr_node->right == NULL) {
-                curr_node->right = create_bst_node(data);
+        if (data > curr_ptr->data) {
+            if (curr_ptr->right == NULL) {
+                curr_ptr->right = create_bst_node(data);
                 return;
             } else {
-                curr_node = curr_node->right;
+                curr_ptr = curr_ptr->right;
             }
         }
             // insert into the left sub tree
         else {
-            if (curr_node->left == NULL) {
-                curr_node->left = create_bst_node(data);
+            if (curr_ptr->left == NULL) {
+                curr_ptr->left = create_bst_node(data);
                 return;
             } else {
-                curr_node = curr_node->left;
+                curr_ptr = curr_ptr->left;
             }
         }
     }
 }
 
-void in_order_traversal_bst_recursive(tree_node *curr_ptr) {
+void in_order_traversal_bst_recursive(bst_node *curr_ptr) {
     if (curr_ptr != NULL) {
         in_order_traversal_bst_recursive(curr_ptr->left);
         printf("%d ", curr_ptr->data);

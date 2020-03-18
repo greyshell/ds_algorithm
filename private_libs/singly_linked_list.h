@@ -11,23 +11,23 @@
 typedef struct my_node {
     int data;
     struct my_node *next;
-} tree_node;
+} bst_node;
 
 
 typedef struct my_singly_linked_list {
-    tree_node *head;
+    bst_node *head;
 } singly_linked_list;
 
 
 void initialize_singly_linked_list(singly_linked_list *list);
 
-tree_node *get_node(singly_linked_list *, int);
+bst_node *get_node(singly_linked_list *, int);
 
-tree_node *get_kth_node(singly_linked_list *, size_t);
+bst_node *get_kth_node(singly_linked_list *, size_t);
 
-tree_node *get_kth_node_from_end(singly_linked_list *, size_t);
+bst_node *get_kth_node_from_end(singly_linked_list *, size_t);
 
-tree_node *get_middle_node(singly_linked_list *);
+bst_node *get_middle_node(singly_linked_list *);
 
 bool is_empty_singly_linked_list(singly_linked_list *);
 
@@ -35,7 +35,7 @@ size_t count_singly_linked_list(singly_linked_list *);
 
 void display_singly_linked_list(singly_linked_list *);
 
-void reverse_display(tree_node *);
+void reverse_display(bst_node *);
 
 void wrapper_reverse_display_singly_linked_list(singly_linked_list *);
 
