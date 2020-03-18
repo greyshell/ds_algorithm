@@ -9,10 +9,18 @@
 #include "binary_search_tree.h"
 
 void initialize_bst(binary_search_tree *bst) {
+    /*
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
     bst->root = NULL;
 }
 
 bst_node *create_bst_node(int data) {
+    /*
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
     bst_node *temp_node;
     temp_node = (bst_node *) malloc(sizeof(bst_node));
 
@@ -23,6 +31,13 @@ bst_node *create_bst_node(int data) {
 }
 
 void insert_bst(binary_search_tree *t, int data) {
+    /*
+     * time complexity: depends on the height of the tree
+     * - best case: O(log(n)) -> balanced tree
+     * - worst case: O(n) -> left / right skewed tree
+     *
+     * space complexity: O(1)
+     */
     bst_node *curr_ptr, *temp_node;
 
     if (t->root == NULL) {
@@ -55,6 +70,12 @@ void insert_bst(binary_search_tree *t, int data) {
 }
 
 void in_order_traversal_bst_recursive(bst_node *curr_ptr) {
+    /*
+     * time complexity: TBD
+     * space complexity: depends on the height of the tree
+     * - best case: O(log(n)) -> balanced tree
+     * - worst case: O(n) -> left / right skewed tree
+     */
     if (curr_ptr != NULL) {
         in_order_traversal_bst_recursive(curr_ptr->left);
         printf("%d ", curr_ptr->data);
