@@ -14,6 +14,9 @@ FILE(GLOB MyCSources private_libs/*.c)
 # bit_manupulation
 # ================
 
+# binary search tree
+# ==================
+add_executable(test_binary_search_tree binary_search_tree/test_binary_search_tree.c ${MyCSources})
 
 # dynamic programming
 # ====================
@@ -32,10 +35,10 @@ add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
 # =========
 
 
-# linkedList
+# linked_list
 # ===========
-add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCSources})
-# add_executable(fuzz_singly_linkedlist linkedList/fuzz_singly_linkedlist.c ${MyCSources})
+add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${MyCSources})
+# add_executable(fuzz_singly_linkedlist linked_list/fuzz_singly_linkedlist.c ${MyCSources})
 
 # private_libs
 # ============
@@ -50,6 +53,7 @@ add_executable(test_singly_linkedlist linkedList/test_singly_linkedlist.c ${MyCS
 
 # arena
 # ==========
+add_executable(test arena/test.c ${MyCSources})
 add_executable(quine arena/quine.c ${MyCSources})
 add_executable(test_foo arena/test_foo.c ${MyCSources})
 add_executable(concept arena/concept.c ${MyCSources})
@@ -73,5 +77,5 @@ add_executable(test_sort sorting/test_sort.c ${MyCSources})
 
 
 
-# tree
+# binary_search_tree
 # =====

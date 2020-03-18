@@ -5,7 +5,7 @@
 #ifndef SORT_H__
 #define SORT_H__
 
-#include "singly_linkedlist.h"
+#include "singly_linked_list.h"
 
 void swap(int *, int *);
 

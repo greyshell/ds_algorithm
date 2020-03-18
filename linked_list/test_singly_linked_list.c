@@ -4,12 +4,12 @@
  * */
 
 #include <stdio.h>
-#include "../private_libs/singly_linkedlist.h"
+#include "../private_libs/singly_linked_list.h"
 
 int main(void) {
     int data;
     size_t index, choice;
-    node *temp_node;
+    tree_node *temp_node;
     singly_linked_list my_list;
     printf("\ninitializing the singly linked list: ");
     initialize_singly_linked_list(&my_list);
@@ -24,7 +24,7 @@ int main(void) {
         printf("\n3. get the middle node");
 
         printf("\n4. check if the singly linked list is empty");
-        printf("\n5. get the total count of singly linked list elements");
+        printf("\n5. get the total count_singly_linked_list of singly linked list elements");
         printf("\n6. display the singly linked list");
         printf("\n7. reverse display the singly_linked_list");
 
@@ -81,17 +81,17 @@ int main(void) {
                 }
                 break;
             case 4:
-                printf("\nlist is_empty = %d", is_empty(&my_list));
+                printf("\nlist is_empty_singly_linked_list = %d", is_empty_singly_linked_list(&my_list));
                 break;
             case 5:
-                printf("\nlist count = %zu", count(&my_list));
+                printf("\nlist count_singly_linked_list = %zu", count_singly_linked_list(&my_list));
                 break;
 
             case 6:
                 display_singly_linked_list(&my_list);
                 break;
             case 7:
-                reverse_display_singly_linked_list(&my_list);
+                wrapper_reverse_display_singly_linked_list(&my_list);
                 break;
 
             case 8:

@@ -3,13 +3,13 @@
 //
 
 // CC=afl-clang-fast CXX=afl-clang-fast++ cmake ..
-// AFL_USE_ASAN=1 afl-gcc ../linkedList/fuzz_singly_linkedlist.c ../private_libs/node.c -o fuzz_driver
+// AFL_USE_ASAN=1 afl-gcc ../linked_list/fuzz_singly_linkedlist.c ../private_libs/node.c -o fuzz_driver
 
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
 #include <string.h>
-#include "../private_libs/singly_linkedlist.h"
+#include "../private_libs/singly_linked_list.h"
 
 void readn(void *s, int n) {
     int bytes_read;

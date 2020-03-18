@@ -65,7 +65,7 @@ void counting_sort(int *arr, int *result_array, size_t len) {
     // dynamically generates the auxiliary array using calloc(), default value is set to 0
     int *auxiliary_array = (int *) calloc(range, sizeof(int));
 
-    // pick each key from the array and go to particular index of auxiliary array and track the total count
+    // pick each key from the array and go to particular index of auxiliary array and track the total count_singly_linked_list
     for (int i = 0; i < len; i++) {
         auxiliary_array[arr[i] - min]++;
     }

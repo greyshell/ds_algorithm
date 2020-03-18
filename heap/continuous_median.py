@@ -27,6 +27,7 @@ import heapq
 class MedianFinder:
     def __init__(self):
         """
+        solve using heapq library:
         to store lower nums of the list use one list -> convert that into a MAX heap
         to store upper nums of the list use another list -> convert that into a MIN heap
         """
