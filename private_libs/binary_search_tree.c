@@ -200,7 +200,7 @@ bool is_empty_bst(binary_search_tree *bst) {
     return false;
 }
 
-bst_node *get_min_element_node_bst(binary_search_tree *t) {
+bst_node *get_min_node_bst(binary_search_tree *t) {
     /*
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
      * space complexity: O(1)
@@ -220,7 +220,7 @@ bst_node *get_min_element_node_bst(binary_search_tree *t) {
     return curr_ptr;
 }
 
-bst_node *get_max_element_node_bst(binary_search_tree *t) {
+bst_node *get_max_node_bst(binary_search_tree *t) {
     /*
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
      * space complexity: O(1)

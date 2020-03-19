@@ -86,12 +86,12 @@ int main(void) {
                 break;
             case 9:
                 // max element
-                temp_node = get_max_element_node_bst(&my_bst);
+                temp_node = get_max_node_bst(&my_bst);
                 printf("\nmax element = %d found at %p", temp_node->data, (void *) temp_node);
                 break;
             case 10:
                // min element
-                temp_node = get_min_element_node_bst(&my_bst);
+                temp_node = get_min_node_bst(&my_bst);
                 printf("\nmin element = %d found at %p", temp_node->data, (void *) temp_node);
                 break;
             case 11:

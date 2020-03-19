@@ -36,9 +36,9 @@ bst_node *search_node_bst(binary_search_tree *, int);
 
 bst_node *search_parent_node_bst(binary_search_tree *, int);
 
-bst_node *get_min_element_node_bst(binary_search_tree *);
+bst_node *get_min_node_bst(binary_search_tree *t);
 
-bst_node *get_max_element_node_bst(binary_search_tree *);
+bst_node *get_max_node_bst(binary_search_tree *t);
 
 void delete_bst(binary_search_tree *, int);
 
