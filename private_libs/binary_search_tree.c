@@ -8,15 +8,15 @@
 #include <stdbool.h>
 #include "binary_search_tree.h"
 
-void initialize_bst(binary_search_tree *bst) {
+void initialize_bst(binary_search_tree *t) {
     /*
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    bst->root = NULL;
+    t->root = NULL;
 }
 
-bst_node *create_bst_node(int data) {
+bst_node *create_new_node_bst(int data) {
     /*
      * time complexity: O(1)
      * space complexity: O(1)
@@ -30,10 +30,36 @@ bst_node *create_bst_node(int data) {
     return temp_node;
 }
 
-bst_node *find_parent_node_position(bst_node *t, int data) {
+bst_node *search_node_bst(binary_search_tree *t, int data) {
+    /*
+     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+     * space complexity: O(1)
+     */
+    bst_node *curr_ptr;
+
+    curr_ptr = t->root;
+    while (curr_ptr != NULL) {
+        if (data == curr_ptr->data) {
+            return curr_ptr;
+        } else if (data < curr_ptr->data) {
+            curr_ptr = curr_ptr->left;
+        } else {
+            curr_ptr = curr_ptr->right;
+        }
+    }
+    // case 0: when root is NULL while loop will not execute
+    // case 1: when the while loop execution finishes and curr_ptr reaches to the NULL -> element not found
+    return NULL;
+}
+
+bst_node *get_parent_node_for_insertion_bst(binary_search_tree *t, int data) {
+    /*
+     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+     * space complexity: O(1)
+     */
     bst_node *curr_ptr, *prev_ptr = NULL;
 
-    curr_ptr = t;
+    curr_ptr = t->root;
     while (curr_ptr != NULL) {
         prev_ptr = curr_ptr;
         if (data == curr_ptr->data) {
@@ -48,6 +74,31 @@ bst_node *find_parent_node_position(bst_node *t, int data) {
     return prev_ptr;
 }
 
+bst_node *search_parent_node_bst(binary_search_tree *t, int data) {
+    /*
+     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+     * space complexity: O(1)
+     */
+    bst_node *curr_ptr, *prev_ptr;
+
+    prev_ptr = NULL;
+    curr_ptr = t->root;
+    while (curr_ptr != NULL) {
+        if (data == curr_ptr->data) {
+            return prev_ptr;
+        }
+        prev_ptr = curr_ptr;
+        if (data < curr_ptr->data) {
+            curr_ptr = curr_ptr->left;
+        } else {
+            curr_ptr = curr_ptr->right;
+        }
+    }
+    // case 0: when root is NULL while loop will not execute
+    // case 1: when the while loop execution finishes and curr_ptr reaches to the NULL -> element not found
+    return NULL;
+}
+
 void insert_bst(binary_search_tree *t, int data) {
     /*
      * time complexity: depends on the height of the tree
@@ -60,17 +111,17 @@ void insert_bst(binary_search_tree *t, int data) {
 
     // case 0: the tree is empty, insert into root
     if (t->root == NULL) {
-        temp_node = create_bst_node(data);
+        temp_node = create_new_node_bst(data);
         t->root = temp_node;
         return;
     }
 
-    parent_node = find_parent_node_position(t->root, data);
+    parent_node = get_parent_node_for_insertion_bst(t, data);
     if (parent_node == NULL) {
         // case: data is already present in the BST
         printf("\nunable to insert, data is already present in BST");
     } else {
-        temp_node = create_bst_node(data);
+        temp_node = create_new_node_bst(data);
         if (data < parent_node->data) {
             parent_node->left = temp_node;
         } else {
@@ -78,37 +129,6 @@ void insert_bst(binary_search_tree *t, int data) {
         }
 
     }
-    /* // old implementation
-    bst_node *curr_ptr, *temp_node;
-
-    if (t->root == NULL) {
-        temp_node = create_bst_node(data);
-        t->root = temp_node;
-        return;
-    }
-
-    curr_ptr = t->root;
-    while (curr_ptr != NULL) {
-        // insert into the right sub tree
-        if (data > curr_ptr->data) {
-            if (curr_ptr->right == NULL) {
-                curr_ptr->right = create_bst_node(data);
-                return;
-            } else {
-                curr_ptr = curr_ptr->right;
-            }
-        }
-            // insert into the left sub tree
-        else {
-            if (curr_ptr->left == NULL) {
-                curr_ptr->left = create_bst_node(data);
-                return;
-            } else {
-                curr_ptr = curr_ptr->left;
-            }
-        }
-    }
-    */
 }
 
 void in_order_traversal_bst_recursive(bst_node *curr_ptr) {
@@ -153,7 +173,7 @@ void post_order_traversal_bst_recursive(bst_node *curr_ptr) {
     }
 }
 
-void all_ordered_traversals_bst_recursive(binary_search_tree *bst) {
+void all_ordered_traversals_bst_recursive(binary_search_tree *t) {
     /*
      * time complexity | space complexity: depends on the following functions
      *  - in_order_traversal_bst_recursive()
@@ -161,11 +181,11 @@ void all_ordered_traversals_bst_recursive(binary_search_tree *bst) {
      *  - post_order_traversal_bst_recursive()
      */
     printf("\nin-order traversal / sorted order: ");
-    in_order_traversal_bst_recursive(bst->root);
+    in_order_traversal_bst_recursive(t->root);
     printf("\npre-order traversal: ");
-    pre_order_traversal_bst_recursive(bst->root);
+    pre_order_traversal_bst_recursive(t->root);
     printf("\npost-order traversal: ");
-    post_order_traversal_bst_recursive(bst->root);
+    post_order_traversal_bst_recursive(t->root);
     return;
 }
 
@@ -180,44 +200,18 @@ bool is_empty_bst(binary_search_tree *bst) {
     return false;
 }
 
-bst_node *search_node_bst(binary_search_tree *bst, int data) {
+bst_node *get_min_element_node_bst(binary_search_tree *t) {
     /*
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
      * space complexity: O(1)
      */
     bst_node *curr_ptr;
     // case: root is NULL
-    if (bst->root == NULL) {
+    if (t->root == NULL) {
         return NULL;
     }
 
-    curr_ptr = bst->root;
-    while (curr_ptr != NULL) {
-        if (data == curr_ptr->data) {
-            return curr_ptr;
-        } else if (data < curr_ptr->data) {
-            curr_ptr = curr_ptr->left;
-        } else {
-            curr_ptr = curr_ptr->right;
-        }
-    }
-    // case 0: when root is NULL while loop will not execute
-    // case 1: when the while loop execution finishes and curr_ptr reaches to the NULL -> element not found
-    return NULL;
-}
-
-bst_node *get_min_element_node_bst(binary_search_tree *bst) {
-    /*
-     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
-     * space complexity: O(1)
-     */
-    bst_node *curr_ptr;
-    // case: root is NULL
-    if (bst->root == NULL) {
-        return NULL;
-    }
-
-    curr_ptr = bst->root;
+    curr_ptr = t->root;
     // iterate the loop by checking with the left node address
     // due to this, when the curr_ptr->left reaches to NULL, curr_ptr points to the leaf node
     while (curr_ptr->left != NULL) {
@@ -226,18 +220,18 @@ bst_node *get_min_element_node_bst(binary_search_tree *bst) {
     return curr_ptr;
 }
 
-bst_node *get_max_element_node_bst(binary_search_tree *bst) {
+bst_node *get_max_element_node_bst(binary_search_tree *t) {
     /*
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
      * space complexity: O(1)
      */
     bst_node *curr_ptr;
     // case: root is NULL
-    if (bst->root == NULL) {
+    if (t->root == NULL) {
         return NULL;
     }
 
-    curr_ptr = bst->root;
+    curr_ptr = t->root;
     // iterate the loop by checking with the right node address
     // due to this, when the curr_ptr->right reaches to NULL, curr_ptr points to the leaf node
     while (curr_ptr->right != NULL) {
@@ -246,6 +240,6 @@ bst_node *get_max_element_node_bst(binary_search_tree *bst) {
     return curr_ptr;
 }
 
-void delete_bst(binary_search_tree *bst, int data) {
+void delete_bst(binary_search_tree *t, int data) {
     printf("\nTBD");
 }
