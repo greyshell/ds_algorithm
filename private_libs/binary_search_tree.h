@@ -25,30 +25,22 @@ void initialize_bst(binary_search_tree *);
 
 void insert_bst(binary_search_tree *, int);
 
-void in_order_traversal_bst_recursive(bst_node *);
-
-void wrapper_in_order_traversal_bst(binary_search_tree *);
-
-/*
-void delete_bst(binary_search_tree *, int);
-
+// karunamachi page 126, using stack
 void in_order_traversal_bst(binary_search_tree *);
 
-bool find_bst(binary_search_tree *, int);
-
-bool find_key_bst_recursive(binary_search_tree *, int);
-
-node *get_node_bst(binary_search_tree *, int);
+void all_ordered_traversals_bst_recursive(binary_search_tree *);
 
 bool is_empty_bst(binary_search_tree *);
 
-int find_min_element_bst(binary_search_tree *);
+bst_node *search_node_bst(binary_search_tree *, int);
 
-node *get_min_element_node_bst(binary_search_tree *);
+bst_node *get_min_element_node_bst(binary_search_tree *);
 
-int find_max_element_bst(binary_search_tree *);
+bst_node *get_max_element_node_bst(binary_search_tree *);
 
-node *get_max_element_node_bst(binary_search_tree *);
+void delete_bst(binary_search_tree *, int);
+
+/*
 
 node *get_node_in_order_predecessor_bst(binary_search_tree *);
 

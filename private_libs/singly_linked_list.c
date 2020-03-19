@@ -124,7 +124,7 @@ bst_node *get_middle_node(singly_linked_list *list) {
 }
 
 bool is_empty_singly_linked_list(singly_linked_list *list) {
-    if (list->head != NULL) {
+    if (list->head == NULL) {
         return true;
     }
     return false;
