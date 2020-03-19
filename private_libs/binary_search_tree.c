@@ -52,28 +52,6 @@ bst_node *search_node_bst(binary_search_tree *t, int data) {
     return NULL;
 }
 
-bst_node *get_parent_node_for_insertion_bst(binary_search_tree *t, int data) {
-    /*
-     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
-     * space complexity: O(1)
-     */
-    bst_node *curr_ptr, *prev_ptr = NULL;
-
-    curr_ptr = t->root;
-    while (curr_ptr != NULL) {
-        prev_ptr = curr_ptr;
-        if (data == curr_ptr->data) {
-            // data is already present in the BST
-            return NULL;
-        } else if (data < curr_ptr->data) {
-            curr_ptr = curr_ptr->left;
-        } else {
-            curr_ptr = curr_ptr->right;
-        }
-    }
-    return prev_ptr;
-}
-
 bst_node *search_parent_node_bst(binary_search_tree *t, int data) {
     /*
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
@@ -99,6 +77,28 @@ bst_node *search_parent_node_bst(binary_search_tree *t, int data) {
     return NULL;
 }
 
+bst_node *get_parent_node_for_insertion_bst(binary_search_tree *t, int data) {
+    /*
+     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+     * space complexity: O(1)
+     */
+    bst_node *curr_ptr, *prev_ptr = NULL;
+
+    curr_ptr = t->root;
+    while (curr_ptr != NULL) {
+        prev_ptr = curr_ptr;
+        if (data == curr_ptr->data) {
+            // data is already present in the BST
+            return NULL;
+        } else if (data < curr_ptr->data) {
+            curr_ptr = curr_ptr->left;
+        } else {
+            curr_ptr = curr_ptr->right;
+        }
+    }
+    return prev_ptr;
+}
+
 void insert_bst(binary_search_tree *t, int data) {
     /*
      * time complexity: depends on the height of the tree
@@ -120,14 +120,15 @@ void insert_bst(binary_search_tree *t, int data) {
     if (parent_node == NULL) {
         // case: data is already present in the BST
         printf("\nunable to insert, data is already present in BST");
-    } else {
-        temp_node = create_new_node_bst(data);
-        if (data < parent_node->data) {
-            parent_node->left = temp_node;
-        } else {
-            parent_node->right = temp_node;
-        }
+        return;
+    }
 
+    temp_node = create_new_node_bst(data);
+
+    if (data < parent_node->data) {
+        parent_node->left = temp_node;
+    } else {
+        parent_node->right = temp_node;
     }
 }
 
