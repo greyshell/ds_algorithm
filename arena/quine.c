@@ -1,7 +1,6 @@
 /*
  * author: greyshell
- * description: Quine Programming
- * a C program that display_singly_linked_list its own source code
+ * description: quine programming: a program that display its own source code
  * */
 
 #include <stdio.h>
@@ -13,7 +12,7 @@ int main(void) {
     // __FILE__ contains the location of this C programming file in a string
     fp = fopen(__FILE__, "r");
     if (fp == NULL) {
-        printf("Cannot open file \n");
+        printf("cannot open file \n");
         exit(0);
     }
 
