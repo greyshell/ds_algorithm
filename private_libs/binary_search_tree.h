@@ -25,7 +25,7 @@ void initialize_bst(binary_search_tree *);
 
 void insert_bst(binary_search_tree *, int);
 
-// karunamachi page 126, using stack
+// karumanchi page 126, using stack
 void in_order_traversal_bst(binary_search_tree *);
 
 void all_ordered_traversals_bst_recursive(binary_search_tree *);
