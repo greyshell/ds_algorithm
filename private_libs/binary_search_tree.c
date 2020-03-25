@@ -77,8 +77,9 @@ bst_node *search_parent_node_bst(binary_search_tree *t, int data) {
     return NULL;
 }
 
-bst_node *get_parent_node_for_insertion_bst(binary_search_tree *t, int data) {
+bst_node *_get_parent_node(binary_search_tree *t, int data) {
     /*
+     * helper function for insert()
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
      * space complexity: O(1)
      */
@@ -116,7 +117,7 @@ void insert_bst(binary_search_tree *t, int data) {
         return;
     }
 
-    parent_node = get_parent_node_for_insertion_bst(t, data);
+    parent_node = _get_parent_node(t, data);
     if (parent_node == NULL) {
         // case: data is already present in the BST
         printf("\nunable to insert, data is already present in BST");
@@ -242,5 +243,46 @@ bst_node *get_max_node_bst(binary_search_tree *t) {
 }
 
 void delete_bst(binary_search_tree *t, int data) {
-    printf("\nTBD");
+    /*
+     * hibbard deletion
+     */
+    bst_node *curr_node, *parent_node, *temp_node, *in_order_successor;
+    parent_node = search_parent_node_bst(t, data);
+    curr_node = search_node_bst(t, data);
+
+    if (curr_node->left == NULL && curr_node->right == NULL){
+        // case 1: the current node is leaf node
+        if (data > parent_node->data){
+            parent_node->right = NULL;
+        }
+        else{
+            parent_node->left = NULL;
+        }
+
+        free(curr_node);
+    }
+    else if (curr_node->left == NULL && curr_node->right != NULL){
+        if (data > parent_node->data){
+            parent_node->right = curr_node->right;
+        }
+        else{
+            parent_node->left = curr_node->right;
+        }
+        free(curr_node);
+    }
+    else if (curr_node->left != NULL && curr_node->right == NULL){
+        if (data > parent_node->data){
+            parent_node->right = curr_node->left;
+        }
+        else{
+            parent_node->left = curr_node->left;
+        }
+        free(curr_node);
+    }
+    // node has two children
+    else{
+        // find in order successor / min of the right sub tree
+        //in_order_successor = get_min_node_bst(curr_node);
+    }
+
 }

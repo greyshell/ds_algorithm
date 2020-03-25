@@ -20,11 +20,17 @@ typedef struct my_binary_search_tree {
     bst_node *root;
 } binary_search_tree;
 
-
+// main operations:
 void initialize_bst(binary_search_tree *);
 
 void insert_bst(binary_search_tree *, int);
 
+void delete_bst(binary_search_tree *, int);
+
+int find_minimum_bst(binary_search_tree *);
+int find_maximum_bst(binary_search_tree *);
+
+// auxiliary operations:
 // karumanchi page 126, using stack
 void in_order_traversal_bst(binary_search_tree *);
 
@@ -40,7 +46,7 @@ bst_node *get_min_node_bst(binary_search_tree *t);
 
 bst_node *get_max_node_bst(binary_search_tree *t);
 
-void delete_bst(binary_search_tree *, int);
+
 
 /*
 
