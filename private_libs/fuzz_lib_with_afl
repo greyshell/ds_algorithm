@@ -1,0 +1,17 @@
+FLD=linked_list
+LIB=singly_linked_list
+
+all: build run
+
+build: clean
+	mkdir -p ../fuzz_afl
+	mkdir -p ../fuzz_afl/$(LIB)
+	mkdir -p ../fuzz_afl/$(LIB)/in
+	echo abc > ../fuzz_afl/$(LIB)/in/t1
+	AFL_USE_ASAN=1 afl-gcc ../$(FLD)/test_$(LIB)_fuzz.c $(LIB).c -o ../fuzz_afl/$(LIB)/$(LIB)_afl
+
+run:
+	afl-fuzz -i ../fuzz_afl/$(LIB)/in -o ../fuzz_afl/$(LIB)/out -m none ../fuzz_afl/$(LIB)/$(LIB)_afl
+
+clean:
+	rm -rf ../fuzz_afl/$(LIB)/

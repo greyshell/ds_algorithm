@@ -9,7 +9,7 @@
 int main(void) {
     int data;
     size_t index, choice;
-    bst_node *temp_node;
+    linklist_node *temp_node;
     singly_linked_list my_list;
     printf("\ninitializing the singly linked list: ");
     initialize_singly_linked_list(&my_list);
@@ -91,7 +91,7 @@ int main(void) {
                 display_singly_linked_list(&my_list);
                 break;
             case 7:
-                wrapper_reverse_display_singly_linked_list(&my_list);
+                reverse_display_singly_linked_list(&my_list);
                 break;
 
             case 8:
@@ -121,13 +121,13 @@ int main(void) {
                 printf("\nelement = %d is deleted", data);
                 break;
             case 13:
-                printf("\nenter the index / k: ");
+                printf("\nenter the index / k (k >= 0): ");
                 scanf("%zu", &index);
                 data = delete_at_index(&my_list, index);
                 printf("\nelement = %d is deleted", data);
                 break;
             case 14:
-                printf("\nenter the index / k: ");
+                printf("\nenter the index / k (k >= 1): ");
                 scanf("%zu", &index);
                 data = delete_kth_node_from_end(&my_list, index);
                 printf("\nelement = %d is deleted", data);

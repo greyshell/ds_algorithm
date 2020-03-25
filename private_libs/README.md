@@ -1,38 +1,40 @@
-## Usage of `make` utility and `static` and `shared` library
+# How to create a library
+
+##### usage of `make` utility and `static` and `shared` library
 
 - create a `.c` file and write a function that you want to use as library.
 - create a `.h` file and declare that function.
 
-### use `make` utility to build both `static` and `shared` libraries
+##### use `make` utility to build both `static` and `shared` libraries
 ```
 make -f create_lib LIB=foo
 ```
 
-### use `make` utility to build a `shared` library(`*.so`) from that function
+##### use `make` utility to build a `shared` library(`*.so`) from that function
 ```
 make -f create_lib build-shared LIB=foo
 ```
 
-### use `make` utility to build a `static` library(`*.a`) from that function
+##### use `make` utility to build a `static` library(`*.a`) from that function
 ```
 make -f create_lib build-shared LIB=foo
 ```
 
-### clean / delete `static`, `shared` library and `object` files all together.
+##### clean / delete `static`, `shared` library and `object` files all together.
 ```
 make -f create_lib clean
 ```
-### clean the `static` library and `object` files.
+##### clean the `static` library and `object` files.
 ```
 make -f create_lib clean-static
 ```
 
-### clean the `shared` library and `object` files.
+##### clean the `shared` library and `object` files.
 ```
 make -f create_lib clean-shared
 ```
 
-### how to use the source / `.c` file directly in the code
+##### how to use the source / `.c` file directly in the code
 - `note`: in `Makefile`, all lines are indented by `tab` characters not `space`.
 - add the following lines in `CmakeLists.txt` file to build the final `executable`.
 ```
@@ -41,7 +43,7 @@ FILE(GLOB MyCSources private_libs/*.c)
 add_executable(test_two_libs refresher/test_two_libs.c ${MyCSources})
 ```
 
-### how to use the `shared` / `static` library directly in the code
+##### how to use the `shared` / `static` library directly in the code
 - copy `template/create_binary_from_lib` makefile to the directory where source file (`test_foo.c`) exists.
 - specify the `PROG` = source_file and `LIB` = library_used while building the binary using `make` utility.
 ```
@@ -65,4 +67,32 @@ make -f create_binary_from_custom_lib PROG=test_foo LIB=foo run-shared-linux
 
 # clean / remove the binary from cmake-build-debug folder
 make -f create_binary_from_custom_lib PROG=test_foo LIB=foo clean
+```
+
+# How to fuzz my library with AFL
+
+- create a wrapper program to simulate all operations exposed by the test program.
+- create a directory - `fuzz_afl`.
+- create a dummy test case just to kick off the fuzzer. 
+```
+mkdir fuzz_afl
+mkdir fuzz_afl/lib_program_name
+mkdir fuzz_afl/lib_program_name/in
+echo abc > fuzz_afl/lib_program_name/in/t1
+```
+- navigate to the folder which has the wrapper program.
+- compile that wrapper program with `afl-gcc` and create the binary in `lib_program_name` directory.
+```
+AFL_USE_ASAN=1 afl-gcc test_program_name_fuzz.c ../private_libs/program_name.c -o fuzz_alf/lib_program_name
+/program_name_fuzz
+```
+- execute the binary to check that runs properly
+- run the `afl-gcc` fuzzer.
+```
+afl-fuzz -i in -o out -m none ./fuzz_program_name
+```
+- `afl` writes all crashes inside `out/crashes` directory. 
+- simulate the crash with a crash data.
+```
+./program_name < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
 ```
