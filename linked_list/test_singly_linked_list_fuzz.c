@@ -19,7 +19,7 @@ void readn(void *s, int n) {
         memset(s, 0, n);
         return;
     }
-    memset(&((char *)s)[bytes_read], 0, n - bytes_read);
+    memset(&((char *) s)[bytes_read], 0, n - bytes_read);
 }
 
 uint8_t read8() {
@@ -148,7 +148,7 @@ void op_delete_at_index() {
     int data;
     size_t index;
     index = readSizet();
-    printf("Operation: Delete at index: %zu\n",index);
+    printf("Operation: Delete at index: %zu\n", index);
     data = delete_at_index(&my_list, index);
     printf("Deleted value: %d\n", data);
 }
@@ -171,11 +171,9 @@ void op_delete_element() {
 }
 
 void op_delete_all() {
-     printf("Operation: Delete all element\n");
+    printf("Operation: Delete all element\n");
     delete_all(&my_list);
 }
-
-
 
 int main(void) {
     uint8_t number_operations;

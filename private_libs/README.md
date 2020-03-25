@@ -76,23 +76,27 @@ make -f create_binary_from_custom_lib PROG=test_foo LIB=foo clean
 - create a dummy test case just to kick off the fuzzer. 
 ```
 mkdir fuzz_afl
-mkdir fuzz_afl/lib_program_name
-mkdir fuzz_afl/lib_program_name/in
-echo abc > fuzz_afl/lib_program_name/in/t1
+mkdir fuzz_afl/lib_name
+mkdir fuzz_afl/lib_name/in
+echo abc > fuzz_afl/lib_name/in/t1
 ```
 - navigate to the folder which has the wrapper program.
-- compile that wrapper program with `afl-gcc` and create the binary in `lib_program_name` directory.
+- compile that wrapper program with `afl-gcc` and create the binary inside the `lib_name` directory.
 ```
-AFL_USE_ASAN=1 afl-gcc test_program_name_fuzz.c ../private_libs/program_name.c -o fuzz_alf/lib_program_name
-/program_name_fuzz
+AFL_USE_ASAN=1 afl-gcc test_lib_name_fuzz.c ../private_libs/lib_name.c -o ../fuzz_alf/lib_name/lib_name_afl
 ```
 - execute the binary to check that runs properly
 - run the `afl-gcc` fuzzer.
 ```
-afl-fuzz -i in -o out -m none ./fuzz_program_name
+afl-fuzz -i ../fuzz_afl/lib_name/in -o ../fuzz_afl/lib_name/out -m none ../fuzz_afl/lib_name/lib_name_afl
 ```
 - `afl` writes all crashes inside `out/crashes` directory. 
-- simulate the crash with a crash data.
+- reproduce the crash with a crash data.
 ```
-./program_name < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
+./lib_name_afl < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
+```
+
+##### execute all commands using `make` utility
+```
+make -f fuzz_lib_with_afl
 ```
