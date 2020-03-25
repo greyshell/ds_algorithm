@@ -1,9 +1,7 @@
-//
-// Created by root on 3/6/20.
-//
-
-// CC=afl-clang-fast CXX=afl-clang-fast++ cmake ..
-// AFL_USE_ASAN=1 afl-gcc ../linked_list/fuzz_singly_linkedlist.c ../private_libs/node.c -o fuzz_driver
+/*
+ * author: greyshell
+ * description: fuzz my singly linked list implementation through afl
+ * */
 
 #include <stdio.h>
 #include <stdint.h>
@@ -179,16 +177,17 @@ void op_delete_all() {
 
 
 
-int main() {
+int main(void) {
     uint8_t number_operations;
     uint8_t operation_type;
-    int i;
+    // initialize the singly linked list
     initialize_singly_linked_list(&my_list);
 
-    // 1. Figure out how many operations: 255
+    // figure out how many operations: 255
     number_operations = read8();
     printf("Number of operations: %d\n", number_operations);
-    for (i = 0; i < number_operations; i++) {
+    for (int i = 0; i < number_operations; i++) {
+        // choose the random operation
         operation_type = read8();
         switch (operation_type % 17) {
             case 0:
