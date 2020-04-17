@@ -11,7 +11,7 @@ git show --summary
 ```
 
 - If the last commit was made from a `different` system then we need to
-`sync` the `local` repo with `remote`.
+`sync` the `local` repository with `remote`.
 ```
 git pull --rebase
 ```
