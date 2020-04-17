@@ -77,7 +77,31 @@ bst_node *search_parent_node_bst(binary_search_tree *t, int data) {
     return NULL;
 }
 
-bst_node *_get_parent_node(binary_search_tree *t, int data) {
+bst_node *get_parent_node_bst(bst_node *curr_ptr, int data) {
+    /*
+     * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+     * space complexity: O(1)
+     */
+    bst_node *prev_ptr;
+
+    prev_ptr = NULL;
+    while (curr_ptr != NULL) {
+        if (data == curr_ptr->data) {
+            return prev_ptr;
+        }
+        prev_ptr = curr_ptr;
+        if (data < curr_ptr->data) {
+            curr_ptr = curr_ptr->left;
+        } else {
+            curr_ptr = curr_ptr->right;
+        }
+    }
+    // case 0: when root is NULL while loop will not execute
+    // case 1: when the while loop execution finishes and curr_ptr reaches to the NULL -> element not found
+    return NULL;
+}
+
+bst_node *get_parent_node(binary_search_tree *t, int data) {
     /*
      * helper function for insert()
      * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
@@ -117,7 +141,7 @@ void insert_bst(binary_search_tree *t, int data) {
         return;
     }
 
-    parent_node = _get_parent_node(t, data);
+    parent_node = get_parent_node(t, data);
     if (parent_node == NULL) {
         // case: data is already present in the BST
         printf("\nunable to insert, data is already present in BST");
@@ -213,7 +237,14 @@ bst_node *get_min_node_bst(binary_search_tree *t) {
         return NULL;
     }
 
-    curr_ptr = t->root;
+    return get_node_in_order_successor(t->root);;
+}
+
+bst_node *get_node_in_order_successor(bst_node *curr_ptr){
+    /*
+    * time complexity: O(height of the BST), best case = O(log(n) for balanced tree, worst case = O(n) for skewed tree
+    * space complexity: O(1)
+    */
     // iterate the loop by checking with the left node address
     // due to this, when the curr_ptr->left reaches to NULL, curr_ptr points to the leaf node
     while (curr_ptr->left != NULL) {
@@ -242,11 +273,12 @@ bst_node *get_max_node_bst(binary_search_tree *t) {
     return curr_ptr;
 }
 
+
 void delete_bst(binary_search_tree *t, int data) {
     /*
      * hibbard deletion
      */
-    bst_node *curr_node, *parent_node, *temp_node, *in_order_successor;
+    bst_node *curr_node, *parent_node, *temp_node, *in_order_successor, *parent_of_in_order_successor;
     parent_node = search_parent_node_bst(t, data);
     curr_node = search_node_bst(t, data);
 
@@ -261,6 +293,7 @@ void delete_bst(binary_search_tree *t, int data) {
 
         free(curr_node);
     }
+    // case 2: node has only right child
     else if (curr_node->left == NULL && curr_node->right != NULL){
         if (data > parent_node->data){
             parent_node->right = curr_node->right;
@@ -270,6 +303,7 @@ void delete_bst(binary_search_tree *t, int data) {
         }
         free(curr_node);
     }
+    // case 2: node has only left child
     else if (curr_node->left != NULL && curr_node->right == NULL){
         if (data > parent_node->data){
             parent_node->right = curr_node->left;
@@ -281,8 +315,12 @@ void delete_bst(binary_search_tree *t, int data) {
     }
     // node has two children
     else{
-        // find in order successor / min of the right sub tree
-        //in_order_successor = get_min_node_bst(curr_node);
+        // default: find in-order successor / min of the right sub tree
+        in_order_successor = get_node_in_order_successor(curr_node->right);
+        // swap the keys
+        curr_node->data = in_order_successor->data;
+        // parent_of_in_order_successor = get_parent_node_bst()
+        // in_order_successor->right;
     }
 
 }

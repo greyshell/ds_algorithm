@@ -51,13 +51,13 @@ add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${My
 # recursion
 # =========
 
-# arena
+# basic
 # ==========
-add_executable(test arena/test.c ${MyCSources})
-add_executable(quine arena/quine.c ${MyCSources})
-add_executable(test_foo arena/test_foo.c ${MyCSources})
-add_executable(concept arena/concept.c ${MyCSources})
-add_executable(example_variatic_function arena/variadic_function.c ${MyCSources})
+add_executable(test basic/test.c ${MyCSources})
+add_executable(quine basic/quine.c ${MyCSources})
+add_executable(test_foo basic/test_foo.c ${MyCSources})
+add_executable(concept basic/concept.c ${MyCSources})
+add_executable(example_variatic_function basic/variadic_function.c ${MyCSources})
 
 # searching
 # =========

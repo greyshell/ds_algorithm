@@ -9,10 +9,10 @@
 #include "stdbool.h"
 
 
-typedef struct node {
+typedef struct my_node {
     int data;
-    struct node *left;
-    struct node *right;
+    struct my_node *left;
+    struct my_node *right;
 } bst_node;
 
 
@@ -46,6 +46,9 @@ bst_node *get_min_node_bst(binary_search_tree *t);
 
 bst_node *get_max_node_bst(binary_search_tree *t);
 
+bst_node *get_node_in_order_predecessor_bst(bst_node *);
+
+bst_node *get_node_in_order_successor(bst_node *);
 
 
 /*
