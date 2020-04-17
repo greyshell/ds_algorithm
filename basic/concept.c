@@ -33,7 +33,7 @@ int main(void){
 
     printf("singed char size = %lu \n", sizeof(a));  // 1 bytes
     printf("signed float size = %lu \n", sizeof(f));  // 4 bytes
-    printf("student structure size = %lu \n", sizeof(s)); // 12 bytes
+    printf("student structure size = %lu \n", sizeof(s)); // 12 bytes, although total size is 9 bytes
     return 0;
 }
 
