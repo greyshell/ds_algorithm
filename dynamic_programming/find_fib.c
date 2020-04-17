@@ -1,7 +1,8 @@
 /*
  * author: greyshell
  * description: find the 5th fibonacci number
- * n = 7, output = 13, considering 0th fib = 0, 1st fib = 1
+ * n = 7, output = 13
+ * considering 0th fib = 0, 1st fib = 1
  * */
 
 #include <stdio.h>
