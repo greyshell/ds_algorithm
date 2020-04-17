@@ -4,7 +4,6 @@
  * */
 
 #include <stdio.h>
-#include <limits.h>
 #include "stdbool.h"
 
 struct student {
@@ -16,17 +15,25 @@ struct student {
 int main(void){
     bool my_bool;
     int i;
-    size_t j;
+    size_t j = 9;
     unsigned int k;
     long int l;
     long long int m;
+    struct student s;
+    char a;
+    float f;
     
-    printf("\nbool size=%lu", sizeof(my_bool));  // 1 byte
-    printf("\nsigned int size=%lu", sizeof(i));  // 4 byte
+    printf("bool size = %lu \n", sizeof(my_bool));  // 1 byte
+    printf("signed int size = %lu \n", sizeof(i));  // 4 bytes
 
-    printf("\nunsigned int size=%lu", sizeof(k));  // 4 byte
-    printf("\nlong int size=%lu", sizeof(l));  // 8 byte
-    printf("\nlong long size=%lu", sizeof(m));  // 8 byte
+    printf("unsigned int size = %lu \n", sizeof(k));  // 4 bytes
+    printf("long int size = %lu \n", sizeof(l));  // 8 bytes
+    printf("long long size = %lu \n", sizeof(m));  // 8 bytes
+    printf("size_t size = %lu \n", sizeof(j));  // 8 bytes
+
+    printf("singed char size = %lu \n", sizeof(a));  // 1 bytes
+    printf("signed float size = %lu \n", sizeof(f));  // 4 bytes
+    printf("student structure size = %lu \n", sizeof(s)); // 12 bytes
     return 0;
 }
 
