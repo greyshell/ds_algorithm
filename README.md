@@ -1,6 +1,6 @@
 # Description
 
-Learning Data Structure and Algorithm in `C` and `python`.
+Learning Data Structure and Algorithm using `C`.
 
 
 ## Git Workflow to maintain the repo
