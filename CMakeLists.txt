@@ -56,7 +56,7 @@ add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${My
 add_executable(test basic/test.c ${MyCSources})
 add_executable(quine basic/quine.c ${MyCSources})
 add_executable(test_foo basic/test_foo.c ${MyCSources})
-add_executable(concept basic/concept.c ${MyCSources})
+add_executable(concept basic/variable_size.c ${MyCSources})
 add_executable(example_variatic_function basic/variadic_function.c ${MyCSources})
 
 # searching
