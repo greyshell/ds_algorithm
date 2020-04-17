@@ -16,7 +16,7 @@ git show --summary
 git pull --rebase
 ```
 
-- Update the `local` repo and push the code into _remote_ branch.
+- Update the `local` repo and push the code into `remote` branch.
 ```
 git commit -am "<system_name>: message" && git push
 ``` 
