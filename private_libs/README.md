@@ -69,7 +69,7 @@ make -f create_binary_from_custom_lib PROG=test_foo LIB=foo run-shared-linux
 make -f create_binary_from_custom_lib PROG=test_foo LIB=foo clean
 ```
 
-# How to fuzz my library with AFL
+# How to fuzz my custom library with AFL
 
 - create a wrapper program to simulate all operations exposed by the test program.
 - create a directory - `fuzz_afl`.
