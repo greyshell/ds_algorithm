@@ -1,12 +1,12 @@
 # Description
 
-`stack.h` - a singly linked list based implementation.
+`stack.h` is used for the singly linked list based `stack` implementation.
 - `disadvantage`: extra space is required for storing the references.
 
-`dyn_array_stack.h` - a dynamic array based implementation.
+`dyn_array_stack.h` - is used for dynamic array based `stack` implementation.
 - `repeated doubling` technique is used to improve the `amortized` time complexity for `push()` operation -> `O(1)`.
 
-**Example:**
+**How to use:**
 
 ```
 #include "../private_libs/stack.h"
