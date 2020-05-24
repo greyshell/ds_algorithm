@@ -1,8 +1,10 @@
-# My Stack library
+# How to use my stack library
 
-`stack.h` - a singly linked list based implementation.
+## `stack.h` - a singly linked list based implementation
 
-**How to use:**
+`disadvantage`: extra space is required for storing the references.
+
+**Example:**
 
 ```
 #include "../private_libs/stack.h"
@@ -32,5 +34,5 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
 
 
---- 
-`dyn_array_stack.h` - a dynamic array based implementation.
+
+## `dyn_array_stack.h` - a dynamic array based implementation
