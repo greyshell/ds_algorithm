@@ -1,10 +1,8 @@
-# How to use my Stack library
+# My Stack library
 
-## `stack.h` 
+`stack.h` - a singly linked list based implementation.
 
-It is a singly linked list based stack implementation. 
-
-**Example:**
+**How to use:**
 
 ```
 #include "../private_libs/stack.h"
@@ -22,7 +20,7 @@ int main(void){
 }
 ```
 
-**APIs**
+**Detailed APIs**
 
 Sl No | APIs                             | Time Complexity | Space Complexity | Notes
 ------|----------------------------------|-----------------|------------------|----------------------------------------------------------------------------------
@@ -32,3 +30,7 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
 5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
+
+
+--- 
+`dyn_array_stack.h` - a dynamic array based implementation.
