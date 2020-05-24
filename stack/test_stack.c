@@ -10,7 +10,6 @@
 int main(void) {
     int data;
     size_t choice;
-    linkedlist_node *temp_node;
     stack my_stack;
     printf("creating a stack !!");
     initialize_stack(&my_stack);
