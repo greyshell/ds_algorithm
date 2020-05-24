@@ -1,6 +1,9 @@
-# How to use `stack.h`
+# Description
 
-This is a singly linked list based `Stack` implementation. 
+
+## `stack.h`: a singly linked list based implementation. 
+
+**Example:**
 
 ```
 #include "stack.h"
@@ -18,7 +21,7 @@ int main(void){
 }
 ```
 
-## APIs
+#### APIs
 
 Sl No | APIs                             | Time Complexity | Space Complexity | Notes
 ------|----------------------------------|-----------------|------------------|----------------------------------------------------------------------------------
