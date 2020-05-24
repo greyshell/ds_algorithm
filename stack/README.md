@@ -1,4 +1,4 @@
-# How to use my custom stack lib
+# How to use my custom library
 
 `stack.h` - a singly linked list based implementation.
 - `disadvantage`: extra space is required for storing the references.
