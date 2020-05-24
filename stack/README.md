@@ -1,8 +1,10 @@
-# How to use my stack library
+# How to use
 
-## `stack.h` - a singly linked list based implementation
+`stack.h` - a singly linked list based implementation.
+- `disadvantage`: extra space is required for storing the references.
 
-`disadvantage`: extra space is required for storing the references.
+`dyn_array_stack.h` - a dynamic array based implementation.
+- `repeated doubling` technique is used to improve the `amortized` time complexity for `push()` operation -> `O(1)`.
 
 **Example:**
 
@@ -32,7 +34,3 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
 5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
-
-
-
-## `dyn_array_stack.h` - a dynamic array based implementation
