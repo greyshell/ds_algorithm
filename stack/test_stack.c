@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: test my singly linked list implementation
+ * description: test singly linked list implementation of stack
  * */
 
 #include <stdio.h>
