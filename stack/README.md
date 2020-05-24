@@ -1,16 +1,24 @@
 # How to use `stack.h`
 
-This is a singly linked list based implementation. 
+This is a singly linked list based `Stack` implementation. 
 
-- include `stack.h` into your program.
-- create the stack: `stack s;`
-- initialize the stack: `initialize_stack(&s);`
-- perform basic operations:
-    - push an element: `push(s, 5);`
-    - peek the stack top: `peek(s);`
-    - pop an element: `int data = pop(s);`
+```
+#include "stack.h"
 
-## Stack APIs
+int main(void){
+    stack s;
+    // set the stack top NULL
+    initialize_stack(&s);
+    // basic operations
+    push(s, 5);
+    int data = peek(s);
+    int data = pop(s)
+
+    return 0;
+}
+```
+
+## APIs
 
 Sl No | APIs                             | Time Complexity | Space Complexity | Notes
 ------|----------------------------------|-----------------|------------------|----------------------------------------------------------------------------------
