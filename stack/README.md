@@ -1,11 +1,13 @@
-# How to use `stack.h`
+# How to use my Stack library
 
-a singly linked list based implementation. 
+## `stack.h` 
+
+It is a singly linked list based stack implementation. 
 
 **Example:**
 
 ```
-#include "stack.h"
+#include "../private_libs/stack.h"
 
 int main(void){
     stack s;
