@@ -61,8 +61,8 @@ int pop(stack *s){
 
 void pop_all(stack *s){
     /*
-     * remove all elements from the stack
-     * time complexity: O(1)
+     * remove all elements from the stack / empty the stack
+     * time complexity: O(n)
      * space complexity: O(1)
      */
     int data;
@@ -95,7 +95,7 @@ int peek(stack *s){
 void peek_all(stack *s){
     /*
      * display all elements from the stack
-     * time complexity: O(1)
+     * time complexity: O(n)
      * space complexity: O(1)
      */
     int data;
