@@ -9,7 +9,7 @@
 #include <limits.h>
 #include "singly_linked_list.h"
 
-void initialize_singly_linked_list(singly_linked_list *list) {
+void initialize_singly_linked_list(singly_linked_list * list) {
     /*
      * time complexity: O(1)
      * space complexity: O(1)
@@ -46,7 +46,7 @@ linkedlist_node *get_kth_node(singly_linked_list *list, size_t k) {
     size_t count;
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty ");
+        printf("singly_linked_list is empty \n");
         return NULL;
     }
 
@@ -72,12 +72,12 @@ linkedlist_node *get_kth_node_from_end(singly_linked_list *list, size_t k) {
 
     // k = 1 means last node
     if (k < 1) {
-        printf("\nk < 1, invalid k");
+        printf("k < 1, invalid k \n");
         return NULL;
     }
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty ");
+        printf("singly_linked_list is empty \n");
         return NULL;
     }
 
@@ -90,7 +90,7 @@ linkedlist_node *get_kth_node_from_end(singly_linked_list *list, size_t k) {
 
     // when k is more than that singly_linked_list length
     if (--count < k) {
-        printf("\nk > singly_linked_list length !!");
+        printf("k > singly_linked_list length !! \n");
         return NULL;
     }
 
@@ -110,7 +110,7 @@ linkedlist_node *get_middle_node(singly_linked_list *list) {
     linkedlist_node *fast_ptr, *slow_ptr;
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty");
+        printf("singly_linked_list is empty \n");
         return NULL;
     }
 
@@ -154,7 +154,7 @@ void display_singly_linked_list(singly_linked_list *list) {
     linkedlist_node *curr_ptr;
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty !!");
+        printf("singly_linked_list is empty !! \n");
         return;
     }
 
@@ -185,7 +185,7 @@ void reverse_display_singly_linked_list(singly_linked_list *list) {
     if (list->head == NULL) {
         return;
     }
-    reverse_display(list->head->next);
+    reverse_display(list->head);
 }
 
 void insert_at_head(singly_linked_list *list, int data) {
@@ -241,6 +241,7 @@ void insert_at_index(singly_linked_list *list, int data, size_t index) {
      */
     linkedlist_node *temp_node, *curr_ptr;
     size_t pos = 0;
+    bool flag = false;
 
     // special case: when the given index is 0, singly_linked_list can be empty
     if (index == 0) {
@@ -266,12 +267,16 @@ void insert_at_index(singly_linked_list *list, int data, size_t index) {
                 temp_node->next = curr_ptr->next;
                 // update the curr_ptr with the new my_node address
                 curr_ptr->next = temp_node;  // connect the new my_node with the present my_node
+                flag = true;
             }
             pos++;
             curr_ptr = curr_ptr->next;
         }
+
         // iterate the entire singly_linked_list but the given index not found
-        printf("\nunable to create the node, given index is not found !!");
+        if (flag == false){
+            printf("unable to create the node, given index is not found !! \n");
+        }
     }
 }
 
@@ -284,7 +289,7 @@ int delete_at_head(singly_linked_list *list) {
     int data;
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty, returning INT_MIN");
+        printf("singly_linked_list is empty, returning INT_MIN \n");
         return INT_MIN;
     }
     // copy the present head to temp
@@ -310,7 +315,7 @@ int delete_at_tail(singly_linked_list *list) {
 
     second_last_node = get_kth_node_from_end(list, k);
     if (second_last_node == NULL) {
-        printf("\nnode not found");
+        printf("node not found \n");
         return INT_MIN;
     }
     temp_node = second_last_node->next;
@@ -337,7 +342,7 @@ int delete_at_index(singly_linked_list *list, size_t index) {
     prev_node = get_kth_node(list, index - 1);
     // if the found previous node is the last node then the actual node does not exist
     if (prev_node == NULL || prev_node->next == NULL) {
-        printf("\nnode not found, returning INT_MIN");
+        printf("node not found, returning INT_MIN \n");
         return INT_MIN;
     }
     temp_node = prev_node->next;
@@ -356,12 +361,12 @@ int delete_kth_node_from_end(singly_linked_list *list, size_t k){
     linkedlist_node *prev_node, *temp_node;
     int data;
     if (k < 1){
-        printf("\n node not found, invalid k, returning INT_MIN");
+        printf("node not found, invalid k, returning INT_MIN \n");
         return INT_MIN;
     }
     prev_node = get_kth_node_from_end(list, k + 1);
     if (prev_node == NULL){
-        printf("\n node not found, returning INT_MIN");
+        printf("node not found, returning INT_MIN \n");
         return INT_MIN;
     }
 
@@ -387,7 +392,7 @@ void delete_element(singly_linked_list *list, int data) {
     linkedlist_node *temp_node, *curr_ptr, *prev_ptr;
 
     if (list->head == NULL) {
-        printf("\nsingly_linked_list is empty, returning INT_MIN as index");
+        printf("singly_linked_list is empty, returning INT_MIN as index \n");
         return;
     }
     // if the data is present in first node / head
@@ -409,7 +414,7 @@ void delete_element(singly_linked_list *list, int data) {
         curr_ptr = curr_ptr->next;
     }
 
-    printf("\nelement = %d not found", data);
+    printf("element = %d not found \n", data);
     return;
 }
 
@@ -421,7 +426,7 @@ void delete_all(singly_linked_list *list) {
     linkedlist_node *temp_node, *curr_ptr;
 
     if (list->head == NULL) {
-        printf("singly_linked_list is empty");
+        printf("singly_linked_list is empty \n");
         return;
     }
 

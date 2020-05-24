@@ -58,13 +58,12 @@ void delete_element(singly_linked_list *, int);
 void delete_all(singly_linked_list *);
 
 /*
-void *reverse_singly_linked_list(singly_linked_list *);
-
-bool is_palindrome_singly_linked_list(singly_linked_list *);
-
-void insertion_sort_single_linked_list(singly_linked_list *);
-
-void *merge_two_sorted_singly_linked_list(singly_linked_list *, singly_linked_list *, singly_linked_list *);
-*/
+ * TO DO:
+ * void *reverse_singly_linked_list(singly_linked_list *);
+ * bool is_palindrome_singly_linked_list(singly_linked_list *);
+ * void insertion_sort_single_linked_list(singly_linked_list *);
+ * void *merge_two_sorted_singly_linked_list(singly_linked_list *, singly_linked_list *, singly_linked_list *);
+ *
+ * */
 
 #endif // SINGLY_LINKEDLIST_H__

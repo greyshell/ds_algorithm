@@ -11,80 +11,85 @@ int main(void) {
     size_t index, choice;
     linkedlist_node *temp_node;
     singly_linked_list my_list;
-    printf("\ninitializing the singly linked list: ");
+    printf("creating a singly linked list !! ");
     initialize_singly_linked_list(&my_list);
 
     while (1) {
-        printf("\n\n===================");
-        printf("\nmenu driven program:");
-        printf("\n====================");
-        printf("\n0. get the node pointer if found the element");
-        printf("\n1. get the node pointer of given a kth node");
-        printf("\n2. get the node pointer of a given kth node from the end");
-        printf("\n3. get the middle node");
+        printf("\n");
+        printf("=================== \n");
+        printf("menu driven program: \n");
+        printf("==================== \n");
+        printf("0. get the node pointer if found the element \n");
+        printf("1. get the node pointer of given a kth node \n");
+        printf("2. get the node pointer of a given kth node from the end \n");
+        printf("3. get the middle node \n");
 
-        printf("\n4. check if the singly linked list is empty");
-        printf("\n5. get the total count_singly_linked_list of singly linked list elements");
-        printf("\n6. display the singly linked list");
-        printf("\n7. reverse display the singly_linked_list");
+        printf("4. check if the singly linked list is empty \n");
+        printf("5. get the total count_singly_linked_list of singly linked list elements \n");
+        printf("6. display the singly linked list \n");
+        printf("7. reverse display the singly_linked_list \n");
 
-        printf("\n8. insert an element at head");
-        printf("\n9. insert an element at tail");
-        printf("\n10. insert an element at index");
+        printf("8. insert an element at head \n");
+        printf("9. insert an element at tail \n");
+        printf("10. insert an element at index \n");
 
-        printf("\n11. delete an element at head");
-        printf("\n12. delete an element at tail");
-        printf("\n13. delete an element at index");
-        printf("\n14. delete kth node from the end");
-        printf("\n15. delete an element if found");
-        printf("\n16. delete all elements");
+        printf("11. delete an element at head \n");
+        printf("12. delete an element at tail \n");
+        printf("13. delete an element at index \n");
+        printf("14. delete kth node from the end \n");
+        printf("15. delete an element if found \n");
+        printf("16. delete all elements \n");
 
-        printf("\n17. quit");
+        printf("17. quit \n");
 
-        printf("\n\ndisplay list:");
-        printf("\n=============\n");
+        printf("\n\n");
+        printf("display present state: \n");
+        printf("====================== \n");
         display_singly_linked_list(&my_list);
 
-        printf("\n\nenter your choice: ");
+        printf("\n\n");
+        printf("enter your choice: \n");
         scanf("%zu", &choice);
+        printf("\n");
+
 
         switch (choice) {
             case 0:
-                printf("\nenter the element to be searched: ");
+                printf("enter the element to be searched: \n");
                 scanf("%d", &data);
                 temp_node = get_node(&my_list, data);
                 if (temp_node != NULL) {
                     // takeaway: 11.8: for printing cast the pointer to void * and use format %p````
-                    printf("\nelement = %d found at %p", data, (void *) temp_node);
+                    printf("element = %d found at %p \n", data, (void *) temp_node);
                 }
                 break;
             case 1:
-                printf("\nenter k: ");
+                printf("enter k: \n");
                 scanf("%zu", &index);
                 temp_node = get_kth_node(&my_list, index);
                 if (temp_node != NULL) {
-                    printf("\nelement = %d found at %zu", temp_node->data, index);
+                    printf("element = %d found at %zu \n", temp_node->data, index);
                 }
                 break;
             case 2:
-                printf("\nenter k:");
+                printf("enter k: \n");
                 scanf("%zu", &index);
                 temp_node = get_kth_node_from_end(&my_list, index);
                 if (temp_node != NULL) {
-                    printf("\nelement = %d found at %zu index from the last", temp_node->data, index);
+                    printf("element = %d found at %zu index from the last \n", temp_node->data, index);
                 }
                 break;
             case 3:
                 temp_node = get_middle_node(&my_list);
                 if (temp_node != NULL) {
-                    printf("\nelement = %d found at middle", temp_node->data);
+                    printf("element = %d found at middle \n", temp_node->data);
                 }
                 break;
             case 4:
-                printf("\nlist is_empty_singly_linked_list = %d", is_empty_singly_linked_list(&my_list));
+                printf("list is_empty_singly_linked_list = %d \n", is_empty_singly_linked_list(&my_list));
                 break;
             case 5:
-                printf("\nlist count_singly_linked_list = %zu", count_singly_linked_list(&my_list));
+                printf("list count_singly_linked_list = %zu \n", count_singly_linked_list(&my_list));
                 break;
 
             case 6:
@@ -95,45 +100,45 @@ int main(void) {
                 break;
 
             case 8:
-                printf("\nenter the element to be inserted: ");
+                printf("enter the element to be inserted: \n");
                 scanf("%d", &data);
                 insert_at_head(&my_list, data);
                 break;
             case 9:
-                printf("\nenter the element to be inserted: ");
+                printf("enter the element to be inserted: \n");
                 scanf("%d", &data);
                 insert_at_tail(&my_list, data);
                 break;
             case 10:
-                printf("\nenter the element to be inserted: ");
+                printf("enter the element to be inserted: \n");
                 scanf("%d", &data);
-                printf("\nenter the index / k: ");
+                printf("enter the index / k (k >= 0): \n");
                 scanf("%zu", &index);
                 insert_at_index(&my_list, data, index);
                 break;
 
             case 11:
                 data = delete_at_head(&my_list);
-                printf("\nelement = %d is deleted", data);
+                printf("element = %d is deleted \n", data);
                 break;
             case 12:
                 data = delete_at_tail(&my_list);
-                printf("\nelement = %d is deleted", data);
+                printf("element = %d is deleted \n", data);
                 break;
             case 13:
-                printf("\nenter the index / k (k >= 0): ");
+                printf("enter the index / k (k >= 0): \n");
                 scanf("%zu", &index);
                 data = delete_at_index(&my_list, index);
-                printf("\nelement = %d is deleted", data);
+                printf("element = %d is deleted \n", data);
                 break;
             case 14:
-                printf("\nenter the index / k (k >= 1): ");
+                printf("enter the index / k (k >= 1): \n");
                 scanf("%zu", &index);
                 data = delete_kth_node_from_end(&my_list, index);
-                printf("\nelement = %d is deleted", data);
+                printf("element = %d is deleted \n", data);
                 break;
             case 15:
-                printf("\nenter the data to be deleted: ");
+                printf("enter the data to be deleted: \n");
                 scanf("%d", &data);
                 delete_element(&my_list, data);
                 break;
@@ -143,9 +148,11 @@ int main(void) {
                 break;
 
             case 17:
+                // quite from the program
                 return 0;
+
             default:
-                printf("\nwrong choice");
+                printf("wrong choice \n");
         }
     }
 

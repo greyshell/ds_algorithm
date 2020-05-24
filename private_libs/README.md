@@ -97,6 +97,9 @@ afl-fuzz -i ../fuzz_afl/lib_name/in -o ../fuzz_afl/lib_name/out -m none ../fuzz_
 ```
 
 ##### execute all commands using `make` utility
+
+- provide the directory name as `FLD` where fuzz wrapper file is present.
+- provide the fuzz lib name as `LIB`.
 ```
-make -f fuzz_lib_with_afl
+make -f fuzz_lib_with_afl FLD=linked_list LIB=singly_linked_list
 ```

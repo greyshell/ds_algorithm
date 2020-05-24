@@ -25,7 +25,7 @@ size_t fib(size_t n) {
      * - O(n) -> dp array size
      */
     // TO DO: dynamically generates the array based on the input.
-    size_t dp[10] = {0};  // initialized with 0
+    static size_t dp[4] = {0};  // initialized the entire array with 0
 
     // pick the saved value -> O(1), greater than zero means it filled up earlier
     if (dp[n] > 0) {
@@ -47,7 +47,7 @@ size_t fib(size_t n) {
 
 int main(void) {
     // sample test case
-    size_t number = 7;
+    size_t number = 5;
     // function call
     printf("\n%zu th fib number = %zu", number, fib(number));
     return 0;

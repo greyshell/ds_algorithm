@@ -11,7 +11,7 @@ FILE(GLOB MyCSources private_libs/*.c)
 # ============
 
 
-# bit_manupulation
+# bit_manipulation
 # ================
 
 # binary search tree
@@ -38,7 +38,6 @@ add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
 # linked_list
 # ===========
 add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${MyCSources})
-# add_executable(fuzz_singly_linkedlist linked_list/fuzz_singly_linkedlist.c ${MyCSources})
 
 # private_libs
 # ============
@@ -57,7 +56,7 @@ add_executable(test basic/test.c ${MyCSources})
 add_executable(quine basic/quine.c ${MyCSources})
 add_executable(test_foo basic/test_foo.c ${MyCSources})
 add_executable(concept basic/variable_size.c ${MyCSources})
-add_executable(example_variatic_function basic/variadic_function.c ${MyCSources})
+add_executable(example_variadic_function basic/variadic_function.c ${MyCSources})
 
 # searching
 # =========
@@ -69,7 +68,7 @@ add_executable(test_sort sorting/test_sort.c ${MyCSources})
 
 # stack
 # ======
-
+add_executable(test_stack stack/test_stack.c ${MyCSources})
 
 
 # string
