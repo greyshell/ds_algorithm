@@ -1,7 +1,6 @@
-# Description
+# How to use `stack.h`
 
-
-## `stack.h`: a singly linked list based implementation. 
+a singly linked list based implementation. 
 
 **Example:**
 
@@ -21,7 +20,7 @@ int main(void){
 }
 ```
 
-#### APIs
+**APIs**
 
 Sl No | APIs                             | Time Complexity | Space Complexity | Notes
 ------|----------------------------------|-----------------|------------------|----------------------------------------------------------------------------------
