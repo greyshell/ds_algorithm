@@ -1,11 +1,12 @@
-# How to use
+# How to use `stack.h`
 
-- include `stack.h` into the program.
+- include `stack.h` into your program.
 - create the stack: `stack s;`
-- initialize the stack by setting `top` = NULL: `initialize_stack(&s);`
-- push an element: `push(s, 5);`
-- peek the stack top: `peek(s);`
-- pop an element: `int data = pop(s);`
+- initialize the stack: `initialize_stack(&s);`
+- perform basic operations:
+    - push an element: `push(s, 5);`
+    - peek the stack top: `peek(s);`
+    - pop an element: `int data = pop(s);`
 
 ## Stack APIs
 
@@ -16,4 +17,4 @@ Sl No | Function                       | Notes
 3     | `int pop(stack *)`               | delete an element from the stack, if the stack is empty then it returns `INT_MIN`
 4     | `void pop_all(stack *)`          | delete all elements from the stack
 5     | `int peek(stack *)`              | display the stack top, if the stack is empty then it returns `INT_MIN`
-6     | `void peek_all(stack *)`         | display all elements of the stack
+6     | `void peek_all(stack *)`         | display all elements from the stack
