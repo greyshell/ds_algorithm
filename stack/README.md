@@ -1,7 +1,7 @@
 # Description
 
 `stack.h` is used for the singly linked list based `stack` implementation.
-- `disadvantage`: extra space is required for storing the references.
+- compare with `static` array based implementation, here extra space is required for storing the references.
 
 **How to use:**
 
