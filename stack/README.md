@@ -3,9 +3,6 @@
 `stack.h` is used for the singly linked list based `stack` implementation.
 - `disadvantage`: extra space is required for storing the references.
 
-`dyn_array_stack.h` - is used for dynamic array based `stack` implementation.
-- `repeated doubling` technique is used to improve the `amortized` time complexity for `push()` operation -> `O(1)`.
-
 **How to use:**
 
 ```
@@ -34,3 +31,8 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
 5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
+
+---
+
+`dyn_array_stack.h` - is used for dynamic array based `stack` implementation.
+- `repeated doubling` technique (grow and shrink) is used to improve the `amortized` time complexity(i.e. `O(1)`) for `push()` and `pop()` operations.
