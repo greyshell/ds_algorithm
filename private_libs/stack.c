@@ -47,7 +47,7 @@ int pop(stack *s){
     linkedlist_node *temp_node;
     // check if the stack is empty
     if (s->top == NULL){
-        printf("stack is empty \n");
+        printf("stack is empty, returning INT_MIN \n");
         return INT_MIN;
     }
 
@@ -86,7 +86,7 @@ int peek(stack *s){
     linkedlist_node *temp_node;
     // check if the stack is empty
     if (s->top == NULL){
-        printf("stack is empty \n");
+        printf("stack is empty, returning INT_MIN \n");
         return INT_MIN;
     }
     return s->top->data;
@@ -110,4 +110,5 @@ void peek_all(stack *s){
         printf("%d ", curr_ptr->data);
         curr_ptr = curr_ptr->next;
     }
+    printf("\n");
 }

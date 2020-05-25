@@ -315,7 +315,7 @@ int delete_at_tail(singly_linked_list *list) {
 
     second_last_node = get_kth_node_from_end(list, k);
     if (second_last_node == NULL) {
-        printf("node not found \n");
+        printf("node not found, returning INT_MIN \n");
         return INT_MIN;
     }
     temp_node = second_last_node->next;
@@ -392,7 +392,7 @@ void delete_element(singly_linked_list *list, int data) {
     linkedlist_node *temp_node, *curr_ptr, *prev_ptr;
 
     if (list->head == NULL) {
-        printf("singly_linked_list is empty, returning INT_MIN as index \n");
+        printf("singly_linked_list is empty \n");
         return;
     }
     // if the data is present in first node / head

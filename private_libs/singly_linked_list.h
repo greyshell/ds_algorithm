@@ -5,6 +5,7 @@
 #ifndef SINGLY_LINKEDLIST_H__
 #define SINGLY_LINKEDLIST_H__
 
+#include <stdint.h>
 #include "stdbool.h"
 
 

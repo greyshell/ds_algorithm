@@ -69,7 +69,7 @@ add_executable(test_sort sorting/test_sort.c ${MyCSources})
 # stack
 # ======
 add_executable(test_stack stack/test_stack.c ${MyCSources})
-
+add_executable(test_dynamic_array_stack stack/test_dynamic_array_stack.c ${MyCSources})
 
 # string
 # =======
