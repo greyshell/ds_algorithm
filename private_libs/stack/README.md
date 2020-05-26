@@ -5,13 +5,13 @@
 - `amortized` time complexity of `push()` and `pop()` -> `O(1)`.
 
 `stack_using_singly_linked_list.h`
-- it is a singly linked list based implementation.
+- it is `singly linked list` based implementation.
 - compare with `static` array based implementation, extra space is required for storing the references.
 
 **How to use:**
 
 ```
-// file name: test_stack.c
+// file name: stack/test_stack.c
 #include "../private_libs/stack_using_singly_linked_list.h"
 
 int main(void){

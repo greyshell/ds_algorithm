@@ -80,7 +80,7 @@ make -f create_binary_from_lib FLD=basic PROG=test_foo LIB=foo run-shared-mac
 make -f create_binary_from_lib FLD=basic PROG=test_foo LIB=foo clean
 ```
 
-# How to fuzz my `private` libraries with `AFL`
+## How to fuzz my `private` libraries with `AFL`
 
 - create a wrapper program to simulate all operations exposed by the test program.
 - create a directory - `fuzz_afl`.
