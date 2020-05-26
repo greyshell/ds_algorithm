@@ -1,21 +1,20 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of stack
+ * description: test dynamic array based implementation of stack
  * */
 
 #include <stdio.h>
-#include <limits.h>
-#include "../private_libs/stack.h"
+#include "../private_libs/stack/stack_using_dynamic_array.h"
 
 int main(void) {
     int data;
     size_t choice;
     stack my_stack;
-    printf("creating a stack !!");
+    printf("creating a stack !! \n");
     initialize_stack(&my_stack);
 
     while (1) {
-        printf("\n");
+        printf("\n\n");
         printf("=================== \n");
         printf("menu driven program: \n");
         printf("==================== \n");
@@ -28,12 +27,13 @@ int main(void) {
         printf("5. quit \n");
 
         printf("\n");
-        printf("display present state: \n");
-        printf("====================== \n");
+        printf("current DS state: \n");
+        printf("================= \n");
         peek_all(&my_stack);
 
         printf("\n\n");
         printf("enter your choice: \n");
+        printf("================== \n");
         scanf("%zu", &choice);
         printf("\n");
 
@@ -46,25 +46,21 @@ int main(void) {
                 break;
             case 1:
                 data = pop(&my_stack);
-                if (data != INT_MIN){
-                    printf("element = %d is deleted \n", data);
-                }
+                printf("element = %d is deleted \n", data);
                 break;
             case 2:
                 pop_all(&my_stack);
                 break;
             case 3:
                 data = peek(&my_stack);
-                if (data != INT_MIN){
-                    printf("stack top element is %d \n", data);
-                }
+                printf("stack top has %d \n", data);
                 break;
             case 4:
                 peek_all(&my_stack);
                 break;
 
             case 5:
-                // quite from the program
+                // quit from the program
                 return 0;
 
             default:

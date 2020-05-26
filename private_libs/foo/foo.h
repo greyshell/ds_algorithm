@@ -6,6 +6,6 @@
 #ifndef FOO_H__
 #define FOO_H__
 
-extern void foo(void);
+void foo(void);
 
 #endif // _FOO_H__

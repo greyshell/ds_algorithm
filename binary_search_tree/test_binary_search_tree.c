@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include "../private_libs/binary_search_tree.h"
+#include "../private_libs/binary_search_tree/binary_search_tree.h"
 
 int main(void) {
     int data;

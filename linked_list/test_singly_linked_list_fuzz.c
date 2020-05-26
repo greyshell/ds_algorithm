@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <string.h>
-#include "../private_libs/singly_linked_list.h"
+#include "../private_libs/singly_linked_list/singly_linked_list.h"
 
 void readn(void *s, int n) {
     int bytes_read;

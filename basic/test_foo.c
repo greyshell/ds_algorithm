@@ -1,18 +1,16 @@
 /*
  * author: greyshell
- * description: Quine Programming:
- * A C program that display_singly_linked_list its own source code
- *
+ * description: test program
  * # create linux binary in cmake-build-debug directory
- * make -f create_binary_from_custom_lib PROG=test_foo LIB=foo build-linux
+ * make -f create_binary_from_lib PROG=test_foo LIB=foo build-linux
  * */
 
 #include <stdio.h>
-#include "../private_libs/foo.h"
+#include "../private_libs/foo/foo.h"
 
 int main(void)
 {
-    printf("\nThis is a test for custom shared / static ...");
+    printf("this is a test for custom libs \n");
     foo();
     return 0;
 }

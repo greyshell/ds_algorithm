@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include "../private_libs/singly_linked_list.h"
+#include "../private_libs/singly_linked_list/singly_linked_list.h"
 
 int main(void) {
     int data;

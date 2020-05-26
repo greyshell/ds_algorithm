@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "sort.h"
+#include "sorting.h"
 
 int find_max(int *arr, int len) {
     /*

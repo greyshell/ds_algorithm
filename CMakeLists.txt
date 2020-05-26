@@ -5,7 +5,30 @@ project(ds_algorithm C)
 set(CMAKE_C_STANDARD 99)
 
 # Include all library code
-FILE(GLOB MyCSources private_libs/*.c)
+# FILE(GLOB MyCSources private_libs/*.c)
+# ========================
+# include all source files
+# =========================
+# foo lib
+FILE(GLOB MyFoo private_libs/foo/foo.c)
+# stack
+FILE(GLOB MyStack01 private_libs/stack/stack_using_singly_linked_list.c)
+FILE(GLOB MyStack02 private_libs/stack/stack_using_dynamic_array.c)
+# queue
+# queue
+# singly linked list
+FILE(GLOB MySinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
+# double linked list
+# circular linked list
+# unrolled linked list
+# skip list
+# binary search tree
+FILE(GLOB MyBST private_libs/binary_search_tree/binary_search_tree.c)
+# sorting
+FILE(GLOB MySorting private_libs/sorting/sorting.c)
+# hashtable
+
+
 
 # backtracking
 # ============
@@ -16,11 +39,11 @@ FILE(GLOB MyCSources private_libs/*.c)
 
 # binary search tree
 # ==================
-add_executable(test_binary_search_tree binary_search_tree/test_binary_search_tree.c ${MyCSources})
+add_executable(test_binary_search_tree binary_search_tree/test_binary_search_tree.c ${MyBST})
 
 # dynamic programming
 # ====================
-add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
+add_executable(find_fib dynamic_programming/find_fib.c)
 
 
 # graph
@@ -37,7 +60,7 @@ add_executable(find_fib dynamic_programming/find_fib.c ${MyCSources})
 
 # linked_list
 # ===========
-add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${MyCSources})
+add_executable(test_singly_linked_list linked_list/test_singly_linked_list.c ${MySinglyLinkedList})
 
 # private_libs
 # ============
@@ -52,11 +75,11 @@ add_executable(test_singly_linkedlist linked_list/test_singly_linked_list.c ${My
 
 # basic
 # ==========
-add_executable(test basic/test.c ${MyCSources})
-add_executable(quine basic/quine.c ${MyCSources})
-add_executable(test_foo basic/test_foo.c ${MyCSources})
-add_executable(concept basic/variable_size.c ${MyCSources})
-add_executable(example_variadic_function basic/variadic_function.c ${MyCSources})
+add_executable(test_foo basic/test_foo.c ${MyFoo})
+add_executable(test basic/test.c)
+add_executable(quine basic/quine.c)
+add_executable(concept basic/variable_size.c)
+add_executable(example_variadic_function basic/variadic_function.c)
 
 # searching
 # =========
@@ -64,12 +87,12 @@ add_executable(example_variadic_function basic/variadic_function.c ${MyCSources}
 
 # sorting
 # =======
-add_executable(test_sort sorting/test_sort.c ${MyCSources})
+add_executable(test_sort sorting/test_sorting.c ${MySorting})
 
 # stack
 # ======
-add_executable(test_stack stack/test_stack.c ${MyCSources})
-add_executable(test_dynamic_array_stack stack/test_dynamic_array_stack.c ${MyCSources})
+add_executable(test_stack_using_singly_linked_list stack/test_stack_using_singly_linked_list.c ${MyStack01})
+add_executable(test_stack_using_dynamic_array stack/test_stack_using_dynamic_array.c ${MyStack02})
 
 # string
 # =======

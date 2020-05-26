@@ -1,24 +1,35 @@
 # Description
 
-`stack.h` is used for the singly linked list based `stack` implementation.
-- compare with `static` array based implementation, here extra space is required for storing the references.
+`stack_using_dynamic_array.h`:
+- `repeated doubling / halving` technique is used to grow / shrink the stack size.
+- `amortized` time complexity of `push()` and `pop()` -> `O(1)`.
+
+`stack_using_singly_linked_list.h`
+- it is a singly linked list based implementation.
+- compare with `static` array based implementation, extra space is required for storing the references.
 
 **How to use:**
 
 ```
-#include "../private_libs/stack.h"
+// file name: test_stack.c
+#include "../private_libs/stack_using_singly_linked_list.h"
 
 int main(void){
     stack s;
-    // set the stack top NULL
     initialize_stack(&s);
-    // basic operations
     push(s, 5);
     int data = peek(s);
     int data = pop(s)
 
     return 0;
 }
+```
+
+add the following lines to `CMakeLists.txt`.
+
+```
+FILE(GLOB MyStack01 private_libs/stack/stack_using_singly_linked_list.c)
+add_executable(test_stack stack/test_stack.c ${MyStack01})
 ```
 
 **Detailed APIs**
@@ -31,8 +42,3 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
 5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
-
----
-
-`dyn_array_stack.h` - is used for dynamic array based `stack` implementation.
-- `repeated doubling` technique (grow and shrink) is used to improve the `amortized` time complexity(i.e. `O(1)`) for `push()` and `pop()` operations.

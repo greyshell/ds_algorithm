@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "stack.h"
+#include "stack_using_singly_linked_list.h"
 
 void initialize_stack(stack *s) {
     /*

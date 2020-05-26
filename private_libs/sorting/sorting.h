@@ -2,10 +2,9 @@
  * author: greyshell
  * */
 
-#ifndef SORT_H__
-#define SORT_H__
+#ifndef SORTING_H__
+#define SORTING_H__
 
-#include "singly_linked_list.h"
 
 void swap(int *, int *);
 
@@ -18,8 +17,6 @@ void cocktail_sort(int *, size_t);
 void selection_sort(int *, size_t);
 
 void insertion_sort(int *, size_t);
-
-// node *insertion_sort_singly_linkedlist(node *, node *);
 
 void shell_sort(int *, int);
 
@@ -35,4 +32,4 @@ void radix_sort(int *, int);
 
 void heap_sort(int *, int);
 
-#endif // _SORT_H__
+#endif // _SORTING_H__

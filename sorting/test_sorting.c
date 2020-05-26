@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../private_libs/sort.h"
+#include "../private_libs/sorting/sorting.h"
 
 
 void array_copy(int *dest, int *src, size_t len) {

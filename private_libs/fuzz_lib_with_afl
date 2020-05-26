@@ -1,4 +1,6 @@
-FLD=linked_list
+SRC_FLD=linked_list
+WRAPPER_PROG=test_singly_linked_list_fuzz
+LIB_FLD=singly_linked_list
 LIB=singly_linked_list
 
 all: build run
@@ -8,7 +10,7 @@ build: clean
 	mkdir -p ../fuzz_afl/$(LIB)
 	mkdir -p ../fuzz_afl/$(LIB)/in
 	echo abc > ../fuzz_afl/$(LIB)/in/t1
-	AFL_USE_ASAN=1 afl-gcc ../$(FLD)/test_$(LIB)_fuzz.c $(LIB).c -o ../fuzz_afl/$(LIB)/$(LIB)_afl
+	AFL_USE_ASAN=1 afl-gcc ../$(SRC_FLD)/$(WRAPPER_PROG).c $(LIB_FLD)/$(LIB).c -o ../fuzz_afl/$(LIB)/$(LIB)_afl
 
 run:
 	afl-fuzz -i ../fuzz_afl/$(LIB)/in -o ../fuzz_afl/$(LIB)/out -m none ../fuzz_afl/$(LIB)/$(LIB)_afl

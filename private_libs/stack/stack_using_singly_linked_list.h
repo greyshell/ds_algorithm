@@ -2,8 +2,8 @@
  * author: greyshell
  * */
 
-#ifndef STACK_H__
-#define STACK_H__
+#ifndef STACK_USING_SINGLY_LINKED_LIST_H__
+#define STACK_USING_SINGLY_LINKED_LIST_H__
 
 
 typedef struct my_node {
@@ -29,5 +29,4 @@ int peek(stack *);
 
 void peek_all(stack *);
 
-
-#endif // STACK_H__
+#endif // STACK_USING_SINGLY_LINKED_LIST_H__

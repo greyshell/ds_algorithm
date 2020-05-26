@@ -1,25 +1,26 @@
 LIB=foo
+FLD=foo
 
 all: build-static build-shared clean-object-file
 
 build-static: $(LIB).o
-	ar -rcs lib$(LIB).a $(LIB).o
-	mv lib$(LIB).a static/
+	ar -rcs $(FLD)/lib$(LIB).a $(FLD)/$(LIB).o
+	mv $(FLD)/lib$(LIB).a lib_static/
 
 build-shared: $(LIB).o
-	gcc -shared -o lib$(LIB).so $(LIB).o
-	mv lib$(LIB).so shared/
+	gcc -shared -o $(FLD)/lib$(LIB).so $(FLD)/$(LIB).o
+	mv $(FLD)/lib$(LIB).so lib_shared/
 
-$(LIB).o: $(LIB).c
-	gcc -c -Wall -Werror -fPIC $(LIB).c -o $(LIB).o
+$(LIB).o: $(FLD)/$(LIB).c
+	gcc -c -Wall -Werror -fPIC $(FLD)/$(LIB).c -o $(FLD)/$(LIB).o
 
 clean: clean-object-file clean-shared clean-static
 
 clean-shared:
-	rm -f shared/lib$(LIB).so
+	rm -f lib_shared/lib$(LIB).so
 
 clean-static:
-	rm -f static/lib$(LIB).a
+	rm -f lib_static/lib$(LIB).a
 
 clean-object-file:
-	rm -f $(LIB).o
+	rm -f $(FLD)/$(LIB).o
