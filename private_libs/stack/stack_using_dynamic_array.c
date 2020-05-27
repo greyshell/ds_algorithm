@@ -8,6 +8,8 @@
 #include <limits.h>
 #include "stack_using_dynamic_array.h"
 
+#define INITIAL_CAPACITY 1
+
 void initialize_stack(stack *s) {
     /*
      * create a stack, initialize the stack top and set the capacity
@@ -15,11 +17,20 @@ void initialize_stack(stack *s) {
      * space complexity: O(1)
      */
     s->top = -1;
-    s->capacity = 1;
+    s->capacity = INITIAL_CAPACITY;
     s->array = malloc(s->capacity * sizeof(int));
     if (s->array == NULL) {
         printf("unable to allocate space !!");
     }
+}
+
+int is_empty_stack(stack *s) {
+    /*
+     * check if the stack is empty, if empty then returns 1
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
+    return (s->top == -1);
 }
 
 void doubling_stack(stack *s) {
@@ -29,13 +40,17 @@ void doubling_stack(stack *s) {
      * amortized time complexity: O(n)
      * space complexity: O(1), no additional space is used
      */
-    printf("doubling up the stack size as the existing capacity: %zu \n", s->capacity);
-    s->capacity *= 2;
-    s->array = realloc(s->array, s->capacity * sizeof(int));
+    printf("before the push() total elements added into the stack: %d but current stack size: %zu \n",
+           s->top + 1, s->capacity);
     // note: too many doubling may cause memory overflow exception
+    s->array = realloc(s->array, (s->capacity * 2) * sizeof(int));
     if (s->array == NULL) {
-        printf("unable to allocate space !!");
+        printf("unable to reallocate the space !!");
+        return;
     }
+    // reallocation successful hence update the capacity
+    s->capacity *= 2;
+    printf("resizing the stack and creating space for new elements, new stack size: %zu \n", s->capacity);
 }
 
 void halving_stack(stack *s) {
@@ -44,12 +59,19 @@ void halving_stack(stack *s) {
      * amortized time complexity: O(n),
      * space complexity: O(1), no extra space is required
      */
-    if (s->capacity == 1) {
+    if (s->capacity == INITIAL_CAPACITY) {
         return;
     }
-    printf("halving the stack size as the existing capacity: %zu \n", s->capacity);
+    printf("after the pop(), total elements will be present into the stack: %d but current stack size: %zu \n",
+           s->top + 1, s->capacity);
+    s->array = realloc(s->array, (s->capacity / 2) * sizeof(int));
+    if (s->array == NULL) {
+        printf("unable to reallocate the space !!");
+        return;
+    }
+    // reallocation successful hence update the capacity
     s->capacity /= 2;
-    s->array = realloc(s->array, s->capacity * sizeof(int));
+    printf("resizing the stack and free up unused memory, new stack size: %zu \n", s->capacity);
 }
 
 void push(stack *s, int data) {
@@ -71,12 +93,12 @@ int pop(stack *s) {
      * space complexity: O(1)
      */
     int data;
-    if (s->top == -1) {
+    if (is_empty_stack(s)) {
         printf("stack is empty, returning INT_MIN \n");
         return INT_MIN;
     }
     data = s->array[s->top--];
-    // check if the stack needs to be shrink
+    // check if the stack size needs to be reduced
     // example: if the stack capacity: 8, occupied: 6 then after 3 pops, stack shrinks to size 4
     if ((s->top + 1) < s->capacity / 2) {
         halving_stack(s);
@@ -91,10 +113,6 @@ void pop_all(stack *s) {
      * space complexity: O(1)
      */
     int data;
-    if (s->top == -1) {
-        printf("stack is empty \n");
-        return;
-    }
     while (s->top > -1) {
         data = pop(s);
         printf("%d is popped \n", data);
@@ -122,7 +140,7 @@ void peek_all(stack *s) {
      */
     int top_ptr;
     top_ptr = s->top;
-    if (s->top == -1) {
+    if (is_empty_stack(s)) {
         printf("stack is empty !!");
         return;
     }
@@ -130,4 +148,17 @@ void peek_all(stack *s) {
         printf("%d ", s->array[top_ptr--]);
     }
     printf("\n");
+}
+
+void delete_stack(stack *s) {
+    /*
+     * free up the memory space while deleting the entire stack
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
+    // check if s is not NULL
+    if (s != NULL) {
+        // free up the dynamic array
+        free(s->array);
+    }
 }

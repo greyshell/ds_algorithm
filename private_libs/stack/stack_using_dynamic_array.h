@@ -17,6 +17,8 @@ typedef struct my_stack {
 
 void initialize_stack(stack *);
 
+int is_empty_stack(stack *);
+
 void push(stack *, int);
 
 int pop(stack *);
@@ -26,5 +28,7 @@ void pop_all(stack *);
 int peek(stack *);
 
 void peek_all(stack *);
+
+void delete_stack(stack *);
 
 #endif // STACK_USING_DYNAMIC_ARRAY_H__

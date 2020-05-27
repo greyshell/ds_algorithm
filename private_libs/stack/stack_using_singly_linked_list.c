@@ -17,6 +17,14 @@ void initialize_stack(stack *s) {
     s->top = NULL;
 }
 
+int is_empty_stack(stack *s) {
+    /*
+     * check if the stack is empty, if empty then returns 1
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
+    return (s->top == NULL);
+}
 
 void push(stack *s, int data){
     /*
@@ -28,6 +36,10 @@ void push(stack *s, int data){
 
     // create a new node
     temp_node = (linkedlist_node *) malloc(sizeof(linkedlist_node));
+    if (temp_node == NULL){
+        printf("unable to allocate space \n");
+        return;
+    }
     temp_node->data = data;
 
     // link the node where the stack top points
@@ -46,7 +58,7 @@ int pop(stack *s){
     int data;
     linkedlist_node *temp_node;
     // check if the stack is empty
-    if (s->top == NULL){
+    if (is_empty_stack(s)){
         printf("stack is empty, returning INT_MIN \n");
         return INT_MIN;
     }
@@ -66,7 +78,7 @@ void pop_all(stack *s){
      * space complexity: O(1)
      */
     int data;
-    if (s->top == NULL){
+    if (is_empty_stack(s)){
         printf("stack is empty \n");
         return;
     }
@@ -85,7 +97,7 @@ int peek(stack *s){
     int data;
     linkedlist_node *temp_node;
     // check if the stack is empty
-    if (s->top == NULL){
+    if (is_empty_stack(s)){
         printf("stack is empty, returning INT_MIN \n");
         return INT_MIN;
     }
@@ -101,7 +113,7 @@ void peek_all(stack *s){
     int data;
     linkedlist_node *curr_ptr;
     // check if the stack is empty
-    if (s->top == NULL){
+    if (is_empty_stack(s)){
         printf("stack is empty \n");
         return;
     }
@@ -111,4 +123,13 @@ void peek_all(stack *s){
         curr_ptr = curr_ptr->next;
     }
     printf("\n");
+}
+
+void delete_stack(stack *s) {
+    /*
+     * free up the memory space by popping all elements
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
+    pop_all(s);
 }

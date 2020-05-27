@@ -17,15 +17,16 @@
 int main(void){
     stack s;
     initialize_stack(&s);
-    push(s, 5);
-    int data = peek(s);
-    int data = pop(s)
+    push(&s, 5);
+    int data = peek(&s);
+    int data = pop(&s)
+    delete_stack(&s);
 
     return 0;
 }
 ```
 
-add the following lines to `CMakeLists.txt`.
+`Clion support`: add the following lines into `CMakeLists.txt`.
 
 ```
 FILE(GLOB MyStack01 private_libs/stack/stack_using_singly_linked_list.c)
@@ -42,3 +43,6 @@ Sl No | APIs                             | Time Complexity | Space Complexity | 
 4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
 5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
 6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
+7     | `int is_empty_stack(stack *)`    | O(1)            | O(1)             | returns 1 if the stack is empty
+8     | `void delete_stack(stack *)`     | O(1)            | O(1)             | free up the memory while deleting the entire stack
+

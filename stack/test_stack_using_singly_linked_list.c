@@ -23,8 +23,7 @@ int main(void) {
         printf("2. pop all elements \n");
         printf("3. peek the stack top \n");
         printf("4. display all stack elements \n");
-
-        printf("5. quit \n");
+        printf("5. delete the stack and quit \n");
 
         printf("\n");
         printf("current DS state: \n");
@@ -61,6 +60,7 @@ int main(void) {
 
             case 5:
                 // quit from the program
+                delete_stack(&my_stack);
                 return 0;
 
             default:

@@ -23,8 +23,7 @@ int main(void) {
         printf("2. pop all elements \n");
         printf("3. peek the stack top \n");
         printf("4. display all stack elements \n");
-
-        printf("5. quit \n");
+        printf("5. delete the stack(i.e dynamic array) and quit \n");
 
         printf("\n");
         printf("current DS state: \n");
@@ -60,7 +59,8 @@ int main(void) {
                 break;
 
             case 5:
-                // quit from the program
+                // before quit from the program free up the memory
+                delete_stack(&my_stack);
                 return 0;
 
             default:
