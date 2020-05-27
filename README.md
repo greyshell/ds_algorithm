@@ -17,15 +17,15 @@ Learning Data Structure and Algorithm using `C`.
 4. `video`: Dr. Naveen Garg - IITD
     - https://www.youtube.com/watch?v=zWg7U0OEAoE&singly_linked_list=PLBF3763AF2E1C572F
     - Reference `Book`: Coreman
-5. `video`: Clément Mihailescu / AlgoExpert
+5. `video`: Clément Mihailescu | AlgoExpert
     - https://www.algoexpert.io/questions
 6. `video`: Benyam Ephrem
-    - https://codinginterviewclass.com/courses/enrolled/633601
+    - https://coding-interview-class.teachable.com/
 7. `video`: Algorithm Part 1 and 2 offered by Princeton University
     - https://www.coursera.org/learn/algorithms-part1/home/welcome
     - https://www.coursera.org/learn/algorithms-part2#syllabus
     - https://www.coursera.org/learn/analysis-of-algorithms#syllabus
-    - Reference `Book`: Algorithms in C by Robert Sedgewick
+    - Reference `Book`: Algorithms in C by Robert Sedgewick, Part I, II
     - https://algs4.cs.princeton.edu/home/
 8. `video`: Algorithms Specialization offered by Standford University
     - https://www.coursera.org/specializations/algorithms
