@@ -39,7 +39,7 @@ FILE(GLOB MySorting private_libs/sorting/sorting.c)
 
 # binary search tree
 # ==================
-add_executable(test_binary_search_tree binary_search_tree/test_binary_search_tree.c ${MyBST})
+add_executable(testlib_binary_search_tree binary_search_tree/testlib_binary_search_tree.c ${MyBST})
 
 # dynamic programming
 # ====================
@@ -60,7 +60,7 @@ add_executable(find_fib dynamic_programming/find_fib.c)
 
 # linked_list
 # ===========
-add_executable(test_singly_linked_list linked_list/test_singly_linked_list.c ${MySinglyLinkedList})
+add_executable(testlib_singly_linked_list linked_list/testlib_singly_linked_list.c ${MySinglyLinkedList})
 
 # private_libs
 # ============
@@ -75,7 +75,7 @@ add_executable(test_singly_linked_list linked_list/test_singly_linked_list.c ${M
 
 # basic
 # ==========
-add_executable(test_foo basic/test_foo.c ${MyFoo})
+add_executable(testlib_foo basic/testlib_foo.c ${MyFoo})
 add_executable(test basic/test.c)
 add_executable(quine basic/quine.c)
 add_executable(concept basic/variable_size.c)
@@ -87,12 +87,12 @@ add_executable(example_variadic_function basic/variadic_function.c)
 
 # sorting
 # =======
-add_executable(test_sort sorting/test_sorting.c ${MySorting})
+add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 
 # stack
 # ======
-add_executable(test_stack_using_singly_linked_list stack/test_stack_using_singly_linked_list.c ${MyStack01})
-add_executable(test_stack_using_dynamic_array stack/test_stack_using_dynamic_array.c ${MyStack02})
+add_executable(testlib_stack_using_singly_linked_list stack/testlib_stack_using_singly_linked_list.c ${MyStack01})
+add_executable(testlib_stack_using_dynamic_array stack/testlib_stack_using_dynamic_array.c ${MyStack02})
 
 # string
 # =======
