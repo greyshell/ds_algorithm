@@ -1,5 +1,5 @@
 SRC_FLD=linked_list
-WRAPPER_PROG=fuzz_singly_linked_list_lib
+WRAPPER_PROG=fuzzlib_singly_linked_list
 LIB_FLD=singly_linked_list
 LIB=singly_linked_list
 
