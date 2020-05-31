@@ -77,6 +77,7 @@ add_executable(testlib_singly_linked_list linked_list/testlib_singly_linked_list
 # ==========
 add_executable(testlib_foo basic/testlib_foo.c ${MyFoo})
 add_executable(test basic/test.c)
+add_executable(play basic/play.c)
 add_executable(quine basic/quine.c)
 add_executable(concept basic/variable_size.c)
 add_executable(example_variadic_function basic/variadic_function.c)
@@ -92,6 +93,7 @@ add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 # stack
 # ======
 add_executable(testlib_stack_using_singly_linked_list stack/testlib_stack_using_singly_linked_list.c ${MyStack01})
+add_executable(demolib_stack_using_singly_linked_list stack/demo_stack_api.c ${MyStack01})
 add_executable(testlib_stack_using_dynamic_array stack/testlib_stack_using_dynamic_array.c ${MyStack02})
 
 # string
