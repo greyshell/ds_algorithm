@@ -1,8 +1,8 @@
 # Description
 
-> static array elements are stored on the `system stack memory` and dynamic array elements are
-   stored on the `heap memory`. so any static array based implementation runs faster than
-    dynamic array based implementation.
+static array elements are stored on the `system stack memory` and dynamic array elements are
+ stored on the `heap memory`. so any static array based implementation runs faster than dynamic
+  array based implementation.
 
 `stack_using_dynamic_array.h`:
 - `repeated doubling / halving` technique is used to grow / shrink the stack size.
