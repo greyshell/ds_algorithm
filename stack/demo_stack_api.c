@@ -50,7 +50,7 @@ int main(void) {
     // delete stack
     return_type = delete_stack(&my_stack);
     if (return_type == 1) {
-        printf("deleting the stack \n");
+        printf("deleted all elements in the stack \n");
     } else {
         printf("unable to delete all stack elements \n");
     }

@@ -11,38 +11,22 @@
 **How to use:**
 
 ```
-// file name: stack/test_stack.c
-#include "../private_libs/stack_using_singly_linked_list.h"
+file name: ../stack/demo_stack_api.c
 
-int main(void){
-    stack s;
-    initialize_stack(&s);
-    push(&s, 5);
-    int data = peek(&s);
-    int data = pop(&s)
-    delete_stack(&s);
-
-    return 0;
-}
-```
-
-`Clion support`: add the following lines into `CMakeLists.txt`.
-
-```
+# `Clion support`: add the following lines into `CMakeLists.txt`.
 FILE(GLOB MyStack01 private_libs/stack/stack_using_singly_linked_list.c)
-add_executable(test_stack stack/test_stack.c ${MyStack01})
+add_executable(demolib_stack_using_singly_linked_list stack/demo_stack_api.c ${MyStack01})
 ```
 
 **Detailed APIs**
 
 Sl No | APIs                             | Time Complexity | Space Complexity | Notes
-------|----------------------------------|-----------------|------------------|----------------------------------------------------------------------------------
+------|----------------------------------|-----------------|------------------|------------------------------------------------------------------------------------
 1     | `void initialize_stack(stack *)` | O(1)            | O(1)             | create the stack and initialize the stack top
-2     | `void push(stack *, int)`        | O(1)            | O(1)             | add an element into the stack
-3     | `int pop(stack *)`               | O(1)            | O(1)             | delete an element from the stack, if the stack is empty then it returns `INT_MIN`
-4     | `void pop_all(stack *)`          | O(n)            | O(1)             | delete all elements from the stack
-5     | `int peek(stack *)`              | O(1)            | O(1)             | display the stack top, if the stack is empty then it returns `INT_MIN`
-6     | `void peek_all(stack *)`         | O(n)            | O(1)             | display all elements from the stack
-7     | `int is_empty_stack(stack *)`    | O(1)            | O(1)             | returns 1 if the stack is empty
-8     | `void delete_stack(stack *)`     | O(1)            | O(1)             | free up the memory while deleting the entire stack
-
+2     | `int push(stack *, int)`         | O(1)            | O(1)             | add an element into the stack, if push is successful, then return 1 else return 0
+3     | `int pop(stack *, int *)`        | O(1)            | O(1)             | remove an element from the stack, if pop is successful then return 1 else return 0 
+4     | `int peek(stack *, int *)`       | O(1)            | O(1)             | display the top element, if peek is successful then return 1, else return 0
+5     | `void display_stack(stack *)`    | O(n)            | O(1)             | display all stack elements
+6     | `int is_empty_stack(stack *)`    | O(1)            | O(1)             | if the stack is empty then return 1, else return 0
+7     | `size_t get_stack_size(stack *)` | O(1)            | O(1)             | get the stack size
+8     | `void delete_stack(stack *)`     | O(1)            | O(1)             | delete the stack by popped out all elements
