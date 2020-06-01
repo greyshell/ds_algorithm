@@ -116,7 +116,7 @@ afl-fuzz -i ../fuzz_afl/lib_name/in -o ../fuzz_afl/lib_name/out -m none ../fuzz_
 make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_linked_list LIB_FLD=stack LIB=stack_using_singly_linked_list 
 ```
 
-## How to inspect the crash
+## How to reproduce the crash
 
 - `afl` writes all crashes inside `out/crashes` directory. 
 - in order to reproduce the crash with a crash data, navigate to `fuzz_lib/<lib>` directory and execute the binary. 
