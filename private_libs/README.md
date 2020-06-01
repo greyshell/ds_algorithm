@@ -119,7 +119,7 @@ make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_
 ## How to inspect the crash
 
 - `afl` writes all crashes inside `out/crashes` directory. 
-- reproduce the crash with a crash data.
+- in order to reproduce the crash with a crash data, navigate to `fuzz_lib/<lib>` directory and execute the binary. 
 
 ```
 ./fuzz_afl/stack_using_singly_linked_list/stack_using_singly_linked_list_afl  < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
