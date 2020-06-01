@@ -113,7 +113,7 @@ afl-fuzz -i ../fuzz_afl/lib_name/in -o ../fuzz_afl/lib_name/out -m none ../fuzz_
 - `LIB`: provide the lib name 
 
 ```
-make -f fuzz_lib_with_afl SRC_FLD=linked_list WRAPPER_PROG=test_singly_linked_list_fuzz LIB_FLD=singly_linked_list LIB=singly_linked_list 
+make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_linked_list LIB_FLD=stack LIB=stack_using_singly_linked_list 
 ```
 
 ## How to inspect the crash
