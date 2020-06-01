@@ -122,5 +122,5 @@ make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_
 - reproduce the crash with a crash data.
 
 ```
-./lib_name_afl < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
+./fuzz_afl/stack_using_singly_linked_list/stack_using_singly_linked_list_afl  < out/crashes/id:000000,sig:06,src:000000,op:havoc,rep:64
 ```
