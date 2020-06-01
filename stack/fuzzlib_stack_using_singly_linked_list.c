@@ -111,6 +111,8 @@ void op_delete_stack() {
 int main(void) {
     uint8_t number_operations;
     uint8_t operation_type;
+    // (total functions to fuzz - 1) -> as switch case starts from 0
+    size_t ops_count = 5;
     // initialize
     initialize_stack(&my_stack);
 
@@ -120,7 +122,7 @@ int main(void) {
     for (int i = 0; i < number_operations; i++) {
         // choose the random operation
         operation_type = read8();
-        switch (operation_type % 5) {
+        switch (operation_type % ops_count) {
             case 0:
                 op_get_stack_size();
                 break;
