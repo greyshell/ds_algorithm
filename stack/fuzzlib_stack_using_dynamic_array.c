@@ -111,7 +111,7 @@ void op_delete_stack() {
 int main(void) {
     uint8_t number_operations;
     uint8_t operation_type;
-    // (total functions to fuzz - 1) -> as switch case starts from 0
+    // (total functions to fuzz - 1) -> as the switch case starts from 0
     size_t ops_count = 5;
     // initialize
     initialize_stack(&my_stack);
