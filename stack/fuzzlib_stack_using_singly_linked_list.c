@@ -50,7 +50,7 @@ size_t op_get_stack_size() {
     int stack_size;
     printf("operation: get the stack size \n");
     stack_size = get_stack_size(&my_stack);
-    printf("stack size: %zu", stack_size);
+    printf("stack size: %zu \n", stack_size);
 }
 
 int op_push() {

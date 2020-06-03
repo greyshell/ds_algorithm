@@ -2,6 +2,24 @@
 
 Learning Data Structure and Algorithm using `C`.
 
+## Git Workflow to maintain the repo
+
+- Check the last commit made from which system. 
+```
+git show --summary
+```
+
+- If the last commit was made from a `different` system then we need to
+`sync` the `local` repository with `remote`.
+```
+git pull --rebase
+```
+
+- Update the `local` repo and push the code into `remote` branch.
+```
+git commit -am "<system_name>: message" && git push
+``` 
+
 ## `C` Reference Materials
 
 1. `video`: Chekuri Srikanth Varma
@@ -38,22 +56,5 @@ Learning Data Structure and Algorithm using `C`.
 11. `Book`: Modern C by Jens Gustedt
 12. `Book`: C, the complete reference by Herbert Schildt
 13. `Book`: The C Programming Language by Brian Kernighan and Dennis Ritchie
+14. `video`: William Fiset: https://www.youtube.com/user/purpongie/playlists
 
-
-## Git Workflow to maintain the repo
-
-- Check the last commit made from which system. 
-```
-git show --summary
-```
-
-- If the last commit was made from a `different` system then we need to
-`sync` the `local` repository with `remote`.
-```
-git pull --rebase
-```
-
-- Update the `local` repo and push the code into `remote` branch.
-```
-git commit -am "<system_name>: message" && git push
-``` 

@@ -19,16 +19,16 @@ void initialize_stack(stack *);
 
 int is_empty_stack(stack *);
 
-void push(stack *, int);
+size_t get_stack_size(stack *);
 
-int pop(stack *);
+int push(stack *, int);
 
-void pop_all(stack *);
+int pop(stack *, int *);
 
-int peek(stack *);
+int peek(stack *, int *);
 
-void peek_all(stack *);
+int delete_stack(stack *);
 
-void delete_stack(stack *);
+void display_stack(stack *);
 
 #endif // STACK_USING_DYNAMIC_ARRAY_H__
