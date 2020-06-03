@@ -7,6 +7,7 @@ static array elements are stored on the `system stack memory` and dynamic array 
 `stack_using_dynamic_array.h`:
 - `repeated doubling / halving` technique is used to grow / shrink the stack size.
 - `amortized` time complexity of `push()` and `pop()` -> `O(1)`.
+- initial array size = 1
 
 `stack_using_singly_linked_list.h`:
 - it is `singly linked list` based implementation.

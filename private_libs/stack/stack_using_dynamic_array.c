@@ -5,7 +5,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "stack_using_dynamic_array.h"
 
 #define INITIAL_CAPACITY 1
@@ -48,11 +47,12 @@ size_t get_stack_size(stack *s) {
 int doubling_stack(stack *s) {
     /*
      * double up the stack size when it becomes full
+     * if the operation is successful then return 1 else return 0
      * if the memory block cannot be resized in placed, then the old data will be copied to the new block.
      * amortized time complexity: O(n)
      * space complexity: O(1), no additional space is used
      */
-    printf("before the push() total elements added into the stack: %d but current stack size: %zu \n",
+    printf("before the push() total elements added into the array: %d but current array size: %zu \n",
            s->top + 1, s->capacity);
     // note: too many doubling may cause memory overflow exception
     s->array = realloc(s->array, (s->capacity * 2) * sizeof(int));
@@ -62,20 +62,21 @@ int doubling_stack(stack *s) {
     }
     // reallocation successful hence update the capacity
     s->capacity *= 2;
-    printf("resizing the stack and creating space for new elements, new stack size: %zu \n", s->capacity);
+    printf("resizing the array, creating space for new elements, new array size: %zu \n", s->capacity);
     return 1;
 }
 
 int halving_stack(stack *s) {
     /*
      * halving stack size when half of the spaces are empty
+     * if the operation is successful then return 1 else return 0
      * amortized time complexity: O(n),
      * space complexity: O(1), no extra space is required
      */
     if (s->capacity == INITIAL_CAPACITY) {
         return 0;
     }
-    printf("after the pop(), total elements will be present into the stack: %d but current stack size: %zu \n",
+    printf("after the pop(), total elements will be present into the array: %d but current array size: %zu \n",
            s->top + 1, s->capacity);
     s->array = realloc(s->array, (s->capacity / 2) * sizeof(int));
     if (s->array == NULL) {
@@ -84,14 +85,14 @@ int halving_stack(stack *s) {
     }
     // reallocation successful hence update the capacity
     s->capacity /= 2;
-    printf("resizing the stack and free up unused memory, new stack size: %zu \n", s->capacity);
+    printf("resizing the array, free up unused memory, new array size: %zu \n", s->capacity);
     return 1;
 }
 
 int push(stack *s, int data) {
     /*
      * add an element in the stack
-     * return type indicates the state of the doubling operation when requested
+     * if doubling operation is successful when requested then return 1, else 0
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -107,6 +108,7 @@ int push(stack *s, int data) {
 int pop(stack *s, int *out_data) {
     /*
      * remove an element from the stack
+     * if halving operation is successful when requested then return 1, else 0
      * return type indicates the state of the halving operation when requested
      * time complexity: O(1)
      * space complexity: O(1)
@@ -129,12 +131,11 @@ int pop(stack *s, int *out_data) {
 
 int peek(stack *s, int *out_data) {
     /*
-     * peek the stack top
+     * peek the stack top, if stack is empty then return 0, else 1
      * time complexity: O(1)
      * space complexity: O(1)
      */
     if (s->top == -1) {
-        printf("stack is empty !!");
         return 0;
     }
 
@@ -151,7 +152,7 @@ void display_stack(stack *s) {
     int top_ptr;
     top_ptr = s->top;
     if (is_empty_stack(s)) {
-        printf("stack is empty !!");
+        printf("stack is empty \n");
         return;
     }
     while (top_ptr > -1) {
@@ -163,6 +164,7 @@ void display_stack(stack *s) {
 int delete_stack(stack *s) {
     /*
      * free up the memory space while deleting the entire stack
+     * if able to free up the space successfully then return 1 else return 0
      * time complexity: O(1)
      * space complexity: O(1)
      */

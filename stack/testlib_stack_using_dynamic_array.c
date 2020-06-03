@@ -12,6 +12,8 @@ int main(void) {
     stack my_stack;
     int out_data = 0;
     int return_type;
+    size_t initial_capacity = 1;
+
     printf("creating the stack ");
     initialize_stack(&my_stack);
 
@@ -58,7 +60,7 @@ int main(void) {
             case 2: // peek
                 return_type = peek(&my_stack, &out_data);
                 if (return_type == 1) {
-                    printf("stack top has %d \n", out_data);
+                    printf("stack top element: %d \n", out_data);
                 } else {
                     printf("empty stack, unable to peek \n");
                 }

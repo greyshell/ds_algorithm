@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of stack
+ * description: dynamic array based implementation of stack, data -> int
  * */
 
 #ifndef STACK_USING_DYNAMIC_ARRAY_H__

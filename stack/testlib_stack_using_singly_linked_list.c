@@ -58,7 +58,7 @@ int main(void) {
             case 2: // peek
                 return_type = peek(&my_stack, &out_data);
                 if (return_type == 1) {
-                    printf("stack top has %d \n", out_data);
+                    printf("stack top element: %d \n", out_data);
                 } else {
                     printf("empty stack, unable to peek \n");
                 }
