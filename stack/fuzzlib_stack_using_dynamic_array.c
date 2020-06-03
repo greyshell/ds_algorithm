@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: fuzz the singly linked list based stack implementation
+ * description: fuzz the dynamic array based stack implementation, data -> int
  * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_dynamic_array LIB_FLD=stack LIB=stack_using_dynamic_array
  * */
 
