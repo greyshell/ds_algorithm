@@ -93,7 +93,7 @@ add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 # stack
 # ======
 add_executable(testlib_stack_using_singly_linked_list stack/testlib_stack_using_singly_linked_list.c ${MyStack01})
-add_executable(demolib_stack_using_singly_linked_list stack/demo_stack_api.c ${MyStack01})
+add_executable(demolib_stack_using_singly_linked_list stack/demo_stack_adt.c ${MyStack01})
 add_executable(testlib_stack_using_dynamic_array stack/testlib_stack_using_dynamic_array.c ${MyStack02})
 
 # string
