@@ -32,7 +32,7 @@ bool is_empty_stack(stack *s) {
 size_t get_stack_size(stack *s) {
     /*
      * return the stack size
-     * time complexity: O(1)
+     * time complexity: O(n)
      * space complexity: O(1)
      */
     size_t count = 0;
