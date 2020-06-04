@@ -8,6 +8,7 @@
 
 
 #include <stdint.h>
+#include "stdbool.h"
 
 typedef struct my_stack {
     int top;
@@ -17,17 +18,17 @@ typedef struct my_stack {
 
 void initialize_stack(stack *);
 
-int is_empty_stack(stack *);
+bool is_empty_stack(stack *);
 
 size_t get_stack_size(stack *);
 
-int push(stack *, int);
+bool push(stack *, int);
 
-int pop(stack *, int *);
+bool pop(stack *, int *);
 
-int peek(stack *, int *);
+bool peek(stack *, int *);
 
-int delete_stack(stack *);
+bool delete_stack(stack *);
 
 void display_stack(stack *);
 

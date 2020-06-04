@@ -4,6 +4,7 @@
  * */
 
 #include <stdio.h>
+#include "stdbool.h"
 #include "../private_libs/stack/stack_using_singly_linked_list.h"
 
 int main(void) {
@@ -24,8 +25,9 @@ int main(void) {
         printf("1. pop an element \n");
         printf("2. peek the top element \n");
         printf("3. get the stack size \n");
-        printf("4. delete the entire stack and quit from the program \n");
-        printf("5. display all elements \n");
+        printf("4. display all elements \n");
+        printf("5. delete the entire stack and quit from the program \n");
+
 
         printf("\n\n");
         printf("enter your choice: \n");
@@ -39,7 +41,7 @@ int main(void) {
                 printf("enter the element to be pushed: \n");
                 scanf("%d", &data);
                 return_type = push(&my_stack, data);
-                if (return_type == 1) {
+                if (return_type == true) {
                     printf("%d is successfully pushed \n", data);
                 } else {
                     printf("unable to push \n");
@@ -48,7 +50,7 @@ int main(void) {
 
             case 1: // pop
                 return_type = pop(&my_stack, &out_data);
-                if (return_type == 1) {
+                if (return_type == true) {
                     printf("%d is popped \n", out_data);
                 } else {
                     printf("unable to pop \n");
@@ -57,7 +59,7 @@ int main(void) {
 
             case 2: // peek
                 return_type = peek(&my_stack, &out_data);
-                if (return_type == 1) {
+                if (return_type == true) {
                     printf("stack top element: %d \n", out_data);
                 } else {
                     printf("empty stack, unable to peek \n");
@@ -69,19 +71,19 @@ int main(void) {
                 printf("stack size: %zu", stack_size);
                 break;
 
-            case 4:
+            case 4: // display all elements
+                display_stack(&my_stack);
+                break;
+
+            case 5:
                 // quit from the program
                 return_type = delete_stack(&my_stack);
-                if (return_type == 1) {
+                if (return_type == true) {
                     printf("all stack elements are deleted \n");
                     return 0;
                 } else {
                     printf("unable to delete all stack elements \n");
                 }
-                break;
-
-            case 5: // display all elements
-                display_stack(&my_stack);
                 break;
 
             default:

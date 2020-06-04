@@ -5,6 +5,7 @@
  * */
 
 #include <stdio.h>
+#include "stdbool.h"
 #include <stdint.h>
 #include <unistd.h>
 #include <string.h>
@@ -42,7 +43,7 @@ size_t read_size_t() {
     return i;
 }
 
-// create the adt
+// create the ADT
 stack my_stack;
 
 // define the stack API
@@ -59,7 +60,7 @@ int op_push() {
     data = read_int();
     printf("operation: push an element \n");
     return_type = push(&my_stack, data);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("%d is successfully pushed \n", data);
     } else {
         printf("unable to push \n");
@@ -71,7 +72,7 @@ int op_pop() {
     int return_type;
     printf("operation: pop an element \n");
     return_type = pop(&my_stack, &out_data);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("%d is popped \n", out_data);
     } else {
         printf("unable to pop \n");
@@ -84,7 +85,7 @@ int op_peek() {
     int return_type;
     printf("operation: peek the stack top \n");
     return_type = peek(&my_stack, &out_data);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("stack top has %d \n", out_data);
     } else {
         printf("empty stack, unable to peek \n");
@@ -100,9 +101,8 @@ void op_delete_stack() {
     int return_type;
     printf("operation: delete stack / pop all elements \n");
     return_type = delete_stack(&my_stack);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("all stack elements are deleted \n");
-        return 0;
     } else {
         printf("unable to delete all stack elements \n");
     }

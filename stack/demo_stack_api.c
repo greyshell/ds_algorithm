@@ -4,6 +4,7 @@
  * */
 
 #include <stdio.h>
+#include "stdbool.h"
 #include "../private_libs/stack/stack_using_singly_linked_list.h"
 
 int main(void) {
@@ -18,7 +19,7 @@ int main(void) {
 
     // push
     return_type = push(&my_stack, 30);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("pushed: %d \n", 30);
     } else {
         printf("unable to push \n");
@@ -29,7 +30,7 @@ int main(void) {
 
     // peek
     return_type = peek(&my_stack, &out_data);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("stack top: %d \n", out_data);
     } else {
         printf("empty stack, unable to peek \n");
@@ -37,11 +38,15 @@ int main(void) {
 
     // pop
     return_type = pop(&my_stack, &out_data);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("popped: %d \n", out_data);
     } else {
         printf("unable to pop \n");
     }
+
+    // check if the stack is empty
+    return_type = is_empty_stack(&my_stack);
+    printf("is empty: %d \n", return_type);
 
     // get stack size
     stack_size = get_stack_size(&my_stack);
@@ -49,7 +54,7 @@ int main(void) {
 
     // delete stack
     return_type = delete_stack(&my_stack);
-    if (return_type == 1) {
+    if (return_type == true) {
         printf("deleted all elements in the stack \n");
     } else {
         printf("unable to delete all stack elements \n");
