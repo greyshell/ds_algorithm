@@ -24,9 +24,7 @@ void insert_at_bottom(stack *s, int data){
 void reverse_stack(stack *s) {
     /*
      * reverse all stack elements
-     * time complexity: O(n^2), this function call insert_at_bottom() function at the max O(n)times.
-     *  - at nth run it calls the insert_at_bottom() function 2 times
-     *  - at (n-1)th run it calls -> 3 times
+     * time complexity: O(n^2), reverse_stack() depends on insert_at_bottom()
      * space complexity: O(n), at the max n elements can be present in the call stack
      */
     int popped_value;
@@ -49,16 +47,16 @@ int main(void) {
     push(&my_stack, 20);
     push(&my_stack, 30);
     push(&my_stack, 40);
-    push(&my_stack, 50);
+    push(&my_stack, 50);  // top element
 
     // display the stack
-    display_stack(&my_stack);
+    display_stack(&my_stack);  // 50 40 30 20 10
 
     // reverse the stack
     reverse_stack(&my_stack);
 
     // display the stack
-    display_stack(&my_stack);  // output should be 50, 40, 30, 20, 10
+    display_stack(&my_stack);  // output: 10 20 30 40 50
 
     // delete the stack
     delete_stack(&my_stack);
