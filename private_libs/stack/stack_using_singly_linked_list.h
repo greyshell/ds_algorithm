@@ -31,6 +31,8 @@ bool peek(stack *, int *);
 
 bool delete_stack(stack *);
 
+// auxiliary operations
+
 void display_stack(stack *);
 
 #endif // STACK_USING_SINGLY_LINKED_LIST_H__

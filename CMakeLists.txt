@@ -89,12 +89,14 @@ add_executable(example_variadic_function basic/variadic_function.c)
 # sorting
 # =======
 add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
+add_executable(trouble_sort sorting/trouble_sort.c ${MySorting})
 
 # stack
 # ======
 add_executable(testlib_stack_using_singly_linked_list stack/testlib_stack_using_singly_linked_list.c ${MyStack01})
 add_executable(demolib_stack_using_singly_linked_list stack/demo_stack_adt.c ${MyStack01})
 add_executable(testlib_stack_using_dynamic_array stack/testlib_stack_using_dynamic_array.c ${MyStack02})
+add_executable(reverse_stack stack/reverse_stack.c ${MyStack01})
 
 # string
 # =======
