@@ -8,6 +8,9 @@
 #include "../private_libs/queue/queue_sll.h"
 
 void my_display(void *data) {
+    /*
+     * display int type elements in the queue
+     */
     printf("%d ", *(int *) data);
 }
 
