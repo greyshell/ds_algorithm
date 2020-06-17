@@ -149,10 +149,6 @@ void display_queue(queue *q, view_queue_func *func_ptr) {
      * space complexity: O(1)
      */
     linkedlist_node *curr_ptr;
-
-    if (is_empty_queue(q)) {
-        return;
-    }
     curr_ptr = q->front;
 
     while (curr_ptr != NULL) {
