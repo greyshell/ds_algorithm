@@ -1,17 +1,16 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of deque
- * data / key: void pointer
+ * description: singly linked list based implementation of queue
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "deque_sll.h"
+#include "queue_sll.h"
 
-void initialize_deque(deque *q) {
+void initialize_queue(queue *q) {
     /*
-     * create the deque
+     * create the queue
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -20,9 +19,9 @@ void initialize_deque(deque *q) {
     q->size = 0;
 }
 
-bool is_empty_deque(deque *q) {
+bool is_empty_queue(queue *q) {
     /*
-     * return true if the deque if empty, else return false
+     * return true if the queue if empty, else return false
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -32,18 +31,18 @@ bool is_empty_deque(deque *q) {
     return false;
 }
 
-size_t get_deque_size(deque *q) {
+size_t get_queue_size(queue *q) {
     /*
-     * return the deque size
+     * return the queue size
      * time complexity: O(1)
      * space complexity: O(1)
      */
     return q->size;
 }
 
-bool enqueue_at_rear(deque *q, void *data) {
+bool enqueue(queue *q, void *data) {
     /*
-     * add an element into the deque
+     * add an element into the queue
      * if insertion is successful then return true else return false
      * time complexity: O(1)
      * space complexity: O(1)
@@ -60,7 +59,7 @@ bool enqueue_at_rear(deque *q, void *data) {
     temp_node->next = NULL;
 
     // special case: check if the inserting node is the 1st node
-    if (is_empty_deque(q)) {
+    if (is_empty_queue(q)) {
         q->rear = temp_node;
         q->front = temp_node;
         q->size++;
@@ -74,16 +73,16 @@ bool enqueue_at_rear(deque *q, void *data) {
     return true;
 }
 
-bool dequeue_from_front(deque *q, void **out_data) {
+bool dequeue(queue *q, void **out_data) {
     /*
-     * remove an element from the deque
+     * remove an element from the queue
      * if removal is successful then return true else return false
      * time complexity: O(1)
      * space complexity: O(1)
      */
     linkedlist_node *temp_node;
 
-    if (is_empty_deque(q)) {
+    if (is_empty_queue(q)) {
         return false;
     }
 
@@ -102,29 +101,45 @@ bool dequeue_from_front(deque *q, void **out_data) {
     return true;
 }
 
-bool peek_at_front(deque *q, void **out_data) {
+bool peek_at_front(queue *q, void **out_data) {
     /*
      * display the element at front
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (is_empty_deque(q)) {
+    if (is_empty_queue(q)) {
         return false;
     }
     *out_data = q->front->data;
     return true;
 }
 
-bool peek_at_rear(deque *q, void **out_data) {
+bool peek_at_rear(queue *q, void **out_data) {
     /*
      * display the element at rear
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (is_empty_deque(q)) {
+    if (is_empty_queue(q)) {
         return false;
     }
     *out_data = q->rear->data;
     return true;
 }
 
+bool delete_queue(queue *q) {
+    /* remove all elements and empty the queue
+     * time complexity: O(n)
+     * space complexity: O(1)
+     */
+    bool return_type;
+    void *out_data;
+
+    while (is_empty_queue(q) != true) {
+        return_type = dequeue(q, &out_data);
+        if (return_type == false) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,74 +1,68 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of deque
+ * description: test singly linked list based implementation of queue
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/queue/deque_sll.h"
+#include "../private_libs/queue/queue_sll.h"
 
 int main(void) {
     size_t queue_size;
-    deque my_deque;
-    int *out_data_addr;
+    queue my_queue;
+    int *out_data;
     int return_type;
-    int data[] = {30, 40, 50, 70, 90};
+    int data = 30;
 
     // initialize the queue
-    printf("creating the queue \n");
-    initialize_deque(&my_deque);
+    initialize_queue(&my_queue);
 
-    for (int i = 0; i < 5; i++) {
-        // enqueue at rear
-        return_type = enqueue_at_rear(&my_deque, &data[i]);  // pass the addr of the element
-        if (return_type == true) {
-            printf("enque at rear: %d \n", data[i]);
-        } else {
-            printf("unable to enque \n");
-        }
+    // enqueue at rear
+    return_type = enqueue(&my_queue, &data);
+    if (return_type == true) {
+        printf("enqueue at rear: %d \n", data);
+    } else {
+        printf("unable to enqueue \n");
     }
-
-    // check if the deque is empty
-    return_type = is_empty_deque(&my_deque);
+    // check if the queue is empty
+    return_type = is_empty_queue(&my_queue);
     printf("is empty: %d \n", return_type);
 
     // get queue size
-    queue_size = get_deque_size(&my_deque);
+    queue_size = get_queue_size(&my_queue);
     printf("queue size: %zu \n", queue_size);
 
     // peek at rear
-    return_type = peek_at_rear(&my_deque, (void **) &out_data_addr);
+    return_type = peek_at_rear(&my_queue, (void **) &out_data);
     if (return_type == true) {
-        printf("peek rear : %d \n", *out_data_addr);
+        printf("peek at rear : %d \n", *out_data);
     } else {
         printf("unable to peek \n");
     }
 
     // peek at front
-    return_type = peek_at_front(&my_deque, (void **) &out_data_addr);
+    return_type = peek_at_front(&my_queue, (void **) &out_data);
     if (return_type == true) {
-        printf("peek front : %d \n", *out_data_addr);
+        printf("peek at front : %d \n", *out_data);
     } else {
         printf("unable to peek \n");
     }
 
-    for (int i = 0; i < 5; i++) {
-        // dequeue at front
-        return_type = dequeue_from_front(&my_deque, (void **) &out_data_addr);
-        if (return_type == true) {
-            printf("deque from front : %d \n", *out_data_addr);
-        } else {
-            printf("unable to deque \n");
-        }
+    // dequeue from front
+    return_type = dequeue(&my_queue, (void **) &out_data);
+    if (return_type == true) {
+        printf("dequeue from front : %d \n", *out_data);
+    } else {
+        printf("unable to dequeue \n");
     }
 
-    // check if the deque is empty
-    return_type = is_empty_deque(&my_deque);
-    printf("is empty: %d \n", return_type);
-
-    // get queue size
-    queue_size = get_deque_size(&my_deque);
-    printf("queue size: %zu \n", queue_size);
+    // delete the queue
+    return_type = delete_queue(&my_queue);
+    if (return_type == true) {
+        printf("queue deletion successful \n");
+    } else {
+        printf("unable to delete queue \n");
+    }
 
     return 0;
 }

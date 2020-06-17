@@ -17,7 +17,7 @@ FILE(GLOB stack_sll private_libs/stack/stack_sll.c)
 FILE(GLOB stack_dyn_arr private_libs/stack/stack_dyn_arr.c)
 
 # queue
-FILE(GLOB deque_sll private_libs/queue/deque_sll.c)
+FILE(GLOB deque_sll private_libs/queue/queue_sll.c)
 
 # singly linked list
 FILE(GLOB MySinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
