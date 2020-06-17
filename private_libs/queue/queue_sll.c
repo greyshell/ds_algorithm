@@ -142,3 +142,22 @@ bool delete_queue(queue *q) {
     }
     return true;
 }
+
+void display_queue(queue *q, my_func *func_ptr) {
+    /* display all queue elements
+     * time complexity: O(n)
+     * space complexity: O(1)
+     */
+    linkedlist_node *curr_ptr;
+
+    if (is_empty_queue(q)) {
+        return;
+    }
+    curr_ptr = q->front;
+
+    while (curr_ptr != NULL) {
+        func_ptr(curr_ptr->data);
+        curr_ptr = curr_ptr->next;
+    }
+    return;
+}

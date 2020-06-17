@@ -9,6 +9,8 @@
 
 #include "stdbool.h"
 
+typedef void my_func(void *);
+
 typedef struct my_node {
     void *data;
     struct my_node *next;
@@ -35,5 +37,7 @@ bool peek_at_front(queue *, void **);
 bool peek_at_rear(queue *, void **);
 
 bool delete_queue(queue *);
+
+void display_queue(queue *, my_func);
 
 #endif // QUEUE_SLL_H__

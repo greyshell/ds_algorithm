@@ -7,12 +7,19 @@
 #include "stdbool.h"
 #include "../private_libs/queue/queue_sll.h"
 
+void my_display(void *data) {
+    printf("%d ", *(int *) data);
+}
+
 int main(void) {
     size_t queue_size;
     queue my_queue;
     int *out_data;
     int return_type;
     int data = 30;
+    // declare a function pointer that points to my_display() function
+    // typedef void my_func(void *);
+    my_func *func_ptr = my_display;
 
     // initialize the queue
     printf("create the queue \n");
@@ -48,6 +55,11 @@ int main(void) {
     } else {
         printf("unable to peek \n");
     }
+
+    // display queue elements
+    display_queue(&my_queue, func_ptr);
+    printf("\n");
+
 
     // dequeue from front
     return_type = dequeue(&my_queue, (void **) &out_data);
