@@ -1,21 +1,25 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of stack, data -> int
+ * description: test dynamic array based implementation of stack, datatype -> int
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/stack/stack_using_singly_linked_list.h"
+#include "../private_libs/stack/stack_dyn_arr.h"
 
 int main(void) {
     size_t stack_size;
     stack my_stack;
     int out_data = 0;
-    int return_type;
+    bool return_type;
 
     // initialize the stack
-    printf("creating the stack \n");
-    initialize_stack(&my_stack);
+    return_type = initialize_stack(&my_stack);
+    if (return_type == true) {
+        printf("stack is created and initialized \n");
+    } else {
+        printf("unable to create the stack \n");
+    }
 
     // push
     return_type = push(&my_stack, 30);
@@ -55,7 +59,7 @@ int main(void) {
     // delete stack
     return_type = delete_stack(&my_stack);
     if (return_type == true) {
-        printf("deleted all elements in the stack \n");
+        printf("deleted all elements from the stack \n");
     } else {
         printf("unable to delete all stack elements \n");
     }

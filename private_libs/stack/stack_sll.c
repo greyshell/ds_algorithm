@@ -1,25 +1,26 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack, data -> int
+ * description: singly linked list based implementation of stack, datatype -> int
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "stack_using_singly_linked_list.h"
+#include "stack_sll.h"
 
 void initialize_stack(stack *s) {
     /*
-     * create a stack
+     * create the stack
      * time complexity: O(1)
      * space complexity: O(1)
      */
     s->top = NULL;
+    s->size = 0;
 }
 
 bool is_empty_stack(stack *s) {
     /*
-     * return 1 if the stack if empty, else return 0
+     * return true if the stack if empty, else return false
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -32,20 +33,10 @@ bool is_empty_stack(stack *s) {
 size_t get_stack_size(stack *s) {
     /*
      * return the stack size
-     * time complexity: O(n)
+     * time complexity: O(1)
      * space complexity: O(1)
      */
-    size_t count = 0;
-    if (is_empty_stack(s)){
-        return count;
-    }
-    linkedlist_node *curr_ptr;
-    curr_ptr = s->top;
-    while (curr_ptr != NULL){
-        count++;
-        curr_ptr = curr_ptr->next;
-    }
-    return count;
+    return s->size;
 }
 
 bool push(stack *s, int data) {
@@ -68,6 +59,7 @@ bool push(stack *s, int data) {
     temp_node->next = s->top;
     // update the stack top
     s->top = temp_node;
+    s->size++;
     return true;
 }
 
@@ -91,6 +83,7 @@ bool pop(stack *s, int *out_data) {
     s->top = s->top->next;
     // delete the previous node
     free(temp_node);
+    s->size--;
     return true;
 }
 
@@ -134,7 +127,6 @@ void display_stack(stack *s) {
      */
     linkedlist_node *curr_ptr;
     curr_ptr = s->top;
-    // int count = s->size;
 
     printf("stack elements: ");
     while (curr_ptr != NULL) {

@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/stack/stack_using_dynamic_array.h"
+#include "../private_libs/stack/stack_sll.h"
 
 int main(void) {
     int data;
@@ -13,7 +13,6 @@ int main(void) {
     stack my_stack;
     int out_data = 0;
     int return_type;
-
     printf("creating the stack ");
     initialize_stack(&my_stack);
 
@@ -72,21 +71,20 @@ int main(void) {
                 printf("stack size: %zu", stack_size);
                 break;
 
-
             case 4: // display all elements
                 display_stack(&my_stack);
                 break;
 
             case 5:
-            // quit from the program
-            return_type = delete_stack(&my_stack);
-            if (return_type == true) {
-                printf("all stack elements are deleted \n");
-                return 0;
-            } else {
-                printf("unable to delete all stack elements \n");
-            }
-            break;
+                // quit from the program
+                return_type = delete_stack(&my_stack);
+                if (return_type == true) {
+                    printf("all stack elements are deleted \n");
+                    return 0;
+                } else {
+                    printf("unable to delete all stack elements \n");
+                }
+                break;
 
             default:
                 printf("wrong choice \n");

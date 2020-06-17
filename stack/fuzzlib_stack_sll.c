@@ -1,7 +1,7 @@
 /*
  * author: greyshell
- * description: fuzz the dynamic array based stack implementation, data -> int
- * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_dynamic_array LIB_FLD=stack LIB=stack_using_dynamic_array
+ * description: fuzz the singly linked list based stack implementation
+ * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_linked_list LIB_FLD=stack LIB=stack_using_singly_linked_list
  * */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../private_libs/stack/stack_using_dynamic_array.h"
+#include "../private_libs/stack/stack_sll.h"
 
 void readn(void *s, int n) {
     int bytes_read;

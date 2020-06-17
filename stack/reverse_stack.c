@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include "../private_libs/stack/stack_using_singly_linked_list.h"
+#include "../private_libs/stack/stack_dyn_arr.h"
 
 void insert_at_bottom(stack *s, int data){
     /*

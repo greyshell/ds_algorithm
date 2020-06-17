@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of stack, data -> int
+ * description: dynamic array based implementation of stack, datatype -> int
  * */
 
 #ifndef STACK_USING_DYNAMIC_ARRAY_H__
@@ -16,7 +16,7 @@ typedef struct my_stack {
     int *array;
 } stack;
 
-void initialize_stack(stack *);
+bool initialize_stack(stack *);
 
 bool is_empty_stack(stack *);
 

@@ -1,7 +1,7 @@
 /*
  * author: greyshell
- * description: fuzz the singly linked list based stack implementation
- * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_singly_linked_list LIB_FLD=stack LIB=stack_using_singly_linked_list
+ * description: fuzz the dynamic array based stack implementation, data -> int
+ * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_dynamic_array LIB_FLD=stack LIB=stack_using_dynamic_array
  * */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../private_libs/stack/stack_using_singly_linked_list.h"
+#include "../private_libs/stack/stack_dyn_arr.h"
 
 void readn(void *s, int n) {
     int bytes_read;
@@ -113,7 +113,9 @@ int main(void) {
     uint8_t operation_type;
     // (total functions to fuzz - 1) -> as the switch case starts from 0
     size_t ops_count = 5;
-    // initialize
+    bool return_type;
+
+    // create and initialize the stack
     initialize_stack(&my_stack);
 
     // randomize the nos of operations and get the input through fuzzer
