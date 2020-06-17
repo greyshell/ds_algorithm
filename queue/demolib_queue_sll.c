@@ -15,6 +15,7 @@ int main(void) {
     int data = 30;
 
     // initialize the queue
+    printf("create the queue \n");
     initialize_queue(&my_queue);
 
     // enqueue at rear

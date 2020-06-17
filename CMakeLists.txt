@@ -121,7 +121,7 @@ add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${stack_sll})
 
 # queue
 # --- API demo ---
-add_executable(demolib_deque_sll queue/demolib_deque_sll.c ${deque_sll})
+add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${deque_sll})
 # --- API test ---
 
 # string
