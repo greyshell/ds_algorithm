@@ -42,7 +42,7 @@ size_t get_queue_size(queue *q) {
 
 bool enqueue(queue *q, void *data) {
     /*
-     * add an element into the queue
+     * insert an element at the rear
      * if insertion is successful then return true else return false
      * time complexity: O(1)
      * space complexity: O(1)
@@ -54,7 +54,7 @@ bool enqueue(queue *q, void *data) {
     if (temp_node == NULL) {
         return false;
     }
-    // insert an address as data to the queue
+
     temp_node->data = data;
     temp_node->next = NULL;
 
@@ -62,20 +62,19 @@ bool enqueue(queue *q, void *data) {
     if (is_empty_queue(q)) {
         q->rear = temp_node;
         q->front = temp_node;
-        q->size++;
     } else {
-        // link the previous node
+        // link the last added node pointed by rear
         q->rear->next = temp_node;
         // update the rear to the present node
         q->rear = temp_node;
-        q->size++;
     }
+    q->size++;
     return true;
 }
 
 bool dequeue(queue *q, void **out_data) {
     /*
-     * remove an element from the queue
+     * remove an element from front
      * if removal is successful then return true else return false
      * time complexity: O(1)
      * space complexity: O(1)
@@ -87,7 +86,7 @@ bool dequeue(queue *q, void **out_data) {
     }
 
     temp_node = q->front;
-    // spacial case: when queue has 1 element
+    // spacial case: when queue has only 1 element that we are trying to delete
     if (q->front == q->rear) {
         q->front = NULL;
         q->rear = NULL;
