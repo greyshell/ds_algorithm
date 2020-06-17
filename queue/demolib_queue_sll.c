@@ -17,9 +17,6 @@ int main(void) {
     int *out_data;
     int return_type;
     int data = 30;
-    // declare a function pointer that points to my_display() function
-    // typedef void my_func(void *);
-    my_func *func_ptr = my_display;
 
     // initialize the queue
     printf("create the queue \n");
@@ -32,6 +29,7 @@ int main(void) {
     } else {
         printf("unable to enqueue \n");
     }
+
     // check if the queue is empty
     return_type = is_empty_queue(&my_queue);
     printf("is empty: %d \n", return_type);
@@ -57,9 +55,9 @@ int main(void) {
     }
 
     // display queue elements
-    display_queue(&my_queue, func_ptr);
+    view_queue_func *my_func = my_display;
+    display_queue(&my_queue, my_func);
     printf("\n");
-
 
     // dequeue from front
     return_type = dequeue(&my_queue, (void **) &out_data);

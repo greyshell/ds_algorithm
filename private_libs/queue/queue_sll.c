@@ -143,7 +143,7 @@ bool delete_queue(queue *q) {
     return true;
 }
 
-void display_queue(queue *q, my_func *func_ptr) {
+void display_queue(queue *q, view_queue_func *func_ptr) {
     /* display all queue elements
      * time complexity: O(n)
      * space complexity: O(1)
