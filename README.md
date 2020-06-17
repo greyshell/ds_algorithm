@@ -11,7 +11,7 @@ Learning Data Structure and Algorithm using `C`.
     - Reference `Book`: Algorithms in C by Robert Sedgewick, Part I, II
     - https://algs4.cs.princeton.edu/home/
 2. `video`: Dr. Naveen Garg - IITD
-    - https://www.youtube.com/watch?v=zWg7U0OEAoE&singly_linked_list=PLBF3763AF2E1C572F
+    - https://www.youtube.com/watch?v=zWg7U0OEAoE&list=PLBF3763AF2E1C572F
     - Reference `Book`: Coreman
 3. `video`: Algorithms Specialization offered by Standford University
     - https://www.coursera.org/specializations/algorithms
