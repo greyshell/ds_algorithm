@@ -29,3 +29,5 @@ Sl No | Methods                             | Time | Space
 - it is `singly linked list` based implementation where the data is a `void` pointer.
 - compare with `static` array based implementation, extra space is required for storing the references.
 - all methods are same as `stack_dyn_arr.h` except - `bool initialize_stack(stack *)` 
+
+**Example**: `cat ../stack/demolib_stack_sll.c`
