@@ -1,6 +1,7 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack, datatype -> int
+ * description: singly linked list based implementation of stack
+ * data / key -> void pointer
  * */
 
 #include <stdio.h>
@@ -20,7 +21,7 @@ void initialize_stack(stack *s) {
 
 bool is_empty_stack(stack *s) {
     /*
-     * return true if the stack if empty, else return false
+     * check if the queue is empty
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -32,17 +33,16 @@ bool is_empty_stack(stack *s) {
 
 size_t get_stack_size(stack *s) {
     /*
-     * return the stack size
+     * get the size of the stack
      * time complexity: O(1)
      * space complexity: O(1)
      */
     return s->size;
 }
 
-bool push(stack *s, int data) {
+bool push(stack *s, void *data) {
     /*
-     * add an element into the stack
-     * if push is successful then return true else return false
+     * insert an element at top
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -50,8 +50,7 @@ bool push(stack *s, int data) {
 
     // create a new node
     temp_node = (linkedlist_node *) malloc(sizeof(linkedlist_node));
-    if (temp_node == NULL){
-        printf("unable to allocate space \n");
+    if (temp_node == NULL) {
         return false;
     }
     temp_node->data = data;
@@ -63,17 +62,15 @@ bool push(stack *s, int data) {
     return true;
 }
 
-bool pop(stack *s, int *out_data) {
+bool pop(stack *s, void **out_data) {
     /*
-     * remove an element from the stack
-     * if pop is successful then return true else return false
+     * remove an element from top
      * time complexity: O(1)
      * space complexity: O(1)
      */
     linkedlist_node *temp_node;
     // check if the stack is empty
     if (is_empty_stack(s)) {
-        printf("stack is empty \n");
         return false;
     }
 
@@ -87,10 +84,9 @@ bool pop(stack *s, int *out_data) {
     return true;
 }
 
-bool peek(stack *s, int *out_data) {
+bool peek(stack *s, void **out_data) {
     /*
-     * display the top element of the stack
-     * if peek is successful then return true else return false
+     * display the element at top
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -104,22 +100,23 @@ bool peek(stack *s, int *out_data) {
 
 bool delete_stack(stack *s) {
     /*
-     * free up the total memory by popping out all elements
-     * if all pops are successful then return true else return false
+     * delete the stack
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    int out_data;
+    bool return_type;
+    void *out_data;
 
     while (s->top != NULL) {
-        if (!pop(s, &out_data)) {
+        return_type = pop(s, &out_data);
+        if (return_type == false) {
             return false;
         }
     }
     return true;
 }
 
-void display_stack(stack *s) {
+void display_stack(stack *s, view_stack *func_ptr) {
     /*
      * display all stack elements
      * time complexity: O(n)
@@ -128,10 +125,9 @@ void display_stack(stack *s) {
     linkedlist_node *curr_ptr;
     curr_ptr = s->top;
 
-    printf("stack elements: ");
     while (curr_ptr != NULL) {
-        printf("%d ", curr_ptr->data);
+        func_ptr(curr_ptr->data);
         curr_ptr = curr_ptr->next;
     }
-    printf("\n");
+    return;
 }

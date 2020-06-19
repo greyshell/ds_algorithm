@@ -13,11 +13,11 @@ set(CMAKE_C_STANDARD 99)
 FILE(GLOB MyFoo private_libs/foo/foo.c)
 
 # stack
-FILE(GLOB stack_sll private_libs/stack/stack_sll.c)
-FILE(GLOB stack_dyn_arr private_libs/stack/stack_dyn_arr.c)
+FILE(GLOB STACK_SLL private_libs/stack/stack_sll.c)
+FILE(GLOB STACK_DYN_ARR private_libs/stack/stack_dyn_arr.c)
 
 # queue
-FILE(GLOB deque_sll private_libs/queue/queue_sll.c)
+FILE(GLOB QUEUE_SLL private_libs/queue/queue_sll.c)
 
 # singly linked list
 FILE(GLOB MySinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
@@ -111,19 +111,20 @@ add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 
 # stack
 # ======
-add_executable(reverse_stack stack/reverse_stack.c ${stack_dyn_arr})
+add_executable(reverse_stack stack/reverse_stack.c ${STACK_SLL})
 # --- API demo ---
-add_executable(demolib_stack_dyn_arr stack/demolib_stack_dyn_arr.c ${stack_dyn_arr})
+add_executable(demolib_stack_sll stack/demolib_stack_sll.c ${STACK_SLL})
+add_executable(demolib_stack_dyn_arr stack/demolib_stack_dyn_arr.c ${STACK_DYN_ARR})
 # --- API test ---
-add_executable(testlib_stack_dyn_arr stack/testlib_stack_dyn_arr.c ${stack_dyn_arr})
-add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${stack_sll})
+add_executable(testlib_stack_dyn_arr stack/testlib_stack_dyn_arr.c ${STACK_DYN_ARR})
+add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${STACK_SLL})
 
 
 # queue
 # --- API demo ---
-add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${deque_sll})
+add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${QUEUE_SLL})
 # --- API test ---
-
+add_executable(testlib_queue_sll queue/testlib_queue_sll.c ${QUEUE_SLL})
 # string
 # =======
 # --- API demo ---

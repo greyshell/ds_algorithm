@@ -13,5 +13,8 @@ int main(void) {
     i = (int) ch;  // type casting to get the ascii char
     printf("number = %d \n", j);
     printf("ascii = %d \n", i);
+
+    printf("size = %lu \n", sizeof(void *));
+
     return 0;
 }

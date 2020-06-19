@@ -1,12 +1,12 @@
 /*
  * author: greyshell
- * description: test dynamic array based implementation of stack
+ * description: test singly linked list based implementation of stack
  * data / key -> void pointer
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/stack/stack_dyn_arr.h"
+#include "../private_libs/stack/stack_sll.h"
 
 void my_display(void *data) {
     /*
@@ -24,7 +24,7 @@ int main(void) {
 
     // initialize the stack
     printf("create the stack \n");
-    initialize_stack(&my_stack, 1);
+    initialize_stack(&my_stack);
 
     // note: make sure that you insert an address
     // push at top

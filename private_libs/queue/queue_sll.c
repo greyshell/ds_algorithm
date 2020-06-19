@@ -1,6 +1,7 @@
 /*
  * author: greyshell
  * description: singly linked list based implementation of queue
+ * data / key -> void pointer
  * */
 
 #include <stdio.h>
@@ -21,7 +22,7 @@ void initialize_queue(queue *q) {
 
 bool is_empty_queue(queue *q) {
     /*
-     * return true if the queue if empty, else return false
+     * check if the queue is empty
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -33,7 +34,7 @@ bool is_empty_queue(queue *q) {
 
 size_t get_queue_size(queue *q) {
     /*
-     * return the queue size
+     * get the size of the queue
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -42,8 +43,7 @@ size_t get_queue_size(queue *q) {
 
 bool enqueue(queue *q, void *data) {
     /*
-     * insert an element at the rear
-     * if insertion is successful then return true else return false
+     * insert an element at rear / tail
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -74,8 +74,7 @@ bool enqueue(queue *q, void *data) {
 
 bool dequeue(queue *q, void **out_data) {
     /*
-     * remove an element from front
-     * if removal is successful then return true else return false
+     * remove an element from front / head
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -127,7 +126,7 @@ bool peek_at_rear(queue *q, void **out_data) {
 }
 
 bool delete_queue(queue *q) {
-    /* remove all elements and empty the queue
+    /* remove all elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
@@ -143,8 +142,8 @@ bool delete_queue(queue *q) {
     return true;
 }
 
-void display_queue(queue *q, view_queue_func *func_ptr) {
-    /* display all queue elements
+void display_queue(queue *q, view_queue *func_ptr) {
+    /* display all elements
      * time complexity: O(n)
      * space complexity: O(1)
      */

@@ -1,6 +1,7 @@
 /*
  * author: greyshell
  * description: test singly linked list based implementation of queue
+ * data / key -> void pointer
  * */
 
 #include <stdio.h>
@@ -9,7 +10,7 @@
 
 void my_display(void *data) {
     /*
-     * display int type elements in the queue
+     * display elements: datatype -> int
      */
     printf("%d ", *(int *) data);
 }
@@ -18,13 +19,14 @@ int main(void) {
     size_t queue_size;
     queue my_queue;
     int *out_data;
-    int return_type;
+    bool return_type;
     int data = 30;
 
     // initialize the queue
     printf("create the queue \n");
     initialize_queue(&my_queue);
 
+    // note: make sure that you insert an address
     // enqueue at rear
     return_type = enqueue(&my_queue, &data);
     if (return_type == true) {
@@ -37,7 +39,7 @@ int main(void) {
     return_type = is_empty_queue(&my_queue);
     printf("is empty: %d \n", return_type);
 
-    // get queue size
+    // get the queue size
     queue_size = get_queue_size(&my_queue);
     printf("queue size: %zu \n", queue_size);
 
@@ -57,8 +59,9 @@ int main(void) {
         printf("unable to peek \n");
     }
 
-    // display queue elements
-    view_queue_func *my_func = my_display;
+    // display the queue
+    view_queue *my_func = my_display;
+    printf("display: ");
     display_queue(&my_queue, my_func);
     printf("\n");
 
@@ -73,9 +76,9 @@ int main(void) {
     // delete the queue
     return_type = delete_queue(&my_queue);
     if (return_type == true) {
-        printf("queue deletion successful \n");
+        printf("deleted the queue \n");
     } else {
-        printf("unable to delete queue \n");
+        printf("unable to delete \n");
     }
 
     return 0;

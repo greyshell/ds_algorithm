@@ -1,12 +1,15 @@
 /*
  * author: greyshell
- * description: stack using singly linked list, datatype -> void pointer
+ * description: singly linked list based implementation of stack
+ * data / key -> void pointer
  * */
 
 #ifndef STACK_SLL_H__
 #define STACK_SLL_H__
 
 #include "stdbool.h"
+
+typedef void view_stack(void *);
 
 typedef struct my_node {
     void *data;
@@ -32,6 +35,6 @@ bool peek(stack *, void **);
 
 bool delete_stack(stack *);
 
-void display_stack(stack *);
+void display_stack(stack *, view_stack *);
 
 #endif // STACK_SLL_H__

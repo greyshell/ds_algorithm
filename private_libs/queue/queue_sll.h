@@ -1,7 +1,7 @@
 /*
  * author: greyshell
- * description: singly linked list implementation of queue
- * data: void pointer / an address that points to void
+ * description: singly linked list based implementation of queue
+ * data / key -> void pointer
  * */
 
 #ifndef QUEUE_SLL_H__
@@ -9,7 +9,7 @@
 
 #include "stdbool.h"
 
-typedef void view_queue_func(void *);
+typedef void view_queue(void *);
 
 typedef struct my_node {
     void *data;
@@ -38,6 +38,6 @@ bool peek_at_rear(queue *, void **);
 
 bool delete_queue(queue *);
 
-void display_queue(queue *, view_queue_func *);
+void display_queue(queue *, view_queue *);
 
 #endif // QUEUE_SLL_H__
