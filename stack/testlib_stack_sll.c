@@ -21,7 +21,6 @@ int main(void) {
     stack my_stack;
     int *out_data = 0;
     int return_type;
-    view_stack *my_func = my_display;
 
     // initialize the stack
     printf("creating the stack ");
@@ -59,7 +58,7 @@ int main(void) {
                 scanf("%d", data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
-                    printf("push at top: %d \n", *data);
+                    printf("pushed: %d \n", *data);
                 } else {
                     printf("unable to push \n");
                 }
@@ -99,7 +98,7 @@ int main(void) {
 
             case 5:
                 printf("display: ");
-                display_stack(&my_stack, my_func);
+                display_stack(&my_stack, my_display);
                 printf("\n");
                 break;
 

@@ -17,8 +17,8 @@ bool initialize_stack(stack *s, size_t initial_capacity) {
      */
     s->top = -1;
     s->initial_capacity = initial_capacity;
-    s->array = malloc(s->initial_capacity * sizeof(void *));
-    if (s->array == NULL) {
+    s->data = malloc(s->initial_capacity * sizeof(void *));
+    if (s->data == NULL) {
         return false;
     }
     s->current_capacity = s->initial_capacity;
@@ -46,7 +46,7 @@ size_t get_stack_size(stack *s) {
     return s->top + 1;
 }
 
-bool _doubling_stack(stack *s) {
+static bool _doubling_stack(stack *s) {
     /*
      * double up the stack size when it becomes full
      * note: when realloc() is unable to resized, then it creates a new memory block and
@@ -55,8 +55,8 @@ bool _doubling_stack(stack *s) {
      * space complexity: O(1)
      */
     // note: too many doubling may cause memory overflow exception
-    s->array = realloc(s->array, (s->current_capacity * 2) * sizeof(void *));
-    if (s->array == NULL) {
+    s->data = realloc(s->data, (s->current_capacity * 2) * sizeof(void *));
+    if (s->data == NULL) {
         return false;
     }
     s->current_capacity *= 2;
@@ -64,7 +64,7 @@ bool _doubling_stack(stack *s) {
     return true;
 }
 
-bool _halving_stack(stack *s) {
+static bool _halving_stack(stack *s) {
     /*
      * halving stack size when half of the spaces are empty
      * time complexity: O(1)
@@ -74,8 +74,8 @@ bool _halving_stack(stack *s) {
         return false;
     }
 
-    s->array = realloc(s->array, (s->current_capacity / 2) * sizeof(void *));
-    if (s->array == NULL) {
+    s->data = realloc(s->data, (s->current_capacity / 2) * sizeof(void *));
+    if (s->data == NULL) {
         return false;
     }
     s->current_capacity /= 2;
@@ -97,7 +97,7 @@ bool push(stack *s, void *data) {
             return false;
         }
     }
-    s->array[++s->top] = data;
+    s->data[++s->top] = data;
     return true;
 }
 
@@ -115,7 +115,7 @@ bool pop(stack *s, void **out_data) {
         return false;
     }
 
-    *out_data = s->array[s->top--];
+    *out_data = s->data[s->top--];
     // example: if the stack capacity: 8, occupied: 6, after 3 POPs, new stack size: 4
     if ((s->top + 1) < s->current_capacity / 2) {
         return_type = _halving_stack(s);
@@ -136,7 +136,7 @@ bool peek(stack *s, void **out_data) {
         return false;
     }
 
-    *out_data = s->array[s->top];
+    *out_data = s->data[s->top];
     return true;
 }
 
@@ -148,13 +148,13 @@ bool delete_stack(stack *s) {
      */
     if (s != NULL) {
         // free up the dynamic array
-        free(s->array);
+        free(s->data);
         return true;
     }
     return false;
 }
 
-void display_stack(stack *s, view_stack *func_ptr) {
+void display_stack(stack *s, view_stack_func *func_ptr) {
     /*
      * display all stack elements
      * time complexity: O(n)
@@ -163,7 +163,7 @@ void display_stack(stack *s, view_stack *func_ptr) {
     size_t top_ptr = s->top;
 
     while ((top_ptr + 1) > 0) {
-        func_ptr(s->array[top_ptr]);
+        func_ptr(s->data[top_ptr]);
         top_ptr--;
     }
 }

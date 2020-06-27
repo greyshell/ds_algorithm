@@ -30,7 +30,7 @@ int main(void) {
     // push at top
     return_type = push(&my_stack, &data);
     if (return_type == true) {
-        printf("push at top: %d \n", 30);
+        printf("pushed: %d \n", data);
     } else {
         printf("unable to push \n");
     }
@@ -52,9 +52,8 @@ int main(void) {
     }
 
     // display the stack
-    view_stack *my_func = my_display;
     printf("display: ");
-    display_stack(&my_stack, my_func);
+    display_stack(&my_stack, my_display);
     printf("\n");
 
     // pop from top

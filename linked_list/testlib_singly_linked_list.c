@@ -9,7 +9,7 @@
 int main(void) {
     int data;
     size_t index, choice;
-    linkedlist_node *temp_node;
+    stack_node *temp_node;
     singly_linked_list my_list;
     printf("creating a singly linked list !! ");
     initialize_singly_linked_list(&my_list);

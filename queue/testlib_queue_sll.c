@@ -22,7 +22,6 @@ int main(void) {
     queue my_queue;
     int *out_data;
     int return_type;
-    view_queue *my_func = my_display;
 
     // initialize the queue
     printf("create the queue \n");
@@ -61,7 +60,7 @@ int main(void) {
                 scanf("%d", data);
                 return_type = enqueue(&my_queue, (void *) data);  // pass the an address
                 if (return_type == true) {
-                    printf("enqueue at rear: %d \n", *data);
+                    printf("enqueued at rear: %d \n", *data);
                 } else {
                     printf("unable to enqueue \n");
                 }
@@ -112,7 +111,7 @@ int main(void) {
             case 6:
                 // display the queue
                 printf("display: ");
-                display_queue(&my_queue, my_func);
+                display_queue(&my_queue, my_display);
                 printf("\n");
                 break;
 

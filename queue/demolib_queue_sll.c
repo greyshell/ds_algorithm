@@ -30,7 +30,7 @@ int main(void) {
     // enqueue at rear
     return_type = enqueue(&my_queue, &data);
     if (return_type == true) {
-        printf("enqueue at rear: %d \n", data);
+        printf("enqueued at rear: %d \n", data);
     } else {
         printf("unable to enqueue \n");
     }
@@ -60,9 +60,8 @@ int main(void) {
     }
 
     // display the queue
-    view_queue *my_func = my_display;
     printf("display: ");
-    display_queue(&my_queue, my_func);
+    display_queue(&my_queue, my_display);
     printf("\n");
 
     // dequeue from front

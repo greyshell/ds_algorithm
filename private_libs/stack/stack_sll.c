@@ -42,14 +42,14 @@ size_t get_stack_size(stack *s) {
 
 bool push(stack *s, void *data) {
     /*
-     * insert an element at top
+     * insert an address at top
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    linkedlist_node *temp_node;
+    stack_node *temp_node;
 
     // create a new node
-    temp_node = (linkedlist_node *) malloc(sizeof(linkedlist_node));
+    temp_node = (stack_node *) malloc(sizeof(stack_node));
     if (temp_node == NULL) {
         return false;
     }
@@ -64,11 +64,11 @@ bool push(stack *s, void *data) {
 
 bool pop(stack *s, void **out_data) {
     /*
-     * remove an element from top
+     * remove an address from top
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    linkedlist_node *temp_node;
+    stack_node *temp_node;
     // check if the stack is empty
     if (is_empty_stack(s)) {
         return false;
@@ -116,18 +116,18 @@ bool delete_stack(stack *s) {
     return true;
 }
 
-void display_stack(stack *s, view_stack *func_ptr) {
+void display_stack(stack *s, view_stack_func *func_ptr) {
     /*
      * display all stack elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    linkedlist_node *curr_ptr;
-    curr_ptr = s->top;
+    stack_node *curr_node;
+    curr_node = s->top;
 
-    while (curr_ptr != NULL) {
-        func_ptr(curr_ptr->data);
-        curr_ptr = curr_ptr->next;
+    while (curr_node != NULL) {
+        func_ptr(curr_node->data);
+        curr_node = curr_node->next;
     }
     return;
 }

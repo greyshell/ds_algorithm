@@ -9,16 +9,16 @@
 
 #include "stdbool.h"
 
-typedef void view_queue(void *);
+typedef void view_queue_func(void *);
 
-typedef struct my_node {
+typedef struct list {
     void *data;
-    struct my_node *next;
-} linkedlist_node;
+    struct list *next;
+} queue_node;
 
-typedef struct my_queue {
-    linkedlist_node *front;
-    linkedlist_node *rear;
+typedef struct {
+    queue_node *front;
+    queue_node *rear;
     size_t size;
 } queue;
 
@@ -38,6 +38,6 @@ bool peek_at_rear(queue *, void **);
 
 bool delete_queue(queue *);
 
-void display_queue(queue *, view_queue *);
+void display_queue(queue *, view_queue_func *);
 
 #endif // QUEUE_SLL_H__

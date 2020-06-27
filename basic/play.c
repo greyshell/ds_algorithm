@@ -16,5 +16,12 @@ int main(void) {
 
     printf("size = %lu \n", sizeof(void *));
 
+    i = 10;
+    int *p;
+    int **q;
+
+    p = &i;
+    printf("address: %d", *p);
+
     return 0;
 }

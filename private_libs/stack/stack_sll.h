@@ -9,15 +9,15 @@
 
 #include "stdbool.h"
 
-typedef void view_stack(void *);
+typedef void view_stack_func(void *);
 
-typedef struct my_node {
+typedef struct list {
     void *data;
-    struct my_node *next;
-} linkedlist_node;
+    struct list *next;
+} stack_node;
 
-typedef struct my_stack {
-    linkedlist_node *top;
+typedef struct {
+    stack_node *top;
     size_t size;
 } stack;
 
@@ -35,6 +35,6 @@ bool peek(stack *, void **);
 
 bool delete_stack(stack *);
 
-void display_stack(stack *, view_stack *);
+void display_stack(stack *, view_stack_func *);
 
 #endif // STACK_SLL_H__

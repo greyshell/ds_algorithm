@@ -21,7 +21,7 @@ Sl No | Methods                             | Time | Space
 5     | `bool is_empty_stack(stack *)`   | O(1)            | O(1)           
 6     | `size_t get_stack_size(stack *)` | O(1)            | O(1)             
 7     | `bool delete_stack(stack *)`     | O(1)            | O(1)             
-8     | `void display_stack(stack *, view_stack *)`    | O(n)            | O(1)
+8     | `void display_stack(stack *, view_stack_func *)`    | O(n)            | O(1)
 
 **Example**: `cat ../stack/demolib_stack_dyn_arr.c`
 

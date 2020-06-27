@@ -9,13 +9,13 @@
 
 #include "stdbool.h"
 
-typedef void view_stack(void *);
+typedef void view_stack_func(void *);
 
-typedef struct my_stack {
+typedef struct {
     int top;
     size_t initial_capacity;
     size_t current_capacity;
-    void **array;
+    void **data;
 } stack;
 
 bool initialize_stack(stack *, size_t);
@@ -32,6 +32,6 @@ bool peek(stack *, void **);
 
 bool delete_stack(stack *);
 
-void display_stack(stack *, view_stack *);
+void display_stack(stack *, view_stack_func *);
 
 #endif // STACK_DYN_ARR_H__

@@ -47,10 +47,10 @@ bool enqueue(queue *q, void *data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    linkedlist_node *temp_node;
+    queue_node *temp_node;
 
     // create a new node
-    temp_node = (linkedlist_node *) malloc(sizeof(linkedlist_node));
+    temp_node = (queue_node *) malloc(sizeof(queue_node));
     if (temp_node == NULL) {
         return false;
     }
@@ -78,7 +78,7 @@ bool dequeue(queue *q, void **out_data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    linkedlist_node *temp_node;
+    queue_node *temp_node;
 
     if (is_empty_queue(q)) {
         return false;
@@ -142,17 +142,17 @@ bool delete_queue(queue *q) {
     return true;
 }
 
-void display_queue(queue *q, view_queue *func_ptr) {
+void display_queue(queue *q, view_queue_func *func_ptr) {
     /* display all elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    linkedlist_node *curr_ptr;
-    curr_ptr = q->front;
+    queue_node *curr_node;
+    curr_node = q->front;
 
-    while (curr_ptr != NULL) {
-        func_ptr(curr_ptr->data);
-        curr_ptr = curr_ptr->next;
+    while (curr_node != NULL) {
+        func_ptr(curr_node->data);
+        curr_node = curr_node->next;
     }
     return;
 }

@@ -13,15 +13,15 @@ set(CMAKE_C_STANDARD 99)
 FILE(GLOB MyFoo private_libs/foo/foo.c)
 
 # stack
-FILE(GLOB STACK_SLL private_libs/stack/stack_sll.c)
-FILE(GLOB STACK_DYN_ARR private_libs/stack/stack_dyn_arr.c)
+FILE(GLOB StackSLL private_libs/stack/stack_sll.c)
+FILE(GLOB StackDynArr private_libs/stack/stack_dyn_arr.c)
 
 # queue
-FILE(GLOB QUEUE_SLL private_libs/queue/queue_sll.c)
+FILE(GLOB QueueSLL private_libs/queue/queue_sll.c)
 
-# singly linked list
-FILE(GLOB MySinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
-
+# linked list
+FILE(GLOB SinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
+FILE(GLOB DoublyLinkedList private_libs/linked_list/doubly_linked_list.c)
 # double linked list
 # circular linked list
 # unrolled linked list
@@ -34,7 +34,7 @@ FILE(GLOB MyBST private_libs/binary_search_tree/binary_search_tree.c)
 # sorting
 FILE(GLOB MySorting private_libs/sorting/sorting.c)
 # hashtable
-
+FILE(GLOB HASHTABLE private_libs/hash_table/hash.c)
 # ============================================================================================
 
 # backtracking
@@ -76,8 +76,9 @@ add_executable(find_fib dynamic_programming/find_fib.c)
 # linked_list
 # ===========
 # --- API demo ---
+add_executable(demolib_dll linked_list/demolib_dll.c ${DoublyLinkedList})
 # --- API test ---
-add_executable(testlib_singly_linked_list linked_list/testlib_singly_linked_list.c ${MySinglyLinkedList})
+add_executable(testlib_singly_linked_list linked_list/testlib_singly_linked_list.c ${SinglyLinkedList})
 
 
 # queue
@@ -111,20 +112,20 @@ add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 
 # stack
 # ======
-add_executable(reverse_stack stack/reverse_stack.c ${STACK_SLL})
+add_executable(reverse_stack stack/reverse_stack.c ${StackSLL})
 # --- API demo ---
-add_executable(demolib_stack_sll stack/demolib_stack_sll.c ${STACK_SLL})
-add_executable(demolib_stack_dyn_arr stack/demolib_stack_dyn_arr.c ${STACK_DYN_ARR})
+add_executable(demolib_stack_sll stack/demolib_stack_sll.c ${StackSLL})
+add_executable(demolib_stack_dyn_arr stack/demolib_stack_dyn_arr.c ${StackDynArr})
 # --- API test ---
-add_executable(testlib_stack_dyn_arr stack/testlib_stack_dyn_arr.c ${STACK_DYN_ARR})
-add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${STACK_SLL})
+add_executable(testlib_stack_dyn_arr stack/testlib_stack_dyn_arr.c ${StackDynArr})
+add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${StackSLL})
 
 
 # queue
 # --- API demo ---
-add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${QUEUE_SLL})
+add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${QueueSLL})
 # --- API test ---
-add_executable(testlib_queue_sll queue/testlib_queue_sll.c ${QUEUE_SLL})
+add_executable(testlib_queue_sll queue/testlib_queue_sll.c ${QueueSLL})
 # string
 # =======
 # --- API demo ---
@@ -134,3 +135,7 @@ add_executable(testlib_queue_sll queue/testlib_queue_sll.c ${QUEUE_SLL})
 # binary_search_tree
 # --- API demo ---
 # --- API test ---
+
+
+# hash
+add_executable(test_hash hashing/test_hash.c ${HASHTABLE})

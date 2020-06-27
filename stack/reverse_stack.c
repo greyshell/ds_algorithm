@@ -55,15 +55,15 @@ int main(void) {
     }
 
     // display the stack
-    view_stack *my_func = my_display;
+    view_stack_func *my_func_ptr = my_display;
     printf("display: ");
-    display_stack(&my_stack, my_func);
+    display_stack(&my_stack, my_func_ptr);
     printf("\n");
 
     // reverse the stack
     reverse_stack(&my_stack);
     printf("display: ");
-    display_stack(&my_stack, my_func);
+    display_stack(&my_stack, my_func_ptr);
     printf("\n");
 
     return 0;
