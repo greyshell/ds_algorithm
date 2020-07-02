@@ -16,11 +16,10 @@ void my_display(void *data) {
 }
 
 int main(void) {
-    int *data;
+    int *data, *out_data = 0;
     size_t choice, stack_size;
+    bool return_type;
     stack my_stack;
-    int *out_data = 0;
-    int return_type;
 
     // initialize the stack
     printf("creating the stack ");

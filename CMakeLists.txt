@@ -20,8 +20,8 @@ FILE(GLOB StackDynArr private_libs/stack/stack_dyn_arr.c)
 FILE(GLOB QueueSLL private_libs/queue/queue_sll.c)
 
 # linked list
-FILE(GLOB SinglyLinkedList private_libs/singly_linked_list/singly_linked_list.c)
-FILE(GLOB DoublyLinkedList private_libs/linked_list/doubly_linked_list.c)
+FILE(GLOB SinglyLinkedList private_libs/linked_list/sll.c)
+FILE(GLOB DoublyLinkedList private_libs/linked_list/xor_dll.c)
 # double linked list
 # circular linked list
 # unrolled linked list
@@ -78,8 +78,7 @@ add_executable(find_fib dynamic_programming/find_fib.c)
 # --- API demo ---
 add_executable(demolib_dll linked_list/demolib_dll.c ${DoublyLinkedList})
 # --- API test ---
-add_executable(testlib_singly_linked_list linked_list/testlib_singly_linked_list.c ${SinglyLinkedList})
-
+add_executable(testlib_sll linked_list/testlib_sll.c ${SinglyLinkedList})
 
 # queue
 # ======

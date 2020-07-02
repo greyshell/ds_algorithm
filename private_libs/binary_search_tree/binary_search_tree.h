@@ -9,10 +9,10 @@
 #include "stdbool.h"
 
 
-typedef struct my_node {
+typedef struct sll_node {
     int data;
-    struct my_node *left;
-    struct my_node *right;
+    struct sll_node *left;
+    struct sll_node *right;
 } bst_node;
 
 

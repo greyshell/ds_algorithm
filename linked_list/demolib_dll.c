@@ -6,18 +6,17 @@
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/linked_list/doubly_linked_list.h"
+#include "../private_libs/linked_list/xor_dll.h"
 
 void my_display(void *data) {
     /*
      * display elements: datatype -> int
      */
     printf("%d ", *(int *) data);
-    // printf("%p \n", (int *) data);
-    //printf("\n");
+    fflush(stdout);
 }
 
-bool my_data_compare(void *data, void *key) {
+bool my_compare(void *data, void *key) {
     /*
      * data format: int
      */
@@ -30,11 +29,9 @@ bool my_data_compare(void *data, void *key) {
 int main(void) {
     size_t dll_size;
     doubly_linked_list my_dll;
-    int *out_data;
     bool return_type;
-    int data = 30;
     view_doubly_linked_list *my_func = my_display;
-    int test_data[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    int test_data[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // initialize the dll
     printf("create the dll \n");
@@ -49,24 +46,24 @@ int main(void) {
     for (int i = 0; i < 10; i++) {
         return_type = insert_dll_node_at_head(&my_dll, &test_data[i]);
         if (return_type == true) {
-            printf("node added: %d \n", test_data[i]);
-            //printf("node addr added: %p \n", &test_data[i]);
         } else {
             printf("node not added \n");
         }
     }
 
-
     printf("display: ");
     display_dll(&my_dll, my_func);
 
-    int d = 9;
-    compare_data_func_dll *f = my_data_compare;
-
-    void *p = NULL, *c = NULL;
+    int data2 = 5;
     printf("\n");
-    return_type = _get_dll_prev_curr_node(&my_dll, &d, f, p, c);
-    printf("return: %d", return_type);
+    return_type = find_element_in_dll(&my_dll, &data2, my_compare);
+    printf("find element: %d \n", return_type);
+
+    printf("deleting: %d", data2);
+    delete_dll_node(&my_dll, &data2, my_compare);
+
+    printf("\ndisplay: ");
+    display_dll(&my_dll, my_func);
 
     return 0;
 }
