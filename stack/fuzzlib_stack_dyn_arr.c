@@ -1,7 +1,7 @@
 /*
  * author: greyshell
- * description: fuzz the dynamic array based stack implementation, data -> int
- * command: make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_using_dynamic_array LIB_FLD=stack LIB=stack_using_dynamic_array
+ * description: fuzz the dynamic array based stack implementation through AFL
+ * make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_sll LIB_FLD=stack LIB=stack_dyn_arr
  * */
 
 #include <stdio.h>
@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "../private_libs/stack/stack_dyn_arr.h"
 
+// helper functions
 void readn(void *s, int n) {
     int bytes_read;
     bytes_read = read(0, s, n);
@@ -43,106 +44,102 @@ size_t read_size_t() {
     return i;
 }
 
-// create the ADT
-stack my_stack;
-
-// define the stack API
-size_t op_get_stack_size() {
-    int stack_size;
-    printf("operation: get the stack size \n");
-    stack_size = get_stack_size(&my_stack);
-    printf("stack size: %zu \n", stack_size);
+void my_display(void *data) {
+    /*
+     * display elements: datatype -> int
+     */
+    printf("%d ", *(int *) data);
+    fflush(stdout);
 }
 
-int op_push() {
-    int data;
-    int return_type;
-    data = read_int();
-    printf("operation: push an element \n");
-    return_type = push(&my_stack, data);
-    if (return_type == true) {
-        printf("%d is successfully pushed \n", data);
-    } else {
-        printf("unable to push \n");
+bool my_compare(void *data, void *key) {
+    /*
+     * data format: int
+     */
+    if (*(int *) data == *(int *) key) {
+        return true;
     }
-}
-
-int op_pop() {
-    int out_data;
-    int return_type;
-    printf("operation: pop an element \n");
-    return_type = pop(&my_stack, &out_data);
-    if (return_type == true) {
-        printf("%d is popped \n", out_data);
-    } else {
-        printf("unable to pop \n");
-    }
-}
-
-
-int op_peek() {
-    int out_data;
-    int return_type;
-    printf("operation: peek the stack top \n");
-    return_type = peek(&my_stack, &out_data);
-    if (return_type == true) {
-        printf("stack top has %d \n", out_data);
-    } else {
-        printf("empty stack, unable to peek \n");
-    }
-}
-
-void op_display_stack() {
-    printf("operation: display all stack elements \n");
-    display_stack(&my_stack);
-}
-
-void op_delete_stack() {
-    int return_type;
-    printf("operation: delete stack / pop all elements \n");
-    return_type = delete_stack(&my_stack);
-    if (return_type == true) {
-        printf("all stack elements are deleted \n");
-    } else {
-        printf("unable to delete all stack elements \n");
-    }
+    return false;
 }
 
 int main(void) {
+    int *data, *out_data = 0;
+    size_t choice, stack_size;
+    bool return_type;
+    stack my_stack;
     uint8_t number_operations;
     uint8_t operation_type;
-    // (total functions to fuzz - 1) -> as the switch case starts from 0
     size_t ops_count = 5;
-    bool return_type;
-
-    // create and initialize the stack
-    initialize_stack(&my_stack);
+    // initialize
+    initialize_stack(&my_stack, 1);
 
     // randomize the nos of operations and get the input through fuzzer
     number_operations = read8();
-    printf("nos of operations: %d \n", number_operations);
+    printf("number of operations: %d \n", number_operations);
+
     for (int i = 0; i < number_operations; i++) {
         // choose the random operation
         operation_type = read8();
         switch (operation_type % ops_count) {
             case 0:
-                op_get_stack_size();
+                data = (int *) malloc(sizeof(int));
+                *data = read_int();
+                printf("operation: push, data: %d \n", *data);
+                return_type = push(&my_stack, data);
+                if (return_type == true) {
+                    printf("pushed \n");
+                } else {
+                    printf("unable to push \n");
+                }
                 break;
             case 1:
-                op_push();
+                printf("operation: pop \n");
+                return_type = pop(&my_stack, (void **) &out_data);
+                if (return_type == true) {
+                    printf("popped: %d \n", *(int *) out_data);
+                    free(out_data);
+                } else {
+                    printf("unable to pop \n");
+                }
                 break;
             case 2:
-                op_pop();
+                printf("operation: peek \n");
+                return_type = peek(&my_stack, (void **) &out_data);
+                if (return_type == true) {
+                    printf("peek at top: %d \n", *out_data);
+                } else {
+                    printf("unable to peek \n");
+                }
                 break;
             case 3:
-                op_peek();
+                printf("operation: get_stack_size \n");
+                stack_size = get_stack_size(&my_stack);
+                printf("stack size: %zu \n", stack_size);
                 break;
             case 4:
-                op_display_stack();
+                printf("operation: is_empty_stack \n");
+                return_type = is_empty_stack(&my_stack);
+                printf("is empty: %d \n", return_type);
                 break;
             case 5:
-                op_delete_stack();
+                printf("operation: display_stack \n");
+                display_stack(&my_stack, my_display);
+                printf("\n");
                 break;
+            case 6:
+                // delete the stack
+                printf("operation: delete_stack \n");
+                return_type = delete_stack(&my_stack);
+                if (return_type == true) {
+                    printf("deleted the stack \n");
+                    return 0;
+                } else {
+                    printf("unable to delete \n");
+                }
+                break;
+
+            default:
+                printf("wrong choice \n");
 
         }
     }

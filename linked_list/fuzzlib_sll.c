@@ -1,12 +1,47 @@
 /*
  * author: greyshell
- * description: test singly linked list implementation
+ * description: fuzz the singly linked list implementation through AFL
+ * make -f fuzz_lib_with_afl SRC_FLD=linked_list WRAPPER_PROG=fuzzlib_sll LIB_FLD=linked_list LIB=sll
  * */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "stdbool.h"
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
 #include "../private_libs/linked_list/sll.h"
+
+
+// helper functions
+void readn(void *s, int n) {
+    int bytes_read;
+    bytes_read = read(0, s, n);
+    if (bytes_read == n) {
+        return;
+    }
+    if (bytes_read == 0 || bytes_read == -1) {
+        memset(s, 0, n);
+        return;
+    }
+    memset(&((char *) s)[bytes_read], 0, n - bytes_read);
+}
+
+uint8_t read8() {
+    uint8_t i;
+    readn(&i, sizeof(i));
+    return i;
+}
+
+int read_int() {
+    int i;
+    readn(&i, sizeof(i));
+    return i;
+}
+
+size_t read_size_t() {
+    size_t i;
+    readn(&i, sizeof(i));
+    return i;
+}
 
 void my_display(void *data) {
     /*
@@ -32,44 +67,21 @@ int main(void) {
     bool return_type;
     singly_linked_list my_list;
 
-    printf("creating the singly linked list \n");
+    uint8_t number_operations;
+    uint8_t operation_type;
+    size_t ops_count = 11;
+
+    // initialize
     initialize_sll(&my_list);
 
-    while (1) {
-        printf("\n");
-        printf("=================== \n");
-        printf("menu driven program: \n");
-        printf("==================== \n");
+    // randomize the number of operations and get the input through fuzzer
+    number_operations = read8();
+    printf("number of operations: %d \n", number_operations);
 
-        printf("0. check if the linked list is empty \n");
-        printf("1. get the size of the linked list \n");
-        printf("2. display the linked list \n");
-        printf("3. reverse display the linked list \n");
-
-        printf("4. insert an element at head \n");
-        printf("5. insert an element at tail \n");
-        printf("6. insert an element at index \n");
-
-        printf("7. delete an element at head \n");
-        printf("8. delete an element at tail \n");
-        printf("9. delete an element at index from head \n");
-        printf("10. delete kth node element from tail \n");
-        printf("11. delete an element if found \n");
-        printf("12. delete all elements \n");
-
-        printf("13. is_found the element \n");
-        printf("14. get the element of kth node from head \n");
-        printf("15. get the element of kth node from tail \n");
-        printf("16. get the middle element \n");
-
-        printf("17. quit \n");
-
-        printf("\n\n");
-        printf("enter your choice: \n");
-        scanf("%zu", &choice);
-        printf("\n");
-
-        switch (choice) {
+    for (int i = 0; i < number_operations; i++) {
+        // choose the random operation
+        operation_type = read8();
+        switch (operation_type % ops_count) {
             case 0:
                 printf("operation: is_empty sll \n");
                 return_type = is_empty_sll(&my_list);
@@ -82,7 +94,6 @@ int main(void) {
                 break;
             case 2:
                 printf("operation: display_sll \n");
-                printf("display: ");
                 display_sll(&my_list, my_display);
                 printf("\n");
                 break;
@@ -93,11 +104,15 @@ int main(void) {
                 printf("\n");
                 break;
             case 4:
-                printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
-                scanf("%d", data);
-
+                *data = read_int();
                 printf("operation: insert_sll_node_at_head, data: %d \n", *data);
+                insert_sll_node_at_head(&my_list, data);
+                break;
+            case 5:
+                data = (int *) malloc(sizeof(int));
+                *data = read_int();
+                printf("operation: insert_sll_node_at_tail, data: %d \n", *data);
                 return_type = insert_sll_node_at_head(&my_list, data);
                 if (return_type == true) {
                     printf("inserted \n");
@@ -105,26 +120,10 @@ int main(void) {
                     printf("unable to insert \n");
                 }
                 break;
-            case 5:
-                printf("enter the element: \n");
-                data = (int *) malloc(sizeof(int));
-                scanf("%d", data);
-                printf("operation: insert_sll_node_at_tail, data: %d \n", *data);
-                return_type = insert_sll_node_at_tail(&my_list, data);
-                if (return_type == true) {
-                    printf("inserted \n");
-                } else {
-                    printf("unable to insert \n");
-                }
-                break;
-
             case 6:
-                printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
-                scanf("%d", data);
-                printf("enter the index (0 <= k < size): \n");
-                scanf("%zu", &index);
-
+                *data = read_int();
+                index = read_int();
                 printf("operation: insert_sll_node_at_index, index: %zu, data: %d \n", index,
                        *data);
                 return_type = insert_sll_node_at_index(&my_list, data, index);
@@ -144,7 +143,6 @@ int main(void) {
                     printf("unable to delete \n");
                 }
                 break;
-
             case 8:
                 printf("operation: delete_sll_node_at_tail \n");
                 return_type = delete_sll_node_at_tail(&my_list, (void **) &out_data);
@@ -157,7 +155,9 @@ int main(void) {
                 break;
             case 9:
                 printf("enter the index (0 <= k < size): \n");
-                scanf("%zu", &index);
+                index = read_int();
+                index = index %
+                        (int) (get_sll_size(&my_list) + 5); // add 5 out of the range indexes
                 printf("operation: delete_sll_node_at_index_from_head, index: %zu \n", index);
                 return_type = delete_sll_node_at_index_from_head(&my_list, index,
                                                                  (void **) &out_data);
@@ -170,7 +170,8 @@ int main(void) {
                 break;
             case 10:
                 printf("enter the index (1 <= k <= size): \n");
-                scanf("%zu", &index);
+                index = read_int();
+                index = index % (int) (get_sll_size(&my_list) + 5);
                 printf("operation: delete_sll_node_at_index_from_tail, index: %zu \n", index);
                 return_type = delete_sll_node_at_index_from_tail(&my_list, index, (void **)
                         &out_data);
@@ -184,7 +185,7 @@ int main(void) {
             case 11:
                 printf("enter the key: \n");
                 data = (int *) malloc(sizeof(int));
-                scanf("%d", data);
+                *data = read_int();
                 printf("operation: delete_sll_node_if_found, key: %d \n", *(int *) data);
                 return_type = delete_sll_node_if_found(&my_list, data, my_compare, (void **)
                         &out_data);
@@ -205,63 +206,12 @@ int main(void) {
                     printf("unable to delete all \n");
                 }
                 break;
-            case 13:
-                data = (int *) malloc(sizeof(int));
-                printf("enter the key : \n");
-                scanf("%d", data);
-                printf("operation: is_found_in_sll, key: %d \n", *(int *) data);
-                return_type = is_found_in_sll(&my_list, data, my_compare, &out_key_found_index);
-                if (return_type == true) {
-                    printf("found at index = %zu \n", out_key_found_index);
-                    free(data);
-                } else {
-                    printf("not found \n");
-                }
-                break;
-            case 14:
-                printf("enter the index k (0 <= k < size): \n");
-                scanf("%zu", &index);
-                printf("operation: get_kth_element_in_sll_from_head, k: %zu \n", index);
-                return_type = get_kth_element_in_sll_from_head(&my_list, index, (void **)
-                        &out_data);
-                if (return_type == true) {
-                    printf("kth element = %d \n", *out_data);
-                } else {
-                    printf("not found \n");
-                }
-                break;
-            case 15:
-                printf("enter the index (1 <= k <= size): \n");
-                scanf("%zu", &index);
-                printf("operation: get_kth_element_in_sll_from_tail, k: %zu \n", index);
-                return_type = get_kth_element_in_sll_from_tail(&my_list, index,
-                                                               (void **) &out_data);
-                if (return_type == true) {
-                    printf("kth element = %d \n", *out_data);
-                } else {
-                    printf("not found \n");
-                }
-                break;
-
-            case 16:
-                printf("operation: get_middle_element_in_sll \n");
-                return_type = get_middle_element_in_sll(&my_list, (void **) &out_data);
-                if (return_type == true) {
-                    printf("middle element = %d \n", *out_data);
-                } else {
-                    printf("not found \n");
-                }
-                break;
-
-            case 17:
-                // delete the entire list and exit from the program
-                printf("operation: delete_sll \n");
-                delete_sll(&my_list);
-                return 0;
-
             default:
                 printf("wrong choice \n");
         }
     }
 
+    delete_sll(&my_list);
+
+    return 0;
 }

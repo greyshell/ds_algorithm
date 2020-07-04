@@ -51,23 +51,22 @@ int main(void) {
                 // push at top
                 printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
-                if (data == NULL) {
-                    return false;
-                }
                 scanf("%d", data);
+                printf("operation: push, data: %d \n", *data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
-                    printf("pushed: %d \n", *data);
+                    printf("pushed \n");
                 } else {
                     printf("unable to push \n");
                 }
                 break;
-
             case 1:
                 // pop from top
+                printf("operation: pop \n");
                 return_type = pop(&my_stack, (void **) &out_data);
                 if (return_type == true) {
                     printf("popped: %d \n", *(int *) out_data);
+                    free(out_data);
                 } else {
                     printf("unable to pop \n");
                 }
@@ -75,6 +74,7 @@ int main(void) {
 
             case 2:
                 // peek at top
+                printf("operation: peek \n");
                 return_type = peek(&my_stack, (void **) &out_data);
                 if (return_type == true) {
                     printf("peek at top: %d \n", *out_data);
@@ -85,24 +85,27 @@ int main(void) {
 
             case 3:
                 // get the stack size
+                printf("operation: get_stack_size \n");
                 stack_size = get_stack_size(&my_stack);
                 printf("stack size: %zu \n", stack_size);
                 break;
 
             case 4:
                 // check if the stack is empty
+                printf("operation: is_empty_stack \n");
                 return_type = is_empty_stack(&my_stack);
                 printf("is empty: %d \n", return_type);
                 break;
 
             case 5:
-                printf("display: ");
+                printf("operation: display_stack \n");
                 display_stack(&my_stack, my_display);
                 printf("\n");
                 break;
 
             case 6:
                 // delete the stack
+                printf("operation: delete_stack \n");
                 return_type = delete_stack(&my_stack);
                 if (return_type == true) {
                     printf("deleted the stack \n");

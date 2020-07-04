@@ -342,6 +342,11 @@ bool delete_sll_node_at_index_from_head(singly_linked_list *list, size_t index, 
         }
 
     }
+
+    if (index >= get_sll_size(list)) {
+        return false;
+    }
+
     return_type = _get_kth_sll_node_from_head(list, index - 1, &out_node);
     if (return_type == false) {
         return false;
@@ -401,6 +406,10 @@ bool delete_sll_node_at_index_from_tail(singly_linked_list *list, size_t index, 
     size_t linked_list_size;
 
     linked_list_size = get_sll_size(list);
+
+    if (index == 0) {
+        return false;
+    }
 
     // case: remove head node
     if (index == linked_list_size) {

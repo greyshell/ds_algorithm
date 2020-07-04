@@ -1,6 +1,6 @@
 # Description
 
-`queue_sll.h`:
+## `queue_sll.h`
 - a `singly linked list` based implementation where the data is a `void` pointer.
 
 **API Details**:
@@ -18,4 +18,3 @@ Sl No | Methods                                  | Time | Space
 9     | `bool delete_queue(queue *)`              | O(1) | O(1)
 10    | `void display_queue(queue *, view_queue *)` | O(n) | O(1)
 
-Example: `cat ../stack/demolib_queue_sll.c`
