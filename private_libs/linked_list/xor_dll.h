@@ -24,7 +24,6 @@ typedef struct list {
 typedef struct {
     xor_dll_node *head;
     xor_dll_node *tail;
-    size_t size;
 } doubly_linked_list;
 
 
@@ -40,13 +39,15 @@ bool insert_dll_node_at_tail(doubly_linked_list *, void *);
 
 bool insert_dll_node_at_index(doubly_linked_list *, void *, size_t);
 
-bool delete_dll_node(doubly_linked_list *, void *, compare_doubly_linked_list *);
-
 bool delete_dll_node_at_head(doubly_linked_list *, void *);
 
 bool delete_dll_node_at_tail(doubly_linked_list *, void *);
 
-bool delete_dll_node_at_index(doubly_linked_list *, void *, size_t);
+bool delete_sll_node_at_index_from_head(doubly_linked_list *, size_t, void **);
+
+bool delete_sll_node_at_index_from_tail(doubly_linked_list *, size_t, void **);
+
+bool delete_dll_node_if_found(doubly_linked_list *, void *, compare_doubly_linked_list *, void **);
 
 bool delete_dll(doubly_linked_list *);
 
@@ -54,6 +55,12 @@ void display_dll(doubly_linked_list *, view_doubly_linked_list *);
 
 void reverse_display_dll(doubly_linked_list *, view_doubly_linked_list *);
 
-bool find_element_in_dll(doubly_linked_list *, void *, compare_doubly_linked_list *);
+bool is_found_in_dll(doubly_linked_list *, void *, compare_doubly_linked_list *);
+
+bool get_kth_element_in_sll_from_head(doubly_linked_list *, size_t, void **);
+
+bool get_kth_element_in_sll_from_tail(doubly_linked_list *, size_t, void **);
+
+bool get_middle_element_in_sll(doubly_linked_list *, void **);
 
 #endif // XOR_DLL_H__

@@ -56,11 +56,11 @@ int main(void) {
 
     int data2 = 5;
     printf("\n");
-    return_type = find_element_in_dll(&my_dll, &data2, my_compare);
+    return_type = is_found_in_dll(&my_dll, &data2, my_compare);
     printf("find element: %d \n", return_type);
 
     printf("deleting: %d", data2);
-    delete_dll_node(&my_dll, &data2, my_compare);
+    delete_dll_node_if_found(&my_dll, &data2, my_compare);
 
     printf("\ndisplay: ");
     display_dll(&my_dll, my_func);

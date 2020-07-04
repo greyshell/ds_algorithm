@@ -8,46 +8,45 @@
 #include <stdbool.h>
 #include "xor_dll.h"
 
-void initialize_dll(doubly_linked_list *l) {
+void initialize_dll(doubly_linked_list *list) {
     /*
      * create the doubly linked list
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    l->head = NULL;
-    l->tail = NULL;
-    l->size = 0;
+    list->head = NULL;
+    list->tail = NULL;
 }
 
-size_t get_dll_size(doubly_linked_list *l) {
+size_t get_dll_size(doubly_linked_list *list) {
     /*
      * get the size of the list
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    return l->size;
+    return 0;
 }
 
-bool is_empty_dll(doubly_linked_list *l) {
+bool is_empty_dll(doubly_linked_list *list) {
     /*
      * check if the list is empty
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (l->head == NULL) {
+    if (list->head == NULL) {
         return true;
     }
     return false;
 }
 
-bool insert_dll_node_at_head(doubly_linked_list *l, void *data) {
+bool insert_dll_node_at_head(doubly_linked_list *list, void *data) {
     /*
      * insert an element at head
      * time complexity: O(1)
      * space complexity: O(1)
      */
     xor_dll_node *temp_node;
-    xor_dll_node *next_node = l->head;
+    xor_dll_node *next_node = list->head;
 
     // create a new node
     temp_node = (xor_dll_node *) malloc(sizeof(xor_dll_node));
@@ -56,23 +55,22 @@ bool insert_dll_node_at_head(doubly_linked_list *l, void *data) {
     }
     temp_node->data = data;
     temp_node->ptr_diff = (size_t) next_node;
-    if (!is_empty_dll(l)) {
+    if (!is_empty_dll(list)) {
         // update the tail when adding the 1st element
-        l->head->ptr_diff ^= (size_t) temp_node;
-        l->tail = temp_node;
+        list->head->ptr_diff ^= (size_t) temp_node;
+        list->tail = temp_node;
     }
-    l->head = temp_node;
-    l->size++;
+    list->head = temp_node;
     return true;
 }
 
-void display_dll(doubly_linked_list *l, view_doubly_linked_list *func_ptr) {
+void display_dll(doubly_linked_list *list, view_doubly_linked_list *func_ptr) {
     /*
      * display elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    xor_dll_node *curr_node = l->head;
+    xor_dll_node *curr_node = list->head;
     xor_dll_node *prev_node = NULL;
     xor_dll_node *next_node;
     while (curr_node != NULL) {
@@ -86,7 +84,7 @@ void display_dll(doubly_linked_list *l, view_doubly_linked_list *func_ptr) {
     }
 }
 
-static bool _get_dll_prev_curr_node(doubly_linked_list *l, void *key, compare_doubly_linked_list
+static bool _get_dll_prev_curr_node(doubly_linked_list *list, void *key, compare_doubly_linked_list
 *func_ptr, xor_dll_node **prev_node, xor_dll_node **curr_node) {
     /*
      * get the curr and prev node when the key is found
@@ -94,7 +92,7 @@ static bool _get_dll_prev_curr_node(doubly_linked_list *l, void *key, compare_do
      * space complexity: O(1)
      */
     xor_dll_node *next_node;
-    *curr_node = l->head;
+    *curr_node = list->head;
     *prev_node = NULL;
 
     while (*curr_node != NULL) {
@@ -110,19 +108,20 @@ static bool _get_dll_prev_curr_node(doubly_linked_list *l, void *key, compare_do
     return false;
 }
 
-bool find_element_in_dll(doubly_linked_list *l, void *key, compare_doubly_linked_list *func) {
+bool is_found_in_dll(doubly_linked_list *list, void *key, compare_doubly_linked_list *func_ptr) {
     /*
      * find an element in doubly linked list
      * time complexity: O(n)
      * space complexity: O(1)
      */
     void *prev_node, *curr_node;
-    return _get_dll_prev_curr_node(l, key, func, (xor_dll_node **) &prev_node,
+    return _get_dll_prev_curr_node(list, key, func_ptr, (xor_dll_node **) &prev_node,
                                    (xor_dll_node **) &curr_node);
 }
 
 
-bool delete_dll_node(doubly_linked_list *l, void *key, compare_doubly_linked_list *func) {
+bool delete_dll_node_if_found(doubly_linked_list *list, void *key, compare_doubly_linked_list
+*func_ptr) {
     /*
      * delete an element if found
      * time complexity: O(n)
@@ -131,7 +130,7 @@ bool delete_dll_node(doubly_linked_list *l, void *key, compare_doubly_linked_lis
     bool return_type;
     xor_dll_node *prev_node, *curr_node, *prev_prev_node, *next_node, *nex_next_node;
 
-    return_type = _get_dll_prev_curr_node(l, key, func, (xor_dll_node **) &prev_node,
+    return_type = _get_dll_prev_curr_node(list, key, func_ptr, (xor_dll_node **) &prev_node,
                                           (xor_dll_node **) &curr_node);
     if (return_type == false) {
         return false;
@@ -143,30 +142,30 @@ bool delete_dll_node(doubly_linked_list *l, void *key, compare_doubly_linked_lis
         prev_prev_node = (xor_dll_node *) ((size_t) prev_node->ptr_diff ^ (size_t) curr_node);
         prev_node->ptr_diff = ((size_t) prev_prev_node ^ (size_t) next_node);
     } else {
-        l->head = next_node;
+        list->head = next_node;
     }
     if (next_node != NULL) {
         nex_next_node = (xor_dll_node *) (next_node->ptr_diff ^ (size_t) curr_node);
         next_node->ptr_diff = ((size_t) prev_node ^ (size_t) nex_next_node);
     }
 
-    if (l->tail == curr_node) {
-        l->tail = prev_node;
+    if (list->tail == curr_node) {
+        list->tail = prev_node;
     }
 
     free(curr_node);
-    l->size--;
     return true;
 
 }
 
-bool delete_dll(doubly_linked_list *l) {
+bool delete_dll(doubly_linked_list *list) {
     /*
      * delete xor doubly linked list
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    xor_dll_node *curr_node = l->head;
+    // TO DO
+    xor_dll_node *curr_node = list->head;
     xor_dll_node *prev_node = NULL;
     xor_dll_node *next_node;
 
