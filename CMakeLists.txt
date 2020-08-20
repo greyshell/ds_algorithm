@@ -13,8 +13,10 @@ set(CMAKE_C_STANDARD 99)
 FILE(GLOB MyFoo private_libs/foo/foo.c)
 
 # stack
-FILE(GLOB StackSLL private_libs/stack/stack_sll.c)
-FILE(GLOB StackDynArr private_libs/stack/stack_dyn_arr.c)
+FILE(GLOB Stack private_libs/stack/stack.c)
+FILE(GLOB Stack02 private_libs/stack/stack02.c)
+FILE(GLOB Stack03 private_libs/stack/stack03.c)
+FILE(GLOB Stack04 private_libs/stack/stack04.c)
 
 # queue
 FILE(GLOB QueueSLL private_libs/queue/queue_sll.c)
@@ -111,13 +113,13 @@ add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
 
 # stack
 # ======
-add_executable(reverse_stack stack/reverse_stack.c ${StackSLL})
-# --- API demo ---
-add_executable(demolib_stack_sll stack/demolib_stack_sll.c ${StackSLL})
-add_executable(demolib_stack_dyn_arr stack/demolib_stack_dyn_arr.c ${StackDynArr})
 # --- API test ---
-add_executable(testlib_stack_dyn_arr stack/testlib_stack_dyn_arr.c ${StackDynArr})
-add_executable(testlib_stack_sll stack/testlib_stack_sll.c ${StackSLL})
+add_executable(testlib_stack stack/test/testlib_stack.c ${Stack})
+add_executable(testlib_stack02 stack/test/testlib_stack02.c ${Stack02})
+add_executable(testlib_stack03 stack/test/testlib_stack03.c ${Stack03})
+add_executable(testlib_stack04 stack/test/testlib_stack04.c ${Stack04})
+# ------ leetcode ------
+add_executable(reverse_stack stack/reverse_stack.c ${Stack})
 
 
 # queue

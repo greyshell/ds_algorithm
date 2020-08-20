@@ -3,10 +3,12 @@
  * description: test dynamic array based implementation of stack
  * */
 
+// make -f fuzz_lib_with_afl SRC_FLD=stack/test WRAPPER_PROG=fuzzlib_stack03 LIB_FLD=stack LIB=stack03
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "../private_libs/stack/stack_dyn_arr.h"
+#include "../../private_libs/stack/stack03.h"
 
 void my_display(void *data) {
     /*

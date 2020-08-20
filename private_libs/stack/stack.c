@@ -1,17 +1,16 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack
- * data / key -> void pointer
+ * description: singly linked list based implementation of stack, data: int
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "stack_sll.h"
+#include "stack.h"
 
 void initialize_stack(stack *s) {
     /*
-     * create the stack
+     * create a stack
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -21,7 +20,7 @@ void initialize_stack(stack *s) {
 
 bool is_empty_stack(stack *s) {
     /*
-     * check if the queue is empty
+     * return 1 if the stack if empty, else return 0
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -40,9 +39,9 @@ size_t get_stack_size(stack *s) {
     return s->size;
 }
 
-bool push(stack *s, void *data) {
+bool push(stack *s, int data) {
     /*
-     * insert an address at top
+     * insert an int data at top
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -62,15 +61,16 @@ bool push(stack *s, void *data) {
     return true;
 }
 
-bool pop(stack *s, void **out_data) {
+bool pop(stack *s, int *out_data) {
     /*
-     * remove an address from top
+     * remove an int data from top
      * time complexity: O(1)
      * space complexity: O(1)
      */
     stack_node *temp_node;
     // check if the stack is empty
     if (is_empty_stack(s)) {
+        printf("stack is empty \n");
         return false;
     }
 
@@ -84,7 +84,7 @@ bool pop(stack *s, void **out_data) {
     return true;
 }
 
-bool peek(stack *s, void **out_data) {
+bool peek(stack *s, int *out_data) {
     /*
      * display the element at top
      * time complexity: O(1)
@@ -105,7 +105,7 @@ bool delete_stack(stack *s) {
      * space complexity: O(1)
      */
     bool return_type;
-    void *out_data;
+    int out_data;
 
     while (s->top != NULL) {
         return_type = pop(s, &out_data);
@@ -116,18 +116,17 @@ bool delete_stack(stack *s) {
     return true;
 }
 
-void display_stack(stack *s, view_stack_func *func_ptr) {
+void display_stack(stack *s) {
     /*
      * display all stack elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    stack_node *curr_node;
-    curr_node = s->top;
+    stack_node *curr_ptr;
+    curr_ptr = s->top;
 
-    while (curr_node != NULL) {
-        func_ptr(curr_node->data);
-        curr_node = curr_node->next;
+    while (curr_ptr != NULL) {
+        printf("%d ", curr_ptr->data);
+        curr_ptr = curr_ptr->next;
     }
-    return;
 }

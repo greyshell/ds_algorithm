@@ -1,8 +1,9 @@
 /*
  * author: greyshell
- * description: fuzz the dynamic array based stack implementation through AFL
- * make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_sll LIB_FLD=stack LIB=stack_dyn_arr
+ * description: fuzz the stack through AFL
  * */
+
+// make -f fuzz_lib_with_afl SRC_FLD=stack/test WRAPPER_PROG=fuzzlib_stack LIB_FLD=stack LIB=stack
 
 #include <stdio.h>
 #include "stdbool.h"
@@ -10,9 +11,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../private_libs/stack/stack_dyn_arr.h"
+#include "../../private_libs/stack/stack.h"
 
-// helper functions
+// helper functions for fuzzing
 void readn(void *s, int n) {
     int bytes_read;
     bytes_read = read(0, s, n);
@@ -63,15 +64,17 @@ bool my_compare(void *data, void *key) {
 }
 
 int main(void) {
-    int *data, *out_data = 0;
+    //
+    int data, out_data = 0;
     size_t choice, stack_size;
     bool return_type;
     stack my_stack;
     uint8_t number_operations;
     uint8_t operation_type;
+
     size_t ops_count = 5;
     // initialize
-    initialize_stack(&my_stack, 1);
+    initialize_stack(&my_stack);
 
     // randomize the nos of operations and get the input through fuzzer
     number_operations = read8();
@@ -82,9 +85,8 @@ int main(void) {
         operation_type = read8();
         switch (operation_type % ops_count) {
             case 0:
-                data = (int *) malloc(sizeof(int));
-                *data = read_int();
-                printf("operation: push, data: %d \n", *data);
+                data = read_int();
+                printf("operation: push, data: %d \n", data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
                     printf("pushed \n");
@@ -94,19 +96,18 @@ int main(void) {
                 break;
             case 1:
                 printf("operation: pop \n");
-                return_type = pop(&my_stack, (void **) &out_data);
+                return_type = pop(&my_stack, &out_data);
                 if (return_type == true) {
-                    printf("popped: %d \n", *(int *) out_data);
-                    free(out_data);
+                    printf("stack top has %d \n", out_data);
                 } else {
                     printf("unable to pop \n");
                 }
                 break;
             case 2:
                 printf("operation: peek \n");
-                return_type = peek(&my_stack, (void **) &out_data);
+                return_type = peek(&my_stack, &out_data);
                 if (return_type == true) {
-                    printf("peek at top: %d \n", *out_data);
+                    printf("peek at top: %d \n", out_data);
                 } else {
                     printf("unable to peek \n");
                 }
@@ -123,19 +124,8 @@ int main(void) {
                 break;
             case 5:
                 printf("operation: display_stack \n");
-                display_stack(&my_stack, my_display);
+                display_stack(&my_stack);
                 printf("\n");
-                break;
-            case 6:
-                // delete the stack
-                printf("operation: delete_stack \n");
-                return_type = delete_stack(&my_stack);
-                if (return_type == true) {
-                    printf("deleted the stack \n");
-                    return 0;
-                } else {
-                    printf("unable to delete \n");
-                }
                 break;
 
             default:

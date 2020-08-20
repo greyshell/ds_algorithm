@@ -1,11 +1,10 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack
- * data / key -> void pointer
+ * description: stack
  * */
 
-#ifndef STACK_SLL_H__
-#define STACK_SLL_H__
+#ifndef STACK02_H__
+#define STACK02_H__
 
 #include "stdbool.h"
 
@@ -37,4 +36,4 @@ bool delete_stack(stack *);
 
 void display_stack(stack *, view_stack_func *);
 
-#endif // STACK_SLL_H__
+#endif // STACK02_H__

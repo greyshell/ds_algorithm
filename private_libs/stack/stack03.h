@@ -1,11 +1,10 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of stack
- * data / key -> void pointer
+ * description: stack
  * */
 
-#ifndef STACK_DYN_ARR_H__
-#define STACK_DYN_ARR_H__
+#ifndef STACK03_H__
+#define STACK03_H__
 
 #include "stdbool.h"
 
@@ -34,4 +33,4 @@ bool delete_stack(stack *);
 
 void display_stack(stack *, view_stack_func *);
 
-#endif // STACK_DYN_ARR_H__
+#endif // STACK03_H__

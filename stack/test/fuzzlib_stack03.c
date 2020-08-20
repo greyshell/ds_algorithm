@@ -1,18 +1,65 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of stack
+ * description: fuzz the dynamic array based stack implementation through AFL
+ * make -f fuzz_lib_with_afl SRC_FLD=stack WRAPPER_PROG=fuzzlib_stack_sll LIB_FLD=stack LIB=stack_dyn_arr
  * */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include "stdbool.h"
-#include "../private_libs/stack/stack_sll.h"
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include "../../private_libs/stack/stack03.h"
+
+// helper functions
+void readn(void *s, int n) {
+    int bytes_read;
+    bytes_read = read(0, s, n);
+    if (bytes_read == n) {
+        return;
+    }
+    if (bytes_read == 0 || bytes_read == -1) {
+        memset(s, 0, n);
+        return;
+    }
+    memset(&((char *) s)[bytes_read], 0, n - bytes_read);
+}
+
+uint8_t read8() {
+    uint8_t i;
+    readn(&i, sizeof(i));
+    return i;
+}
+
+int read_int() {
+    int i;
+    readn(&i, sizeof(i));
+    return i;
+}
+
+size_t read_size_t() {
+    size_t i;
+    readn(&i, sizeof(i));
+    return i;
+}
 
 void my_display(void *data) {
     /*
      * display elements: datatype -> int
      */
     printf("%d ", *(int *) data);
+    fflush(stdout);
+}
+
+bool my_compare(void *data, void *key) {
+    /*
+     * data format: int
+     */
+    if (*(int *) data == *(int *) key) {
+        return true;
+    }
+    return false;
 }
 
 int main(void) {
@@ -20,38 +67,23 @@ int main(void) {
     size_t choice, stack_size;
     bool return_type;
     stack my_stack;
+    uint8_t number_operations;
+    uint8_t operation_type;
+    size_t ops_count = 5;
+    // initialize
+    initialize_stack(&my_stack, 1);
 
-    // initialize the stack
-    printf("creating the stack ");
-    initialize_stack(&my_stack);
+    // randomize the nos of operations and get the input through fuzzer
+    number_operations = read8();
+    printf("number of operations: %d \n", number_operations);
 
-    while (1) {
-        printf("\n\n");
-        printf("=================== \n");
-        printf("menu driven program: \n");
-        printf("==================== \n");
-        printf("0. push \n");
-        printf("1. pop \n");
-        printf("2. peek \n");
-        printf("3. get the stack size \n");
-        printf("4. check if the stack is empty \n");
-        printf("5. display the stack \n");
-        printf("6. delete the stack and quit \n");
-
-
-        printf("\n\n");
-        printf("enter your choice: \n");
-        printf("================== \n");
-        scanf("%zu", &choice);
-        printf("\n");
-
-
-        switch (choice) {
+    for (int i = 0; i < number_operations; i++) {
+        // choose the random operation
+        operation_type = read8();
+        switch (operation_type % ops_count) {
             case 0:
-                // push at top
-                printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
-                scanf("%d", data);
+                *data = read_int();
                 printf("operation: push, data: %d \n", *data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
@@ -61,7 +93,6 @@ int main(void) {
                 }
                 break;
             case 1:
-                // pop from top
                 printf("operation: pop \n");
                 return_type = pop(&my_stack, (void **) &out_data);
                 if (return_type == true) {
@@ -71,9 +102,7 @@ int main(void) {
                     printf("unable to pop \n");
                 }
                 break;
-
             case 2:
-                // peek at top
                 printf("operation: peek \n");
                 return_type = peek(&my_stack, (void **) &out_data);
                 if (return_type == true) {
@@ -82,27 +111,21 @@ int main(void) {
                     printf("unable to peek \n");
                 }
                 break;
-
             case 3:
-                // get the stack size
                 printf("operation: get_stack_size \n");
                 stack_size = get_stack_size(&my_stack);
                 printf("stack size: %zu \n", stack_size);
                 break;
-
             case 4:
-                // check if the stack is empty
                 printf("operation: is_empty_stack \n");
                 return_type = is_empty_stack(&my_stack);
                 printf("is empty: %d \n", return_type);
                 break;
-
             case 5:
                 printf("operation: display_stack \n");
                 display_stack(&my_stack, my_display);
                 printf("\n");
                 break;
-
             case 6:
                 // delete the stack
                 printf("operation: delete_stack \n");
@@ -117,7 +140,11 @@ int main(void) {
 
             default:
                 printf("wrong choice \n");
+
         }
     }
+    // delete the ADT
+    delete_stack(&my_stack);
 
+    return 0;
 }

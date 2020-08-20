@@ -1,13 +1,12 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of stack
- * data / key -> void pointer
+ * description: dynamic array based implementation of stack, data: int
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "stack_dyn_arr.h"
+#include "stack04.h"
 
 bool initialize_stack(stack *s, size_t initial_capacity) {
     /*
@@ -17,8 +16,8 @@ bool initialize_stack(stack *s, size_t initial_capacity) {
      */
     s->top = -1;
     s->initial_capacity = initial_capacity;
-    s->data = malloc(s->initial_capacity * sizeof(void *));
-    if (s->data == NULL) {
+    s->data_arr = malloc(s->initial_capacity * sizeof(int));
+    if (s->data_arr == NULL) {
         return false;
     }
     s->current_capacity = s->initial_capacity;
@@ -55,12 +54,11 @@ static bool _doubling_stack(stack *s) {
      * space complexity: O(1)
      */
     // note: too many doubling may cause memory overflow exception
-    s->data = realloc(s->data, (s->current_capacity * 2) * sizeof(void *));
-    if (s->data == NULL) {
+    s->data_arr = realloc(s->data_arr, (s->current_capacity * 2) * sizeof(int));
+    if (s->data_arr == NULL) {
         return false;
     }
     s->current_capacity *= 2;
-    // printf("resizing the array, new size: %zu \n", s->current_capacity);
     return true;
 }
 
@@ -74,16 +72,15 @@ static bool _halving_stack(stack *s) {
         return false;
     }
 
-    s->data = realloc(s->data, (s->current_capacity / 2) * sizeof(void *));
-    if (s->data == NULL) {
+    s->data_arr = realloc(s->data_arr, (s->current_capacity / 2) * sizeof(int));
+    if (s->data_arr == NULL) {
         return false;
     }
     s->current_capacity /= 2;
-    // printf("resizing the array, new size: %zu \n", s->current_capacity);
     return true;
 }
 
-bool push(stack *s, void *data) {
+bool push(stack *s, int data) {
     /*
      * insert an element at top
      * amortized time complexity: O(1)
@@ -97,11 +94,11 @@ bool push(stack *s, void *data) {
             return false;
         }
     }
-    s->data[++s->top] = data;
+    s->data_arr[++s->top] = data;
     return true;
 }
 
-bool pop(stack *s, void **out_data) {
+bool pop(stack *s, int *out_data) {
     /*
      * remove an element from top
      * if halving operation is successful when requested then return true, else false
@@ -115,7 +112,7 @@ bool pop(stack *s, void **out_data) {
         return false;
     }
 
-    *out_data = s->data[s->top--];
+    *out_data = s->data_arr[s->top--];
     // example: if the stack capacity: 8, occupied: 6, after 3 POPs, new stack size: 4
     if ((s->top + 1) < s->current_capacity / 2) {
         return_type = _halving_stack(s);
@@ -126,7 +123,7 @@ bool pop(stack *s, void **out_data) {
     return true;
 }
 
-bool peek(stack *s, void **out_data) {
+bool peek(stack *s, int *out_data) {
     /*
      * display the element at top
      * time complexity: O(1)
@@ -136,7 +133,7 @@ bool peek(stack *s, void **out_data) {
         return false;
     }
 
-    *out_data = s->data[s->top];
+    *out_data = s->data_arr[s->top];
     return true;
 }
 
@@ -148,22 +145,22 @@ bool delete_stack(stack *s) {
      */
     if (s != NULL) {
         // free up the dynamic array
-        free(s->data);
+        free(s->data_arr);
         return true;
     }
     return false;
 }
 
-void display_stack(stack *s, view_stack_func *func_ptr) {
+void display_stack(stack *s) {
     /*
      * display all stack elements
      * time complexity: O(n)
      * space complexity: O(1)
      */
     size_t top_ptr = s->top;
-
+    // due to size_t top_ptr can't decrement below 0
     while ((top_ptr + 1) > 0) {
-        func_ptr(s->data[top_ptr]);
+        printf("%d ", s->data_arr[top_ptr]);
         top_ptr--;
     }
 }

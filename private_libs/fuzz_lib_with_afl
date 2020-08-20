@@ -1,7 +1,7 @@
-SRC_FLD=linked_list
-WRAPPER_PROG=fuzzlib_singly_linked_list
-LIB_FLD=singly_linked_list
-LIB=singly_linked_list
+SRC_FLD=test/stack
+WRAPPER_PROG=fuzzlib_stack
+LIB_FLD=stack
+LIB=stack
 
 all: build run
 
