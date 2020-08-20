@@ -1,13 +1,12 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of queue
- * data / key -> void pointer
+ * description: singly linked list based implementation of queue, data: void pointer
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "queue_sll.h"
+#include "queue.h"
 
 void initialize_queue(queue *q) {
     /*
@@ -41,7 +40,7 @@ size_t get_queue_size(queue *q) {
     return q->size;
 }
 
-bool enqueue(queue *q, void *data) {
+bool enqueue(queue *q, int data) {
     /*
      * insert an element at rear / tail
      * time complexity: O(1)
@@ -72,7 +71,7 @@ bool enqueue(queue *q, void *data) {
     return true;
 }
 
-bool dequeue(queue *q, void **out_data) {
+bool dequeue(queue *q, int *out_data) {
     /*
      * remove an element from front / head
      * time complexity: O(1)
@@ -99,7 +98,7 @@ bool dequeue(queue *q, void **out_data) {
     return true;
 }
 
-bool peek_at_front(queue *q, void **out_data) {
+bool peek_at_front(queue *q, int *out_data) {
     /*
      * display the element at front
      * time complexity: O(1)
@@ -112,7 +111,7 @@ bool peek_at_front(queue *q, void **out_data) {
     return true;
 }
 
-bool peek_at_rear(queue *q, void **out_data) {
+bool peek_at_rear(queue *q, int *out_data) {
     /*
      * display the element at rear
      * time complexity: O(1)
@@ -131,7 +130,7 @@ bool delete_queue(queue *q) {
      * space complexity: O(1)
      */
     bool return_type;
-    void *out_data;
+    int out_data;
 
     while (is_empty_queue(q) != true) {
         return_type = dequeue(q, &out_data);
@@ -142,7 +141,7 @@ bool delete_queue(queue *q) {
     return true;
 }
 
-void display_queue(queue *q, view_queue_func *func_ptr) {
+void display_queue(queue *q) {
     /* display all elements
      * time complexity: O(n)
      * space complexity: O(1)
@@ -151,7 +150,7 @@ void display_queue(queue *q, view_queue_func *func_ptr) {
     curr_node = q->front;
 
     while (curr_node != NULL) {
-        func_ptr(curr_node->data);
+        printf("%d ", curr_node->data);
         curr_node = curr_node->next;
     }
     return;

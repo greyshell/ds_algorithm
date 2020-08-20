@@ -122,11 +122,11 @@ void display_stack(stack *s) {
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    stack_node *curr_ptr;
-    curr_ptr = s->top;
+    stack_node *curr_node;
+    curr_node = s->top;
 
-    while (curr_ptr != NULL) {
-        printf("%d ", curr_ptr->data);
-        curr_ptr = curr_ptr->next;
+    while (curr_node != NULL) {
+        printf("%d ", curr_node->data);
+        curr_node = curr_node->next;
     }
 }

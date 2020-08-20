@@ -1,11 +1,10 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of queue
- * data / key -> void pointer
+ * description: queue
  * */
 
-#ifndef QUEUE_SLL_H__
-#define QUEUE_SLL_H__
+#ifndef QUEUE02_H__
+#define QUEUE02_H__
 
 #include "stdbool.h"
 
@@ -40,4 +39,4 @@ bool delete_queue(queue *);
 
 void display_queue(queue *, view_queue_func *);
 
-#endif // QUEUE_SLL_H__
+#endif // QUEUE02_H__

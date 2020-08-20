@@ -19,7 +19,8 @@ FILE(GLOB Stack03 private_libs/stack/stack03.c)
 FILE(GLOB Stack04 private_libs/stack/stack04.c)
 
 # queue
-FILE(GLOB QueueSLL private_libs/queue/queue_sll.c)
+FILE(GLOB Queue private_libs/queue/queue.c)
+FILE(GLOB Queue02 private_libs/queue/queue02.c)
 
 # linked list
 FILE(GLOB SinglyLinkedList private_libs/linked_list/sll.c)
@@ -118,15 +119,18 @@ add_executable(testlib_stack stack/test/testlib_stack.c ${Stack})
 add_executable(testlib_stack02 stack/test/testlib_stack02.c ${Stack02})
 add_executable(testlib_stack03 stack/test/testlib_stack03.c ${Stack03})
 add_executable(testlib_stack04 stack/test/testlib_stack04.c ${Stack04})
-# ------ leetcode ------
+# ------ code ------
 add_executable(reverse_stack stack/reverse_stack.c ${Stack})
 
 
 # queue
-# --- API demo ---
-add_executable(demolib_queue_sll queue/demolib_queue_sll.c ${QueueSLL})
+# ======
 # --- API test ---
-add_executable(testlib_queue_sll queue/testlib_queue_sll.c ${QueueSLL})
+add_executable(testlib_queue queue/test/testlib_queue.c ${Queue})
+add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
+# ------ code ------
+
+
 # string
 # =======
 # --- API demo ---

@@ -41,6 +41,7 @@ int main(void) {
             case 0: // push
                 printf("enter the element to be pushed: \n");
                 scanf("%d", &data);
+                printf("operation: push, data: %d \n", data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
                     printf("%d is successfully pushed \n", data);
@@ -50,6 +51,7 @@ int main(void) {
                 break;
 
             case 1: // pop
+                printf("operation: pop \n");
                 return_type = pop(&my_stack, &out_data);
                 if (return_type == true) {
                     printf("%d is popped \n", out_data);
@@ -59,6 +61,7 @@ int main(void) {
                 break;
 
             case 2: // peek
+                printf("operation: peek \n");
                 return_type = peek(&my_stack, &out_data);
                 if (return_type == true) {
                     printf("stack top element: %d \n", out_data);
@@ -68,17 +71,20 @@ int main(void) {
                 break;
 
             case 3: // get stack size
+                printf("operation: get stack size \n");
                 stack_size = get_stack_size(&my_stack);
                 printf("stack size: %zu", stack_size);
                 break;
 
 
             case 4: // display all elements
+                printf("operation: display \n");
                 display_stack(&my_stack);
                 break;
 
             case 5:
                 // quit from the program
+                printf("operation: delete stack \n");
                 return_type = delete_stack(&my_stack);
                 if (return_type == true) {
                     printf("all stack elements are deleted \n");
