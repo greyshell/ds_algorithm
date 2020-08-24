@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: test XOR doubly linked list
- * data / key -> void pointer
+ * data_arr / key -> void pointer
  * */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ void my_display(void *data) {
 
 bool my_compare(void *data, void *key) {
     /*
-     * data format: int
+     * data_arr format: int
      */
     if (*(int *) data == *(int *) key) {
         return true;

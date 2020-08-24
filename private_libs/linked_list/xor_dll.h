@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: memory efficient / XOR doubly linked list
- * data / key -> void pointer
+ * data_arr / key -> void pointer
  * */
 
 #ifndef XOR_DLL_H__

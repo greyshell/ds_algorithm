@@ -54,7 +54,7 @@ int main(void) {
                 printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
                 scanf("%d", data);
-                printf("operation: enqueue, data: %d \n", *data);
+                printf("operation: enqueue, data_arr: %d \n", *data);
                 return_type = enqueue(&my_queue, (void *) data);  // pass the an address
                 if (return_type == true) {
                     printf("enqueued at rear \n");

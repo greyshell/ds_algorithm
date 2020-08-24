@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: dynamic array based implementation of stack
- * data / key -> void pointer
+ * data_arr / key -> void pointer
  * */
 
 #ifndef STACK_DYN_ARR_H__

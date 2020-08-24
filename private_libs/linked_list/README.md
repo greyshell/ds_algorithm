@@ -2,7 +2,7 @@
   # Description
 
   ## `sll.h`
-  - `singly linked list` implementation where the data is a `void` pointer.
+  - `singly linked list` implementation where the data_arr is a `void` pointer.
 
   **API Details**:
 

@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack, data: int
+ * description: singly linked list based implementation of stack, data_arr: int
  * */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@ size_t get_stack_size(stack *s) {
 
 bool push(stack *s, int data) {
     /*
-     * insert an int data at top
+     * insert an int data_arr at top
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -63,7 +63,7 @@ bool push(stack *s, int data) {
 
 bool pop(stack *s, int *out_data) {
     /*
-     * remove an int data from top
+     * remove an int data_arr from top
      * time complexity: O(1)
      * space complexity: O(1)
      */

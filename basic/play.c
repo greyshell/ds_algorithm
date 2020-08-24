@@ -5,23 +5,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <z3.h>
 
 int main(void) {
-    char ch = '1';
-    int i, j;
-    j = ch - '0'; // ch - 48 ; char digit to integer digit conversion
-    i = (int) ch;  // type casting to get the ascii char
-    printf("number = %d \n", j);
-    printf("ascii = %d \n", i);
+    size_t b = 5;
+    printf("floor = %zu\n", b / 2);
 
-    printf("size = %lu \n", sizeof(void *));
+    printf("floor = %zu\n", (size_t) floor((double) b / 2));
 
-    i = 10;
-    int *p;
-    int **q;
-
-    p = &i;
-    printf("address: %d", *p);
 
     return 0;
 }

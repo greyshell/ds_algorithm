@@ -46,7 +46,7 @@ int main(void) {
                 // enqueue at rear
                 printf("enter the element: \n");
                 scanf("%d", &data);
-                printf("operation: enqueue, data: %d \n", data);
+                printf("operation: enqueue, data_arr: %d \n", data);
                 return_type = enqueue(&my_queue, data);
                 if (return_type == true) {
                     printf("enqueued at rear \n");

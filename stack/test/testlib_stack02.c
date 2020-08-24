@@ -52,7 +52,7 @@ int main(void) {
                 printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
                 scanf("%d", data);
-                printf("operation: push, data: %d \n", *data);
+                printf("operation: push, data_arr: %d \n", *data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
                     printf("pushed \n");

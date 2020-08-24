@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of queue, data: void pointer
+ * description: singly linked list based implementation of queue, data_arr: void pointer
  * */
 
 #include <stdio.h>

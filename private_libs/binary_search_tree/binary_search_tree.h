@@ -62,7 +62,7 @@ node *get_node_in_order_successor(binary_search_tree *);
 // int find_lowest_common_ancestor(binary_search_tree *, bst *, bst *);
 // same as finding the shortest path between two nodes
 
-// count the nos of bst possible with n nodes
+// size the nos of bst possible with n nodes
 
 // check if a given binary tree is bst or not
 

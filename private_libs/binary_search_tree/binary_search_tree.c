@@ -113,7 +113,7 @@ bst_node *get_parent_node(binary_search_tree *t, int data) {
     while (curr_ptr != NULL) {
         prev_ptr = curr_ptr;
         if (data == curr_ptr->data) {
-            // data is already present in the BST
+            // data_arr is already present in the BST
             return NULL;
         } else if (data < curr_ptr->data) {
             curr_ptr = curr_ptr->left;
@@ -143,8 +143,8 @@ void insert_bst(binary_search_tree *t, int data) {
 
     parent_node = get_parent_node(t, data);
     if (parent_node == NULL) {
-        // case: data is already present in the BST
-        printf("\nunable to insert, data is already present in BST");
+        // case: data_arr is already present in the BST
+        printf("\nunable to insert, data_arr is already present in BST");
         return;
     }
 

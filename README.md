@@ -29,13 +29,13 @@ Learning Data Structure and Algorithm using `C`.
     - https://ravindrababuravula.com/interviewpreperation.php
 10. `video`: Chekuri Srikanth Varma
     - https://interviewprep.appliedcourse.com/course/2/Interview-Preparation-Course
-    - https://gate.appliedcourse.com/course/6/data-structures-and-algorithms
+    - https://gate.appliedcourse.com/course/6/data_arr-structures-and-algorithms
 11. `video`: Clément Mihailescu | AlgoExpert
     - https://www.algoexpert.io/questions
 12. `video`: Benyam Ephrem
     - https://coding-interview-class.teachable.com/
 13. `web resource`: `geeksforgeeks.org`
     - https://www.geeksforgeeks.org/fundamentals-of-algorithms/
-    - https://www.geeksforgeeks.org/heap-data-structure/
+    - https://www.geeksforgeeks.org/heap-data_arr-structure/
 14. `video`: William Fiset: https://www.youtube.com/user/purpongie/playlists
 

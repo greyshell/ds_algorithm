@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of stack, data: void pointer
+ * description: singly linked list based implementation of stack, data_arr: void pointer
  * */
 
 #include <stdio.h>

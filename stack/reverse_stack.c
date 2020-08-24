@@ -37,7 +37,7 @@ void reverse_stack(stack *s) {
 }
 
 int main(void) {
-    // test data
+    // test data_arr
     int data[] = {10, 20, 30, 40, 50};
     stack s;
 

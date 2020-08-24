@@ -12,6 +12,9 @@ set(CMAKE_C_STANDARD 99)
 # foo lib
 FILE(GLOB MyFoo private_libs/foo/foo.c)
 
+# heap
+FILE(GLOB MaxHeap private_libs/heap/heap.c)
+
 # stack
 FILE(GLOB Stack private_libs/stack/stack.c)
 FILE(GLOB Stack02 private_libs/stack/stack02.c)
@@ -130,6 +133,12 @@ add_executable(testlib_queue queue/test/testlib_queue.c ${Queue})
 add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
 # ------ code ------
 
+
+# heap
+# ======
+# --- API test ---
+add_executable(testlib_max_heap heap/test/testlib_max_heap.c ${MaxHeap})
+# ------ code ------
 
 # string
 # =======

@@ -6,9 +6,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <z3.h>
 #include "sorting.h"
 
-int find_max(int *arr, int len) {
+static void _swap(int *a, int *b) {
+    /*
+     * time complexity: O(1) | space complexity: O(1)
+     */
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+static int _find_max(int *arr, int len) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
@@ -21,7 +32,7 @@ int find_max(int *arr, int len) {
     return max;
 }
 
-int find_min(int arr[], int len) {
+static int _find_min(int *arr, int len) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
@@ -34,8 +45,16 @@ int find_min(int arr[], int len) {
     return min;
 }
 
+void display_list(int *arr, size_t len) {
+    /*
+     * time complexity: O(n) | space complexity: O(1)
+     */
+    for (int i = 0; i < len; i++) {
+        printf("%d ", arr[i]);
+    }
+}
 
-void counting_sort(int *arr, int *result_array, size_t len) {
+void counting_sort(int *arr, int *output_arr, size_t len) {
     /*
      * property:
      * =========
@@ -48,18 +67,18 @@ void counting_sort(int *arr, int *result_array, size_t len) {
      * - this is not in-place sorting algorithm. however, an another variant uses
      * in-place sort to avoid the auxiliary array in the cost of compromising the stability factor.
      *
-     *
      * time complexity:
      * ================
      * - O(n) -> provided the range of the distinct key values is within a constant
      * factor of the file / input size.
+     *
      * space complexity:
      * =================
      * - a auxiliary array -> O(k) and the output array -> O(n) is required
      *
      */
-    int max = find_max(arr, len); // O(n)
-    int min = find_min(arr, len); // O(n)
+    int max = _find_max(arr, len); // O(n)
+    int min = _find_min(arr, len); // O(n)
     size_t range = max - min + 1;
 
     // dynamically generates the auxiliary array using calloc(), default value is set to 0
@@ -83,7 +102,7 @@ void counting_sort(int *arr, int *result_array, size_t len) {
     // start from picking up the last element
     // then place that element into it's last index of the output array
     for (int i = len - 1; i >= 0; i--) {
-        result_array[auxiliary_array[arr[i] - min]] = arr[i];
+        output_arr[auxiliary_array[arr[i] - min]] = arr[i];
         auxiliary_array[arr[i] - min]--;
     }
 
@@ -108,7 +127,7 @@ void cocktail_sort(int *arr, size_t len) {
         for (int i = right_index; i > left_index; i--) {
             // if the right element is smaller than the left element then perform swap
             if (arr[i] < arr[i - 1]) {
-                swap(&arr[i], &arr[i - 1]);
+                _swap(&arr[i], &arr[i - 1]);
                 is_swapped = 1;
             }
         }
@@ -117,13 +136,14 @@ void cocktail_sort(int *arr, size_t len) {
             // no swap occurs inside the inner loop which means now the array is sorted
             break;
         }
-
+        // resent the is_swapped flag
         is_swapped = 0;
+        // left index has already the min value so increment the pointer
         left_index++;
         // objective: push the highest element to the right most
         for (int i = left_index; i < right_index; i++) {
             if (arr[i] > arr[i + 1]) {
-                swap(&arr[i], &arr[i + 1]);
+                _swap(&arr[i], &arr[i + 1]);
                 is_swapped = 1;
             }
         }
@@ -146,15 +166,14 @@ void bubble_sort(int *arr, size_t len) {
      * - every passes of outer loop, builds up a small sorted array of small elements
      * from left to right.
      * - at any point of time if the program crashes then also we can get a sorted sub-array
-     * where all elements are
-     * placed in their actual positions.
+     * where all elements are placed in their actual positions.
      * - in order to find kth smallest element, we need kth pass of the outer loop -> O(k*n)
-     * - effective on array data structure not linked singly_linked_list
+     * - effective on array data_arr structure not linked list
      * - used for internal sorting: uses the main memory exclusively
      * - stable: preserves the relative order of the duplicate items / keys,
      *      - interchange only occurs when the right_element < left_element
      *      - due to that, for duplicate keys, interchange does not happen
-     * - where cost (in terms of time complexity) of moving data / swaps dominates
+     * - where cost (in terms of time complexity) of moving data_arr / swaps dominates
      * the cost of making comparisons
      * there bubble sort is not a good choice.
      * - cocktail sort is a variation of bubble sort. minor performance improvement through
@@ -188,42 +207,23 @@ void bubble_sort(int *arr, size_t len) {
      *  - takes constant time -> Θ(1): best and worst case space complexities are same.
      */
     int i, j;
-    int is_swapped = 0;
+    bool is_swapped;
 
     for (i = 0; i < len; i++) {
-        is_swapped = 0;
+        is_swapped = false;
         // after the 1st pass of the outer loop, the smallest element bubbles up in the 0th index
         // inner loop is used to compare the adjacent elements
         for (j = len - 1; j > i; j--) {
             // if the right element is smaller than the left element then perform swap
             if (arr[j] < arr[j - 1]) {
-                swap(&arr[j], &arr[j - 1]);
-                is_swapped = 1;
+                _swap(&arr[j], &arr[j - 1]);
+                is_swapped = true;
             }
         }
         // improvement: if the array is sorted then we don't need to perform another iteration
-        if (is_swapped == 0) {
+        if (is_swapped == false) {
             // no swap occurs inside the inner loop which means now the array is sorted
             break;
         }
-    }
-}
-
-void swap(int *a, int *b) {
-    /*
-     * time complexity: O(1) | space complexity: O(1)
-     */
-    int temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-void display_array(int *arr, size_t len) {
-    /*
-     * time complexity: O(n) | space complexity: O(1)
-     */
-    for (int i = 0; i < len; i++) {
-        printf("%d ", arr[i]);
     }
 }

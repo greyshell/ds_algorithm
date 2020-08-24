@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: singly linked list based implementation of queue, data: int
+ * description: singly linked list based implementation of queue, data_arr: int
  * */
 
 #include <stdio.h>

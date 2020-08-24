@@ -41,7 +41,7 @@ int main(void) {
             case 0: // push
                 printf("enter the element to be pushed: \n");
                 scanf("%d", &data);
-                printf("operation: push, data: %d \n", data);
+                printf("operation: push, data_arr: %d \n", data);
                 return_type = push(&my_stack, data);
                 if (return_type == true) {
                     printf("%d is successfully pushed \n", data);

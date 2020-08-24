@@ -18,7 +18,7 @@ void my_display(void *data) {
 
 bool my_compare(void *data, void *key) {
     /*
-     * data format: int
+     * data_arr format: int
      */
     if (*(int *) data == *(int *) key) {
         return true;
@@ -97,7 +97,7 @@ int main(void) {
                 data = (int *) malloc(sizeof(int));
                 scanf("%d", data);
 
-                printf("operation: insert_sll_node_at_head, data: %d \n", *data);
+                printf("operation: insert_sll_node_at_head, data_arr: %d \n", *data);
                 return_type = insert_sll_node_at_head(&my_list, data);
                 if (return_type == true) {
                     printf("inserted \n");
@@ -109,7 +109,7 @@ int main(void) {
                 printf("enter the element: \n");
                 data = (int *) malloc(sizeof(int));
                 scanf("%d", data);
-                printf("operation: insert_sll_node_at_tail, data: %d \n", *data);
+                printf("operation: insert_sll_node_at_tail, data_arr: %d \n", *data);
                 return_type = insert_sll_node_at_tail(&my_list, data);
                 if (return_type == true) {
                     printf("inserted \n");
@@ -125,7 +125,7 @@ int main(void) {
                 printf("enter the index (0 <= k < size): \n");
                 scanf("%zu", &index);
 
-                printf("operation: insert_sll_node_at_index, index: %zu, data: %d \n", index,
+                printf("operation: insert_sll_node_at_index, index: %zu, data_arr: %d \n", index,
                        *data);
                 return_type = insert_sll_node_at_index(&my_list, data, index);
                 if (return_type == true) {

@@ -95,7 +95,7 @@ int main(void) {
                 printf("\nmin element = %d found at %p", temp_node->data, (void *) temp_node);
                 break;
             case 11:
-                // count total nodes
+                // size total nodes
                 break;
 
             case 17:

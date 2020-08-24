@@ -14,7 +14,7 @@ typedef struct {
     int top;
     size_t initial_capacity;
     size_t current_capacity;
-    void **data;
+    void **data_arr;
 } stack;
 
 bool initialize_stack(stack *, size_t);

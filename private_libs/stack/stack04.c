@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of stack, data: int
+ * description: dynamic array based implementation of stack, data_arr: int
  * */
 
 #include <stdio.h>
@@ -8,14 +8,14 @@
 #include "stdbool.h"
 #include "stack04.h"
 
-bool initialize_stack(stack *s, size_t initial_capacity) {
+bool initialize_stack(stack *s, size_t capacity) {
     /*
      * create the stack
      * time complexity: O(1)
      * space complexity: O(1)
      */
     s->top = -1;
-    s->initial_capacity = initial_capacity;
+    s->initial_capacity = capacity;
     s->data_arr = malloc(s->initial_capacity * sizeof(int));
     if (s->data_arr == NULL) {
         return false;
@@ -49,7 +49,7 @@ static bool _doubling_stack(stack *s) {
     /*
      * double up the stack size when it becomes full
      * note: when realloc() is unable to resized, then it creates a new memory block and
-     * copy all the old data into it.
+     * copy all the old data_arr into it.
      * time complexity: O(n) -> worst case
      * space complexity: O(1)
      */
@@ -64,7 +64,7 @@ static bool _doubling_stack(stack *s) {
 
 static bool _halving_stack(stack *s) {
     /*
-     * halving stack size when half of the spaces are empty
+     * halving the size when half of the spaces are empty
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -88,7 +88,7 @@ bool push(stack *s, int data) {
      */
     bool return_type;
 
-    if (s->top == s->current_capacity - 1) {
+    if ((s->top + 1) == s->current_capacity) {
         return_type = _doubling_stack(s);
         if (return_type == false) {
             return false;
