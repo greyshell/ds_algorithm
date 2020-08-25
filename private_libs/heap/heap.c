@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: dynamic array based implementation of heap
+ * description: dynamic array based implementation of heap, datatype: int
  * */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 
 static void _swap_heap_nodes(heap *h, size_t i, size_t j) {
     /*
-     * helper function: _swap_heap_nodes values between two nodes
+     * helper function: swap values between two nodes
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -359,8 +359,8 @@ bool build_heap(heap *h, int *arr, size_t n) {
     // scanning from right to left, bottom to top
     for (i = (n - 1) / 2; i >= 0; i--) {
         heapify_down(h, i);
-        // without this condition i gets the higher value due to unsigned in nature
-        // check if the node is root
+        // i -> unsigned, integer overflow causes infinite loop
+        // stop the heapify_down process and break out from loop when i = root
         if (i == 0) {
             break;
         }
