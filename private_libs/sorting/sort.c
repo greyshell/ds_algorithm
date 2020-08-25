@@ -243,7 +243,7 @@ void bubble_sort(int *arr, size_t n) {
 
 void heap_sort(int *arr, size_t n, bool sort_type) {
     /*
-     * use auxiliary data structure: max heap -> sort type: asc
+     * use auxiliary data structure: max heap, sort_type: true -> asc
      * in-place sorting
      * time complexity: O(n*log(n))
      * space complexity: O(1)
