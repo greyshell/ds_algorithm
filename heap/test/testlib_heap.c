@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of queue
+ * description: test heap
  * */
 
 #include <stdio.h>
