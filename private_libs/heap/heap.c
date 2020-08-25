@@ -169,13 +169,12 @@ static void _heapify_up(heap *h, size_t n) {
     }
 }
 
-static void _heapify_down(heap *h) {
+static void _heapify_down(heap *h, size_t index) {
     /*
      * top down heapify / bubbling down
      * time complexity: O(logN)
      * space complexity: O(1)
      */
-    size_t index = 0;
     if (h->type == true) {
         // max heap logic
         while (has_left_child(h, index)) {
@@ -305,7 +304,7 @@ bool remove_heap(heap *h, int *out_data) {
     *out_data = h->data_arr[0];
     h->data_arr[0] = h->data_arr[h->size - 1];
     h->size--;
-    _heapify_down(h);
+    _heapify_down(h, 0);
     return true;
 }
 
@@ -315,9 +314,11 @@ void display_heap(heap *h) {
      * time complexity: O(n)
      * space complexity: O(1)
      */
-    size_t counter;
-    for (counter = 0; counter < h->size; counter++) {
-        printf("%d ", h->data_arr[counter]);
+    if (h != NULL) {
+        size_t counter;
+        for (counter = 0; counter < h->size; counter++) {
+            printf("%d ", h->data_arr[counter]);
+        }
     }
 }
 
@@ -329,7 +330,38 @@ bool delete_heap(heap *h) {
      */
     if (h != NULL) {
         free(h->data_arr);
+        h = NULL;
         return true;
     }
     return false;
+}
+
+bool build_heap(heap *h, int arr[], size_t n) {
+    /*
+     * heapify an array
+     * time complexity: O(n)
+     * space complexity: O(1)
+     */
+    size_t i;
+    if (h == NULL) {
+        return false;
+    }
+
+    h->initial_capacity = n;
+    for (i = 0; i < n; i++) {
+        h->data_arr[i] = arr[i];
+    }
+
+    h->size = n;
+    // half of the elements are in leaf, so discard those
+    // start from the last level left most element to root
+    for (i = (n - 1) / 2; i >= 0; i--) {
+        _heapify_down(h, i);
+        // without this condition i gets the higher value due to unsigned in nature
+        // check if the node is root
+        if (i == 0) {
+            break;
+        }
+    }
+    return true;
 }

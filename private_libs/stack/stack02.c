@@ -112,6 +112,7 @@ bool delete_stack(stack *s) {
             return false;
         }
     }
+    s = NULL;
     return true;
 }
 

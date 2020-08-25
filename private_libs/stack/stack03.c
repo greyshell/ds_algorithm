@@ -149,6 +149,7 @@ bool delete_stack(stack *s) {
     if (s != NULL) {
         // free up the dynamic array
         free(s->data_arr);
+        s = NULL;
         return true;
     }
     return false;

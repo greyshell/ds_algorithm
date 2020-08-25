@@ -33,4 +33,6 @@ bool delete_heap(heap *);
 
 void display_heap(heap *);
 
+bool build_heap(heap *, int [], size_t);
+
 #endif // HEAP_H__

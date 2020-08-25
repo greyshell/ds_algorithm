@@ -138,6 +138,7 @@ bool delete_queue(queue *q) {
             return false;
         }
     }
+    q = NULL;
     return true;
 }
 
