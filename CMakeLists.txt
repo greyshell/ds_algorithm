@@ -137,7 +137,7 @@ add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
 # heap
 # ======
 # --- API test ---
-add_executable(testlib_max_heap heap/test/testlib_max_heap.c ${MaxHeap})
+add_executable(testlib_heap heap/test/testlib_heap.c ${MaxHeap})
 # ------ code ------
 
 # string

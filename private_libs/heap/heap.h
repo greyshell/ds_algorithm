@@ -10,7 +10,7 @@
 #include "stdbool.h"
 
 typedef struct {
-    bool type;
+    bool type;  // non zero -> max heap
     size_t size;
     size_t initial_capacity;
     size_t current_capacity;
