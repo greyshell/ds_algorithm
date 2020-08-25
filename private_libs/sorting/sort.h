@@ -2,14 +2,18 @@
  * author: greyshell
  * */
 
-#ifndef SORTING_H__
-#define SORTING_H__
+#ifndef SORT_H__
+#define SORT_H__
 
-void display_list(int *arr, size_t len);
+void display_array(int *arr, size_t n);
 
 void bubble_sort(int *, size_t);
 
 void cocktail_sort(int *, size_t);
+
+void counting_sort(int *, int *, size_t);
+
+void heap_sort(int *, size_t, bool);
 
 void selection_sort(int *, size_t);
 
@@ -21,12 +25,8 @@ void quick_sort(int *, int);
 
 void merge_sort(int *, int);
 
-void counting_sort(int *, int *, size_t);
-
 void bucket_sort(int *, int);
 
 void radix_sort(int *, int);
 
-void heap_sort(int *, int);
-
-#endif // _SORTING_H__
+#endif // _SORT_H__

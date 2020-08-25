@@ -13,7 +13,7 @@ set(CMAKE_C_STANDARD 99)
 FILE(GLOB MyFoo private_libs/foo/foo.c)
 
 # heap
-FILE(GLOB MaxHeap private_libs/heap/heap.c)
+FILE(GLOB Heap private_libs/heap/heap.c)
 
 # stack
 FILE(GLOB Stack private_libs/stack/stack.c)
@@ -38,7 +38,7 @@ FILE(GLOB DoublyLinkedList private_libs/linked_list/xor_dll.c)
 # 2-3 tree
 FILE(GLOB MyBST private_libs/binary_search_tree/binary_search_tree.c)
 # sorting
-FILE(GLOB MySorting private_libs/sorting/sorting.c)
+FILE(GLOB Sorting private_libs/sorting/sort.c)
 # hashtable
 FILE(GLOB HASHTABLE private_libs/hash_table/hash.c)
 # ============================================================================================
@@ -110,10 +110,11 @@ add_executable(example_variadic_function basic/variadic_function.c)
 
 # sorting
 # =======
-add_executable(trouble_sort sorting/trouble_sort.c ${MySorting})
-# --- API demo ---
 # --- API test ---
-add_executable(testlib_sort sorting/testlib_sorting.c ${MySorting})
+add_executable(testlib_sort sorting/test/testlib_sort.c ${Sorting} ${Heap})
+# ------ code ------
+add_executable(trouble_sort sorting/trouble_sort.c ${Sorting})
+
 
 # stack
 # ======
@@ -137,7 +138,7 @@ add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
 # heap
 # ======
 # --- API test ---
-add_executable(testlib_heap heap/test/testlib_heap.c ${MaxHeap})
+add_executable(testlib_heap heap/test/testlib_heap.c ${Heap})
 # ------ code ------
 
 # string

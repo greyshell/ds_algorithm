@@ -7,7 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <z3.h>
-#include "sorting.h"
+#include "sort.h"
+#include "../heap/heap.h"
 
 static void _swap(int *a, int *b) {
     /*
@@ -19,12 +20,12 @@ static void _swap(int *a, int *b) {
     *b = temp;
 }
 
-static int _find_max(int *arr, int len) {
+static int _find_max(int *arr, int n) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
     int max = *(arr + 0);  // pointer notation 
-    for (int i = 1; i < len; i++) {
+    for (int i = 1; i < n; i++) {
         if (*(arr + i) > max) {
             max = *(arr + i);
         }
@@ -32,12 +33,12 @@ static int _find_max(int *arr, int len) {
     return max;
 }
 
-static int _find_min(int *arr, int len) {
+static int _find_min(int *arr, int n) {
     /*
      * time complexity: O(1) | space complexity: O(1)
      */
     int min = arr[0];  // array notation
-    for (int i = 1; i < len; i++) {
+    for (int i = 1; i < n; i++) {
         if (arr[i] < min) {
             min = arr[i];
         }
@@ -45,16 +46,16 @@ static int _find_min(int *arr, int len) {
     return min;
 }
 
-void display_list(int *arr, size_t len) {
+void display_array(int *arr, size_t n) {
     /*
      * time complexity: O(n) | space complexity: O(1)
      */
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
 }
 
-void counting_sort(int *arr, int *output_arr, size_t len) {
+void counting_sort(int *arr, int *output_arr, size_t n) {
     /*
      * property:
      * =========
@@ -77,15 +78,15 @@ void counting_sort(int *arr, int *output_arr, size_t len) {
      * - a auxiliary array -> O(k) and the output array -> O(n) is required
      *
      */
-    int max = _find_max(arr, len); // O(n)
-    int min = _find_min(arr, len); // O(n)
+    int max = _find_max(arr, n); // O(n)
+    int min = _find_min(arr, n); // O(n)
     size_t range = max - min + 1;
 
     // dynamically generates the auxiliary array using calloc(), default value is set to 0
     int *auxiliary_array = (int *) calloc(range, sizeof(int));
 
     // pick each key from the array and go to particular index of auxiliary array and track the total count_singly_linked_list
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < n; i++) {
         auxiliary_array[arr[i] - min]++;
     }
 
@@ -101,14 +102,14 @@ void counting_sort(int *arr, int *output_arr, size_t len) {
 
     // start from picking up the last element
     // then place that element into it's last index of the output array
-    for (int i = len - 1; i >= 0; i--) {
+    for (int i = n - 1; i >= 0; i--) {
         output_arr[auxiliary_array[arr[i] - min]] = arr[i];
         auxiliary_array[arr[i] - min]--;
     }
 
 }
 
-void cocktail_sort(int *arr, size_t len) {
+void cocktail_sort(int *arr, size_t n) {
     /*
      * property:
      * =========
@@ -119,13 +120,13 @@ void cocktail_sort(int *arr, size_t len) {
      */
     int is_swapped = 0;
     int left_index = 0;
-    int right_index = len - 1;
+    int right_index = n - 1;
 
     while (1) {
         is_swapped = 0;
         // objective: push the smaller element to the left most
         for (int i = right_index; i > left_index; i--) {
-            // if the right element is smaller than the left element then perform swap
+            // if the right element is smaller than the left element then perform _swap_heap_nodes
             if (arr[i] < arr[i - 1]) {
                 _swap(&arr[i], &arr[i - 1]);
                 is_swapped = 1;
@@ -133,7 +134,7 @@ void cocktail_sort(int *arr, size_t len) {
         }
         // improvement: if the array is sorted then we don't need to perform another iteration
         if (is_swapped == 0) {
-            // no swap occurs inside the inner loop which means now the array is sorted
+            // no _swap_heap_nodes occurs inside the inner loop which means now the array is sorted
             break;
         }
         // resent the is_swapped flag
@@ -149,7 +150,7 @@ void cocktail_sort(int *arr, size_t len) {
         }
 
         if (is_swapped == 0) {
-            // no swap occurs inside the inner loop which means now the array is sorted
+            // no _swap_heap_nodes occurs inside the inner loop which means now the array is sorted
             break;
         }
 
@@ -157,7 +158,7 @@ void cocktail_sort(int *arr, size_t len) {
     }
 }
 
-void bubble_sort(int *arr, size_t len) {
+void bubble_sort(int *arr, size_t n) {
     /*
      * property:
      * =========
@@ -209,12 +210,12 @@ void bubble_sort(int *arr, size_t len) {
     int i, j;
     bool is_swapped;
 
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < n; i++) {
         is_swapped = false;
         // after the 1st pass of the outer loop, the smallest element bubbles up in the 0th index
         // inner loop is used to compare the adjacent elements
-        for (j = len - 1; j > i; j--) {
-            // if the right element is smaller than the left element then perform swap
+        for (j = n - 1; j > i; j--) {
+            // if the right element is smaller than the left element then perform _swap_heap_nodes
             if (arr[j] < arr[j - 1]) {
                 _swap(&arr[j], &arr[j - 1]);
                 is_swapped = true;
@@ -222,8 +223,39 @@ void bubble_sort(int *arr, size_t len) {
         }
         // improvement: if the array is sorted then we don't need to perform another iteration
         if (is_swapped == false) {
-            // no swap occurs inside the inner loop which means now the array is sorted
+            // no _swap_heap_nodes occurs inside the inner loop which means now the array is sorted
             break;
         }
+    }
+}
+
+void heap_sort(int *arr, size_t n, bool sort_type) {
+    /*
+     * use auxiliary data structure: max heap -> sort type: asc
+     * in-place sorting
+     * time complexity: O(n*log(n))
+     * space complexity: O(1)
+     */
+    size_t i;
+    heap h;
+    // initialize the heap
+    h.type = sort_type;
+    h.initial_capacity = n;
+    // point to the existing array for in-memory operation
+    h.data_arr = arr;
+    if (h.data_arr == NULL) {
+        return;
+    }
+    h.initial_capacity = n;
+    h.current_capacity = n;
+    h.size = 0;
+
+    // build the heap: O(log(n))
+    build_heap(&h, arr, n);
+
+    for (i = n - 1; i > 0; i--) {
+        _swap(&arr[0], &arr[i]);
+        h.size--;
+        heapify_down(&h, 0);
     }
 }

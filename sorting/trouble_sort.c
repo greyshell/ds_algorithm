@@ -9,13 +9,13 @@
 bool is_sorted(int arr[], size_t length){
     bool is_swapped = false;
     for (int j = length - 1; j > 0; j--) {
-        // if the right element is smaller than the left element then perform swap
+        // if the right element is smaller than the left element then perform _swap_heap_nodes
         if (arr[j] < arr[j - 1]) {
             is_swapped = true;
         }
     }
     if (is_swapped == false) {
-        // no swap occurs inside the loop which means the array is sorted
+        // no _swap_heap_nodes occurs inside the loop which means the array is sorted
         return true;
     }
     return false;

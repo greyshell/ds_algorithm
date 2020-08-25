@@ -41,10 +41,10 @@ int main(void) {
 
     delete_heap(&h);
 
-    printf("\nanother test \n");
-    heap h1;
+    printf("\ntest: build heap \n");
 
-    int a[7] = {5, 10, 30, 20, 35, 40, 15};
+    int a[7] = {10, 20, 30, 40, 150, 70, 160};
+    heap h1;
     // display the array
     for (int i = 0; i < 7; i++) {
         printf("%d ", a[i]);
@@ -58,6 +58,7 @@ int main(void) {
     printf("\n");
     peek_heap(&h1, &out_data);
     printf("peek = %d \n", out_data);
+    delete_heap(&h1);
 
     return 0;
 }

@@ -8,9 +8,9 @@
 #include "stdbool.h"
 #include "heap.h"
 
-static void swap(heap *h, size_t i, size_t j) {
+static void _swap_heap_nodes(heap *h, size_t i, size_t j) {
     /*
-     * helper function: swap values between two nodes
+     * helper function: _swap_heap_nodes values between two nodes
      * time complexity: O(1)
      * space complexity: O(1)
      */
@@ -19,7 +19,7 @@ static void swap(heap *h, size_t i, size_t j) {
     h->data_arr[j] = temp;
 }
 
-static size_t get_left_child_index(size_t parent_index) {
+static size_t _get_left_child_index(size_t parent_index) {
     /*
      * helper function: get the left child index
      * time complexity: O(1)
@@ -28,7 +28,7 @@ static size_t get_left_child_index(size_t parent_index) {
     return 2 * parent_index + 1;
 }
 
-static size_t get_right_child_index(size_t parent_index) {
+static size_t _get_right_child_index(size_t parent_index) {
     /*
      * helper function: get the right child
      * time complexity: O(1)
@@ -37,7 +37,7 @@ static size_t get_right_child_index(size_t parent_index) {
     return 2 * parent_index + 2;
 }
 
-static size_t get_parent_index(size_t child_index) {
+static size_t _get_parent_index(size_t child_index) {
     /*
      * helper function: get the parent index
      * time complexity: O(1)
@@ -46,67 +46,67 @@ static size_t get_parent_index(size_t child_index) {
     return (child_index - 1) / 2;
 }
 
-static bool has_left_child(heap *h, size_t index) {
+static bool _has_left_child(heap *h, size_t index) {
     /*
      * helper function: check if the current node has any left child
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (get_left_child_index(index) < h->size) {
+    if (_get_left_child_index(index) < h->size) {
         return true;
     }
     return false;
 }
 
-static bool has_right_child(heap *h, size_t index) {
+static bool _has_right_child(heap *h, size_t index) {
     /*
      * helper function: check if the current node has any right child
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (get_right_child_index(index) < h->size) {
+    if (_get_right_child_index(index) < h->size) {
         return true;
     }
     return false;
 }
 
-static bool has_parent(size_t index) {
+static bool _has_parent(size_t index) {
     /*
      * helper function: check if the current node has any parent
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (index != 0 && get_parent_index(index) >= 0) {
+    if (index != 0 && _get_parent_index(index) >= 0) {
         return true;
     }
     return false;
 }
 
-static size_t left_child(heap *h, size_t index) {
+static size_t _left_child(heap *h, size_t index) {
     /*
      * helper function: get the left child of a node
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    return h->data_arr[get_left_child_index(index)];
+    return h->data_arr[_get_left_child_index(index)];
 }
 
-static size_t right_child(heap *h, size_t index) {
+static size_t _right_child(heap *h, size_t index) {
     /*
      * helper function: get the right child of a node
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    return h->data_arr[get_right_child_index(index)];
+    return h->data_arr[_get_right_child_index(index)];
 }
 
-static size_t parent(heap *h, size_t index) {
+static size_t _parent(heap *h, size_t index) {
     /*
      * helper function: get the parent of a node
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    return h->data_arr[get_parent_index(index)];
+    return h->data_arr[_get_parent_index(index)];
 }
 
 static bool _doubling_heap(heap *h) {
@@ -154,22 +154,22 @@ static void _heapify_up(heap *h, size_t n) {
 
     if (h->type == true) {
         // max heap logic
-        while (has_parent(index) && h->data_arr[index] > parent(h, index)) {
-            p_index = get_parent_index(index);
-            swap(h, p_index, index);
-            index = get_parent_index(index);
+        while (_has_parent(index) && h->data_arr[index] > _parent(h, index)) {
+            p_index = _get_parent_index(index);
+            _swap_heap_nodes(h, p_index, index);
+            index = _get_parent_index(index);
         }
     } else {
         // min heap logic
-        while (has_parent(index) && h->data_arr[index] < parent(h, index)) {
-            p_index = get_parent_index(index);
-            swap(h, p_index, index);
-            index = get_parent_index(index);
+        while (_has_parent(index) && h->data_arr[index] < _parent(h, index)) {
+            p_index = _get_parent_index(index);
+            _swap_heap_nodes(h, p_index, index);
+            index = _get_parent_index(index);
         }
     }
 }
 
-static void _heapify_down(heap *h, size_t index) {
+void heapify_down(heap *h, size_t index) {
     /*
      * top down heapify / bubbling down
      * time complexity: O(logN)
@@ -177,34 +177,34 @@ static void _heapify_down(heap *h, size_t index) {
      */
     if (h->type == true) {
         // max heap logic
-        while (has_left_child(h, index)) {
-            size_t greater_child_index = get_left_child_index(index);
+        while (_has_left_child(h, index)) {
+            size_t greater_child_index = _get_left_child_index(index);
 
-            if (has_right_child(h, index) && right_child(h, index) > left_child(h, index)) {
-                greater_child_index = get_right_child_index(index);
+            if (_has_right_child(h, index) && _right_child(h, index) > _left_child(h, index)) {
+                greater_child_index = _get_right_child_index(index);
             }
 
             if (h->data_arr[index] > h->data_arr[greater_child_index]) {
                 break;
             } else {
-                swap(h, index, greater_child_index);
+                _swap_heap_nodes(h, index, greater_child_index);
             }
             // move to the node we just swapped down
             index = greater_child_index;
         }
     } else {
         // min heap logic
-        while (has_left_child(h, index)) {
-            size_t smaller_child_index = get_left_child_index(index);
+        while (_has_left_child(h, index)) {
+            size_t smaller_child_index = _get_left_child_index(index);
 
-            if (has_right_child(h, index) && right_child(h, index) < left_child(h, index)) {
-                smaller_child_index = get_right_child_index(index);
+            if (_has_right_child(h, index) && _right_child(h, index) < _left_child(h, index)) {
+                smaller_child_index = _get_right_child_index(index);
             }
 
             if (h->data_arr[index] < h->data_arr[smaller_child_index]) {
                 break;
             } else {
-                swap(h, index, smaller_child_index);
+                _swap_heap_nodes(h, index, smaller_child_index);
             }
             // move to the node we just swapped down
             index = smaller_child_index;
@@ -258,7 +258,7 @@ bool is_empty_heap(heap *h) {
 bool insert_heap(heap *h, int data) {
     /*
      * insert an element in the heap
-     * time complexity: O(logN)
+     * time complexity: O(log(n))
      * space complexity: O(1)
      */
     bool return_type;
@@ -295,7 +295,7 @@ bool peek_heap(heap *h, int *out_data) {
 bool remove_heap(heap *h, int *out_data) {
     /*
      * remove an element from the heap
-     * time complexity: O(logN)
+     * time complexity: O(log(n))
      * space complexity: O(1)
      */
     if (is_empty_heap(h) == true) {
@@ -304,7 +304,7 @@ bool remove_heap(heap *h, int *out_data) {
     *out_data = h->data_arr[0];
     h->data_arr[0] = h->data_arr[h->size - 1];
     h->size--;
-    _heapify_down(h, 0);
+    heapify_down(h, 0);
     return true;
 }
 
@@ -336,9 +336,10 @@ bool delete_heap(heap *h) {
     return false;
 }
 
-bool build_heap(heap *h, int arr[], size_t n) {
+bool build_heap(heap *h, int *arr, size_t n) {
     /*
-     * heapify an array
+     * heapify an array, bottom up approach
+     * start from bottom and check if that node and its children maintains the heap property
      * time complexity: O(n)
      * space complexity: O(1)
      */
@@ -353,10 +354,11 @@ bool build_heap(heap *h, int arr[], size_t n) {
     }
 
     h->size = n;
-    // half of the elements are in leaf, so discard those
+    // 1/2 elements are leaf nodes and those always satisfy the heap property, so discard those
     // start from the last level left most element to root
+    // scanning from right to left, bottom to top
     for (i = (n - 1) / 2; i >= 0; i--) {
-        _heapify_down(h, i);
+        heapify_down(h, i);
         // without this condition i gets the higher value due to unsigned in nature
         // check if the node is root
         if (i == 0) {

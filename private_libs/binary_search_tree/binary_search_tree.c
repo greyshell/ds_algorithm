@@ -317,7 +317,7 @@ void delete_bst(binary_search_tree *t, int data) {
     else{
         // default: find in-order successor / min of the right sub tree
         in_order_successor = get_node_in_order_successor(curr_node->right);
-        // swap the keys
+        // _swap_heap_nodes the keys
         curr_node->data = in_order_successor->data;
         // parent_of_in_order_successor = get_parent_node_bst()
         // in_order_successor->right;
