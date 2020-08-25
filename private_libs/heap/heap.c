@@ -10,7 +10,7 @@
 
 static void swap(heap *h, size_t i, size_t j) {
     /*
-     * helper function: swap values
+     * helper function: swap values between two nodes
      * time complexity: O(1)
      * space complexity: O(1)
      */

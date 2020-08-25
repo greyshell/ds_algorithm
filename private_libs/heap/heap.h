@@ -1,6 +1,6 @@
 /*
  * author: greyshell
- * description: max heap
+ * description: heap
  * */
 
 #ifndef HEAP_H__
