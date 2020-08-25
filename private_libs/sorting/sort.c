@@ -82,6 +82,10 @@ void counting_sort(int *arr, int *output_arr, size_t n) {
     int min = _find_min(arr, n); // O(n)
     size_t range = max - min + 1;
 
+    if (arr == NULL || output_arr == NULL) {
+        return;
+    }
+
     // dynamically generates the auxiliary array using calloc(), default value is set to 0
     int *auxiliary_array = (int *) calloc(range, sizeof(int));
 
@@ -121,6 +125,10 @@ void cocktail_sort(int *arr, size_t n) {
     int is_swapped = 0;
     int left_index = 0;
     int right_index = n - 1;
+
+    if (arr == NULL) {
+        return;
+    }
 
     while (1) {
         is_swapped = 0;
@@ -210,6 +218,10 @@ void bubble_sort(int *arr, size_t n) {
     int i, j;
     bool is_swapped;
 
+    if (arr == NULL) {
+        return;
+    }
+
     for (i = 0; i < n; i++) {
         is_swapped = false;
         // after the 1st pass of the outer loop, the smallest element bubbles up in the 0th index
@@ -238,14 +250,16 @@ void heap_sort(int *arr, size_t n, bool sort_type) {
      */
     size_t i;
     heap h;
-    // initialize the heap
-    h.type = sort_type;
-    h.initial_capacity = n;
-    // point to the existing array for in-memory operation
-    h.data_arr = arr;
-    if (h.data_arr == NULL) {
+
+    if (arr == NULL) {
         return;
     }
+
+    // initialize the heap
+    h.type = sort_type;
+    // assign the existing array for in-place sorting
+    h.data_arr = arr;
+
     h.initial_capacity = n;
     h.current_capacity = n;
     h.size = 0;
