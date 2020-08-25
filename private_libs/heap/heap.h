@@ -10,11 +10,12 @@
 #include "stdbool.h"
 
 typedef struct {
-    bool type;  // non zero -> max heap
+    bool type;  // true: max_heap, false: min_heap
     size_t size;
     size_t initial_capacity;
     size_t current_capacity;
     int *data_arr;
+    bool is_called_build_heap;  // used to attach an existing array during build_heap()
 } heap;
 
 bool initialize_heap(heap *h, size_t, bool);
@@ -33,7 +34,7 @@ bool delete_heap(heap *);
 
 void display_heap(heap *);
 
-bool build_heap(heap *, int *, size_t);
+bool build_heap(heap *, bool, int *, size_t);
 
 // exposing heapify_down() for heap_sort() defined in sorting/sort.c
 void heapify_down(heap *, size_t);

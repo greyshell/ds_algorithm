@@ -226,6 +226,7 @@ bool initialize_heap(heap *h, size_t capacity, bool type) {
     h->initial_capacity = capacity;
     h->current_capacity = capacity;
     h->size = 0;
+    h->is_called_build_heap = false;
     return true;
 }
 
@@ -329,14 +330,17 @@ bool delete_heap(heap *h) {
      * space complexity: O(1)
      */
     if (h != NULL) {
-        free(h->data_arr);
+        if (h->is_called_build_heap != true) {
+            free(h->data_arr);
+        }
+        // security: do I need to clear other structure variables
         h = NULL;
         return true;
     }
     return false;
 }
 
-bool build_heap(heap *h, int *arr, size_t n) {
+bool build_heap(heap *h, bool type, int *arr, size_t n) {
     /*
      * heapify an array, bottom up approach
      * start from bottom and check if that node and its children maintains the heap property
@@ -344,16 +348,18 @@ bool build_heap(heap *h, int *arr, size_t n) {
      * space complexity: O(1)
      */
     size_t i;
-    if (h == NULL) {
+
+    if (h == NULL || arr == NULL) {
         return false;
     }
 
+    h->is_called_build_heap = true;
+    h->data_arr = arr;
+    h->type = type; // non zero value means max heap
     h->initial_capacity = n;
-    for (i = 0; i < n; i++) {
-        h->data_arr[i] = arr[i];
-    }
-
+    h->current_capacity = n;
     h->size = n;
+
     // 1/2 elements are leaf nodes and those always satisfy the heap property, so discard those
     // start from the last level left most element to root
     // scanning from right to left, bottom to top

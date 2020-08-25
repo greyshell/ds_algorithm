@@ -51,14 +51,19 @@ int main(void) {
     }
     printf("\n");
 
-    initialize_heap(&h1, initial_capacity, true);
-
-    build_heap(&h1, a, 7);
+    // initialize_heap(&h1, 3, true);
+    build_heap(&h1, true, a, 7);
     display_heap(&h1);
     printf("\n");
     peek_heap(&h1, &out_data);
     printf("peek = %d \n", out_data);
     delete_heap(&h1);
+
+    // display the array: heap structure deleted
+    for (int i = 0; i < 7; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
 
     return 0;
 }

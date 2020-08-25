@@ -255,21 +255,13 @@ void heap_sort(int *arr, size_t n, bool sort_type) {
         return;
     }
 
-    // initialize the heap
-    h.type = sort_type;
-    // assign the existing array for in-place sorting
-    h.data_arr = arr;
-
-    h.initial_capacity = n;
-    h.current_capacity = n;
-    h.size = 0;
-
     // build the heap: O(log(n))
-    build_heap(&h, arr, n);
+    build_heap(&h, sort_type, arr, n);
 
     for (i = n - 1; i > 0; i--) {
         _swap(&arr[0], &arr[i]);
         h.size--;
         heapify_down(&h, 0);
     }
+    delete_heap(&h);
 }
