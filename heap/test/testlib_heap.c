@@ -19,12 +19,12 @@ int main(void) {
     printf("create the heap \n");
     initialize_heap(&h, initial_capacity, true);
 
-    insert_heap(&h, 4);
-    insert_heap(&h, 2);
-    insert_heap(&h, 3);
-    insert_heap(&h, 9);
-    insert_heap(&h, 7);
-    insert_heap(&h, 9);
+    push_heap(&h, 4);
+    push_heap(&h, 2);
+    push_heap(&h, 3);
+    push_heap(&h, 9);
+    push_heap(&h, 7);
+    push_heap(&h, 9);
     peek_heap(&h, &out_data);
     printf("peek = %d \n", out_data);
     display_heap(&h);
@@ -33,7 +33,7 @@ int main(void) {
     get_heap_size(&h, &heap_size);
     printf("heap size: %zu \n", heap_size);
 
-    remove_heap(&h, &out_data);
+    pop_heap(&h, &out_data);
     printf("removed: %d \n", out_data);
 
     display_heap(&h);

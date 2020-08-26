@@ -147,7 +147,7 @@ static bool _halving_heap(heap *h) {
 static void _heapify_up(heap *h, size_t n) {
     /*
      * bottom up heapify / bubbling up
-     * time complexity: O(logN)
+     * time complexity: O(log(n))
      * space complexity: O(1)
      */
     size_t p_index, index = n;
@@ -172,7 +172,7 @@ static void _heapify_up(heap *h, size_t n) {
 void heapify_down(heap *h, size_t index) {
     /*
      * top down heapify / bubbling down
-     * time complexity: O(logN)
+     * time complexity: O(log(n))
      * space complexity: O(1)
      */
     if (h->type == true) {
@@ -256,7 +256,7 @@ bool is_empty_heap(heap *h) {
     return false;
 }
 
-bool insert_heap(heap *h, int data) {
+bool push_heap(heap *h, int data) {
     /*
      * insert an element in the heap
      * time complexity: O(log(n))
@@ -293,7 +293,7 @@ bool peek_heap(heap *h, int *out_data) {
     return true;
 }
 
-bool remove_heap(heap *h, int *out_data) {
+bool pop_heap(heap *h, int *out_data) {
     /*
      * remove an element from the heap
      * time complexity: O(log(n))
@@ -332,9 +332,9 @@ bool delete_heap(heap *h) {
     if (h != NULL) {
         if (h->is_called_build_heap != true) {
             free(h->data_arr);
+            // prevent to leak address from stack
+            h->data_arr = NULL;
         }
-        // security: do I need to clear other structure variables
-        h = NULL;
         return true;
     }
     return false;
@@ -363,7 +363,7 @@ bool build_heap(heap *h, bool type, int *arr, size_t n) {
     // 1/2 elements are leaf nodes and those always satisfy the heap property, so discard those
     // start from the last level left most element to root
     // scanning from right to left, bottom to top
-    for (i = (n - 1) / 2; i >= 0; i--) {
+    for (i = (n - 1) / 2;; i--) {
         heapify_down(h, i);
         // i -> unsigned, integer overflow causes infinite loop
         // stop the heapify_down process and break out from loop when i = root
