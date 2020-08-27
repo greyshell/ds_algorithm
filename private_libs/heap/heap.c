@@ -154,14 +154,14 @@ static void _heapify_up(heap *h, size_t n) {
 
     if (h->type == true) {
         // max heap logic
-        while (_has_parent(index) && h->data_arr[index] > _parent(h, index)) {
+        while (_has_parent(index) && (h->data_arr[index] > _parent(h, index))) {
             p_index = _get_parent_index(index);
             _swap_heap_nodes(h, p_index, index);
             index = _get_parent_index(index);
         }
     } else {
         // min heap logic
-        while (_has_parent(index) && h->data_arr[index] < _parent(h, index)) {
+        while (_has_parent(index) && (h->data_arr[index] < _parent(h, index))) {
             p_index = _get_parent_index(index);
             _swap_heap_nodes(h, p_index, index);
             index = _get_parent_index(index);
@@ -180,11 +180,11 @@ void heapify_down(heap *h, size_t index) {
         while (_has_left_child(h, index)) {
             size_t greater_child_index = _get_left_child_index(index);
 
-            if (_has_right_child(h, index) && _right_child(h, index) > _left_child(h, index)) {
+            if (_has_right_child(h, index) && (_right_child(h, index) > _left_child(h, index))) {
                 greater_child_index = _get_right_child_index(index);
             }
 
-            if (h->data_arr[index] > h->data_arr[greater_child_index]) {
+            if (h->data_arr[index] >= h->data_arr[greater_child_index]) {
                 break;
             } else {
                 _swap_heap_nodes(h, index, greater_child_index);
@@ -197,11 +197,11 @@ void heapify_down(heap *h, size_t index) {
         while (_has_left_child(h, index)) {
             size_t smaller_child_index = _get_left_child_index(index);
 
-            if (_has_right_child(h, index) && _right_child(h, index) < _left_child(h, index)) {
+            if (_has_right_child(h, index) && (_right_child(h, index) < _left_child(h, index))) {
                 smaller_child_index = _get_right_child_index(index);
             }
 
-            if (h->data_arr[index] < h->data_arr[smaller_child_index]) {
+            if (h->data_arr[index] <= h->data_arr[smaller_child_index]) {
                 break;
             } else {
                 _swap_heap_nodes(h, index, smaller_child_index);
@@ -361,7 +361,7 @@ bool build_heap(heap *h, bool type, int *arr, size_t n) {
     h->size = n;
 
     // 1/2 elements are leaf nodes and those always satisfy the heap property, so discard those
-    // start from the last level left most element to root
+    // start from the last level left most element and iterate to root
     // scanning from right to left, bottom to top
     for (i = (n - 1) / 2;; i--) {
         heapify_down(h, i);
