@@ -230,20 +230,6 @@ bool initialize_heap(heap *h, size_t capacity, bool type) {
     return true;
 }
 
-bool get_heap_size(heap *h, size_t *out_data) {
-    /*
-     * get the heap size
-     * time complexity: O(1)
-     * space complexity: O(1)
-     */
-    if (is_empty_heap(h)) {
-        return false;
-    }
-    *out_data = h->size;
-    return true;
-}
-
-
 bool is_empty_heap(heap *h) {
     /*
      * check if the heap is empty
@@ -255,6 +241,20 @@ bool is_empty_heap(heap *h) {
     }
     return false;
 }
+
+bool get_heap_size(heap *h, size_t *out_data) {
+    /*
+     * get the heap size
+     * time complexity: O(1)
+     * space complexity: O(1)
+     */
+    if (is_empty_heap(h) == true) {
+        return false;
+    }
+    *out_data = h->size;
+    return true;
+}
+
 
 bool push_heap(heap *h, int data) {
     /*
@@ -299,6 +299,7 @@ bool pop_heap(heap *h, int *out_data) {
      * time complexity: O(log(n))
      * space complexity: O(1)
      */
+    bool return_type;
     if (is_empty_heap(h) == true) {
         return false;
     }
@@ -306,6 +307,13 @@ bool pop_heap(heap *h, int *out_data) {
     h->data_arr[0] = h->data_arr[h->size - 1];
     h->size--;
     heapify_down(h, 0);
+
+    if (h->size < h->current_capacity / 2) {
+        return_type = _halving_heap(h);
+        if (return_type == false) {
+            return false;
+        }
+    }
     return true;
 }
 

@@ -58,7 +58,7 @@ bool enqueue(queue *q, void *data) {
     temp_node->next = NULL;
 
     // special case: check if the inserting node is the 1st node
-    if (is_empty_queue(q)) {
+    if (is_empty_queue(q) == true) {
         q->rear = temp_node;
         q->front = temp_node;
     } else {
@@ -79,7 +79,7 @@ bool dequeue(queue *q, void **out_data) {
      */
     queue_node *temp_node;
 
-    if (is_empty_queue(q)) {
+    if (is_empty_queue(q) == true) {
         return false;
     }
 
@@ -104,7 +104,7 @@ bool peek_at_front(queue *q, void **out_data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (is_empty_queue(q)) {
+    if (is_empty_queue(q) == true) {
         return false;
     }
     *out_data = q->front->data;
@@ -117,7 +117,7 @@ bool peek_at_rear(queue *q, void **out_data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (is_empty_queue(q)) {
+    if (is_empty_queue(q) == true) {
         return false;
     }
     *out_data = q->rear->data;
@@ -132,13 +132,12 @@ bool delete_queue(queue *q) {
     bool return_type;
     void *out_data;
 
-    while (is_empty_queue(q) != true) {
+    while (is_empty_queue(q) == false) {
         return_type = dequeue(q, &out_data);
         if (return_type == false) {
             return false;
         }
     }
-    q = NULL;
     return true;
 }
 

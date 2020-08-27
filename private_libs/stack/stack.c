@@ -69,7 +69,7 @@ bool pop(stack *s, int *out_data) {
      */
     stack_node *temp_node;
     // check if the stack is empty
-    if (is_empty_stack(s)) {
+    if (is_empty_stack(s) == true) {
         printf("stack is empty \n");
         return false;
     }
@@ -91,7 +91,7 @@ bool peek(stack *s, int *out_data) {
      * space complexity: O(1)
      */
     // check if the stack is empty
-    if (is_empty_stack(s)) {
+    if (is_empty_stack(s) == true) {
         return false;
     }
     *out_data = s->top->data;
@@ -107,13 +107,12 @@ bool delete_stack(stack *s) {
     bool return_type;
     int out_data;
 
-    while (s->top != NULL) {
+    while (is_empty_stack(s) == false) {
         return_type = pop(s, &out_data);
         if (return_type == false) {
             return false;
         }
     }
-    s = NULL;
     return true;
 }
 

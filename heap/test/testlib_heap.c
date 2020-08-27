@@ -17,14 +17,32 @@ int main(void) {
 
     // initialize the queue
     printf("create the heap \n");
-    initialize_heap(&h, initial_capacity, true);
+    initialize_heap(&h, 1, true);
+    printf("heap capacity: %zu \n", h.current_capacity);
 
     push_heap(&h, 4);
     push_heap(&h, 2);
     push_heap(&h, 3);
+    printf("heap capacity: %zu \n", h.current_capacity);
+    pop_heap(&h, &out_data);
+    printf("heap capacity: %zu \n", h.current_capacity);
+    pop_heap(&h, &out_data);
+    printf("heap capacity: %zu \n", h.current_capacity);
+    pop_heap(&h, &out_data);
+    pop_heap(&h, &out_data);
+    pop_heap(&h, &out_data);
+    printf("heap capacity: %zu \n", h.current_capacity);
+    pop_heap(&h, &out_data);
+    pop_heap(&h, &out_data);
+    printf("---- \n");
+
     push_heap(&h, 9);
     push_heap(&h, 7);
     push_heap(&h, 9);
+
+    push_heap(&h, 0);
+    push_heap(&h, 10);
+    push_heap(&h, 20);
     peek_heap(&h, &out_data);
     printf("peek = %d \n", out_data);
     display_heap(&h);
@@ -32,13 +50,17 @@ int main(void) {
 
     get_heap_size(&h, &heap_size);
     printf("heap size: %zu \n", heap_size);
+    printf("heap capacity: %zu \n", h.current_capacity);
 
+    pop_heap(&h, &out_data);
     pop_heap(&h, &out_data);
     printf("removed: %d \n", out_data);
 
+    printf("heap capacity: %zu \n", h.current_capacity);
     display_heap(&h);
     printf("\n");
 
+    printf("heap ptr: %p \n", &h);
     delete_heap(&h);
 
     printf("\ntest: build heap \n");

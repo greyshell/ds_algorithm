@@ -111,7 +111,7 @@ bool pop(stack *s, void **out_data) {
      */
     bool return_type;
 
-    if (is_empty_stack(s)) {
+    if (is_empty_stack(s) == true) {
         return false;
     }
 
@@ -132,7 +132,7 @@ bool peek(stack *s, void **out_data) {
      * time complexity: O(1)
      * space complexity: O(1)
      */
-    if (s->top == -1) {
+    if (is_empty_stack(s) == true) {
         return false;
     }
 
@@ -149,7 +149,7 @@ bool delete_stack(stack *s) {
     if (s != NULL) {
         // free up the dynamic array
         free(s->data_arr);
-        s = NULL;
+        s->data_arr = NULL;
         return true;
     }
     return false;
