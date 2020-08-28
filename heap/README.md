@@ -6,7 +6,7 @@
 Solution 1: 
 - build the max heap from that array -> O(n)
 - pop out the max element k times
-- time complexity:  O(k*log(n)), effective when k << n
+- time complexity:  O(n + k*log(n))
 - space complexity: O(1)
 
 Solution 2:
@@ -17,11 +17,8 @@ Solution 2:
 Solution 3:
 - create a min heap of size k
 - iterate the array element and insert into the heap
-- before insertion, check if the heap is full, then pop the min element then insert
-- in this approach, when we finish scanning nth element, by that time, we'll be already discarded
- (n - k) min elements and the heap contains the top k min element from the last => which are
-  basically k largest elements.
-- time complexity: O(n*log(k)), effective when k tends to n
+- after push check if the heap overflows, then pop the item
+- time complexity: O(n*log(k)), O(log(k) -> 1
 - space complexity: O(k)
 ```
     
