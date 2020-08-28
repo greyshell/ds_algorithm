@@ -140,6 +140,8 @@ add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
 # --- API test ---
 add_executable(testlib_heap heap/test/testlib_heap.c ${Heap})
 # ------ code ------
+add_executable(kth_max_elements_array heap/kth_max_elements_array.c ${Heap})
+
 
 # string
 # =======
