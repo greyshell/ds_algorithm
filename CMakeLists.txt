@@ -34,6 +34,7 @@ FILE(GLOB DoublyLinkedList private_libs/linked_list/xor_dll.c)
 # skip list
 # binary search tree
 # rb tree
+FILE(GLOB RBT private_libs/rbt/rbt.c)
 # avl tree
 # 2-3 tree
 FILE(GLOB MyBST private_libs/binary_search_tree/binary_search_tree.c)
@@ -99,6 +100,7 @@ add_executable(testlib_sll linked_list/testlib_sll.c ${SinglyLinkedList})
 add_executable(testlib_foo basic/testlib_foo.c ${MyFoo})
 add_executable(test basic/test.c)
 add_executable(play basic/play.c)
+add_executable(prob01_nayan basic/prob01_nayan.c)
 add_executable(quine basic/quine.c)
 add_executable(concept basic/variable_size.c)
 add_executable(example_variadic_function basic/variadic_function.c)
@@ -141,6 +143,13 @@ add_executable(testlib_queue02 queue/test/testlib_queue02.c ${Queue02})
 add_executable(testlib_heap heap/test/testlib_heap.c ${Heap})
 # ------ code ------
 add_executable(kth_largest_elements_array heap/kth_largest_elements_array.c ${Heap})
+
+
+# rbt
+# ======
+# --- API test ---
+add_executable(testlib_rbt rbt/test/testlib_rbt.c ${RBT} ${Queue})
+# ------ code ------
 
 
 # string

@@ -1,9 +1,21 @@
 # Problems on Heap
 
 
-##### Find k largest elements in an array
+##### Merge k Sorted linked list
+
 ```
-Solution 1: 
+Solution 1:
+- create a min heap of size k.
+- pick the first element from each linked list and push into the heap.
+- when the heap is full, pop the min item.
+- pick the next item from the same array and push it into the heap
+```
+
+
+##### Find k largest elements in an array
+
+```
+Solution 1:
 - build the max heap from that array -> O(n)
 - pop out the max element k times
 - time complexity:  O(n + k*log(n))
@@ -21,4 +33,3 @@ Solution 3:
 - time complexity: O(n*log(k)), O(log(k) -> 1
 - space complexity: O(k)
 ```
-    
