@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include "../private_libs/stack/stack.h"
+#include "../liquid_oxygen/stack/stack.h"
 
 void _insert_at_bottom(stack *s, int data) {
     /*
@@ -37,7 +37,7 @@ void reverse_stack(stack *s) {
 }
 
 int main(void) {
-    // test data_arr
+    // tests data_arr
     int data[] = {10, 20, 30, 40, 50};
     stack s;
 

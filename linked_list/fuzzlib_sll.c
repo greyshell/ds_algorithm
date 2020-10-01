@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <string.h>
-#include "../private_libs/linked_list/sll.h"
+#include "../liquid_oxygen/linked_list/sll.h"
 
 
 // helper functions

@@ -3,7 +3,7 @@
  * description: fuzz the singly linked list based stack implementation through AFL
  * */
 
-// make -f fuzz_lib_with_afl SRC_FLD=stack/test WRAPPER_PROG=fuzzlib_stack02 LIB_FLD=stack LIB=stack02
+// make -f fuzz_lib_with_afl SRC_FLD=stack/tests WRAPPER_PROG=fuzzlib_stack02 LIB_FLD=stack LIB=stack02
 
 #include <stdio.h>
 #include "stdbool.h"
@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../../private_libs/stack/stack02.h"
+#include "../../liquid_oxygen/stack/stack02.h"
 
 // helper functions for fuzzing
 void readn(void *s, int n) {

@@ -1,13 +1,13 @@
 /*
  * author: greyshell
- * description: test heap
+ * description: tests heap
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
 
-#include "../../private_libs/rbt/rbt.h"
+#include "../../liquid_oxygen/rbt/rbt.h"
 
 
 int main(void) {

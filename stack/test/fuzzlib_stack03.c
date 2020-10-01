@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../../private_libs/stack/stack03.h"
+#include "../../liquid_oxygen/stack/stack03.h"
 
 // helper functions
 void readn(void *s, int n) {

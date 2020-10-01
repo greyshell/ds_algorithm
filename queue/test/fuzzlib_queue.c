@@ -1,7 +1,7 @@
 /*
  * author: greyshell
  * description: fuzz queue
- * make -f fuzz_lib_with_afl SRC_FLD=queue/test WRAPPER_PROG=fuzzlib_queue LIB_FLD=queue
+ * make -f fuzz_lib_with_afl SRC_FLD=queue/tests WRAPPER_PROG=fuzzlib_queue LIB_FLD=queue
  * LIB=queue
  * */
 
@@ -12,7 +12,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../private_libs/queue/queue.h"
+#include "../../liquid_oxygen/queue/queue.h"
 
 // helper functions for fuzzing
 void readn(void *s, int n) {

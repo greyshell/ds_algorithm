@@ -1,12 +1,12 @@
 /*
  * author: greyshell
- * description: driver program to test different sorting algorithms
+ * description: driver program to tests different sorting algorithms
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <z3.h>
-#include "../../private_libs/sorting/sort.h"
+#include "../../liquid_oxygen/sorting/sort.h"
 
 
 void array_copy(int *dest, int *src, size_t n) {

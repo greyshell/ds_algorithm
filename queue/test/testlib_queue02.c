@@ -1,13 +1,13 @@
 /*
  * author: greyshell
- * description: test singly linked list based implementation of queue
+ * description: tests singly linked list based implementation of queue
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
 
-#include "../../private_libs/queue/queue02.h"
+#include "../../liquid_oxygen/queue/queue02.h"
 
 void my_display(void *data) {
     /*

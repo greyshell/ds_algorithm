@@ -1,12 +1,12 @@
 /*
  * author: greyshell
- * description: test stack02
+ * description: tests stack02
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "../../private_libs/stack/stack02.h"
+#include "../../liquid_oxygen/stack/stack02.h"
 
 void my_display(void *data) {
     /*

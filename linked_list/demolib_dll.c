@@ -1,12 +1,12 @@
 /*
  * author: greyshell
- * description: test XOR doubly linked list
+ * description: tests XOR doubly linked list
  * data_arr / key -> void pointer
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/linked_list/xor_dll.h"
+#include "../liquid_oxygen/linked_list/xor_dll.h"
 
 void my_display(void *data) {
     /*

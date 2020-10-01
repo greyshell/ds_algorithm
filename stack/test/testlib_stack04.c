@@ -1,11 +1,11 @@
 /*
  * author: greyshell
- * description: test stack
+ * description: tests stack
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../../private_libs/stack/stack04.h"
+#include "../../liquid_oxygen/stack/stack04.h"
 
 int main(void) {
     int data;

@@ -3,7 +3,7 @@
  * description: fuzz the stack through AFL
  * */
 
-// make -f fuzz_lib_with_afl SRC_FLD=stack/test WRAPPER_PROG=fuzzlib_stack04 LIB_FLD=stack
+// make -f fuzz_lib_with_afl SRC_FLD=stack/tests WRAPPER_PROG=fuzzlib_stack04 LIB_FLD=stack
 // LIB=stack04
 
 #include <stdio.h>
@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../../private_libs/stack/stack04.h"
+#include "../../liquid_oxygen/stack/stack04.h"
 
 // helper functions for fuzzing
 void readn(void *s, int n) {

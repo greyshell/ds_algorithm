@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include "stdbool.h"
-#include "../private_libs/heap/heap.h"
+#include "../liquid_oxygen/heap/heap.h"
 
 void k_largest_elements_02(int *arr, int n, int k) {
     /*

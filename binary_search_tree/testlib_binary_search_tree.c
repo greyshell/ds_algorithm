@@ -1,10 +1,10 @@
 /*
  * author: greyshell
- * description: test my linked list based BST implementation
+ * description: tests my linked list based BST implementation
  * */
 
 #include <stdio.h>
-#include "../private_libs/binary_search_tree/binary_search_tree.h"
+#include "../liquid_oxygen/binary_search_tree/binary_search_tree.h"
 
 int main(void) {
     int data;

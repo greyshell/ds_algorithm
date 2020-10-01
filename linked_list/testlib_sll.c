@@ -1,12 +1,12 @@
 /*
  * author: greyshell
- * description: test singly linked list implementation
+ * description: tests singly linked list implementation
  * */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdbool.h"
-#include "../private_libs/linked_list/sll.h"
+#include "../liquid_oxygen/linked_list/sll.h"
 
 void my_display(void *data) {
     /*

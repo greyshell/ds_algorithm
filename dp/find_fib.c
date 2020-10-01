@@ -46,7 +46,7 @@ size_t fib(size_t n) {
 }
 
 int main(void) {
-    // sample test case
+    // sample tests case
     size_t number = 5;
     // function call
     printf("\n%zu th fib number = %zu", number, fib(number));
