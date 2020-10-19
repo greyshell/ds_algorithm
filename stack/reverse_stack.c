@@ -4,7 +4,7 @@
  * */
 
 #include <stdio.h>
-#include "../liquid_oxygen/stack/stack.h"
+#include "../libO2/include/stack_singly_linkedlist_int.h"
 
 void _insert_at_bottom(stack *s, int data) {
     /*

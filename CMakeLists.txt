@@ -10,14 +10,25 @@ set(CMAKE_C_STANDARD 99)
 # include all source files
 # ===========================================================================================
 
-# calc lib
-FILE(GLOB calc liquid_oxygen/src/calc/calc.c)
+# stack_singly_linklist_int lib
+FILE(GLOB stack_singly_linklist_int libO2/src/stack_singly_linkedlist_int.c)
 
 
 # ==========================================================================================
 # include the executables
 # ===========================================================================================
-add_executable(demo_calc liquid_oxygen/tests/test_calc/demo_calc.c ${calc})
+
+# core_concepts
+add_executable(bracket_resolver core_concepts/bracket_resolver.c)
+add_executable(play core_concepts/play.c)
+add_executable(quine core_concepts/quine.c)
+add_executable(concept core_concepts/variable_size.c)
+add_executable(example_variadic_function core_concepts/variadic_function.c)
+
+# stack
+add_executable(demo_stack_singly_linklist_int libO2/sample/demo_stack_singly_linkedlist_int.c
+        ${stack_singly_linklist_int})
+add_executable(reverse_stack stack/reverse_stack.c ${stack_singly_linklist_int})
 
 
 # foo lib
