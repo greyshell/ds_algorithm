@@ -29,6 +29,7 @@ add_executable(menu_driven_stack_singly_linklist_int
         libO2/examples/menu_driven_stack_singly_linkedlist_int.c
         ${stack_singly_linklist_int})
 add_executable(reverse_stack stack/reverse_stack.c ${stack_singly_linklist_int})
+add_executable(example_stack_singly_linklist_int stack/example_stack_singly_linkedlist_int.c ${stack_singly_linklist_int})
 
 # queue
 add_executable(menu_driven_queue_singly_linklist_int
