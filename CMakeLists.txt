@@ -11,7 +11,7 @@ set(CMAKE_C_STANDARD 99)
 FILE(GLOB stack_singly_linklist_int libO2/src/stack_singly_linkedlist_int.c)
 FILE(GLOB queue_singly_linklist_int libO2/src/queue_singly_linkedlist_int.c)
 FILE(GLOB binary_heap_dynamic_array_int libO2/src/binary_heap_dynamic_array_int.c)
-FILE(GLOB sort libO2/src/sort.c)
+FILE(GLOB sort libO2/src/sort_int.c)
 
 # ==========================================================================================
 # include the executables
@@ -26,21 +26,21 @@ add_executable(example_variadic_function core_concepts/variadic_function.c)
 
 # stack
 add_executable(menu_driven_stack_singly_linklist_int
-        libO2/examples/menu_driven_stack_singly_linkedlist_int.c
+        stack/menu_driven_stack_singly_linkedlist_int.c
         ${stack_singly_linklist_int})
 add_executable(reverse_stack stack/reverse_stack.c ${stack_singly_linklist_int})
 add_executable(example_stack_singly_linklist_int stack/example_stack_singly_linkedlist_int.c ${stack_singly_linklist_int})
 
 # queue
 add_executable(menu_driven_queue_singly_linklist_int
-        libO2/examples/menu_driven_queue_singly_linkedlist_int.c
+        queue/menu_driven_queue_singly_linkedlist_int.c
         ${queue_singly_linklist_int})
 
 # heap
-add_executable(example_binary_heap_dynamic_array_int libO2/examples/example_binary_heap_dynamic_array_int.c
+add_executable(example_binary_heap_dynamic_array_int heap/example_binary_heap_dynamic_array_int.c
         ${binary_heap_dynamic_array_int})
 add_executable(kth_largest_elements_array heap/kth_largest_elements_array.c
         ${binary_heap_dynamic_array_int})
 
 # sorting
-add_executable(example_sort libO2/examples/example_sort.c ${sort} ${binary_heap_dynamic_array_int})
+add_executable(example_sorting sorting/example_sort_int.c ${sort})
