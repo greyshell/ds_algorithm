@@ -41,6 +41,8 @@ add_executable(example_binary_heap_dynamic_array_int heap/example_binary_heap_dy
         ${binary_heap_dynamic_array_int})
 add_executable(kth_largest_elements_array heap/kth_largest_elements_array.c
         ${binary_heap_dynamic_array_int})
+add_executable(kth_largest_elements_immutable_heap heap/k_largest_elements_immutable_heap.c
+        ${binary_heap_dynamic_array_int})
 
 # sorting
 add_executable(example_sorting sorting/example_sort_int.c ${sort})

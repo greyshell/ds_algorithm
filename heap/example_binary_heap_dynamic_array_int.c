@@ -4,6 +4,7 @@
  * */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "stdbool.h"
 
 #include "../libO2/include/binary_heap_dynamic_array_int.h"
@@ -48,9 +49,9 @@ int main(void) {
 
     push_heap(&h, 9);
     push_heap(&h, 7);
-    push_heap(&h, 9);
+    push_heap(&h, 19);
 
-    push_heap(&h, 0);
+    push_heap(&h, 30);
     push_heap(&h, 10);
     push_heap(&h, 20);
     peek_heap(&h, &out_data);
@@ -58,7 +59,7 @@ int main(void) {
     display_heap(&h);
     printf("\n");
 
-    get_heap_size(&h, &heap_size);
+    heap_size = get_heap_size(&h);
     printf("heap size: %zu \n", heap_size);
     printf("heap capacity: %zu \n", h.current_capacity);
 
@@ -71,9 +72,23 @@ int main(void) {
     printf("\n");
 
     printf("heap ptr: %p \n", &h);
+
+    size_t index = 5;
+    return_type = peek_heap_by_index(&h, index, &out_data);
+    if (return_type){
+        printf("value at index %zu is %d", index, out_data);
+    }
+    else{
+        printf("invalid index");
+    }
+
     delete_heap(&h);
 
     printf("\ntest: build heap \n");
+
+
+
+
 
     int a[7] = {10, 20, 30, 40, 150, 70, 160};
     heap h1;
@@ -95,6 +110,58 @@ int main(void) {
     for (int i = 0; i < 7; i++) {
         printf("%d ", a[i]);
     }
+    printf("\n");
+
+    printf("================== \n");
+
+//    heap h3;
+//    initialize_heap(&h3, 1, false);
+//    push_heap(&h3, 1);
+//    push_heap(&h3, 5);
+//    push_heap(&h3, 6);
+//    push_heap(&h3, 9);
+//    push_heap(&h3, 11);
+//    push_heap(&h3, 8);
+//    push_heap(&h3, 15);
+//    push_heap(&h3, 17);
+//    push_heap(&h3, 21);
+//
+//    display_heap(&h3);
+//    printf("\n");
+//
+//    return_type = pop_heap_by_index(&h3, 1, &out_data);
+//    if (return_type == false){
+//        printf("unable to remove \n");
+//    }
+//    printf("removed = %d \n", out_data);
+//
+//    display_heap(&h3);
+//    printf("\n");
+//
+//    printf("================== \n");
+
+    heap h3;
+    initialize_heap(&h3, 1, false);
+    push_heap(&h3, 1);
+    push_heap(&h3, 9);
+    push_heap(&h3, 22);
+    push_heap(&h3, 17);
+    push_heap(&h3, 11);
+    push_heap(&h3, 33);
+    push_heap(&h3, 27);
+    push_heap(&h3, 21);
+    push_heap(&h3, 19);
+
+    display_heap(&h3);
+    printf("\n");
+
+    return_type = pop_heap_by_index(&h3, 5, &out_data);
+    if (return_type == false){
+        printf("unable to remove \n");
+    }
+    printf("removed = %d \n", out_data);
+
+    display_heap(&h3);
     printf("\n");
 
     return 0;
