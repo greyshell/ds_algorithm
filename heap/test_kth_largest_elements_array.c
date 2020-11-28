@@ -1,12 +1,16 @@
 /*
  * author: greyshell
  * description: unittest case
- * gcc test_kth_largest_elements_array.c ../../heap/kth_largest_elements_array.c ../../libO2/lib/Unity/src/unity.c -o test -lO2
+ *
+ * run the test:
+ * export the test function - kth_largest_elements_array() inside unittest/testlib.h
+ * navigate to the unittest/ directory
+ * make test FLD=heap TEST_PROG=kth_largest_elements_array
  * */
 
 #include <string.h>
-#include "../../libO2/lib/Unity/src/unity.h"
-#include "../unit_test.h"
+#include "../libO2/lib/Unity/src/unity.h"
+#include "../unittest/testlib.h"
 
 // create the data structure
 
