@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: how to use heap ADT
+# description: how to use heap ADT using heapq lib
 
 import heapq
 

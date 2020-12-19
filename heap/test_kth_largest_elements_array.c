@@ -1,16 +1,17 @@
 /*
  * author: greyshell
- * description: unittest case
+ * description: unit_tests case
  *
  * run the test:
- * export the test function - kth_largest_elements_array() inside unittest/testlib.h
- * navigate to the unittest/ directory
+ * make sure libO2 is installed in your system
+ * export the test function - kth_largest_elements_array() inside unit_tests/testlib.h
+ * navigate to the unit_tests/ directory
  * make test FLD=heap TEST_PROG=kth_largest_elements_array
  * */
 
 #include <string.h>
 #include "../libO2/lib/Unity/src/unity.h"
-#include "../unittest/testlib.h"
+#include "../unit_tests/testlib.h"
 
 // create the data structure
 

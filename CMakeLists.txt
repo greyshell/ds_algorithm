@@ -45,4 +45,4 @@ add_executable(kth_largest_elements_immutable_max_heap heap/k_largest_elements_i
         ${binary_heap_dynamic_array_int})
 
 # sorting
-add_executable(test_sorting sorting/test_sorting.c ${sort})
+add_executable(demo_sorting sorting/demo_sorting.c ${sort})

@@ -1,16 +1,16 @@
 /*
  * author: greyshell
- * description: unittest case
+ * description: unit_tests case
  *
  * run the test:
- * export the test function inside unittest/testlib.h
- * navigate to the unittest/ directory
+ * export the test function inside unit_tests/testlib.h
+ * navigate to the unit_tests/ directory
  * make test FLD=folder_name TEST_PROG=program_name
  * */
 
 #include <string.h>
 #include "../libO2/lib/Unity/src/unity.h"
-#include "../unittest/testlib.h"
+#include "../unit_tests/testlib.h"
 
 // create the data structure
 
