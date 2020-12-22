@@ -63,9 +63,9 @@ class Solution:
 
 def main():
     max_heap = [7, 17, 16, 2, 3, 15, 14]
-    # build the max heap
+    # to make sure the we pass the max heap
     heapq._heapify_max(max_heap)
-    print(f"after max heapify process: {max_heap}")
+
     s = Solution()
     out = s.k_largest_elements_immutable_max_heap(max_heap, k=5)
     print(out)
