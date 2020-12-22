@@ -26,8 +26,7 @@ class Solution:
     @staticmethod
     def k_largest_elements_immutable_max_heap(immutable_max_heap: List[int], k: int) -> List:
         """
-        time complexity: O(k * n) -> due to build heap function
-            - if max-heap push api exists then it will become O(k * log n)
+        time complexity: O(k * log n)
         space complexity: O(k) -> auxiliary max heap
         """
         # output list
