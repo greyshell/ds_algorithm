@@ -7,7 +7,7 @@
 
 class Graph:
     def __init__(self):
-        # create the graph
+        # create a graph
         self._graph = dict()
         # start node: book
         # add book node into the graph

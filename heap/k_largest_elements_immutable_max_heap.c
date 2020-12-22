@@ -74,3 +74,27 @@ int main(void) {
 
     return 0;
 }
+
+/*
+ # Start BFS traversal
+        while queue:
+            # Pop a node say "n" from the from the front of the queue.
+            n = queue.popleft()
+            # Iterate through all the neighbors of the node
+            for neighbor in n.neighbors:
+                if neighbor not in visited_nodes:
+                    # Clone the neighbor and put in the visited, if not present already
+                    visited_nodes[neighbor] = Node(neighbor.val, [])
+                    # Add the newly encountered node to the queue.
+                    queue.append(neighbor)
+                # Add the clone of the neighbor to the neighbors of the clone node "n".
+                visited_nodes[n].neighbors.append(visited_nodes[neighbor])
+
+        # Return the clone of the node from visited.
+        return visited_nodes[node]
+
+
+ *
+ *
+ *
+ */
