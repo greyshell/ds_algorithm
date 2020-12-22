@@ -7,6 +7,21 @@ from typing import List
 import heapq
 
 
+class MaxHeapObj(object):
+    def __init__(self, val, index):
+        self.val = val
+        self.index = index
+
+    def __lt__(self, other):
+        # overwrite the 'greater than operator' to act as max heap
+        return self.val > other.val
+
+    def __eq__(self, other):
+        return self.val == other.val
+
+    def __str__(self): return str(self.val)
+
+
 class Solution:
     @staticmethod
     def k_largest_elements_immutable_max_heap(immutable_max_heap: List[int], k: int) -> List:
@@ -26,29 +41,23 @@ class Solution:
         # peek the min item from the immutable max heap
         num = immutable_max_heap[0]
 
-        # heap elements could be tuples in which the first element is the priority and defines the sort order
-        # push that node (num, index) -> tuple into the auxiliary max heap
-
-        # there no API for max heap push
-        auxiliary_max_heap.append((num, 0))
-        heapq._heapify_max(auxiliary_max_heap)
+        # push that object the auxiliary max heap
+        heapq.heappush(auxiliary_max_heap, MaxHeapObj(num, 0))
 
         for i in range(0, k):
-            node = heapq._heappop_max(auxiliary_max_heap)
-            out.append(node[0])
-            index = node[1]
+            heap_obj = heapq.heappop(auxiliary_max_heap)
+            out.append(heap_obj.val)
+            index = heap_obj.index
 
             left_child_index = 2 * index + 1
             if left_child_index < immutable_max_heap_length:
                 left_child = immutable_max_heap[left_child_index]
-                auxiliary_max_heap.append((left_child, left_child_index))
-                heapq._heapify_max(auxiliary_max_heap)
+                heapq.heappush(auxiliary_max_heap, MaxHeapObj(left_child, left_child_index))
 
             right_child_index = 2 * index + 2
             if right_child_index < immutable_max_heap_length:
                 right_child = immutable_max_heap[right_child_index]
-                auxiliary_max_heap.append((right_child, right_child_index))
-                heapq._heapify_max(auxiliary_max_heap)
+                heapq.heappush(auxiliary_max_heap, MaxHeapObj(right_child, right_child_index))
 
         return out
 
@@ -59,7 +68,7 @@ def main():
     heapq._heapify_max(max_heap)
     print(f"after max heapify process: {max_heap}")
     s = Solution()
-    out = s.k_largest_elements_immutable_max_heap(max_heap, k=3)
+    out = s.k_largest_elements_immutable_max_heap(max_heap, k=5)
     print(out)
 
 
