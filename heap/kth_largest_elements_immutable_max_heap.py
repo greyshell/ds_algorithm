@@ -26,7 +26,7 @@ class Solution:
     @staticmethod
     def k_largest_elements_immutable_max_heap(immutable_max_heap: List[int], k: int) -> List:
         """
-        time complexity: O(k * log n)
+        time complexity: O(k * log k)
         space complexity: O(k) -> auxiliary max heap
         """
         # output list
