@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: directed / un directed graph with no weight
+# description: directed / un-directed graph without any weight
 
 from typing import List
 from collections import deque
@@ -81,7 +81,7 @@ class Graph(object):
 
 
 def main():
-    # create the graph using adjacency list
+    # create a un-directed graph using adjacency list
     g = Graph()
 
     for v in range(0, 5):  # add vertex
@@ -101,23 +101,24 @@ def main():
 
     print("")
     # taking graph as a dictionary
-    d = {
-        "0": ["1", "2"],
-        "1": ["3"],
-        "2": ["1", "3", "4"],
-        "3": [],
-        "4": ["3"]
-    }
-
     # d = {
     #     "0": ["1", "2"],
-    #     "1": ["0", "3"],
-    #     "2": ["0", "1", "3", "4"],
-    #     "3": ["1", "2", "4"],
-    #     "4": ["2", "3"]
+    #     "1": ["3"],
+    #     "2": ["1", "3", "4"],
+    #     "3": [],
+    #     "4": ["3"]
     # }
 
-    g1 = Graph(graph_dict=d)
+    # un-directed graph
+    d = {
+        "0": ["1", "2"],
+        "1": ["0", "3"],
+        "2": ["0", "1", "3", "4"],
+        "3": ["1", "2", "4"],
+        "4": ["2", "3"]
+    }
+
+    g1 = Graph(d)
     print(f"vertices: {g1.get_vertices()}")
     print(f"edges: {g1.get_edges()}")
     node_obj = g1.get_vertex("1")
