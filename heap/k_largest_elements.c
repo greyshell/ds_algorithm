@@ -1,36 +1,35 @@
 /*
  * author: greyshell
- * description: find kth largest elements in an array without sorting
+ * description: find k largest elements in an array without sorting
  * */
 
 #include <stdio.h>
 #include "stdbool.h"
 #include "../libO2/include/binary_heap_dynamic_array_int.h"
 
-void kth_largest_elements_array_02(int *arr, int n, int k, int *out_arr) {
+void k_largest_elements_02(int *arr, int n, int k, int *out_arr) {
     /*
-     * time complexity: O(n + k*log(n)), works faster when k <= n/2
+     * time complexity: O(n + k*log(n))
      * space complexity: O(1)
      */
     heap h;
     int data;
 
     // create a max heap of size n
-    build_heap(&h, true, arr, n);
+    build_heap(&h, true, arr, n);  // O(n)
 
     for (int i = k - 1; i >= 0; i--) {
-        pop_heap(&h, &data);
+        pop_heap(&h, &data);  // O(k*log(n))
         out_arr[i] = data;
     }
 
     delete_heap(&h);
 }
 
-void kth_largest_elements_array(int *test_arr, int n, int k, int *out_arr) {
+void k_largest_elements(int *test_arr, int n, int k, int *out_arr) {
     /*
-     * time complexity: O(n*log(k)), works faster when k > n/2
+     * time complexity: O(n*log(k))
      * space complexity: O(k)
-     * works better when k > n/2
      */
     heap h;
     size_t heap_size;
@@ -55,32 +54,3 @@ void kth_largest_elements_array(int *test_arr, int n, int k, int *out_arr) {
     }
     delete_heap(&h);
 }
-
-/* ========== disable main =============
-
-int main(void) {
-    // test the solution
-    int test_arr[] = {10, 20, 30, 50, 90, 70, 80, 40};
-    int n = 8;
-    int k = 3;
-    int out_arr[3] = {0};
-    int out_arr2[3] ={0};
-
-    kth_largest_elements_array(test_arr, n, k, out_arr);
-    // print the out_arr
-    for (int i = 0; i < k; i++){
-        printf("%d ", out_arr[i]);
-    }
-    printf("\n");
-
-    kth_largest_elements_array_02(test_arr, n, k, out_arr2);
-    // print the out_arr
-    for (int i = 0; i < k; i++){
-        printf("%d ", out_arr2[i]);
-    }
-    printf("\n");
-
-    return 0;
-}
-
-*/

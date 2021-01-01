@@ -25,24 +25,20 @@ add_executable(concept core_concepts/variable_size.c)
 add_executable(example_variadic_function core_concepts/variadic_function.c)
 
 # stack
-add_executable(menu_driven_stack_singly_linklist_int
-        stack/menu_driven_stack_singly_linkedlist_int.c
-        ${stack_singly_linklist_int})
+add_executable(example_stack_singly_linklist_int libO2/examples/example_stack_singly_linkedlist_int.c ${stack_singly_linklist_int})
+add_executable(example_stack_singly_linklist_int_02 libO2/examples/example_stack_singly_linkedlist_int_02.c ${stack_singly_linklist_int})
 add_executable(reverse_stack stack/reverse_stack.c ${stack_singly_linklist_int})
-add_executable(example_stack_singly_linklist_int stack/example_stack_singly_linkedlist_int.c ${stack_singly_linklist_int})
 
 # queue
-add_executable(menu_driven_queue_singly_linklist_int
-        queue/menu_driven_queue_singly_linkedlist_int.c
+add_executable(example_queue_singly_linklist_int
+        libO2/examples/example_queue_singly_linkedlist_int.c
         ${queue_singly_linklist_int})
 
 # heap
-add_executable(example_binary_heap_dynamic_array_int heap/example_binary_heap_dynamic_array_int.c
+add_executable(example_binary_heap_dynamic_array_int libO2/examples/example_binary_heap_dynamic_array_int.c
         ${binary_heap_dynamic_array_int})
-add_executable(kth_largest_elements_array heap/kth_largest_elements_array.c
-        ${binary_heap_dynamic_array_int})
-add_executable(kth_largest_elements_immutable_max_heap heap/k_largest_elements_immutable_max_heap.c
+add_executable(k_largest_elements heap/k_largest_elements.c
         ${binary_heap_dynamic_array_int})
 
 # sorting
-add_executable(demo_sorting sorting/demo_sorting.c ${sort})
+add_executable(example_sort_int libO2/examples/example_sort_int.c ${sort})

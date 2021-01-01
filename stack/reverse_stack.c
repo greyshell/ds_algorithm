@@ -18,6 +18,7 @@ void _insert_at_bottom(stack *s, int data) {
     pop(s, &out_data);
     _insert_at_bottom(s, data);
     push(s, out_data);
+
 }
 
 void reverse_stack(stack *s) {

@@ -2,7 +2,7 @@
 
 # author: greyshell
 
-# python -m unit_tests test_two_sum.TestSolution
+# python -m c_tests test_two_sum.TestSolution
 
 import unittest
 # noinspection PyUnresolvedReferences
