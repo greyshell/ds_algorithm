@@ -116,10 +116,10 @@ def main():
 
     print("")
 
-    print(f"create a directed graph")
     # ===================================================================
     # create an directed graph
     # ===================================================================
+    print(f"create a directed graph")
     leetcode_input = [["1", "2"], ["3"], ["1", "3", "4"], [], ["3"]]
     # create intermediate node dict that graph api can consume
     nodes = {str(k): v for k, v in enumerate(leetcode_input, start=0)}
