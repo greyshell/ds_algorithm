@@ -52,18 +52,31 @@ def clone_graph(node):
 
 
 def main():
+    # dag type
     leetcode_input = [[2, 4], [1, 3], [2, 4], [1, 3]]
-    # format the user input that graph api can consume
-    graph = {k: v for k, v in enumerate(leetcode_input, start=1)}
+    # create the node dict that graph api can consume
+    nodes = {k: v for k, v in enumerate(leetcode_input, start=1)}
 
-    g = Graph(graph_dict=graph)
-    start_node = g.get_vertex(1)
-    print(f"start node addr: {start_node.__repr__()}")
-    print(f"start node: {start_node}")
+    graph = Graph()
+    # add vertices
+    for src_vertex in nodes.keys():
+        graph.add_vertex(src_vertex)
+    # add edges
+    for src_vertex in nodes.keys():
+        dst_vertices = nodes[src_vertex]
+        for dst_vertex in dst_vertices:
+            graph.add_edge(src_vertex, dst_vertex)
+            # add the reverse link for undirected graph
+            graph.add_edge(dst_vertex, src_vertex)
+
+    # select the node 1 as start node
+    start_node = graph.get_vertex(2)
+    print(f"start node addr of original graph: {start_node.__repr__()}")
+    print(f"start node value of original graph: {start_node}")
 
     out = clone_graph(start_node)
-    print(f"start node addr of clone: {out.__repr__()}")
-    print(f"start node of clone: {out}")
+    print(f"start node addr of clone graph: {out.__repr__()}")
+    print(f"start node value of clone graph: {out}")
 
 
 if __name__ == '__main__':

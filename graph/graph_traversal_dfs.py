@@ -1,37 +1,39 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: bfs traversal in an undirected graph
+# description: dfs traversal in an undirected graph
 
 from collections import deque
 from graph_adt import Vertex, Graph
 
 
-def bfs(graph, src_v):
+def dfs(graph, src_v):
     """
-    Breadth first search
+    Depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    queue = deque()
+    stack = deque()
     visited = set()
 
-    # add the source vertex into the queue
+    # add the source vertex into the stack
     source_vertex = graph.get_vertex(src_v)
-    queue.append(source_vertex)
-    # add the source vertex into the visited set
-    visited.add(source_vertex)
+    stack.append(source_vertex)
 
-    while queue:
-        # pop the vertex from the queue
-        vertex = queue.popleft()
+    while stack:
+        # pop the vertex from the stack
+        vertex = stack.pop()
+        if vertex in visited:
+            continue
+
+        # if the vertex is not visited then add into the visited set
+        visited.add(vertex)
         print(vertex.get_key(), end=" ")
         # iterate all neighbors of that node
         for neighbor in vertex.get_neighbors():
-            # if that neighbor node is not visited then add to the queue
+            # if that neighbor node is not visited then add to the stack
             if neighbor not in visited:
-                queue.append(neighbor)
-                visited.add(neighbor)
+                stack.append(neighbor)
 
 
 def main():
@@ -52,8 +54,9 @@ def main():
             # add the reverse link for undirected graph
             graph.add_edge(dst_vertex, src_vertex)
 
-    print(f"bfs traversal: ")
-    bfs(graph, "2")
+    print(f"dfs traversal: ")
+    dfs(graph, "2")
+    print("")
 
 
 if __name__ == '__main__':
