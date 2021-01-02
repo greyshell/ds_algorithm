@@ -54,7 +54,7 @@ def main():
             # IMPORTANT: need to add this reverse link to create the undirected graph
             undirected_graph.add_edge(dst_vertex, src_vertex)
 
-    print(f"bfs traversal of a undirected graph: ")
+    print(f"bfs traversal of an undirected graph: ")
     bfs(undirected_graph, "3")
 
 
