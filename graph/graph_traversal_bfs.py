@@ -36,7 +36,7 @@ def bfs(graph, src_v):
 
 def main():
     # ===================================================================
-    # create an directed graph
+    # create an undirected graph
     # ===================================================================
     leetcode_input = [["1", "2"], ["3"], ["1", "3", "4"], [], ["3"]]
     # create intermediate node dict that graph api can consume
