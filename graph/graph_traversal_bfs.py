@@ -35,25 +35,27 @@ def bfs(graph, src_v):
 
 
 def main():
-    # dag type
+    # ===================================================================
+    # create an directed graph
+    # ===================================================================
     leetcode_input = [["1", "2"], ["3"], ["1", "3", "4"], [], ["3"]]
-    # create the node dict that graph api can consume
+    # create intermediate node dict that graph api can consume
     nodes = {str(k): v for k, v in enumerate(leetcode_input, start=0)}
 
-    graph = Graph()
+    undirected_graph = Graph()
     # add vertices
     for src_vertex in nodes.keys():
-        graph.add_vertex(src_vertex)
+        undirected_graph.add_vertex(src_vertex)
     # add edges
     for src_vertex in nodes.keys():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
-            graph.add_edge(src_vertex, dst_vertex)
-            # add the reverse link for undirected graph
-            graph.add_edge(dst_vertex, src_vertex)
+            undirected_graph.add_edge(src_vertex, dst_vertex)
+            # IMPORTANT: need to add this reverse link to create the undirected graph
+            undirected_graph.add_edge(dst_vertex, src_vertex)
 
-    print(f"bfs traversal: ")
-    bfs(graph, "2")
+    print(f"bfs traversal of a directed graph: ")
+    bfs(undirected_graph, "3")
 
 
 if __name__ == '__main__':

@@ -52,25 +52,27 @@ def clone_graph(node):
 
 
 def main():
-    # dag type
+    # ===================================================================
+    # create an undirected graph
+    # ===================================================================
     leetcode_input = [[2, 4], [1, 3], [2, 4], [1, 3]]
     # create the node dict that graph api can consume
     nodes = {k: v for k, v in enumerate(leetcode_input, start=1)}
 
-    graph = Graph()
+    undirected_graph = Graph()
     # add vertices
     for src_vertex in nodes.keys():
-        graph.add_vertex(src_vertex)
+        undirected_graph.add_vertex(src_vertex)
     # add edges
     for src_vertex in nodes.keys():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
-            graph.add_edge(src_vertex, dst_vertex)
+            undirected_graph.add_edge(src_vertex, dst_vertex)
             # add the reverse link for undirected graph
-            graph.add_edge(dst_vertex, src_vertex)
+            undirected_graph.add_edge(dst_vertex, src_vertex)
 
     # select the node 1 as start node
-    start_node = graph.get_vertex(2)
+    start_node = undirected_graph.get_vertex(2)
     print(f"start node addr of original graph: {start_node.__repr__()}")
     print(f"start node value of original graph: {start_node}")
 
