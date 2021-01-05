@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: dfs traversal in an undirected graph
+# description: dfs traversal in a connected undirected graph
 
 from collections import deque
-from graph_adt import Vertex, Graph
+from graph_adt import Vertex, UndirectedGraph
 
 
 def dfs(graph, src_v):
     """
-    Depth first search
+    Depth first search on undirected graph
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
@@ -44,7 +44,7 @@ def main():
     # create intermediate node dict that graph api can consume
     nodes = {str(k): v for k, v in enumerate(leetcode_input, start=0)}
 
-    undirected_graph = Graph()
+    undirected_graph = UndirectedGraph()
     # add vertices
     for src_vertex in nodes.keys():
         undirected_graph.add_vertex(src_vertex)
@@ -53,10 +53,8 @@ def main():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
             undirected_graph.add_edge(src_vertex, dst_vertex)
-            # IMPORTANT: need to add this reverse link to create the undirected graph
-            undirected_graph.add_edge(dst_vertex, src_vertex)
 
-    print(f"dfs traversal of an undirected graph: ")
+    print(f"dfs traversal in a connected undirected graph: ")
     dfs(undirected_graph, "3")
     print("")
 

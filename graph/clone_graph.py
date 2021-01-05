@@ -5,7 +5,7 @@
 
 from typing import List
 from collections import deque
-from graph_adt import Vertex, Graph
+from graph_adt import Vertex, UndirectedGraph
 
 
 def clone_graph(node):
@@ -44,7 +44,7 @@ def clone_graph(node):
                 # add the newly encountered node to the queue
                 queue.append(neighbor)
 
-            # wiring: get the clone node of the original from visit dict
+            # need to add the neighbor in the clone graph
             visited[vertex].add_neighbor(visited[neighbor])
 
     # return the start node of the cloned graph
@@ -59,7 +59,7 @@ def main():
     # create the node dict that graph api can consume
     nodes = {k: v for k, v in enumerate(leetcode_input, start=1)}
 
-    undirected_graph = Graph()
+    undirected_graph = UndirectedGraph()
     # add vertices
     for src_vertex in nodes.keys():
         undirected_graph.add_vertex(src_vertex)

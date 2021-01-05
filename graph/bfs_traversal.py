@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: bfs traversal in an undirected graph
+# description: bfs traversal in an connected undirected graph
 
 from collections import deque
-from graph_adt import Vertex, Graph
+from graph_adt import Vertex, UndirectedGraph
 
 
 def bfs(graph, src_v):
@@ -42,7 +42,7 @@ def main():
     # create intermediate node dict that graph api can consume
     nodes = {str(k): v for k, v in enumerate(leetcode_input, start=0)}
 
-    undirected_graph = Graph()
+    undirected_graph = UndirectedGraph()
     # add vertices
     for src_vertex in nodes.keys():
         undirected_graph.add_vertex(src_vertex)
@@ -51,10 +51,8 @@ def main():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
             undirected_graph.add_edge(src_vertex, dst_vertex)
-            # IMPORTANT: need to add this reverse link to create the undirected graph
-            undirected_graph.add_edge(dst_vertex, src_vertex)
 
-    print(f"bfs traversal of an undirected graph: ")
+    print(f"bfs traversal in a connected undirected graph: ")
     bfs(undirected_graph, "3")
 
 
