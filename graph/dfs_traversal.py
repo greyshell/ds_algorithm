@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: dfs traversal in a connected undirected graph
+# description: dfs traversal on a connected undirected graph
 
 from collections import deque
 from graph_adt import Vertex, UndirectedGraph
@@ -9,7 +9,7 @@ from graph_adt import Vertex, UndirectedGraph
 
 def dfs(graph, src_v):
     """
-    Depth first search on undirected graph
+    Depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """

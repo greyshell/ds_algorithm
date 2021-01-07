@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: bfs traversal in an connected undirected graph
+# description: bfs traversal on a connected undirected graph
 
 from collections import deque
 from graph_adt import Vertex, UndirectedGraph

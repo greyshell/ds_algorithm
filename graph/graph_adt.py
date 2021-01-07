@@ -11,8 +11,7 @@ class Vertex:
 
     def __init__(self, key):
         self._key = key
-        # duplicate edges are added if list() is used
-        self._neighbors = set()  # each element is an object of vertex
+        self._neighbors = set()  # each element is an object of Vertex
 
     def add_neighbor(self, neighbor_vertex):
         self._neighbors.add(neighbor_vertex)
@@ -23,16 +22,16 @@ class Vertex:
     def get_neighbors(self):
         return self._neighbors
 
-    # display / print a vertex / node
+    # display / print a vertex
     def __str__(self):
         s = str(self._key)
         s += ": {"
         for neighbor in self._neighbors:
             s += str(neighbor.get_key()) + ","
 
-        # when the node has neighbors
+        # when the vertex / node has neighbors, remove the last ',' char
         if s[-1] == ',':
-            s = s[:-1]  # remove the last ',' char
+            s = s[:-1]
 
         s += "}"
         return s
@@ -54,7 +53,7 @@ class UndirectedGraph(object):
             self.add_vertex(to_vertex)
 
         self._vertices[from_vertex].add_neighbor(self._vertices[to_vertex])
-        # add the reverse link for undirected graph
+        # add the reverse link
         self._vertices[to_vertex].add_neighbor(self._vertices[from_vertex])
 
     def get_vertex(self, vertex_key):
@@ -67,16 +66,14 @@ class UndirectedGraph(object):
         return list(self._vertices.keys())
 
     def get_edges(self):
-        edges_obj = []
-        for src_vertex in self._vertices:
+        edges = []
+        for src_vertex in self._vertices:  # iterate keys
             src_vertex_obj = self._vertices[src_vertex]
-            neighbors = src_vertex_obj.get_neighbors()
 
-            for neighbor in neighbors:
-                to_vertex_obj = neighbor
-                edges_obj.append((src_vertex_obj, to_vertex_obj))
+            for neighbor_obj in src_vertex_obj.get_neighbors():
+                edges.append((src_vertex_obj, neighbor_obj))
 
-        return edges_obj
+        return edges
 
     def get_edges_as_key(self):
         edges_as_key = []
@@ -91,7 +88,7 @@ class UndirectedGraph(object):
 
     def get_degree(self, vertex):
         """
-        time complexity: O(E)
+        time complexity: O(E), where E is the edges of that vertex
         :param vertex:
         :return: int
         """
@@ -213,7 +210,6 @@ def demo_vertex():
     print(v.__repr__())  # print the obj address
     print(v)  # if __str__() method is available then call that method else print obj address
 
-    # we can't add neighbors like the following
     # v.add_neighbor("B")  -> wrong coz set contains Vertex objects
     b_obj = Vertex("B")  # create a vertex object of B
     v.add_neighbor(b_obj)  # -> right
