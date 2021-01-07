@@ -8,9 +8,6 @@ from collections import deque
 
 
 class Vertex:
-    """
-    implementation of a vertex / node of graph
-    """
 
     def __init__(self, key):
         self._key = key
@@ -42,9 +39,6 @@ class Vertex:
 
 
 class UndirectedGraph(object):
-    """
-    implementation of UndirectedGraph ADT
-    """
 
     def __init__(self):
         self._vertices = dict()
@@ -96,10 +90,16 @@ class UndirectedGraph(object):
         return edges_as_key
 
     def get_degree(self, vertex):
+        """
+        time complexity: O(E)
+        :param vertex:
+        :return: int
+        """
         return len(self._vertices[vertex].get_neighbors())
 
 
 class DirectedGraph(UndirectedGraph):
+
     def __init__(self):
         super().__init__()
 
@@ -117,7 +117,7 @@ class DirectedGraph(UndirectedGraph):
 
     def get_in_degree(self, vertex):
         """
-        time complexity: O(V + E)
+        time complexity: O(V)
         :param vertex:
         :return: int
         """
@@ -125,11 +125,10 @@ class DirectedGraph(UndirectedGraph):
         v = self.get_vertex(vertex)
 
         for k in self._vertices:
-            n = self.get_vertex(k)
-            for n in n.get_neighbors():
-                if n == v:
-                    count += 1
-                    break
+            node = self.get_vertex(k)
+            neighbors = node.get_neighbors()  # returns a set
+            if v in neighbors:  # time: O(1)
+                count += 1
         return count
 
 
@@ -229,7 +228,7 @@ def demo_vertex():
 def main():
     demo_vertex()
     demo_undirected_graph()
-    # demo_directed_graph()
+    demo_directed_graph()
 
 
 if __name__ == '__main__':
