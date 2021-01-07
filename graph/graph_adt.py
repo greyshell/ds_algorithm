@@ -3,10 +3,6 @@
 # author: greyshell
 # description: Graph ADT
 
-from typing import List
-from collections import deque
-
-
 class Vertex:
 
     def __init__(self, key):
@@ -131,7 +127,7 @@ class DirectedGraph(UndirectedGraph):
 
 def demo_directed_graph():
     # ===================================================================
-    # create an directed graph
+    # create a directed graph
     # ===================================================================
     print(f"create a directed graph")
     leetcode_input = [["1", "2"], ["3"], ["1", "3", "4"], [], ["3"]]

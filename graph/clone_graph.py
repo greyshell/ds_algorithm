@@ -8,7 +8,7 @@ from collections import deque
 from graph_adt import Vertex, UndirectedGraph
 
 
-def clone_graph(node):
+def clone_graph(node: Vertex) -> Vertex:
     """
     deep copy / clone graph
     traversal approach: bfs
