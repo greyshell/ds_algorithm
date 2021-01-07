@@ -11,10 +11,11 @@ class Vertex:
     """
     implementation of a vertex / node of graph
     """
+
     def __init__(self, key):
         self._key = key
         # duplicate edges are added if list() is used
-        self._neighbors = set()
+        self._neighbors = set()  # each element is an object of vertex
 
     def add_neighbor(self, neighbor_vertex):
         self._neighbors.add(neighbor_vertex)
@@ -37,6 +38,7 @@ class UndirectedGraph(object):
     """
     implementation of UndirectedGraph ADT
     """
+
     def __init__(self):
         self._vertices = dict()
 
@@ -56,26 +58,39 @@ class UndirectedGraph(object):
         self._vertices[to_vertex].add_neighbor(self._vertices[from_vertex])
 
     def get_vertex(self, vertex_key):
-        for vertex in self._vertices:
-            if vertex == vertex_key:
-                return self._vertices[vertex]
+        return self._vertices.get(vertex_key, None)
 
     def get_vertices(self):
+        return list(self._vertices.values())
+
+    def get_vertices_as_key(self):
         return list(self._vertices.keys())
 
     def get_edges(self):
-        edges = []
-        for vertex in self._vertices:
-            neighbors = self._vertices[vertex].get_neighbors()
+        edges_obj = []
+        for src_vertex in self._vertices:
+            src_vertex_obj = self._vertices[src_vertex]
+            neighbors = src_vertex_obj.get_neighbors()
+
+            for neighbor in neighbors:
+                to_vertex_obj = neighbor
+                edges_obj.append((src_vertex_obj, to_vertex_obj))
+
+        return edges_obj
+
+    def get_edges_as_key(self):
+        edges_as_key = []
+        for src_vertex in self._vertices:
+            neighbors = self._vertices[src_vertex].get_neighbors()
 
             for neighbor in neighbors:
                 to_vertex = neighbor.get_key()
-                edges.append((vertex, to_vertex))
+                edges_as_key.append((src_vertex, to_vertex))
 
-        return edges
+        return edges_as_key
 
     def get_degree(self, vertex):
-        return len(self.get_vertex(vertex)._neighbors)
+        return len(self._vertices[vertex].get_neighbors())
 
 
 class DirectedGraph(UndirectedGraph):
@@ -132,11 +147,11 @@ def demo_directed_graph():
         for dst_vertex in dst_vertices:
             directed_graph.add_edge(src_vertex, dst_vertex)
 
-    print(f"vertices: {directed_graph.get_vertices()}")
-    print(f"edges: {directed_graph.get_edges()}")
+    print(f"vertices: {directed_graph.get_vertices_as_key()}")
+    print(f"edges: {directed_graph.get_edges_as_key()}")
     # exit(0)
 
-    for v in directed_graph.get_vertices():
+    for v in directed_graph.get_vertices_as_key():
         out_degree = directed_graph.get_out_degree(v)
         # in_degree = directed_graph.get_vertex(v).get_in_degree()
         in_degree = directed_graph.get_in_degree(v)
@@ -148,9 +163,18 @@ def demo_undirected_graph():
     # create an undirected graph
     # ===================================================================
     print(f"create an undirected graph")
-    leetcode_input = [["1", "2"], ["3"], ["1", "3", "4"], [], ["3"]]
+    leetcode_input = [["1", "2"], ["3"], ["1", "2", "4"], [], ["3"]]
     # create intermediate node dict that graph api can consume
-    nodes = {str(k): v for k, v in enumerate(leetcode_input, start=0)}
+    nodes = {str(k): v for k, v in enumerate(leetcode_input, start=1)}
+
+    nodes = {0: [1, 2, 5, 6],
+             1: [0],
+             2: [0],
+             3: [4, 5],
+             4: [5, 3],
+             5: [0, 3]
+             }
+
     print(nodes)
 
     undirected_graph = UndirectedGraph()
@@ -162,14 +186,15 @@ def demo_undirected_graph():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
             undirected_graph.add_edge(src_vertex, dst_vertex)
-            # IMPORTANT: need to add this reverse link to create the undirected graph
-            # undirected_graph.add_edge(dst_vertex, src_vertex)
+
+    print(f"vertices: {undirected_graph.get_vertices_as_key()}")
+    print(f"edges: {undirected_graph.get_edges_as_key()}")
 
     print(f"vertices: {undirected_graph.get_vertices()}")
     print(f"edges: {undirected_graph.get_edges()}")
 
     # get the degree of each vertices
-    for v in undirected_graph.get_vertices():
+    for v in undirected_graph.get_vertices_as_key():
         # for undirected graph, total degree is equal to in_degree or out_degree
         degree = undirected_graph.get_degree(v)
         print(f"vertex: {v} => degree: {degree}")
@@ -177,7 +202,26 @@ def demo_undirected_graph():
     print("")
 
 
+def demo_vertex():
+    print(f"create a vertex")
+    v = Vertex("A")
+    print(v.__repr__())  # print the obj address
+    print(v)  # if __str__() method is available then call that method else print obj address
+
+    # we can't add neighbors like the following
+    # v.add_neighbor("B")  -> wrong coz set contains Vertex objects
+    b_obj = Vertex("B")  # create a vertex object of B
+    v.add_neighbor(b_obj)  # -> right
+    v.add_neighbor(Vertex("C"))  # -> right
+    v.add_neighbor(Vertex("D"))  # -> right
+
+    print(v.__repr__())
+    print(v)
+    print("")
+
+
 def main():
+    demo_vertex()
     demo_undirected_graph()
     demo_directed_graph()
 

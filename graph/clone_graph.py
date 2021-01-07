@@ -58,6 +58,7 @@ def main():
     leetcode_input = [[2, 4], [1, 3], [2, 4], [1, 3]]
     # create the node dict that graph api can consume
     nodes = {k: v for k, v in enumerate(leetcode_input, start=1)}
+    print(nodes)
 
     undirected_graph = UndirectedGraph()
     # add vertices
@@ -68,11 +69,9 @@ def main():
         dst_vertices = nodes[src_vertex]
         for dst_vertex in dst_vertices:
             undirected_graph.add_edge(src_vertex, dst_vertex)
-            # add the reverse link for undirected graph
-            undirected_graph.add_edge(dst_vertex, src_vertex)
 
     # select the node 1 as start node
-    start_node = undirected_graph.get_vertex(2)
+    start_node = undirected_graph.get_vertex(1)
     print(f"start node addr of original graph: {start_node.__repr__()}")
     print(f"start node value of original graph: {start_node}")
 
