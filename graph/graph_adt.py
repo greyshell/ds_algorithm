@@ -26,11 +26,18 @@ class Vertex:
     def get_neighbors(self):
         return self._neighbors
 
-    # display a vertex
+    # display / print a vertex / node
     def __str__(self):
-        s = str(self._key) + ":"
+        s = str(self._key)
+        s += ": {"
         for neighbor in self._neighbors:
-            s += str(neighbor.get_key()) + " "
+            s += str(neighbor.get_key()) + ","
+
+        # when the node has neighbors
+        if s[-1] == ',':
+            s = s[:-1]  # remove the last ',' char
+
+        s += "}"
         return s
 
 
@@ -43,8 +50,7 @@ class UndirectedGraph(object):
         self._vertices = dict()
 
     def add_vertex(self, vertex):
-        v = Vertex(vertex)
-        self._vertices[vertex] = v
+        self._vertices[vertex] = Vertex(vertex)
 
     def add_edge(self, from_vertex, to_vertex):
         if from_vertex not in self._vertices:
@@ -163,9 +169,9 @@ def demo_undirected_graph():
     # create an undirected graph
     # ===================================================================
     print(f"create an undirected graph")
-    leetcode_input = [["1", "2"], ["3"], ["1", "2", "4"], [], ["3"]]
+    # leetcode_input = [["1", "2"], ["3"], ["1", "2", "4"], [], ["3"]]
     # create intermediate node dict that graph api can consume
-    nodes = {str(k): v for k, v in enumerate(leetcode_input, start=1)}
+    # nodes = {str(k): v for k, v in enumerate(leetcode_input, start=1)}
 
     nodes = {0: [1, 2, 5, 6],
              1: [0],
@@ -223,7 +229,7 @@ def demo_vertex():
 def main():
     demo_vertex()
     demo_undirected_graph()
-    demo_directed_graph()
+    # demo_directed_graph()
 
 
 if __name__ == '__main__':
