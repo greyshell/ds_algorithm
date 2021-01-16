@@ -59,9 +59,10 @@ def main():
 
     # find the shortest path from src to dst
     src_v = 0
-    dst_v = 3
-    path = find_shortest_path(undirected_graph, src_v, dst_v)
-    print(f"shortest path from {src_v} to {dst_v}: {path}")
+    for node in undirected_graph.get_vertices():
+        dst_v = node.get_key()
+        path = find_shortest_path(undirected_graph, src_v, dst_v)
+        print(f"shortest path from {src_v} to {dst_v}: {path}")
 
 
 if __name__ == '__main__':

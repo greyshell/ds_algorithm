@@ -24,16 +24,14 @@ def connected_vertices_from_source(undirected_graph, src_vertex):
     while stack:
         # pop the vertex from the stack
         vertex = stack.pop()
-        if vertex in visited:
-            continue
-
-        # if the vertex is not visited then add into the visited set
-        visited.add(vertex)
-        # iterate all neighbors of that node
-        for neighbor in vertex.get_neighbors():
-            # if that neighbor node is not visited then add to the stack
-            if neighbor not in visited:
-                stack.append(neighbor)
+        if vertex not in visited:
+            # if the vertex is not visited then add into the visited set
+            visited.add(vertex)
+            # iterate all neighbors of that node
+            for neighbor in vertex.get_neighbors():
+                # if that neighbor node is not visited then add to the stack
+                if neighbor not in visited:
+                    stack.append(neighbor)
 
     return visited
 

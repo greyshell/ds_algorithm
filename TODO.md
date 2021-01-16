@@ -1,7 +1,8 @@
 # TODO
 
-## needs to code
-- has_shortest_path
+## chapter: undirected graph
+- is there a path from src to target vertex
+    - find the shortest path -> dual BFS 
 - has_cycle
     - has_euler_cycle
     - has_hamiltonian_cycle
@@ -12,9 +13,8 @@
 - is_planar
 - is_isomorphic
 
-
+## chapter: directed graph
 - connected component:
-
 - topological sort:
     - reverse post order dfs
     - directed cycle detection in a digraph

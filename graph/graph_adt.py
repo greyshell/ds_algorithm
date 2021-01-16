@@ -53,14 +53,11 @@ class UndirectedGraph(object):
         self._vertices[to_vertex].add_neighbor(self._vertices[from_vertex])
 
     def get_vertex(self, vertex_key):
-        # if not found then return None
-        return self._vertices.get(vertex_key, None)
+        # if not found then return False
+        return self._vertices.get(vertex_key, False)
 
     def get_vertices(self):
         return list(self._vertices.values())
-
-    # def get_vertices_as_key(self):
-    #     return list(self._vertices.keys())
 
     def get_edges(self):
         edges = []
@@ -71,17 +68,6 @@ class UndirectedGraph(object):
                 edges.append((src_vertex_obj, neighbor_obj))
 
         return edges
-
-    # def get_edges_as_key(self):
-    #     edges_as_key = []
-    #     for src_vertex in self._vertices:
-    #         neighbors = self._vertices[src_vertex].get_neighbors()
-    #
-    #         for neighbor in neighbors:
-    #             to_vertex = neighbor.get_key()
-    #             edges_as_key.append((src_vertex, to_vertex))
-    #
-    #     return edges_as_key
 
     def get_degree(self, vertex):
         """

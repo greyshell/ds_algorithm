@@ -13,14 +13,14 @@ def bfs(graph, src_v):
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    queue = deque()
-    visited = set()
-
-    # add the source vertex into the queue
     source_vertex = graph.get_vertex(src_v)
-    queue.append(source_vertex)
+    visited = set()
     # add the source vertex into the visited set
     visited.add(source_vertex)
+
+    # add the source vertex into the queue
+    queue = deque()
+    queue.append(source_vertex)
 
     while queue:
         # pop the vertex from the queue
@@ -40,27 +40,28 @@ def dfs(graph, src_v):
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    stack = deque()
-    visited = set()
-
-    # add the source vertex into the stack
+    if not graph.get_vertex(src_v):
+        return False
     source_vertex = graph.get_vertex(src_v)
+
+    # track the visited vertices
+    visited = set()
+    # add the source vertex into the stack
+    stack = deque()
     stack.append(source_vertex)
 
     while stack:
         # pop the vertex from the stack
         vertex = stack.pop()
-        if vertex in visited:
-            continue
-
-        # if the vertex is not visited then add into the visited set
-        visited.add(vertex)
-        print(vertex.get_key(), end=" ")
-        # iterate all neighbors of that node
-        for neighbor in vertex.get_neighbors():
-            # if that neighbor node is not visited then add to the stack
-            if neighbor not in visited:
-                stack.append(neighbor)
+        if vertex not in visited:
+            # if the vertex is not visited then add into the visited set
+            visited.add(vertex.get_key())
+            print(vertex.get_key(), end=" ")
+            # iterate all neighbors of that node
+            for neighbor in vertex.get_neighbors():
+                # if that neighbor node is not visited then add to the stack
+                if neighbor.get_key() not in visited:
+                    stack.append(neighbor)
 
 
 def main():
