@@ -124,7 +124,7 @@ def bidirectional_search(undirected_graph, src_v, dst_v):
     """
     if not (undirected_graph.get_vertex(src_v) and
             undirected_graph.get_vertex(dst_v)):
-        return False, []
+        return False, [], {}
 
     # track the vertex, where we come from
     forward_edge_to = dict()
@@ -168,18 +168,14 @@ def bidirectional_search(undirected_graph, src_v, dst_v):
                     backward_edge_to[neighbor.get_key()] = vertex_node.get_key()
 
         # find the intersection point
-        intersection_nodes = list(forward_visited.intersection(backward_visited))
+        intersection_nodes = forward_visited.intersection(backward_visited)
 
         if intersection_nodes:
-            # if the intersection node more than 1 then take any nodes
-            if len(intersection_nodes) > 1:
-                intersection_node = intersection_nodes[0]
-            else:
-                intersection_node = intersection_nodes
-
+            intersection_node = list(intersection_nodes)[0]
             # prepare forward path
             forward_path = deque()
             x = intersection_node
+
             while x != src_v:
                 forward_path.appendleft(x)
                 x = forward_edge_to[x]
@@ -200,7 +196,7 @@ def bidirectional_search(undirected_graph, src_v, dst_v):
 
             return True, list(forward_path), intersection_nodes
 
-    return False, []
+    return False, [], {}
 
 
 def main():
@@ -256,8 +252,8 @@ def main():
     # find the path from source to destination using bi directional search
     print("")
     print(f"Bi directional BFS")
-    src_v = 0
-    dst_v = 1
+    src_v = 1
+    dst_v = 3
     has_path_to, path, intersection_nodes = bidirectional_search(undirected_graph, src_v, dst_v)
     print(f"{src_v} to {dst_v}: has_path_to = {has_path_to}")
     print(f"{src_v} to {dst_v}: {path}")
