@@ -13,25 +13,29 @@ def bfs(graph, src_v):
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    source_vertex = graph.get_vertex(src_v)
+    if not graph.get_vertex(src_v):
+        return False
+
+    # track the visited vertices
     visited = set()
     # add the source vertex into the visited set
-    visited.add(source_vertex)
+    visited.add(src_v)
 
     # add the source vertex into the queue
     queue = deque()
-    queue.append(source_vertex)
+    queue.append(src_v)
 
     while queue:
         # pop the vertex from the queue
         vertex = queue.popleft()
-        print(vertex.get_key(), end=" ")
+        print(vertex, end=" ")
         # iterate all neighbors of that node
-        for neighbor in vertex.get_neighbors():
+        vertex_node = graph.get_vertex(vertex)
+        for neighbor in vertex_node.get_neighbors():
             # if that neighbor node is not visited then add to the queue
-            if neighbor not in visited:
-                queue.append(neighbor)
-                visited.add(neighbor)
+            if neighbor.get_key() not in visited:
+                visited.add(neighbor.get_key())
+                queue.append(neighbor.get_key())
 
 
 def dfs(graph, src_v):
@@ -42,26 +46,27 @@ def dfs(graph, src_v):
     """
     if not graph.get_vertex(src_v):
         return False
-    source_vertex = graph.get_vertex(src_v)
 
     # track the visited vertices
     visited = set()
+
     # add the source vertex into the stack
     stack = deque()
-    stack.append(source_vertex)
+    stack.append(src_v)
 
     while stack:
         # pop the vertex from the stack
         vertex = stack.pop()
         if vertex not in visited:
             # if the vertex is not visited then add into the visited set
-            visited.add(vertex.get_key())
-            print(vertex.get_key(), end=" ")
+            visited.add(vertex)
+            print(vertex, end=" ")
             # iterate all neighbors of that node
-            for neighbor in vertex.get_neighbors():
+            vertex_node = graph.get_vertex(vertex)
+            for neighbor in vertex_node.get_neighbors():
                 # if that neighbor node is not visited then add to the stack
                 if neighbor.get_key() not in visited:
-                    stack.append(neighbor)
+                    stack.append(neighbor.get_key())
 
 
 def main():
