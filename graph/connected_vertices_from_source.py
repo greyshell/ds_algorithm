@@ -8,18 +8,21 @@ from collections import deque
 from graph_adt import Vertex, UndirectedGraph
 
 
-def connected_vertices_from_source(undirected_graph, src_vertex):
+def connected_vertices_from_source(undirected_graph, src_v):
     """
     dfs approach
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    stack = deque()
+    if not undirected_graph.get_vertex(src_v):
+        return False
+
+    # track the visited vertices
     visited = set()
 
     # add the source vertex into the stack
-    vertex = undirected_graph.get_vertex(src_vertex)
-    stack.append(vertex)
+    stack = deque()
+    stack.append(src_v)
 
     while stack:
         # pop the vertex from the stack
@@ -28,10 +31,11 @@ def connected_vertices_from_source(undirected_graph, src_vertex):
             # if the vertex is not visited then add into the visited set
             visited.add(vertex)
             # iterate all neighbors of that node
-            for neighbor in vertex.get_neighbors():
+            vertex_node = undirected_graph.get_vertex(vertex)
+            for neighbor in vertex_node.get_neighbors():
                 # if that neighbor node is not visited then add to the stack
-                if neighbor not in visited:
-                    stack.append(neighbor)
+                if neighbor.get_key() not in visited:
+                    stack.append(neighbor.get_key())
 
     return visited
 
@@ -64,8 +68,7 @@ def main():
 
     print(f"vertices connected form: {src_v}")
     for v in vertices:
-        key = v.get_key()
-        print(f"{key}", end=" ")
+        print(f"{v}", end=" ")
 
 
 if __name__ == '__main__':

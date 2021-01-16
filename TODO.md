@@ -1,8 +1,6 @@
 # TODO
 
 ## chapter: undirected graph
-- is there a path from src to target vertex
-    - find the shortest path -> dual BFS 
 - has_cycle
     - has_euler_cycle
     - has_hamiltonian_cycle

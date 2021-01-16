@@ -21,15 +21,16 @@ def clone_graph(node: Vertex) -> Vertex:
 
     # dictionary to save the visited node and it's respective clone as key and value respectively
     # this helps to avoid cycles
-    visited = {}
-    queue = deque()
-
-    # put the first node in the queue
-    queue.append(node)
+    # key -> clone node name, value -> clone node address
+    visited = dict()
     # create a new node / clone with same start_node val but empty neighbours
     # because we don't know their address at this point
     # put that new node in the visited dictionary
     visited[node] = Vertex(node.get_key())
+
+    # put the first node in the queue
+    queue = deque()
+    queue.append(node)
 
     # perform bfs traversal
     while queue:  # if queue is not empty
