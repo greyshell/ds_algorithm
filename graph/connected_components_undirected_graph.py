@@ -34,12 +34,10 @@ class ConnectedComponent(UndirectedGraph):
     def is_connected(self, src_v, dst_v):
         if not (self.get_vertex(src_v) or self.get_vertex(dst_v)):
             return False
-        return self._component_table[src_v] == self._component_table[dst_v]
+        return self._component_table.get(src_v) == self._component_table.get(dst_v)
 
     def get_component_id(self, vertex):
-        if not self.get_vertex(vertex):
-            return False
-        return self._component_table[vertex]
+        return self._component_table.get(vertex, False)
 
     def total_connected_components(self):
         return self._count
@@ -48,7 +46,7 @@ class ConnectedComponent(UndirectedGraph):
         comp_table = defaultdict(list)
 
         for node in self._component_table.keys():
-            comp_id = self._component_table[node]
+            comp_id = self._component_table.get(node)
             comp_table[comp_id].append(node)
         return comp_table
 
@@ -83,7 +81,7 @@ def main():
     total_cc = cc.total_connected_components()
     print(f"total connected component[s]: {total_cc}")
 
-    src_v = 8
+    src_v = 9
     dst_v = 12
     print(f"is {src_v} connected with {dst_v}: {cc.is_connected(src_v, dst_v)}")
 
