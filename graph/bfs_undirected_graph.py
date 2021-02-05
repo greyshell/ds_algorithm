@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: bfs and dfs traversals on a connected undirected graph
+# description: bfs traversals on a connected undirected graph
 
 from collections import deque
 from graph_adt import Vertex, UndirectedGraph
@@ -38,37 +38,6 @@ def bfs(graph, src_v):
                 queue.append(neighbor.get_key())
 
 
-def dfs(graph, src_v):
-    """
-    Depth first search
-    time complexity: O(V + E)
-    space complexity: O(V) -> to maintain the visited set
-    """
-    if not graph.get_vertex(src_v):
-        return False
-
-    # track the visited vertices
-    visited = set()
-
-    # add the source vertex into the stack
-    stack = deque()
-    stack.append(src_v)
-
-    while stack:
-        # pop the vertex from the stack
-        vertex = stack.pop()
-        if vertex not in visited:
-            # if the vertex is not visited then add into the visited set
-            visited.add(vertex)
-            print(vertex, end=" ")
-            # iterate all neighbors of that node
-            vertex_node = graph.get_vertex(vertex)
-            for neighbor in vertex_node.get_neighbors():
-                # if that neighbor node is not visited then add to the stack
-                if neighbor.get_key() not in visited:
-                    stack.append(neighbor.get_key())
-
-
 def main():
     # ref: Sedgewick Algorithms 4th edition, page 532
     undirected_graph = UndirectedGraph()
@@ -87,8 +56,6 @@ def main():
     undirected_graph.add_edge(3, 5)
 
     src_v = 0
-    print(f"dfs traversal: ")
-    dfs(undirected_graph, src_v)
 
     print("")
     print(f"bfs traversal: ")

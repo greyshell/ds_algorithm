@@ -3,6 +3,10 @@
 # author: greyshell
 # description: Graph ADT
 
+from typing import List
+from collections import deque
+
+
 class Vertex:
 
     def __init__(self, key):
@@ -77,6 +81,34 @@ class UndirectedGraph(object):
         """
         return len(self._vertices[vertex].get_neighbors())
 
+    # ===============================================================================
+    # auxiliary methods
+    # ===============================================================================
+    def nos_of_self_loops(self):
+        count = 0
+        for k in self._vertices:
+            node = self.get_vertex(k)
+            neighbors = node.get_neighbors()  # returns a se
+            if node in neighbors:  # time: O(1)
+                count += 1
+        return count
+
+
+class ConnectedComponent(UndirectedGraph):
+
+    def __int__(self):
+        connected_component = dict()  # key: vertex, value: component number
+        pass
+
+    def is_connected(self, src_v, dst_v):
+        pass
+
+    def total_connected_components(self):
+        pass
+
+    def get_component_id(self, src_v):
+        pass
+
 
 class DirectedGraph(UndirectedGraph):
 
@@ -129,7 +161,27 @@ def demo_vertex():
     print("")
 
 
-def demo_undirected_graph(nodes):
+def demo_undirected_graph():
+    # leetcode_input = [["1", "2"], ["3"], ["1", "2", "4"], [], ["3"]]  # mention the start index
+    # create a intermediate dict that our graph adt can consume
+    # nodes = {str(k): v for k, v in enumerate(leetcode_input, start=1)}
+
+    # ref: Sedgewick Algorithms 4th edition, page 522
+    nodes = {
+        0: [1, 2, 5, 6],
+        1: [],
+        2: [],
+        3: [4, 5],
+        4: [6],
+        5: [],
+        6: [],
+        7: [8],
+        8: [],
+        9: [10, 11, 12],
+        10: [],
+        11: [12],
+        12: []
+    }
     print("demo undirected graph")
     undirected_graph = UndirectedGraph()
     # add vertices
@@ -163,6 +215,27 @@ def demo_undirected_graph(nodes):
         print(f"degree of {vertex_key}: {degree}")
 
     print("")
+    self_loops = undirected_graph.nos_of_self_loops()
+    print(f"nos of self loops: {self_loops}")
+
+    # find all vertices connected from the source
+    src_v = 9
+    vertices = undirected_graph.connected_vertices_from_source(src_v)
+
+    print(f"vertices connected form: {src_v}")
+    for v in vertices:
+        print(f"{v}", end=" ")
+
+    print("")
+    src_v = 0
+    print(f"dfs traversal: ")
+    undirected_graph.dfs(src_v)
+
+    print("")
+    print(f"bfs traversal: ")
+    undirected_graph.bfs(src_v)
+
+    exit(0)
 
 
 def demo_directed_graph(nodes):
@@ -213,24 +286,8 @@ def main():
     # nodes = {str(k): v for k, v in enumerate(leetcode_input, start=1)}
 
     # ref: Sedgewick Algorithms 4th edition, page 522
-    nodes = {
-        0: [1, 2, 5, 6],
-        1: [],
-        2: [],
-        3: [4, 5],
-        4: [6],
-        5: [],
-        6: [],
-        7: [8],
-        8: [],
-        9: [10, 11, 12],
-        10: [],
-        11: [12],
-        12: []
-    }
-
     # demo_vertex()
-    demo_undirected_graph(nodes)
+    demo_undirected_graph()
     # demo_directed_graph(nodes)
 
 

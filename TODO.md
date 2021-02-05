@@ -12,10 +12,14 @@
 - is_isomorphic
 
 ## chapter: directed graph
+- multiple source shortest path
+- precedence scheduling in a DAG
+    - 6 is done after 3, represents 3 -> 6
+
 - connected component:
 - topological sort:
     - reverse post order dfs
-    - directed cycle detection in a digraph
+    - directed cycle detection in a directed graph
 - strong component
     - find strong components in a digraph
 - find shorted path from src to dst in a undirected connected graph
