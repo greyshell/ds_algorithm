@@ -94,22 +94,6 @@ class UndirectedGraph(object):
         return count
 
 
-class ConnectedComponent(UndirectedGraph):
-
-    def __int__(self):
-        connected_component = dict()  # key: vertex, value: component number
-        pass
-
-    def is_connected(self, src_v, dst_v):
-        pass
-
-    def total_connected_components(self):
-        pass
-
-    def get_component_id(self, src_v):
-        pass
-
-
 class DirectedGraph(UndirectedGraph):
 
     def __init__(self):
