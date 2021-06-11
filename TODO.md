@@ -4,9 +4,6 @@
 - has_cycle
     - has_euler_cycle
     - has_hamiltonian_cycle
-- connected_components
-    - returns List[List]
-    - if one list then all vertices in the graph is connected
 - is_bipartite
 - is_planar
 - is_isomorphic

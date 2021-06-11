@@ -2,7 +2,7 @@
 
 Learning Data Structures and Algorithms using `C` and `Python`.
 
-## `C` & DS Reference Materials
+## `C` & Data Structures / Algorithms Reference Materials
 
 1. `video`: Algorithm Part 1 and 2 offered by Princeton University
     - https://www.coursera.org/learn/algorithms-part1/home/welcome

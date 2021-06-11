@@ -202,25 +202,6 @@ def demo_undirected_graph():
     self_loops = undirected_graph.nos_of_self_loops()
     print(f"nos of self loops: {self_loops}")
 
-    # find all vertices connected from the source
-    src_v = 9
-    vertices = undirected_graph.connected_vertices_from_source(src_v)
-
-    print(f"vertices connected form: {src_v}")
-    for v in vertices:
-        print(f"{v}", end=" ")
-
-    print("")
-    src_v = 0
-    print(f"dfs traversal: ")
-    undirected_graph.dfs(src_v)
-
-    print("")
-    print(f"bfs traversal: ")
-    undirected_graph.bfs(src_v)
-
-    exit(0)
-
 
 def demo_directed_graph(nodes):
     """
