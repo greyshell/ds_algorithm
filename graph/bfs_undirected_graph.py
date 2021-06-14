@@ -9,7 +9,7 @@ from graph_adt import Vertex, UndirectedGraph
 
 def bfs(graph, src_vertex_name):
     """
-    Breadth first search
+    breadth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """

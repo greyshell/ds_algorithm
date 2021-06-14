@@ -9,7 +9,7 @@ from graph_adt import Vertex, UndirectedGraph
 
 def dfs(graph, src_vertex_name):
     """
-    Depth first search
+    depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
