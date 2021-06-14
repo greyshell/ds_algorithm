@@ -7,13 +7,14 @@ from collections import deque
 from graph_adt import Vertex, UndirectedGraph
 
 
-def dfs(graph, src_v):
+def dfs(graph, src_vertex_name):
     """
     Depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    if not graph.get_vertex(src_v):
+    # check if the source vertex object is present in the graph dict
+    if not graph.get_vertex_obj(src_vertex_name):
         return False
 
     # track the visited vertices
@@ -21,21 +22,22 @@ def dfs(graph, src_v):
 
     # add the source vertex into the stack
     stack = deque()
-    stack.append(src_v)
+    stack.append(src_vertex_name)
 
     while stack:
-        # pop the vertex from the stack
-        vertex = stack.pop()
-        if vertex not in visited:
-            # if the vertex is not visited then add into the visited set
-            visited.add(vertex)
-            print(vertex, end=" ")
+        # pop the vertex from the stack but don't process immediately
+        vertex_name = stack.pop()
+        # check if the vertex is not visited then add into the visited set and process
+        if vertex_name not in visited:
+            visited.add(vertex_name)
+            print(vertex_name, end=" ")
             # iterate all neighbors of that node
-            vertex_node = graph.get_vertex(vertex)
-            for neighbor in vertex_node.get_neighbors():
+            vertex_obj = graph.get_vertex_obj(vertex_name)
+            for neighbor_obj in vertex_obj.get_all_neighbors_obj():
+                neighbor_vertex_name = neighbor_obj.get_vertex_name()
                 # if that neighbor node is not visited then add to the stack
-                if neighbor.get_key() not in visited:
-                    stack.append(neighbor.get_key())
+                if neighbor_vertex_name not in visited:
+                    stack.append(neighbor_vertex_name)
 
 
 def main():

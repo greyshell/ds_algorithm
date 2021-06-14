@@ -30,14 +30,20 @@ def demo_undirected_graph():
 
     print("demo undirected graph")
     undirected_graph = UndirectedGraph()
-    # add vertices
-    for src_vertex in nodes:
-        undirected_graph.add_vertex(src_vertex)
-    # add edges
-    for src_vertex in nodes:
-        dst_vertices = nodes[src_vertex]
-        for dst_vertex in dst_vertices:
-            undirected_graph.add_edge(src_vertex, dst_vertex)
+    # # add vertices
+    # for src_vertex in nodes:
+    #     undirected_graph.add_vertex(src_vertex)
+    # # add edges
+    # for src_vertex in nodes:
+    #     dst_vertices = nodes[src_vertex]
+    #     for dst_vertex in dst_vertices:
+    #         undirected_graph.add_edge(src_vertex, dst_vertex)
+
+    undirected_graph.add_vertex("san jose")
+    undirected_graph.add_vertex("kolkata")
+    undirected_graph.add_vertex("bangalore")
+
+    undirected_graph.add_edge("kolkata", "hyd")
 
     # print vertices
     print(f"vertices:")

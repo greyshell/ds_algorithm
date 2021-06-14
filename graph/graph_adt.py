@@ -6,10 +6,10 @@
 
 class Vertex:
 
-    def __init__(self, vertex_name):
+    def __init__(self, vertex_name) -> None:
         self._vertex_name = vertex_name
         # each element in the list is an obj of type Vertex
-        self._neighbors_obj = list()
+        self._neighbors_obj = list()  # supports self loop
 
     def get_vertex_name(self):
         return self._vertex_name
@@ -19,6 +19,10 @@ class Vertex:
 
     def get_all_neighbors_obj(self):
         return self._neighbors_obj
+
+    # ===============================================================================
+    # auxiliary methods
+    # ===============================================================================
 
     def __str__(self):
         """
@@ -49,9 +53,6 @@ class UndirectedGraph:
         # if not found then return False
         return self._vertices.get(vertex_name, False)
 
-    def get_all_vertices_obj(self):
-        return list(self._vertices.values())
-
     def add_edge(self, src_vertex_name, dst_vertex_name):
         if src_vertex_name not in self._vertices:
             self.add_vertex(src_vertex_name)
@@ -63,6 +64,13 @@ class UndirectedGraph:
         # add reverse link - undirected graph
         self._vertices[dst_vertex_name].add_neighbor_obj(self._vertices[src_vertex_name])
 
+    # ===============================================================================
+    # auxiliary methods
+    # ===============================================================================
+
+    def get_all_vertices_obj(self):
+        return list(self._vertices.values())
+
     def get_all_edges_obj(self):
         edges = list()
         for src_vertex_name in self._vertices:  # iterate keys
@@ -72,10 +80,6 @@ class UndirectedGraph:
                 edges.append((src_vertex_obj, neighbor_obj))
 
         return edges
-
-    # ===============================================================================
-    # auxiliary methods
-    # ===============================================================================
 
     def get_degree(self, vertex_name):
         """

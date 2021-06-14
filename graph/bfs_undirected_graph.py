@@ -13,6 +13,7 @@ def bfs(graph, src_vertex_name):
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
+    # check if the source vertex object is present in the graph dict
     if not graph.get_vertex_obj(src_vertex_name):
         return False
 
@@ -26,16 +27,17 @@ def bfs(graph, src_vertex_name):
     queue.append(src_vertex_name)
 
     while queue:
-        # pop the vertex from the queue
+        # pop the vertex from the queue and process
         vertex_name = queue.popleft()
         print(vertex_name, end=" ")
         # iterate all neighbors of that node
         vertex_obj = graph.get_vertex_obj(vertex_name)
         for neighbor_obj in vertex_obj.get_all_neighbors_obj():
+            neighbor_vertex_name = neighbor_obj.get_vertex_name()
             # if that neighbor node is not visited then add to the queue
-            if neighbor_obj.get_vertex_name() not in visited:
-                visited.add(neighbor_obj.get_vertex_name())
-                queue.append(neighbor_obj.get_vertex_name())
+            if neighbor_vertex_name not in visited:
+                visited.add(neighbor_vertex_name)
+                queue.append(neighbor_vertex_name)
 
 
 def main():
