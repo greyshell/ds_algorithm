@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: demo undirected graph adt
+# description: kruskal algorithm to find the mst of a undirected weighted graph
 
 import heapq
 from graph_adt import WeightedUndirectedGraph
@@ -31,6 +31,10 @@ class HeapNode:
 
 
 def mst_kruskal(wug):
+    """
+    time complexity: E log E -> to push and pop each node
+    space complexity: E -> to maintain a min heap
+    """
     mst = list()  # returns a list of tuple - src_vertex, dst_vertex, weight
     min_heap = list()
     # create uf data structure to check connectivity between two vertices
@@ -39,11 +43,11 @@ def mst_kruskal(wug):
 
     # create the min heap
     edges = wug.get_edges()
-    for edge_obj in edges:
-        src_vertex = edge_obj.get_edge_src()
-        dst_vertex = edge_obj.get_edge_dst()
-        weight = edge_obj.get_edge_weight()
-        heapq.heappush(min_heap, HeapNode(src_vertex, dst_vertex, weight))
+    for e in edges:
+        src_vertex = e[0]
+        dst_vertex = e[1]
+        weight = e[2]
+        heapq.heappush(min_heap, HeapNode(src_vertex, dst_vertex, weight))  # O(log E)
 
     weight_sum = 0
     while min_heap and len(mst) < (len(vertices) - 1):
@@ -53,7 +57,7 @@ def mst_kruskal(wug):
         dst_vertex = edge_obj.dst_vertex
         weight = edge_obj.weight
 
-        if uf.is_connected(src_vertex, dst_vertex):
+        if uf.is_connected(src_vertex, dst_vertex):  # time complexity: O(1)
             continue
         uf.union(src_vertex, dst_vertex)
         mst.append((src_vertex, dst_vertex, weight))
@@ -96,6 +100,8 @@ def main():
     mst_edges, weight_sum = mst_kruskal(wug)
     for e in mst_edges:
         print(e)
+
+    print("")
     print(f"total weight: {weight_sum}")
 
 

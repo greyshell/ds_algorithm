@@ -96,5 +96,8 @@ class WeightedUndirectedGraph:
         return self._vertices
 
     def get_edges(self):
-        return self._edges
+        total_edges = []
+        for e in self._edges:
+            total_edges.append([e.get_edge_src(), e.get_edge_dst(), e.get_edge_weight()])
 
+        return total_edges

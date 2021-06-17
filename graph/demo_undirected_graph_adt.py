@@ -46,8 +46,9 @@ def main():
     # print edges
     edges = wug.get_edges()
     print(f"total edges: {len(edges)}")
+
     for e in edges:
-        print(f"{e.get_edge_src()}, {e.get_edge_dst()}, {e.get_edge_weight()}", end="\n")
+        print(f"{e[0]}, {e[1]}, {e[2]}")
 
     print("\n")
     print(f"inspect a vertex: {wug.get_vertices()['0']}")
