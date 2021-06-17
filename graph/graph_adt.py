@@ -4,34 +4,52 @@
 # description: Graph ADT
 
 
+class Edge:
+
+    def __init__(self, src_vertex, dst_vertex, weight):
+        self._src_vertex = src_vertex
+        self._dst_vertex = dst_vertex
+        self._weight = weight
+
+    def get_edge_weight(self):
+        return self._weight
+
+    def get_edge_src(self):
+        return self._src_vertex
+
+    def get_edge_dst(self):
+        return self._dst_vertex
+
+
 class Vertex:
 
-    def __init__(self, vertex_name) -> None:
-        self._vertex_name = vertex_name
-        # each element in the list is an obj of type Vertex
-        self._neighbors_obj = list()  # supports self loop
+    def __init__(self, vertex):
+        self._vertex = vertex
+        self._neighbor_edges = list()  # list is used to support self loop
 
-    def get_vertex_name(self):
-        return self._vertex_name
+    def add_neighbor_edges(self, edge_obj):
+        self._neighbor_edges.append(edge_obj)
 
-    def add_neighbor_obj(self, neighbor_obj):
-        self._neighbors_obj.append(neighbor_obj)
+    def get_neighbor_edges(self):
+        return self._neighbor_edges
 
-    def get_all_neighbors_obj(self):
-        return self._neighbors_obj
+    def get_vertex(self):
+        return self._vertex
 
-    # ===============================================================================
-    # auxiliary methods
-    # ===============================================================================
+    def get_neighbors(self):
+        neighbors = []
+        for edge_obj in self._neighbor_edges:
+            neighbor = edge_obj.get_dst_vertex()
+            neighbors.append(neighbor)
+        return neighbors
 
     def __str__(self):
-        """
-        display a vertex
-        """
-        s = str(self._vertex_name)
+        # display a vertex object
+        s = str(self._vertex)
         s += ": {"
-        for neighbor in self._neighbors_obj:
-            s += str(neighbor.get_vertex_name()) + ","
+        for edge_obj in self.get_neighbor_edges():
+            neighbor = edge_obj.get_edge_dst()
+            s += str(neighbor) + ","
 
         # when the vertex / node has neighbors, remove the last ',' char
         if s[-1] == ',':
@@ -41,57 +59,42 @@ class Vertex:
         return s
 
 
-class UndirectedGraph:
+class WeightedUndirectedGraph:
 
     def __init__(self):
         self._vertices = dict()
+        self._edges = list()  # don't allow parallel edges with same src and dst
 
-    def add_vertex(self, vertex_name):
-        self._vertices[vertex_name] = Vertex(vertex_name)
+    def add_vertex(self, vertex):
+        self._vertices[vertex] = Vertex(vertex)
 
-    def get_vertex_obj(self, vertex_name):
+    def get_vertex(self, vertex):
         # if not found then return False
-        return self._vertices.get(vertex_name, False)
+        return self._vertices.get(vertex, False)
 
-    def add_edge(self, src_vertex_name, dst_vertex_name):
-        if src_vertex_name not in self._vertices:
-            self.add_vertex(src_vertex_name)
+    def add_edge(self, src_vertex, dst_vertex, weight):
+        if src_vertex not in self._vertices:
+            self.add_vertex(src_vertex)
 
-        if dst_vertex_name not in self._vertices:
-            self.add_vertex(dst_vertex_name)
+        if dst_vertex not in self._vertices:
+            self.add_vertex(dst_vertex)
 
-        self._vertices[src_vertex_name].add_neighbor_obj(self._vertices[dst_vertex_name])
-        # add reverse link - undirected graph
-        self._vertices[dst_vertex_name].add_neighbor_obj(self._vertices[src_vertex_name])
+        src_vertex_obj = self._vertices[src_vertex]
+        dst_vertex_obj = self._vertices[dst_vertex]
 
-    # ===============================================================================
-    # auxiliary methods
-    # ===============================================================================
+        edge_obj = Edge(src_vertex, dst_vertex, weight)
+        rev_edge_obj = Edge(dst_vertex, src_vertex, weight)
 
-    def get_all_vertices_obj(self):
-        return list(self._vertices.values())
+        src_vertex_obj.add_neighbor_edges(edge_obj)
+        # add reverse link for undirected graph
+        dst_vertex_obj.add_neighbor_edges(rev_edge_obj)
 
-    def get_all_edges_obj(self):
-        edges = list()
-        for src_vertex_name in self._vertices:  # iterate keys
-            src_vertex_obj = self._vertices[src_vertex_name]
+        # update the edges set
+        self._edges.append(edge_obj)
 
-            for neighbor_obj in src_vertex_obj.get_all_neighbors_obj():
-                edges.append((src_vertex_obj, neighbor_obj))
+    def get_vertices(self):
+        return self._vertices
 
-        return edges
+    def get_edges(self):
+        return self._edges
 
-    def get_degree(self, vertex_name):
-        """
-        time complexity: O(E), where E is the edges of that vertex
-        """
-        return len(self._vertices[vertex_name].get_all_neighbors_obj())
-
-    def nos_of_self_loops(self):
-        count = 0
-        for k in self._vertices:
-            node = self.get_vertex_obj(k)
-            neighbors = node.get_all_neighbors_obj()
-            if node in neighbors:  # time: O(1)
-                count += 1
-        return count

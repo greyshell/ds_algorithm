@@ -76,6 +76,12 @@ def demo_max_satellite_heap():
     print(f"popped item: {node.name}")
     print(f"max value {max_heap[0]}")
 
+    print(heapq.heappop(max_heap))
+    print(heapq.heappop(max_heap))
+
+    if max_heap:  # check if the list is empty or not
+        print(heapq.heappop(max_heap))
+
 
 def heap_sort(nums):
     heapq.heapify(nums)
