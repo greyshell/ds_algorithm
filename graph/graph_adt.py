@@ -4,7 +4,7 @@
 # description: Graph ADT
 
 
-class Edge:
+class WeightedEdge:
 
     def __init__(self, src_vertex, dst_vertex, weight):
         self._src_vertex = src_vertex
@@ -82,8 +82,8 @@ class WeightedUndirectedGraph:
         src_vertex_obj = self._vertices[src_vertex]
         dst_vertex_obj = self._vertices[dst_vertex]
 
-        edge_obj = Edge(src_vertex, dst_vertex, weight)
-        rev_edge_obj = Edge(dst_vertex, src_vertex, weight)
+        edge_obj = WeightedEdge(src_vertex, dst_vertex, weight)
+        rev_edge_obj = WeightedEdge(dst_vertex, src_vertex, weight)
 
         src_vertex_obj.add_neighbor_edges(edge_obj)
         # add reverse link for undirected graph

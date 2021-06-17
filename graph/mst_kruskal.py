@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: kruskal algorithm to find the mst of a undirected weighted graph
+# description: kruskal algorithm to find the mst of an undirected weighted graph
 
 import heapq
-from graph_adt import WeightedUndirectedGraph
 from union_find_adt import UnionFind
+from graph_adt import WeightedUndirectedGraph
 
 
-class HeapNode:
+class WeightedEdgeHeapNode:
     def __init__(self, src_vertex, dst_vertex, weight):
         self.src_vertex = src_vertex
         self.dst_vertex = dst_vertex
@@ -22,10 +22,6 @@ class HeapNode:
         # compare based on weight
         return self.weight < other_obj.weight
 
-    def __gt__(self, other_obj):
-        # compare based on weight
-        return self.weight > other_obj.weight
-
     def __str__(self):
         return f"src_vertex:{self._src_vertex}, dst_vertex: {self._dst_vertex}, weight:{self._weight}"
 
@@ -35,19 +31,20 @@ def mst_kruskal(wug):
     time complexity: E log E -> to push and pop each node
     space complexity: E -> to maintain a min heap
     """
-    mst = list()  # returns a list of tuple - src_vertex, dst_vertex, weight
-    min_heap = list()
-    # create uf data structure to check connectivity between two vertices
+    mst = list()  # returns this final list of tuple - (src_vertex, dst_vertex, weight) that has all minimum edges
+
+    # create a union find object to check the connectivity between two vertices in O(1) time
     vertices = wug.get_vertices()
     uf = UnionFind(vertices)
 
-    # create the min heap
+    # create a custom min heap of type weighted edge
+    min_heap = list()
     edges = wug.get_edges()
     for e in edges:
         src_vertex = e[0]
         dst_vertex = e[1]
         weight = e[2]
-        heapq.heappush(min_heap, HeapNode(src_vertex, dst_vertex, weight))  # O(log E)
+        heapq.heappush(min_heap, WeightedEdgeHeapNode(src_vertex, dst_vertex, weight))  # O(log E)
 
     weight_sum = 0
     while min_heap and len(mst) < (len(vertices) - 1):
@@ -98,6 +95,7 @@ def main():
     wug.add_edge("6", "4", 0.93)
 
     mst_edges, weight_sum = mst_kruskal(wug)
+    print(f"minimum weight edges in mst:")
     for e in mst_edges:
         print(e)
 
