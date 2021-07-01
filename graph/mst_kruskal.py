@@ -4,7 +4,7 @@
 # description: kruskal algorithm to find the mst of an undirected weighted graph
 
 import heapq
-from union_find_adt import UnionFind
+from union_find_adt import QuickFind
 from graph_adt import WeightedUndirectedGraph
 
 
@@ -35,7 +35,7 @@ def mst_kruskal(wug):
 
     # create a union find object to check the connectivity between two vertices in O(1) time
     vertices = wug.get_vertices()
-    uf = UnionFind(vertices)
+    uf = QuickFind(vertices)
 
     # create a custom min heap of type weighted edge
     min_heap = list()
@@ -54,7 +54,7 @@ def mst_kruskal(wug):
         dst_vertex = edge_obj.dst_vertex
         weight = edge_obj.weight
 
-        if uf.is_connected(src_vertex, dst_vertex):  # time complexity: O(1)
+        if uf.connected(src_vertex, dst_vertex):  # time complexity: O(1)
             continue
         uf.union(src_vertex, dst_vertex)
         mst.append((src_vertex, dst_vertex, weight))
