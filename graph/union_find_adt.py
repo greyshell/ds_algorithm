@@ -166,8 +166,7 @@ class WeightedQuickUnion:
     def connected(self, src_node, dst_node):
         """
         returns true if src_node and dst_node ae in same component
-        time complexity: O(1)
-        overall time complexity: O(log(n)) for find() method
+        time complexity: depends on the find() method
         """
         if self.find(src_node) == self.find(dst_node):
             return True
