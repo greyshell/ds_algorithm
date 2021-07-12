@@ -90,7 +90,7 @@ class QuickUnion:
 
     def find(self, node):
         """
-        find the root of a node / vertex
+        find the root or parent of a node / vertex
         time complexity: O(n)
         """
         while node != self._vertices_lookup[node]:
@@ -114,7 +114,7 @@ class QuickUnion:
         """
         src_node_root = self.find(src_node)
         dst_node_root = self.find(dst_node)
-        self._vertices_lookup[src_node_root] = dst_node_root
+        self._vertices_lookup[dst_node_root] = src_node_root
 
         self._components_count -= 1
 
@@ -130,14 +130,15 @@ class WeightedQuickUnion:
         """
         # initially assume total component is equal to the length of the vertices
         self._components_count = len(vertices)
-        self._sz = list()  # size of components for roots
+        self._sz = dict()  # holds size of components for roots
         self._vertices_lookup = dict()
         # initialize the dict with it's own value
         for vertex_name in vertices:
             self._vertices_lookup[vertex_name] = vertex_name
 
-        for i in range(0, len(vertices)):
-            self._sz.append(1)
+        # ste the initial size
+        for key in self._vertices_lookup.keys():
+            self._sz[key] = 1
 
     def get_components(self):
         """
@@ -159,6 +160,7 @@ class WeightedQuickUnion:
         """
         returns true if src_node and dst_node ae in same component
         time complexity: O(1)
+        overall time complexity: O(log(n)) for find() method
         """
         if self.find(src_node) == self.find(dst_node):
             return True
@@ -176,9 +178,12 @@ class WeightedQuickUnion:
         if src_node_root == dst_node_root:
             return
 
+        # need to make sure that smaller tree comes below
         if self._sz[src_node_root] < self._sz[dst_node_root]:
             self._vertices_lookup[src_node_root] = dst_node_root
             self._sz[dst_node_root] += self._sz[src_node_root]
         else:
             self._vertices_lookup[dst_node_root] = src_node_root
             self._sz[src_node_root] += self._sz[dst_node_root]
+
+        self._components_count -= 1

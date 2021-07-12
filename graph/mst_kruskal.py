@@ -4,7 +4,7 @@
 # description: kruskal algorithm to find the mst of an undirected weighted graph
 
 import heapq
-from union_find_adt import QuickFind
+from union_find_adt import *
 from graph_adt import WeightedUndirectedGraph
 
 
@@ -25,6 +25,15 @@ class WeightedEdgeHeapNode:
     def __str__(self):
         return f"src_vertex:{self._src_vertex}, dst_vertex: {self._dst_vertex}, weight:{self._weight}"
 
+    def get_source_vertex(self):
+        return self.src_vertex
+
+    def get_destination_vertex(self):
+        return self.dst_vertex
+
+    def get_weight(self):
+        return self.weight
+
 
 def mst_kruskal(wug):
     """
@@ -35,7 +44,9 @@ def mst_kruskal(wug):
 
     # create a union find object to check the connectivity between two vertices in O(1) time
     vertices = wug.get_vertices()
-    uf = QuickFind(vertices)
+    # uf = QuickFind(vertices)
+    # uf = QuickUnion(vertices)
+    uf = WeightedQuickUnion(vertices)
 
     # create a custom min heap of type weighted edge
     min_heap = list()
@@ -50,13 +61,14 @@ def mst_kruskal(wug):
     while min_heap and len(mst) < (len(vertices) - 1):
         edge_obj = heapq.heappop(min_heap)
 
-        src_vertex = edge_obj.src_vertex
-        dst_vertex = edge_obj.dst_vertex
-        weight = edge_obj.weight
+        # extract the attributes from the object
+        src_vertex = edge_obj.get_source_vertex()
+        dst_vertex = edge_obj.get_destination_vertex()
+        weight = edge_obj.get_weight()
 
-        if uf.connected(src_vertex, dst_vertex):  # time complexity: O(1)
+        if uf.connected(src_vertex, dst_vertex):  # O(log(n)) for WeightedQuickUnion
             continue
-        uf.union(src_vertex, dst_vertex)
+        uf.union(src_vertex, dst_vertex)  # O(1) for WeightedQuickUnion
         mst.append((src_vertex, dst_vertex, weight))
         weight_sum = weight_sum + weight
 
