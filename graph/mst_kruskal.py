@@ -10,29 +10,29 @@ from graph_adt import WeightedUndirectedGraph
 
 class WeightedEdgeHeapNode:
     def __init__(self, src_vertex, dst_vertex, weight):
-        self.src_vertex = src_vertex
-        self.dst_vertex = dst_vertex
-        self.weight = weight
+        self._src_vertex = src_vertex
+        self._dst_vertex = dst_vertex
+        self._weight = weight
 
     def __eq__(self, other_obj):
-        # compare based on weight
-        return self.weight == other_obj.weight
+        # compare based on _weight
+        return self._weight == other_obj._weight
 
     def __lt__(self, other_obj):
-        # compare based on weight
-        return self.weight < other_obj.weight
+        # compare based on _weight
+        return self._weight < other_obj._weight
 
     def __str__(self):
         return f"src_vertex:{self._src_vertex}, dst_vertex: {self._dst_vertex}, weight:{self._weight}"
 
     def get_source_vertex(self):
-        return self.src_vertex
+        return self._src_vertex
 
     def get_destination_vertex(self):
-        return self.dst_vertex
+        return self._dst_vertex
 
     def get_weight(self):
-        return self.weight
+        return self._weight
 
 
 def mst_kruskal(wug):
@@ -40,7 +40,7 @@ def mst_kruskal(wug):
     time complexity: E log E -> to push and pop each node
     space complexity: E -> to maintain a min heap
     """
-    mst = list()  # returns this final list of tuple - (src_vertex, dst_vertex, weight) that has all minimum edges
+    mst = list()  # returns this final list of tuple - (_src_vertex, _dst_vertex, _weight) that has all minimum edges
 
     # create a union find object to check the connectivity between two vertices in O(1) time
     vertices = wug.get_vertices()

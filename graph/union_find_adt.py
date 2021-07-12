@@ -121,7 +121,9 @@ class QuickUnion:
 
 class WeightedQuickUnion:
     """
-    improved version QuickUnion, find() takes Log(n) time
+    improved version QuickUnion with path compression
+    - without path compression, find() takes Log(n) time without
+    - whereas with path compression it takes liner time (amortized analysis)
     """
 
     def __init__(self, vertices):
@@ -150,9 +152,14 @@ class WeightedQuickUnion:
     def find(self, node):
         """
         find the root of a node / vertex
-        time complexity: O(log(n))
+        time complexity: with path compression it takes liner time - O(n) -> amortized analysis
+        - without path compression improvement it takes O(log(n))
         """
         while node != self._vertices_lookup[node]:
+            # path compression improvement: flatten the tree
+            grand_parent = self._vertices_lookup[self._vertices_lookup[node]]
+            # make every other node in the path point to its grandparent thereby halving the path
+            self._vertices_lookup[node] = grand_parent
             node = self._vertices_lookup[node]
         return node
 
