@@ -4,62 +4,64 @@
 # description: dfs traversals on a connected undirected graph
 
 from collections import deque
-from graph_adt import Vertex, UndirectedGraph
+from graph_adt import WeightedUndirectedGraph
 
 
-def dfs(graph, src_vertex_name):
+def dfs(ug, start_vertex):
     """
     depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    # check if the source vertex object is present in the graph dict
-    if not graph.get_vertex_obj(src_vertex_name):
+    # check if the start vertex is present in the ug
+    if not ug.get_vertex(start_vertex):
         return False
 
     # track the visited vertices
     visited = set()
 
-    # add the source vertex into the stack
+    # add the start vertex into the stack
     stack = deque()
-    stack.append(src_vertex_name)
+    stack.append(start_vertex)
 
     while stack:
-        # pop the vertex from the stack but don't process immediately
-        vertex_name = stack.pop()
-        # check if the vertex is not visited then add into the visited set and process
-        if vertex_name not in visited:
-            visited.add(vertex_name)
-            print(vertex_name, end=" ")
+        # pop the vertex from the stack but don't process that immediately
+        vertex = stack.pop()
+        # check if the vertex is not in visited set then add into the visited set and process
+        if vertex not in visited:
+            visited.add(vertex)
+            print(vertex, end=" ")
             # iterate all neighbors of that node
-            vertex_obj = graph.get_vertex_obj(vertex_name)
-            for neighbor_obj in vertex_obj.get_all_neighbors_obj():
-                neighbor_vertex_name = neighbor_obj.get_vertex_name()
-                # if that neighbor node is not visited then add to the stack
-                if neighbor_vertex_name not in visited:
-                    stack.append(neighbor_vertex_name)
+            vertex_obj = ug.vertices[vertex]
+            # iterate all neighbors of that vertex
+            for edge_obj in vertex_obj.neighbor_edges:
+                neighbor = edge_obj.dst_vertex
+                # if that neighbor is not in the visited set then add that into the stack
+                if neighbor not in visited:
+                    stack.append(neighbor)
 
 
 def main():
     # ref: Sedgewick Algorithms 4th edition, page 532
-    undirected_graph = UndirectedGraph()
+    ug = WeightedUndirectedGraph()
     # add vertices
-    for src_vertex in range(0, 6):
-        undirected_graph.add_vertex(src_vertex)
+    for vertex in range(0, 6):
+        ug.add_vertex(str(vertex))
 
     # add edges
-    undirected_graph.add_edge(0, 1)
-    undirected_graph.add_edge(0, 5)
-    undirected_graph.add_edge(0, 2)
-    undirected_graph.add_edge(1, 2)
-    undirected_graph.add_edge(2, 3)
-    undirected_graph.add_edge(2, 4)
-    undirected_graph.add_edge(3, 4)
-    undirected_graph.add_edge(3, 5)
+    ug.add_edge("0", "1")
+    ug.add_edge("0", "5")
+    ug.add_edge("0", "2")
+    ug.add_edge("1", "2")
+    ug.add_edge("2", "3")
+    ug.add_edge("2", "4")
+    ug.add_edge("3", "4")
+    ug.add_edge("3", "5")
 
-    src_v = 0
+    start_vertex = "0"
+
     print(f"dfs traversal: ")
-    dfs(undirected_graph, src_v)
+    dfs(ug, start_vertex)
 
 
 if __name__ == '__main__':

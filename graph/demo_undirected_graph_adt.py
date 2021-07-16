@@ -38,20 +38,20 @@ def main():
     wug.add_edge("6", "4", 0.93)
 
     # print vertices
-    vertices = wug.get_vertices()
+    vertices = wug.get_all_vertices()
     print(f"total vertices: {len(vertices)}")
     for v in vertices:
         print(f"{v}", end="\n")
 
     # print edges
-    edges = wug.get_edges()
+    edges = wug.get_all_edges()
     print(f"total edges: {len(edges)}")
 
     for e in edges:
         print(f"{e[0]}, {e[1]}, {e[2]}")
 
     print("\n")
-    print(f"inspect a vertex: {wug.get_vertices()['0']}")
+    print(f"inspect a vertex: {wug.vertices['5']}")
 
 
 if __name__ == '__main__':

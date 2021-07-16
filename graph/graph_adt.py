@@ -4,51 +4,34 @@
 # description: Graph ADT
 
 
-class WeightedEdge:
+class _WeightedEdge:
 
-    def __init__(self, src_vertex, dst_vertex, weight):
-        self._src_vertex = src_vertex
-        self._dst_vertex = dst_vertex
-        self._weight = weight
-
-    def get_edge_weight(self):
-        return self._weight
-
-    def get_edge_src(self):
-        return self._src_vertex
-
-    def get_edge_dst(self):
-        return self._dst_vertex
+    def __init__(self, dst_vertex, weight):
+        self.dst_vertex = dst_vertex
+        self.weight = weight
 
 
-class Vertex:
+class _Vertex:
 
     def __init__(self, vertex):
-        self._vertex = vertex
-        self._neighbor_edges = list()  # list is used to support self loop
+        self.vertex = vertex
+        self.neighbor_edges = list()  # list is used to support self loop
 
-    def add_neighbor_edges(self, edge_obj):
-        self._neighbor_edges.append(edge_obj)
+    def add_neighbor_edge(self, edge_obj):
+        self.neighbor_edges.append(edge_obj)
 
     def get_neighbor_edges(self):
-        return self._neighbor_edges
-
-    def get_vertex(self):
-        return self._vertex
-
-    def get_neighbors(self):
-        neighbors = []
-        for edge_obj in self._neighbor_edges:
-            neighbor = edge_obj.get_dst_vertex()
-            neighbors.append(neighbor)
-        return neighbors
+        neighbor_edges = list()
+        for edge_obj in self.neighbor_edges:
+            neighbor_edges.append(edge_obj)
+        return neighbor_edges
 
     def __str__(self):
         # display a vertex object
-        s = str(self._vertex)
+        s = str(self.vertex)
         s += ": {"
-        for edge_obj in self.get_neighbor_edges():
-            neighbor = edge_obj.get_edge_dst()
+        for edge_obj in self.neighbor_edges:
+            neighbor = edge_obj.dst_vertex
             s += str(neighbor) + ","
 
         # when the vertex / node has neighbors, remove the last ',' char
@@ -62,42 +45,45 @@ class Vertex:
 class WeightedUndirectedGraph:
 
     def __init__(self):
-        self._vertices = dict()
-        self._edges = list()  # don't allow parallel edges with same src and dst
+        self.vertices = dict()
 
     def add_vertex(self, vertex):
-        self._vertices[vertex] = Vertex(vertex)
+        self.vertices[vertex] = _Vertex(vertex)
 
     def get_vertex(self, vertex):
-        # if not found then return False
-        return self._vertices.get(vertex, False)
+        return self.vertices.get(vertex, False)
 
-    def add_edge(self, src_vertex, dst_vertex, weight):
-        if src_vertex not in self._vertices:
+    def get_all_vertices(self):
+        return self.vertices.keys()
+
+    def add_edge(self, src_vertex, dst_vertex, weight=0):
+        if src_vertex not in self.vertices:
             self.add_vertex(src_vertex)
 
-        if dst_vertex not in self._vertices:
+        if dst_vertex not in self.vertices:
             self.add_vertex(dst_vertex)
 
-        src_vertex_obj = self._vertices[src_vertex]
-        dst_vertex_obj = self._vertices[dst_vertex]
+        src_vertex_obj = self.vertices[src_vertex]
+        dst_vertex_obj = self.vertices[dst_vertex]
 
-        edge_obj = WeightedEdge(src_vertex, dst_vertex, weight)
-        rev_edge_obj = WeightedEdge(dst_vertex, src_vertex, weight)
+        src_vertex_obj.add_neighbor_edge(_WeightedEdge(dst_vertex, weight))
+        # add a reverse link for undirected graph
+        dst_vertex_obj.add_neighbor_edge(_WeightedEdge(src_vertex, weight))
 
-        src_vertex_obj.add_neighbor_edges(edge_obj)
-        # add reverse link for undirected graph
-        dst_vertex_obj.add_neighbor_edges(rev_edge_obj)
+    def get_all_edges(self):
+        """
+        time: O(V + E)
+        """
+        total_edges = list()
+        for vertex_obj in self.vertices.values():
+            src_vertex = vertex_obj.vertex
+            for edge_obj in vertex_obj.neighbor_edges:
+                dst_vertex = edge_obj.dst_vertex
+                weight = edge_obj.weight
 
-        # update the edges set
-        self._edges.append(edge_obj)
-
-    def get_vertices(self):
-        return self._vertices
-
-    def get_edges(self):
-        total_edges = []
-        for e in self._edges:
-            total_edges.append([e.get_edge_src(), e.get_edge_dst(), e.get_edge_weight()])
+                # prepare backward edge
+                backward_edge = (dst_vertex, src_vertex, weight)
+                if backward_edge not in total_edges:
+                    total_edges.append((src_vertex, dst_vertex, weight))
 
         return total_edges

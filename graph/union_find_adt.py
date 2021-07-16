@@ -91,7 +91,7 @@ class QuickUnion:
     def find(self, node):
         """
         find the root or parent of a node / vertex
-        time complexity: O(n)
+        time complexity: tree height, worst case -> O(n)
         """
         while node != self._vertices_lookup[node]:
             node = self._vertices_lookup[node]
@@ -110,7 +110,7 @@ class QuickUnion:
     def union(self, src_node, dst_node):
         """
         add connection between src_node and dst_node
-        time complexity: O(1)
+        time complexity: tree height, worst case -> O(n)
         """
         src_node_root = self.find(src_node)
         dst_node_root = self.find(dst_node)
@@ -152,8 +152,8 @@ class WeightedQuickUnion:
     def find(self, node):
         """
         find the root of a node / vertex
-        time complexity: with path compression it takes liner time - O(n) -> amortized analysis
-        - without path compression improvement it takes O(log(n))
+        time complexity: with path compression it takes very very nearly O(1) -> amortized analysis
+            - without path compression improvement it takes O(log(n))
         """
         while node != self._vertices_lookup[node]:
             # path compression improvement: flatten the tree
@@ -176,7 +176,8 @@ class WeightedQuickUnion:
     def union(self, src_node, dst_node):
         """
         add connection between src_node and dst_node
-        time complexity: O(1)
+        time complexity: with path compression it takes very very nearly O(1) -> amortized analysis
+            - without path compression improvement it takes O(log(n))
         """
         src_node_root = self.find(src_node)
         dst_node_root = self.find(dst_node)

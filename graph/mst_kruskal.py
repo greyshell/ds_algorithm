@@ -8,31 +8,22 @@ from union_find_adt import *
 from graph_adt import WeightedUndirectedGraph
 
 
-class WeightedEdgeHeapNode:
+class HeapNode:
     def __init__(self, src_vertex, dst_vertex, weight):
-        self._src_vertex = src_vertex
-        self._dst_vertex = dst_vertex
-        self._weight = weight
+        self.src_vertex = src_vertex
+        self.dst_vertex = dst_vertex
+        self.weight = weight
 
     def __eq__(self, other_obj):
-        # compare based on _weight
-        return self._weight == other_obj._weight
+        # compare based on weight
+        return self.weight == other_obj.weight
 
     def __lt__(self, other_obj):
-        # compare based on _weight
-        return self._weight < other_obj._weight
+        # compare based on weight
+        return self.weight < other_obj.weight
 
     def __str__(self):
-        return f"src_vertex:{self._src_vertex}, dst_vertex: {self._dst_vertex}, weight:{self._weight}"
-
-    def get_source_vertex(self):
-        return self._src_vertex
-
-    def get_destination_vertex(self):
-        return self._dst_vertex
-
-    def get_weight(self):
-        return self._weight
+        return f"src_vertex:{self.src_vertex}, dst_vertex: {self.dst_vertex}, weight:{self.weight}"
 
 
 def mst_kruskal(wug):
@@ -43,28 +34,29 @@ def mst_kruskal(wug):
     mst = list()  # returns this final list of tuple - (_src_vertex, _dst_vertex, _weight) that has all minimum edges
 
     # create a union find object to check the connectivity between two vertices in O(1) time
-    vertices = wug.get_vertices()
+    vertices = wug.get_all_vertices()
     # uf = QuickFind(vertices)
     # uf = QuickUnion(vertices)
     uf = WeightedQuickUnion(vertices)
 
-    # create a custom min heap of type weighted edge
+    # create a custom min heap where each element is a weighted edge obj
     min_heap = list()
-    edges = wug.get_edges()
+    edges = wug.get_all_edges()
     for e in edges:
         src_vertex = e[0]
         dst_vertex = e[1]
         weight = e[2]
-        heapq.heappush(min_heap, WeightedEdgeHeapNode(src_vertex, dst_vertex, weight))  # O(log E)
+        weighted_edge_obj = HeapNode(src_vertex, dst_vertex, weight)
+        heapq.heappush(min_heap, weighted_edge_obj)  # O(log E)
 
     weight_sum = 0
     while min_heap and len(mst) < (len(vertices) - 1):
         edge_obj = heapq.heappop(min_heap)
 
         # extract the attributes from the object
-        src_vertex = edge_obj.get_source_vertex()
-        dst_vertex = edge_obj.get_destination_vertex()
-        weight = edge_obj.get_weight()
+        src_vertex = edge_obj.src_vertex
+        dst_vertex = edge_obj.dst_vertex
+        weight = edge_obj.weight
 
         if uf.connected(src_vertex, dst_vertex):  # O(log(n)) for WeightedQuickUnion
             continue
