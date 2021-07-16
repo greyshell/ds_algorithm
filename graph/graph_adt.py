@@ -7,10 +7,6 @@
 class _WeightedEdge:
 
     def __init__(self, dst_vertex, weight):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         self.dst_vertex = dst_vertex
         self.weight = weight
 
@@ -18,35 +14,19 @@ class _WeightedEdge:
 class _Vertex:
 
     def __init__(self, vertex):
-        """
-        time complexity: O(1)
-        space complexity: O(E)
-        """
         self.vertex = vertex
         self.neighbor_edges = list()  # list is used to support self loop
 
     def add_neighbor_edge(self, edge_obj):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         self.neighbor_edges.append(edge_obj)
 
     def get_neighbor_edges(self):
-        """
-        time complexity: O(E)
-        space complexity: O(E)
-        """
         neighbor_edges = list()
         for edge_obj in self.neighbor_edges:
             neighbor_edges.append(edge_obj)
         return neighbor_edges
 
     def __str__(self):
-        """
-        time complexity: O(E)
-        space complexity: O(V)
-        """
         # display a vertex object
         s = str(self.vertex)
         s += ": {"
@@ -65,38 +45,18 @@ class _Vertex:
 class WeightedUndirectedGraph:
 
     def __init__(self):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         self.vertices = dict()
 
     def add_vertex(self, vertex):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         self.vertices[vertex] = _Vertex(vertex)
 
     def get_vertex(self, vertex):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         return self.vertices.get(vertex, False)
 
     def get_all_vertices(self):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         return self.vertices.keys()
 
     def add_edge(self, src_vertex, dst_vertex, weight=0):
-        """
-        time complexity: O(1)
-        space complexity: O(1)
-        """
         if src_vertex not in self.vertices:
             self.add_vertex(src_vertex)
 
@@ -107,13 +67,12 @@ class WeightedUndirectedGraph:
         dst_vertex_obj = self.vertices[dst_vertex]
 
         src_vertex_obj.add_neighbor_edge(_WeightedEdge(dst_vertex, weight))
-        # add a backward edge for undirected graph
+        # undirected graph -> add a backward edge
         dst_vertex_obj.add_neighbor_edge(_WeightedEdge(src_vertex, weight))
 
     def get_all_edges(self):
         """
         time complexity: O(V + E)
-        space complexity: O(1)
         """
         total_edges = list()
         for vertex_obj in self.vertices.values():
