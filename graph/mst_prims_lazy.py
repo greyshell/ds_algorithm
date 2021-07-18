@@ -1,54 +1,39 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: kruskal algorithm to find the mst of an undirected weighted graph
+# description: prims algorithm (lazy approach) to find the mst of an undirected weighted graph (connected, no cycle)
 
 import heapq
-from union_find_adt import *
-from graph_adt import WeightedUndirectedGraph, WeightedEdge
+from graph_adt import WeightedUndirectedGraph
 
 
-# class HeapNode:
-#     def __init__(self, src_vertex, dst_vertex, weight):
-#         self.src_vertex = src_vertex
-#         self.dst_vertex = dst_vertex
-#         self.weight = weight
-#
-#     def __eq__(self, other_obj):
-#         # compare based on weight
-#         return self.weight == other_obj.weight
-#
-#     def __lt__(self, other_obj):
-#         # compare based on weight
-#         return self.weight < other_obj.weight
-#
-#     def __str__(self):
-#         return f"src_vertex:{self.src_vertex}, dst_vertex: {self.dst_vertex}, weight:{self.weight}"
+def mark_node(vertex_obj, min_heap, visited):
+    visited.add(vertex_obj.vertex_name)
+    for edge_obj in vertex_obj.neighbor_edges_obj:
+        dst_vertex = edge_obj.dst_vertex
+        if dst_vertex not in visited:
+            heapq.heappush(min_heap, edge_obj)
 
 
-def mst_kruskal(wug):
+def mst_prims(wug):
     """
+    lazy approach
     time complexity: E log E -> to push and pop each node
     space complexity: E -> to maintain a min heap
     """
-    mst = list()  # returns this final list of tuple - (_src_vertex, _dst_vertex, _weight) that has all minimum edges
+    mst = list()  # returns minimum list of edges
 
-    # create a union find object to check the connectivity between two vertices in O(1) time
     vertices = wug.get_all_vertices()
-    # uf = QuickFind(vertices)
-    # uf = QuickUnion(vertices)
-    uf = WeightedQuickUnion(vertices)
+    start_vertex_obj = wug.get_vertex_obj(vertices[0])
 
-    # create a custom min heap where each element is a weighted edge obj
+    # create a min heap where each element is a weighted edge obj
     min_heap = list()
-    edges = wug.get_all_edges()
-    for e in edges:
-        src_vertex, dst_vertex, weight = e
-        weighted_edge_obj = WeightedEdge(src_vertex, dst_vertex, weight)
-        heapq.heappush(min_heap, weighted_edge_obj)  # O(log E)
+    visited = set()
+
+    mark_node(start_vertex_obj, min_heap, visited)
 
     weight_sum = 0
-    while min_heap and len(mst) < (len(vertices) - 1):
+    while min_heap:
         edge_obj = heapq.heappop(min_heap)
 
         # extract the attributes from the object
@@ -56,12 +41,17 @@ def mst_kruskal(wug):
         dst_vertex = edge_obj.dst_vertex
         weight = edge_obj.weight
 
-        if uf.connected(src_vertex, dst_vertex):  # O(log(n)) for WeightedQuickUnion
+        if src_vertex in visited and dst_vertex in visited:
             continue
 
-        uf.union(src_vertex, dst_vertex)  # O(1) for WeightedQuickUnion
         mst.append(edge_obj.__str__())
         weight_sum = weight_sum + weight
+
+        if src_vertex not in visited:
+            mark_node(wug.get_vertex_obj(src_vertex), min_heap, visited)
+
+        if dst_vertex not in visited:
+            mark_node(wug.get_vertex_obj(dst_vertex), min_heap, visited)
 
     return mst, weight_sum
 
@@ -97,7 +87,7 @@ def main():
     wug.add_edge("6", "0", 0.58)
     wug.add_edge("6", "4", 0.93)
 
-    mst_edges, weight_sum = mst_kruskal(wug)
+    mst_edges, weight_sum = mst_prims(wug)
     print(f"minimum weight edges in mst:")
     for e in mst_edges:
         print(e)

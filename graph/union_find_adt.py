@@ -90,7 +90,7 @@ class QuickUnion:
 
     def find(self, node):
         """
-        find the root or parent of a node / vertex
+        find the root or parent of a node / vertex_name
         time complexity: tree height, worst case -> O(n)
         """
         while node != self._vertices_lookup[node]:
@@ -151,7 +151,7 @@ class WeightedQuickUnion:
 
     def find(self, node):
         """
-        find the root of a node / vertex
+        find the root of a node / vertex_name
         time complexity: with path compression it takes very very nearly O(1) -> amortized analysis
             - without path compression improvement it takes O(log(n))
         """

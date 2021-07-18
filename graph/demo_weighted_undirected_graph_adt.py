@@ -3,6 +3,7 @@
 # author: greyshell
 # description: demo undirected graph adt
 
+import json
 from graph_adt import WeightedUndirectedGraph
 
 
@@ -41,17 +42,24 @@ def main():
     vertices = wug.get_all_vertices()
     print(f"total vertices: {len(vertices)}")
     for v in vertices:
-        print(f"{v}", end="\n")
+        print(f"{v}", end=" ")
 
     # print edges
+    print("\n")
     edges = wug.get_all_edges()
     print(f"total edges: {len(edges)}")
 
     for e in edges:
-        print(f"{e[0]}, {e[1]}, {e[2]}")
+        print(f"{e}", end=" ")
 
+    # print a node
     print("\n")
-    print(f"inspect a vertex: {wug.vertices['5']}")
+    print(f"{wug.vertices['0']}")
+    print(f"{wug.vertices['6']}")
+
+    # print the graph
+    print("\n")
+    print(f"{wug}")
 
 
 if __name__ == '__main__':

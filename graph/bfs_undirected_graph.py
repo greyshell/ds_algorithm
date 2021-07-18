@@ -13,27 +13,27 @@ def bfs(ug, start_vertex):
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    # check if the start vertex is present in the graph
-    if not ug.get_vertex(start_vertex):
+    # check if the start vertex_name is present in the graph
+    if not ug.get_vertex_obj(start_vertex):
         return False
 
     # track the visited vertices
     visited = set()
-    # add the start vertex into the visited set
+    # add the start vertex_name into the visited set
     visited.add(start_vertex)
 
-    # add the start vertex into the queue
+    # add the start vertex_name into the queue
     queue = deque()
     queue.append(start_vertex)
 
     while queue:
-        # pop the vertex from the queue and process
+        # pop the vertex_name from the queue and process
         vertex = queue.popleft()
         print(vertex, end=" ")
 
         vertex_obj = ug.vertices[vertex]
-        # iterate all neighbors of that vertex
-        for edge_obj in vertex_obj.neighbor_edges:
+        # iterate all neighbors of that vertex_name
+        for edge_obj in vertex_obj.neighbor_edges_obj:
             neighbor = edge_obj.dst_vertex
             # if that neighbor is not in the visited set then add to the queue and set
             if neighbor not in visited:
