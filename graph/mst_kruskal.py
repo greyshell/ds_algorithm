@@ -8,24 +8,6 @@ from union_find_adt import *
 from graph_adt import WeightedUndirectedGraph, WeightedEdge
 
 
-# class HeapNode:
-#     def __init__(self, src_vertex, dst_vertex, weight):
-#         self.src_vertex = src_vertex
-#         self.dst_vertex = dst_vertex
-#         self.weight = weight
-#
-#     def __eq__(self, other_obj):
-#         # compare based on weight
-#         return self.weight == other_obj.weight
-#
-#     def __lt__(self, other_obj):
-#         # compare based on weight
-#         return self.weight < other_obj.weight
-#
-#     def __str__(self):
-#         return f"src_vertex:{self.src_vertex}, dst_vertex: {self.dst_vertex}, weight:{self.weight}"
-
-
 def mst_kruskal(wug):
     """
     time complexity: E log E -> to push and pop each node

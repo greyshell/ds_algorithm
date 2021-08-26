@@ -15,8 +15,16 @@ class MaxHeapNode(object):
         # tweak the comparison logic to build max heap: change less_than_sign to greater_than_sign
         return self.key > other.key
 
+    def __gt__(self, other):
+        # compare based on val
+        # tweak the comparison logic to build max heap
+        return self.key < other.key
+
     def __eq__(self, other):
         return self.key == other.key
+
+    def __ne__(self, other):
+        return self.key != other.key
 
     def __str__(self):
         return str(self.key)
@@ -140,18 +148,18 @@ def main():
     min_heap.append(50)
     print(f"nums = {min_heap}")
 
-    large = heapq.nlargest(3, min_heap)
-    small = heapq.nsmallest(3, min_heap)
-    print(f"3 largest values: {large}")
-    print(f"3 smallest values: {small}")
+    large_items = heapq.nlargest(3, min_heap)
+    small_items = heapq.nsmallest(3, min_heap)
+    print(f"3 largest values: {large_items}")
+    print(f"3 smallest values: {small_items}")
     # when k==1, it is more efficient to use the built-in min() and max() functions.
 
     # for larger k values it is more efficient to use the sorted() function.
 
     # kth largest element
     k = 3
-    kth_large = heapq.nlargest(k, min_heap)
-    print(f"{k}th/rd/nd largest value: {kth_large[k - 1]}")  # last element of the kth_large list
+    kth_large = heapq.nlargest(k, min_heap)[-1]
+    print(f"{k}th/rd/nd largest value: {kth_large}")  # last element of the kth_large list
 
     # demo max heap
     demo_max_heap()
