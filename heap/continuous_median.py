@@ -47,26 +47,3 @@ class MedianFinder:
             return self._max_heap.peek()
 
         return self._min_heap.peek()
-
-
-def main():
-    # create the object
-    s = MedianFinder()
-    # add 1 and get the median
-    s.add_num(1)
-    median = s.get_median()
-    print(f"median: {median}")
-
-    # add 2 and get the median
-    s.add_num(2)
-    median = s.get_median()
-    print(f"median: {median}")
-
-    # add 3 and get the median
-    s.add_num(3)
-    median = s.get_median()
-    print(f"median: {median}")
-
-
-if __name__ == '__main__':
-    main()
