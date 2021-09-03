@@ -4,7 +4,7 @@
 # description: dfs traversals on a connected undirected graph
 
 from collections import deque
-from graph_adt import WeightedUndirectedGraph
+from graph import UndirectedGraph
 
 
 def dfs(ug, start_vertex):
@@ -43,7 +43,7 @@ def dfs(ug, start_vertex):
 
 def main():
     # ref: Sedgewick Algorithms 4th edition, page 532
-    ug = WeightedUndirectedGraph()
+    ug = UndirectedGraph()
     # add vertices
     for vertex in range(0, 6):
         ug.add_vertex(str(vertex))

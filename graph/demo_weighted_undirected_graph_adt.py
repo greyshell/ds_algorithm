@@ -3,13 +3,12 @@
 # author: greyshell
 # description: demo undirected graph adt
 
-import json
-from graph_adt import WeightedUndirectedGraph
+from graph import UndirectedGraph
 
 
 def main():
     # ref: Sedgewick Algorithms 4th edition, page 614
-    wug = WeightedUndirectedGraph()
+    wug = UndirectedGraph()
     # add vertices
     wug.add_vertex("0")
     wug.add_vertex("1")
