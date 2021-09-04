@@ -22,7 +22,7 @@ size_t fib(size_t n) {
      * space complexity:
      * =================
      * - O(n) -> max size of the call stack
-     * - O(n) -> dp array size
+     * - O(n) -> dynamic_programming array size
      */
     // TO DO: dynamically generates the array based on the input.
     static size_t dp[4] = {0};  // initialized the entire array with 0

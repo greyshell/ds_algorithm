@@ -4,7 +4,7 @@
  *
  * run the test:
  * make sure libO2 is installed in your system, no main() inside the test code.
- * export the function - k_largest_elements() inside c_tests/testlib.h
+ * export the test function - such as k_largest_elements() inside c_tests/testlib.h
  * navigate to the c_tests/ directory
  * make test FLD=heap TEST_PROG=k_largest_elements
  * */

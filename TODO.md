@@ -1,9 +1,14 @@
 # TODO
 
+# MST
+
+- implement prims eagar version, understand the benefit over lazy
+
 ## chapter: undirected graph
+
 - has_cycle
-    - has_euler_cycle
-    - has_hamiltonian_cycle
+  - has_euler_cycle
+  - has_hamiltonian_cycle
 - is_bipartite
 - is_planar
 - is_isomorphic

@@ -37,7 +37,7 @@ add_executable(example_queue_singly_linklist_int
 # heap
 add_executable(example_binary_heap_dynamic_array_int libO2/examples/example_binary_heap_dynamic_array_int.c
         ${binary_heap_dynamic_array_int})
-add_executable(k_largest_elements heap/k_largest_elements.c
+add_executable(k_largest_elements heap/k_largest_elements_array.c
         ${binary_heap_dynamic_array_int})
 
 # sorting
