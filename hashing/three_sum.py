@@ -4,7 +4,7 @@
 
 def three_sum(arr: list, target: int) -> bool:
     """
-    time: O(n)
+    time: O(n^2)
     space: O(n)
     """
     temp_arr = list()
