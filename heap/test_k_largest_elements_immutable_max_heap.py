@@ -3,7 +3,7 @@
 # author: greyshell
 
 import pytest
-from snowowl.heap import Heap, HeapType
+from snowowl import Heap, HeapType
 from heap.k_largest_elements_immutable_max_heap import *
 
 

@@ -4,14 +4,14 @@
 # description: find the median from data stream
 # reference: https://leetcode.com/problems/find-median-from-data-stream/
 
-from snowowl.heap import Heap, HeapType
+from snowowl import Heap, HeapType
 
 
 class MedianFinder:
     def __init__(self):
-        # store lower nums in a max heap
+        # store lower arr in a max heap
         self._max_heap = Heap(list(), heap_type=HeapType.MAX)
-        # store higher nums in a min heap
+        # store higher arr in a min heap
         self._min_heap = Heap(list())
 
     def add_num(self, num: int) -> None:

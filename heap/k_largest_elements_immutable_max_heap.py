@@ -3,7 +3,7 @@
 # author: greyshell
 # description: find k largest elements from a immutable max heap
 
-from snowowl.heap import Heap, HeapType
+from snowowl import Heap, HeapType
 
 
 class Node:

@@ -2,7 +2,7 @@
 
 # author: greyshell
 
-from snowowl.heap import Heap, HeapType
+from snowowl import Heap, HeapType
 
 
 def get_k_largest_elements_array(array: list, k: int) -> list:

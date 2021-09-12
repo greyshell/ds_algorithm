@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
 
 # author: greyshell
+# command: python -m pytest test_two_sum.py -v
 
-# python -m c_tests test_two_sum.TestSolution
-
-import unittest
-# noinspection PyUnresolvedReferences
-from two_sum import LeetCode
+import pytest
+from two_sum import two_sum
 
 
-class TestSolution(unittest.TestCase):
-    def test_case_1(self):
-        self.assertEqual(LeetCode.solution([12, 7, 11, 15, 35], 50), [3, 4])
-
-    def test_case_2(self):
-        self.assertEqual(LeetCode.solution([12, 7, 11, 15, 35], 19), [0, 1])
-
-    def test_case_3(self):
-        self.assertEqual(LeetCode.solution([12, 7, 11, 15, 35], 89), [None, None])
-
-    def test_case_4(self):
-        self.assertEqual(LeetCode.solution([12, 7, 11, -15, 35], 20), [3, 4])
+def test_case_1() -> None:
+    arr = [12, 7, 11, 15, 35]
+    target = 50
+    expected_index = [3, 4]
+    assert set(two_sum(arr, target)) == set(expected_index)
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_case_2() -> None:
+    arr = [12, 7, 11, 15, 35]
+    target = 19
+    expected_index = [0, 1]
+    assert set(two_sum(arr, target)) == set(expected_index)
+
+
+def test_case_3() -> None:
+    arr = [12, 7, 11, 15, 35]
+    target = 190
+    expected_index = [None, None]
+    assert set(two_sum(arr, target)) == set(expected_index)
